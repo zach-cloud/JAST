@@ -1,0 +1,7310 @@
+// swat after
+globals
+group w=null
+real array p
+real array r
+real array o
+effect array j
+timer D=null
+boolean f=false
+boolean s=false
+boolean W=false
+real A=0.
+real q=0.
+integer Y=0
+boolean c=false
+real C=0.
+integer U=0
+integer y=0
+integer M=0
+integer d=0
+integer L=0
+integer e=0
+boolean G=false
+boolean i=false
+integer P=0
+unit array u
+unit array x
+real array S
+attacktype array a
+damagetype array n
+weapontype array E
+integer array t
+integer array J
+integer m=0
+integer H=0
+integer array B
+trigger array O
+boolean array K
+integer array h
+boolean Q=false
+boolean F=false
+boolean array b
+integer g=0
+group v=null
+group R=null
+framehandle N=null
+framehandle I=null
+framehandle array X
+framehandle array T
+framehandle array Z
+integer k=0
+framehandle l=null
+force V=null
+integer ww=0
+string array pw
+string rw=null
+integer array ow
+force jw=null
+integer array Dw
+real array fw
+real array sw
+integer array Ww
+integer array Aw
+integer array qw
+string Yw=null
+hashtable cw=null
+integer array Cw
+integer array Uw
+integer array yw
+integer array Mw
+timer dw=null
+string array Lw
+multiboard ew=null
+integer Gw=0
+integer iw=0
+player array Pw
+integer array uw
+integer xw=0
+location array Sw
+force array aw
+integer array nw
+integer Ew=0
+integer array tw
+rect array Jw
+rect array mw
+integer array Hw
+string Bw=null
+integer Ow=0
+integer Kw=0
+integer hw=0
+integer Qw=0
+real Fw=0.
+integer bw=0
+real gw=0.
+integer vw=0
+unit array Rw
+rect array Nw
+integer array Iw
+unit array Xw
+unit array Tw
+unit array Zw
+boolean array kw
+force lw=null
+real array Vw
+unit array wp
+integer array pp
+integer array rp
+integer op=0
+integer jp=0
+boolean array Dp
+integer array fp
+integer sp=0
+integer Wp=0
+integer Ap=0
+integer qp=0
+integer Yp=0
+integer cp=0
+real Cp=0.
+real udg_LethalDamageEvent=0.
+real Up=0.
+boolean yp=false
+integer Mp=0
+real dp=0.
+unit Lp=null
+unit ep=null
+group Gp=null
+real ip=0.
+integer Pp=0
+integer up=0
+integer xp=0
+integer Sp=0
+real ap=0.
+unit np=null
+boolean Ep=false
+boolean tp=false
+boolean Jp=false
+boolean mp=false
+unit Hp=null
+integer Bp=0
+real udg_DamageModifierEvent=0.
+integer Op=0
+integer array Kp
+integer array hp
+unit array Qp
+integer Fp=0
+boolean bp=false
+integer gp=0
+integer vp=0
+unit array Rp
+integer array Np
+integer array Ip
+real udg_DamageEvent=0.
+integer array Xp
+group array Tp
+real array Zp
+real array kp
+group lp=null
+integer array Vp
+real array wr
+unit array pr
+group rr=null
+real array jr
+real array Dr
+boolean array fr
+real array sr
+unit array Wr
+boolean Ar=false
+string qr=null
+integer Yr=0
+integer array cr
+integer Cr=0
+integer array Ur
+integer yr=0
+boolean array Mr
+real udg_SaveLoadEvent=0.
+integer dr=0
+integer array Lr
+integer array er
+integer Gr=0
+string ir=null
+player Pr=null
+string array ur
+string xr=null
+string array Sr
+boolean array ar
+integer nr=0
+integer Er=0
+rect array tr
+group array Jr
+boolean array mr
+integer array Hr
+integer array Br
+integer array Kr
+integer array hr
+integer array Qr
+integer Fr=0
+integer br=0
+boolean gr=false
+unit array vr
+integer Rr=0
+integer Nr=0
+real Ir=0.
+timer Xr=null
+boolean Tr=false
+string array Zr
+boolean array kr
+integer array lr
+string array Vr
+string wo=null
+integer po=0
+integer array ro
+string array oo
+timer jo=null
+boolean Do=false
+integer array fo
+integer so=0
+real Wo=0.
+integer Ao=0
+rect qo=null
+rect Yo=null
+rect co=null
+rect Co=null
+rect Uo=null
+rect yo=null
+rect Mo=null
+rect do=null
+rect Lo=null
+rect eo=null
+rect Go=null
+rect io=null
+rect Po=null
+rect uo=null
+rect xo=null
+rect So=null
+rect ao=null
+rect no=null
+rect Eo=null
+rect Jo=null
+rect mo=null
+rect Ho=null
+rect Bo=null
+rect Oo=null
+rect Ko=null
+rect ho=null
+rect Qo=null
+rect Fo=null
+rect bo=null
+rect go=null
+rect vo=null
+rect Ro=null
+rect No=null
+rect Io=null
+rect Xo=null
+rect To=null
+rect Zo=null
+rect ko=null
+rect lo=null
+rect Vo=null
+rect wj=null
+rect pj=null
+rect rj=null
+rect oj=null
+rect jj=null
+rect Dj=null
+rect fj=null
+rect sj=null
+rect Wj=null
+rect Aj=null
+rect qj=null
+rect Yj=null
+rect cj=null
+rect Cj=null
+rect Uj=null
+rect yj=null
+rect Mj=null
+rect dj=null
+rect Lj=null
+rect ej=null
+rect Gj=null
+rect ij=null
+rect Pj=null
+rect uj=null
+rect xj=null
+rect Sj=null
+rect aj=null
+rect nj=null
+rect Ej=null
+rect tj=null
+rect Jj=null
+rect mj=null
+rect Hj=null
+rect Bj=null
+sound Oj=null
+sound Kj=null
+trigger hj=null
+trigger Qj=null
+trigger Fj=null
+trigger bj=null
+trigger gj=null
+trigger vj=null
+trigger Rj=null
+trigger Nj=null
+trigger Ij=null
+trigger Xj=null
+trigger Tj=null
+trigger Zj=null
+trigger kj=null
+trigger lj=null
+trigger Vj=null
+trigger wD=null
+trigger pD=null
+trigger rD=null
+trigger oD=null
+trigger jD=null
+trigger DD=null
+trigger fD=null
+trigger sD=null
+trigger WD=null
+trigger AD=null
+trigger qD=null
+trigger YD=null
+trigger cD=null
+trigger CD=null
+trigger UD=null
+trigger yD=null
+trigger MD=null
+trigger dD=null
+trigger LD=null
+integer array eD
+force GD=null
+region array iD
+integer PD=0
+integer array uD
+integer array xD
+integer array SD
+integer array aD
+integer array nD
+integer ED=0
+integer tD=0
+integer array JD
+integer array mD
+integer array HD
+integer BD=0
+integer OD=0
+integer array KD
+integer array hD
+integer array QD
+integer FD=0
+integer array bD
+integer array gD
+string array vD
+string array RD
+integer ND=0
+player array ID
+integer array XD
+integer array TD
+integer array ZD
+integer kD=0
+integer lD=0
+integer array VD
+integer array wf
+integer pf=0
+integer rf=0
+integer array of
+integer array jf
+integer array Df
+trigger ff=null
+integer sf=0
+integer Wf=0
+integer array Af
+integer array qf
+integer Yf=0
+integer cf=0
+integer array Cf
+integer array Uf
+real array yf
+real array Mf
+real array df
+real array Lf
+integer array ef
+integer array Gf
+integer array Pf
+integer array uf
+integer xf=0
+integer Sf=0
+integer array af
+real array nf
+integer array Ef
+hashtable tf=null
+trigger Jf=null
+trigger mf=null
+trigger Hf=null
+trigger Bf=null
+trigger Of=null
+trigger Kf=null
+trigger array hf
+integer Qf=0
+integer Ff=0
+trigger bf=null
+string gf=null
+real vf=0.
+integer Rf=0
+boolean Nf=false
+code If=null
+code Xf=null
+code Tf=null
+code Zf=null
+code kf=null
+code lf=null
+code Vf=null
+code ws=null
+code ps=null
+code rs=null
+code os=null
+code js=null
+code Ds=null
+code fs=null
+code ss=null
+code Ws=null
+code As=null
+code qs=null
+code Ys=null
+code cs=null
+code Cs=null
+code Us=null
+code ys=null
+code Ms=null
+code ds=null
+code Ls=null
+code es=null
+code Gs=null
+code is=null
+code Ps=null
+code us=null
+code xs=null
+code Ss=null
+code as=null
+code ns=null
+code Es=null
+code ts=null
+code Js=null
+code ms=null
+code Hs=null
+code Bs=null
+code Os=null
+code Ks=null
+code hs=null
+code Qs=null
+code Fs=null
+code bs=null
+code gs=null
+code vs=null
+code Rs=null
+code Ns=null
+code Is=null
+code Xs=null
+code Ts=null
+code Zs=null
+code ks=null
+code ls=null
+code Vs=null
+code wW=null
+code pW=null
+code rW=null
+code oW=null
+code jW=null
+code DW=null
+code fW=null
+code sW=null
+code WW=null
+code AW=null
+code qW=null
+code YW=null
+code cW=null
+code CW=null
+code UW=null
+code yW=null
+code MW=null
+code dW=null
+code LW=null
+code eW=null
+code GW=null
+code iW=null
+code PW=null
+code uW=null
+code xW=null
+code SW=null
+code aW=null
+code nW=null
+code EW=null
+code tW=null
+code JW=null
+code mW=null
+code HW=null
+code BW=null
+code OW=null
+code KW=null
+code hW=null
+code QW=null
+code FW=null
+code bW=null
+code gW=null
+code vW=null
+code RW=null
+code NW=null
+code IW=null
+code XW=null
+code TW=null
+code ZW=null
+endglobals
+function NL takes nothing returns nothing
+set fD=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(fD,EVENT_PLAYER_UNIT_SPELL_EFFECT)
+call TriggerAddCondition(fD,Condition(gs))
+call TriggerAddAction(fD,vs)
+endfunction
+function Ye takes nothing returns nothing
+set sD=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(sD,EVENT_PLAYER_UNIT_SPELL_EFFECT)
+call TriggerAddCondition(sD,Condition(Ts))
+call TriggerAddAction(sD,Zs)
+endfunction
+function cA takes trigger WA,string AA,limitop qA,real YA returns event
+set bf=WA
+set gf=AA
+set vf=YA
+call TriggerEvaluate(hf[1])
+return TriggerRegisterVariableEvent(WA,AA,qA,YA)
+endfunction
+function ZG takes nothing returns nothing
+set qD=CreateTrigger()
+call cA(qD,"udg_DamageEvent",EQUAL,1.)
+call TriggerAddCondition(qD,Condition(dW))
+call TriggerAddAction(qD,LW)
+endfunction
+function Zi takes nothing returns nothing
+local trigger Ti=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(Ti,EVENT_PLAYER_UNIT_SPELL_EFFECT)
+call TriggerAddCondition(Ti,Condition(BW))
+call TriggerAddAction(Ti,OW)
+set Ti=null
+endfunction
+function dL takes nothing returns nothing
+set oD=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(oD,EVENT_PLAYER_UNIT_CONSTRUCT_FINISH)
+call TriggerRegisterAnyUnitEventBJ(oD,EVENT_PLAYER_UNIT_UPGRADE_FINISH)
+call TriggerAddAction(oD,Ks)
+endfunction
+function gi takes nothing returns nothing
+set CD=CreateTrigger()
+call DisableTrigger(CD)
+call TriggerRegisterTimerEvent(CD,.10,true)
+call TriggerAddAction(CD,HW)
+endfunction
+function hL takes nothing returns nothing
+set DD=CreateTrigger()
+call DisableTrigger(DD)
+call TriggerRegisterTimerEvent(DD,.17,true)
+call TriggerAddAction(DD,Fs)
+endfunction
+function hd takes nothing returns nothing
+local trigger Bd
+local rect Od
+local region Kd
+set pD=CreateTrigger()
+set Bd=pD
+set Od=Hj
+set Kd=CreateRegion()
+call RegionAddRect(Kd,Od)
+call TriggerRegisterEnterRegion(Bd,Kd,null)
+call TriggerAddCondition(pD,Condition(ns))
+call TriggerAddAction(pD,Es)
+set Bd=null
+set Od=null
+set Kd=null
+endfunction
+function id takes nothing returns nothing
+local trigger Gd=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(Gd,EVENT_PLAYER_UNIT_TRAIN_FINISH)
+call TriggerAddCondition(Gd,Condition(Ss))
+call TriggerAddAction(Gd,as)
+set Gd=null
+endfunction
+function me takes nothing returns nothing
+set AD=CreateTrigger()
+call cA(AD,"udg_DamageModifierEvent",EQUAL,1.)
+call TriggerAddCondition(AD,Condition(Vs))
+call TriggerAddAction(AD,wW)
+endfunction
+function oe takes nothing returns nothing
+local trigger we=CreateTrigger()
+local rect re=Zo
+local region pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=wj
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=jj
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Wj
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=cj
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Mj
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Gj
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=xj
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Ej
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=qo
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Uo
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Lo
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Po
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=ao
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=mo
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=Ko
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=bo
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+set re=No
+set pe=CreateRegion()
+call RegionAddRect(pe,re)
+call TriggerRegisterEnterRegion(we,pe,null)
+call TriggerAddCondition(we,Condition(Ns))
+call TriggerAddAction(we,Is)
+set we=null
+set pe=null
+set re=null
+endfunction
+function yP takes nothing returns nothing
+set dD=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(dD,EVENT_PLAYER_UNIT_SPELL_EFFECT)
+call TriggerAddCondition(dD,Condition(FW))
+call TriggerAddAction(dD,bW)
+endfunction
+function GP takes nothing returns nothing
+local trigger eP
+set hj=CreateTrigger()
+call TriggerAddAction(hj,os)
+set Qj=CreateTrigger()
+call TriggerRegisterTimerEvent(Qj,1.,false)
+call TriggerAddAction(Qj,Ds)
+set Fj=CreateTrigger()
+call TriggerAddAction(Fj,fs)
+set bj=CreateTrigger()
+call TriggerAddAction(bj,ss)
+set gj=CreateTrigger()
+call TriggerAddAction(gj,Ws)
+set vj=CreateTrigger()
+call TriggerRegisterTimerExpireEvent(vj,Xr)
+call TriggerAddAction(vj,As)
+set Rj=CreateTrigger()
+call TriggerAddAction(Rj,qs)
+set Nj=CreateTrigger()
+call TriggerAddAction(Nj,Ys)
+set Ij=CreateTrigger()
+call cA(Ij,"udg_SaveLoadEvent",EQUAL,1.)
+call TriggerAddAction(Ij,cs)
+set Xj=CreateTrigger()
+call TriggerAddAction(Xj,ys)
+set Tj=CreateTrigger()
+call TriggerAddAction(Tj,Ms)
+set Zj=CreateTrigger()
+call TriggerAddAction(Zj,ds)
+set kj=CreateTrigger()
+call TriggerAddCondition(kj,Condition(Ls))
+call TriggerAddAction(kj,es)
+set lj=CreateTrigger()
+call TriggerAddCondition(lj,Condition(Gs))
+call TriggerAddAction(lj,is)
+set Vj=CreateTrigger()
+call TriggerRegisterTimerExpireEvent(Vj,jo)
+call TriggerAddAction(Vj,Ps)
+set wD=CreateTrigger()
+call TriggerAddAction(wD,xs)
+call id()
+call hd()
+set rD=CreateTrigger()
+call TriggerAddCondition(rD,Condition(ms))
+call TriggerAddAction(rD,Hs)
+call dL()
+set eP=CreateTrigger()
+call TriggerRegisterTimerExpireEvent(eP,dw)
+call TriggerAddAction(eP,hs)
+set jD=CreateTrigger()
+call TriggerAddAction(jD,Qs)
+call hL()
+call NL()
+set eP=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(eP,EVENT_PLAYER_UNIT_DEATH)
+call TriggerAddAction(eP,Rs)
+call oe()
+set eP=CreateTrigger()
+call TriggerRegisterTimerEvent(eP,.25,true)
+call TriggerAddAction(eP,Xs)
+call Ye()
+set eP=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(eP,EVENT_PLAYER_UNIT_RESEARCH_FINISH)
+call TriggerAddAction(eP,ks)
+set WD=CreateTrigger()
+call TriggerAddAction(WD,ls)
+call me()
+call ZG()
+set YD=CreateTrigger()
+call cA(YD,"udg_LethalDamageEvent",EQUAL,1.)
+call TriggerAddAction(YD,aW)
+set cD=CreateTrigger()
+call TriggerRegisterTimerEvent(cD,.10,true)
+call TriggerAddAction(cD,EW)
+call gi()
+call Zi()
+set UD=CreateTrigger()
+call TriggerAddAction(UD,KW)
+set yD=CreateTrigger()
+call TriggerAddAction(yD,hW)
+set MD=CreateTrigger()
+call TriggerAddAction(MD,QW)
+call yP()
+set LD=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(LD,EVENT_PLAYER_UNIT_SPELL_EFFECT)
+call TriggerAddAction(LD,gW)
+set eP=null
+endfunction
+function RA takes nothing returns nothing
+local trigger vA=CreateTrigger()
+call TriggerRegisterTimerEvent(vA,.25,true)
+call TriggerAddAction(vA,Xf)
+if w==null then
+set w=CreateGroup()
+endif
+set vA=null
+endfunction
+function RU takes nothing returns nothing
+set Oj=CreateSound("Sound\\Interface\\Rescue.wav",false,false,false,10,10,"DefaultEAXON")
+call SetSoundDuration(Oj,$ed4)
+call SetSoundChannel(Oj,0)
+call SetSoundVolume(Oj,-1)
+call SetSoundPitch(Oj,1.)
+set Kj=CreateSound("Sound/Ambient/DoodadEffects/TheHornOfCenarius.flac",false,false,false,1,1,"DefaultEAXON")
+call SetSoundParamsFromLabel(Kj,"HornOfCenariusSound")
+call SetSoundDuration(Kj,$2f58)
+call SetSoundVolume(Kj,$6e)
+endfunction
+function XY takes nothing returns nothing
+local trigger IY=CreateTrigger()
+call TriggerRegisterTimerEvent(IY,.1,true)
+call TriggerAddAction(IY,Vf)
+set Yw=BlzGetAbilityExtendedTooltip($41303342,0)
+set IY=null
+endfunction
+function Cc takes nothing returns nothing
+set Cw[0]=1
+set Cw[1]=0
+set Cw[2]=-1
+set Cw[3]=0
+set Cw[4]=1
+set Cw[5]=0
+set Cw[6]=-1
+set Cw[7]=0
+set Uw[0]=0
+set Uw[1]=1
+set Uw[2]=0
+set Uw[3]=-1
+set Uw[4]=0
+set Uw[5]=1
+set Uw[6]=0
+set Uw[7]=-1
+endfunction
+function Jc takes nothing returns nothing
+endfunction
+function MY takes nothing returns nothing
+local trigger UY=CreateTrigger()
+local integer yY=0
+call GetLocalPlayer()
+set kD=ND
+loop
+exitwhen yY==bj_MAX_PLAYERS
+set ID[yY]=Player(yY)
+set XD[yY]=yY
+if GetPlayerController(ID[yY])==MAP_CONTROL_USER and GetPlayerSlotState(ID[yY])==PLAYER_SLOT_STATE_PLAYING then
+set VD[lD]=yY
+set wf[yY]=lD
+if kD==ND then
+set kD=yY
+set TD[yY]=ND
+set ZD[yY]=ND
+else
+set ZD[yY]=XD[VD[lD-1]]
+set TD[VD[lD-1]]=yY
+set TD[yY]=ND
+endif
+call TriggerRegisterPlayerEvent(UY,ID[yY],EVENT_PLAYER_LEAVE)
+call ForceAddPlayer(V,ID[yY])
+set lD=lD+1
+endif
+set yY=yY+1
+endloop
+call TriggerAddCondition(UY,Filter(lf))
+set UY=null
+endfunction
+function SY takes nothing returns nothing
+local integer xY=0
+loop
+call BlzTriggerRegisterPlayerSyncEvent(ff,Player(xY),"S",false)
+set xY=xY+1
+exitwhen xY==bj_MAX_PLAYER_SLOTS
+endloop
+endfunction
+function aq takes integer Gq,string iq returns integer
+local integer Pq=0
+local integer uq=0
+local integer xq=StringLength(iq)
+local string Sq
+set RD[Gq]=null
+if iq=="" then
+set xq=xq+1
+endif
+call PreloadGenClear()
+call PreloadGenStart()
+loop
+exitwhen Pq>=xq
+set Sq=SubString(iq,Pq,Pq+$c8)
+call Preload("\" )\ncall BlzSetAbilityTooltip("+I2S(gD[uq])+", \""+"-"+Sq+"\", "+I2S(0)+")\n//")
+set Pq=Pq+$c8
+set uq=uq+1
+endloop
+call Preload("\" )\nendfunction\nfunction a takes nothing returns nothing\n //")
+call PreloadGenEnd(vD[Gq])
+return Gq
+endfunction
+function Hq takes integer nq returns string
+local integer Eq=0
+local string mq=""
+local string array tq
+local string Jq
+loop
+exitwhen Eq==10
+set tq[Eq]=BlzGetAbilityTooltip(gD[Eq],0)
+set Eq=Eq+1
+endloop
+call Preloader(vD[nq])
+set Eq=0
+loop
+exitwhen Eq==10
+set Jq=BlzGetAbilityTooltip(gD[Eq],0)
+if Jq==tq[Eq]then
+if Eq==0 and mq=="" then
+return null
+endif
+return mq
+endif
+if Eq==0 then
+if SubString(Jq,0,1)!="-" then
+return null
+endif
+set Jq=SubString(Jq,1,StringLength(Jq))
+endif
+if Eq>0 then
+set Jq=SubString(Jq,1,StringLength(Jq))
+endif
+call BlzSetAbilityTooltip(gD[Eq],tq[Eq],0)
+set mq=mq+Jq
+set Eq=Eq+1
+endloop
+return mq
+endfunction
+function Oq takes integer Bq returns nothing
+if RD[Bq]!=null then
+call aq(Bq,Hq(Bq)+RD[Bq])
+set RD[Bq]=null
+endif
+set bD[Bq]=bD[0]
+set bD[0]=Bq
+endfunction
+function bq takes integer Kq,boolean hq returns string
+local string Qq=Hq(Kq)
+local string Fq=RD[Kq]
+if hq then
+call Oq(Kq)
+endif
+if Qq==null then
+return Fq
+endif
+if Fq!=null then
+set Qq=Qq+Fq
+endif
+return Qq
+endfunction
+function vq takes nothing returns nothing
+local integer gq
+set gD[0]=$416d6c73
+set gD[1]=$41726f63
+set gD[2]=$416d6963
+set gD[3]=$416d696c
+set gD[4]=$41636c66
+set gD[5]=$41636d67
+set gD[6]=$41646566
+set gD[7]=$41646973
+set gD[8]=$41666274
+set gD[9]=$4166626b
+set gq=bD[0]
+if gq==0 then
+set gq=FD+1
+set FD=gq
+else
+set bD[0]=bD[gq]
+endif
+set vD[gq]="FileTester.pld"
+set RD[gq]=null
+call bq(aq(gq,"FileIO_"),true)
+endfunction
+function aP takes nothing returns nothing
+set Jf=CreateTrigger()
+call TriggerAddCondition(Jf,Condition(vW))
+set Kf=CreateTrigger()
+call TriggerAddCondition(Kf,Condition(RW))
+set Hf=CreateTrigger()
+call TriggerAddCondition(Hf,Condition(NW))
+set Bf=CreateTrigger()
+call TriggerAddCondition(Bf,Condition(IW))
+set Of=CreateTrigger()
+call TriggerAddCondition(Of,Condition(XW))
+set mf=CreateTrigger()
+call TriggerAddCondition(mf,Condition(TW))
+set hf[1]=CreateTrigger()
+call TriggerAddAction(hf[1],ZW)
+call TriggerAddCondition(hf[1],Condition(ZW))
+call ExecuteFunc("vq")
+call ExecuteFunc("MY")
+call ExecuteFunc("SY")
+call ExecuteFunc("Cc")
+call ExecuteFunc("Jc")
+endfunction
+function cq takes nothing returns nothing
+local trigger Yq=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(Yq,EVENT_PLAYER_UNIT_DAMAGED)
+call TriggerAddCondition(Yq,Filter(Zf))
+set Yq=CreateTrigger()
+call TriggerRegisterAnyUnitEventBJ(Yq,EVENT_PLAYER_UNIT_DAMAGING)
+call TriggerAddCondition(Yq,Filter(kf))
+set Yq=null
+endfunction
+function iP takes nothing returns nothing
+call SetPlayerTechResearched(Player(0),$52656d67,1)
+call SetPlayerTechResearched(Player(0),$52756e65,2)
+call SetPlayerTechResearched(Player(1),$52756e65,2)
+call SetPlayerTechResearched(Player(2),$52756e65,2)
+call SetPlayerTechResearched(Player(3),$52756e65,2)
+call SetPlayerTechResearched(Player(4),$52756e65,2)
+call SetPlayerTechResearched(Player(5),$52756e65,2)
+endfunction
+function jU takes nothing returns nothing
+local integer oU=0
+loop
+exitwhen oU>1
+set yw[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Mw[oU]=0
+set oU=oU+1
+endloop
+set dw=CreateTimer()
+set oU=0
+loop
+exitwhen oU>1
+set Lw[oU]=""
+set oU=oU+1
+endloop
+set Gw=0
+set iw=0
+set oU=0
+loop
+exitwhen oU>1
+set uw[oU]=0
+set oU=oU+1
+endloop
+set xw=0
+set oU=0
+loop
+exitwhen oU>1
+set aw[oU]=CreateForce()
+set oU=oU+1
+endloop
+set Ew=0
+set oU=0
+loop
+exitwhen oU>1
+set tw[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Hw[oU]=0
+set oU=oU+1
+endloop
+set Bw=""
+set Ow=0
+set Kw=0
+set hw=0
+set Qw=0
+set Fw=0.
+set bw=0
+set gw=0.
+set vw=0
+set oU=0
+loop
+exitwhen oU>1
+set Iw[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set kw[oU]=false
+set oU=oU+1
+endloop
+set lw=CreateForce()
+set oU=0
+loop
+exitwhen oU>1
+set Vw[oU]=0.
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set pp[oU]=0
+set oU=oU+1
+endloop
+set op=0
+set jp=0
+set oU=0
+loop
+exitwhen oU>1
+set Dp[oU]=false
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set fp[oU]=0
+set oU=oU+1
+endloop
+set sp=0
+set Wp=0
+set Ap=0
+set qp=0
+set Yp=0
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set cp=0
+set Cp=0.
+set udg_LethalDamageEvent=0.
+set Up=0.
+set yp=false
+set Mp=0
+set dp=0.
+set Gp=CreateGroup()
+set ip=0.
+set Pp=0
+set up=0
+set xp=0
+set Sp=0
+set ap=0.
+set Ep=false
+set tp=false
+set Jp=false
+set mp=false
+set Bp=0
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set udg_DamageModifierEvent=0.
+set Op=0
+set oU=0
+loop
+exitwhen oU>1
+set Kp[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set hp[oU]=0
+set oU=oU+1
+endloop
+set Fp=0
+set bp=false
+set gp=0
+set vp=0
+set oU=0
+loop
+exitwhen oU>1
+set Np[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Ip[oU]=0
+set oU=oU+1
+endloop
+set udg_DamageEvent=0.
+set oU=0
+loop
+exitwhen oU>1
+set Xp[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Tp[oU]=CreateGroup()
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Zp[oU]=0.
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set kp[oU]=0.
+set oU=oU+1
+endloop
+set lp=CreateGroup()
+set oU=0
+loop
+exitwhen oU>1
+set Vp[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set wr[oU]=0.
+set oU=oU+1
+endloop
+set rr=CreateGroup()
+set oU=0
+loop
+exitwhen oU>1
+set jr[oU]=0.
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Dr[oU]=0.
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set fr[oU]=false
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set sr[oU]=0.
+set oU=oU+1
+endloop
+set Ar=false
+set qr=""
+set Yr=0
+set Cr=0
+set yr=0
+set oU=0
+loop
+exitwhen oU>1
+set Mr[oU]=false
+set oU=oU+1
+endloop
+set udg_SaveLoadEvent=0.
+set dr=0
+set oU=0
+loop
+exitwhen oU>1
+set Lr[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set er[oU]=0
+set oU=oU+1
+endloop
+set Gr=0
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set ir=""
+set oU=0
+loop
+exitwhen oU>1
+set ur[oU]=""
+set oU=oU+1
+endloop
+set xr=""
+set oU=0
+loop
+exitwhen oU>1
+set Sr[oU]=""
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set ar[oU]=false
+set oU=oU+1
+endloop
+set nr=0
+set Er=0
+set oU=0
+loop
+exitwhen oU>1
+set Jr[oU]=CreateGroup()
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set mr[oU]=false
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Hr[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Br[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Kr[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set hr[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Qr[oU]=0
+set oU=oU+1
+endloop
+set Fr=0
+set br=0
+set gr=false
+set Rr=0
+set Nr=0
+call CreateTimer()
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set Ir=0.
+set Xr=CreateTimer()
+set Tr=false
+set oU=0
+loop
+exitwhen oU>1
+set Zr[oU]=""
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set kr[oU]=false
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set lr[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set Vr[oU]=""
+set oU=oU+1
+endloop
+set wo=""
+set po=0
+set oU=0
+loop
+exitwhen oU>1
+set ro[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oo[oU]=""
+set oU=oU+1
+endloop
+set jo=CreateTimer()
+set Do=false
+set oU=0
+loop
+exitwhen oU>1
+set fo[oU]=0
+set oU=oU+1
+endloop
+set oU=0
+loop
+exitwhen oU>1
+set oU=oU+1
+endloop
+set so=0
+set Wo=0.
+set Ao=0
+endfunction
+function AL takes nothing returns nothing
+local unit WL=GetEnumUnit()
+if (not IsUnitType(WL,UNIT_TYPE_DEAD))and GetUnitTypeId(WL)!=0 then
+if BlzGetUnitBaseDamage(GetEnumUnit(),0)<=0 then
+call IssuePointOrder(GetEnumUnit(),"move",GetUnitX(GetEnumUnit()),-5000.)
+else
+call IssuePointOrder(GetEnumUnit(),"attack",GetUnitX(GetEnumUnit()),-5000.)
+endif
+endif
+set WL=null
+endfunction
+function AM takes nothing returns nothing
+call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED,"TRIGSTR_1104","TRIGSTR_1105","ReplaceableTextures\\CommandButtons\\BTNScrollOfTownPortal.blp")
+call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED,"TRIGSTR_1106","TRIGSTR_1107","ReplaceableTextures\\CommandButtons\\BTNVillagerMan1.blp")
+call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED,"TRIGSTR_1108","TRIGSTR_1109","ReplaceableTextures\\CommandButtons\\BTNSheep.blp")
+call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED,"TRIGSTR_1110","TRIGSTR_1111","ReplaceableTextures\\CommandButtons\\BTNSeigeEngineWithMissles.blp")
+call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED,"TRIGSTR_1112","TRIGSTR_1113","ReplaceableTextures\\CommandButtons\\BTNWisp.blp")
+call CreateQuestBJ(bj_QUESTTYPE_OPT_DISCOVERED,"TRIGSTR_1114","TRIGSTR_1115","ReplaceableTextures\\CommandButtons\\BTNGuardTower.blp")
+call CreateQuestBJ(bj_QUESTTYPE_OPT_DISCOVERED,"TRIGSTR_3726","TRIGSTR_3727","ReplaceableTextures\\CommandButtons\\BTNAnimalWarTraining.blp")
+call CreateQuestBJ(bj_QUESTTYPE_OPT_DISCOVERED,"TRIGSTR_1996","TRIGSTR_1997","ReplaceableTextures\\CommandButtons\\BTNTomeRed.blp")
+call CreateQuestBJ(bj_QUESTTYPE_OPT_DISCOVERED,"TRIGSTR_3345","TRIGSTR_3346","ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp")
+call CreateQuestBJ(bj_QUESTTYPE_OPT_DISCOVERED,"TRIGSTR_1276","TRIGSTR_1277","ReplaceableTextures\\PassiveButtons\\PASDiscord-Logo-Color.blp")
+call CreateQuestBJ(bj_QUESTTYPE_OPT_DISCOVERED,"TRIGSTR_3185","TRIGSTR_3186","ReplaceableTextures\\CommandButtons\\BTNVillagerMan.blp")
+endfunction
+function CY takes nothing returns boolean
+local integer YY=GetPlayerId(GetTriggerPlayer())
+local integer cY=wf[XD[YY]]
+call ForceRemovePlayer(V,ID[YY])
+set lD=lD-1
+set wf[cY]=wf[lD]
+set VD[cY]=VD[lD]
+if lD==1 then
+set TD[ZD[YY]]=ND
+set ZD[TD[YY]]=ND
+else
+set TD[ZD[YY]]=TD[YY]
+set ZD[TD[YY]]=ZD[YY]
+endif
+return false
+endfunction
+function DG takes nothing returns boolean
+local boolean rG=not IsUnitType(GetFilterUnit(),UNIT_TYPE_STRUCTURE)
+local boolean oG=GetUnitState(GetFilterUnit(),UNIT_STATE_LIFE)>0.
+local boolean jG=not IsUnitAlly(GetFilterUnit(),GetOwningPlayer(Hp))
+set jG=oG and jG
+return rG and jG
+endfunction
+function OY takes integer aY,integer nY,integer EY,string tY returns nothing
+local integer JY=0
+local string mY=""
+local player HY
+local force BY
+if aY==Ww[nY] and fw[nY]>=.0 and qw[nY]==EY then
+set Dw[nY]=Dw[nY]+1
+set fw[nY]=2.
+else
+set Dw[nY]=1
+set fw[nY]=.0
+if Aw[nY]<12 then
+set Aw[nY]=Aw[nY]+1
+else
+loop
+exitwhen JY>12
+call SaveStr(cw,nY,JY,LoadStr(cw,nY,JY+1))
+set JY=JY+1
+endloop
+endif
+endif
+set qw[nY]=EY
+set Ww[nY]=aY
+set sw[nY]=3.
+if aY==0 then
+set mY=" "
+elseif aY==1 then
+if Dw[nY]<=1 then
+set mY="You have stolen "+I2S(Dw[nY])+" life from "+Lw[EY+1]+GetPlayerName(Player(EY))+"|r!"
+else
+set mY="You have stolen "+I2S(Dw[nY])+" lifes from "+Lw[EY+1]+GetPlayerName(Player(EY))+"|r!"
+endif
+elseif aY==2 then
+if Dw[nY]<=1 then
+set mY=Lw[EY+1]+GetPlayerName(Player(EY))+"|r stole "+I2S(Dw[nY])+" life from you!"
+else
+set mY=Lw[EY+1]+GetPlayerName(Player(EY))+"|r stole "+I2S(Dw[nY])+" lifes from you!"
+endif
+elseif aY==3 then
+set mY=tY
+elseif aY==4 then
+set mY=Lw[nY+1]+GetPlayerName(Player(nY))+"|r, you can't send more units at the moment (cap is "+I2S(bw)+")!"
+elseif aY==6 then
+set mY="|cff800000S U D D E N   D E A T H|r"
+elseif aY==7 then
+set mY="With income, all players will now lose |cffffcc00"+I2S(Ao)+"|r life (down to 1 life minimum)."
+elseif aY==8 then
+set mY=Lw[nY+1]+GetPlayerName(Player(nY))+"|r, you have purchased a Research Point."
+elseif aY==9 then
+set mY=Yw
+elseif aY==10 then
+set mY="Unable to build here as it would block the creep path."
+elseif aY==11 then
+set mY=tY
+endif
+call SaveStr(cw,nY,Aw[nY],mY)
+set HY=Player(nY)
+set BY=CreateForce()
+call ForceAddPlayer(BY,HY)
+set jw=BY
+set BY=jw
+if IsPlayerInForce(GetLocalPlayer(),BY) then
+call ClearTextMessages()
+endif
+set JY=0
+loop
+exitwhen JY>12
+if LoadStr(cw,nY,JY)!=null then
+call DisplayTimedTextToForce(jw,3.,LoadStr(cw,nY,JY))
+endif
+set JY=JY+1
+endloop
+call DestroyForce(jw)
+set HY=null
+set BY=null
+endfunction
+function bY takes integer KY,integer hY,integer QY,string FY returns nothing
+set hY=1
+loop
+exitwhen hY>iw
+call OY(KY,GetPlayerId(Pw[hY]),QY,FY)
+set hY=hY+1
+endloop
+endfunction
+function Dd takes nothing returns nothing
+local sound od
+local force jd
+call DisableTrigger(GetTriggeringTrigger())
+set od=Kj
+if od!=null then
+call StartSound(od)
+endif
+set jd=bj_FORCE_ALL_PLAYERS
+if IsPlayerInForce(GetLocalPlayer(),jd) then
+call ClearTextMessages()
+endif
+call bY(0,0,0,null)
+call bY(6,0,0,null)
+call bY(7,0,0,null)
+call bY(0,0,0,null)
+set Do=true
+set od=null
+set jd=null
+endfunction
+function GA takes integer eA returns nothing
+if eA==0 then
+return
+elseif JD[eA]!=-1 then
+return
+endif
+set JD[eA]=ED
+set ED=eA
+endfunction
+function mA takes integer EA returns nothing
+local integer tA
+local integer JA
+if EA==0 then
+return
+elseif KD[EA]!=-1 then
+return
+endif
+set JA=hD[EA]
+loop
+exitwhen JA==0
+set tA=HD[JA]
+call GA(JA)
+set JA=tA
+endloop
+set KD[EA]=BD
+set BD=EA
+endfunction
+function EP takes nothing returns boolean
+call mA(Ef[Rf])
+return true
+endfunction
+function EU takes nothing returns nothing
+local integer uU=GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
+local real xU=GetUnitX(GetTriggerUnit())
+local real SU=GetUnitY(GetTriggerUnit())
+local integer aU
+local integer nU
+if not IsUnitType(GetTriggerUnit(),UNIT_TYPE_STRUCTURE) then
+return
+endif
+call RemoveUnit(GetTriggerUnit())
+set aU=eD[uU]
+if xU<yf[aU] or xU>df[aU] or SU<Mf[aU] or SU>=Lf[aU]then
+return
+endif
+set aU=eD[uU]
+set nU=eD[uU]
+set nU=R2I((xU-32.-yf[nU])/64.)+ef[nU]*R2I((SU-32.-Mf[nU])/64.)
+if qf[Cf[aU]+nU]==-2 then
+set qf[Cf[aU]+nU]=1
+elseif qf[Cf[aU]+nU]==-4 then
+set qf[Cf[aU]+nU]=-3
+endif
+set aU=eD[uU]
+set nU=eD[uU]
+set nU=R2I((xU-32.-yf[nU])/64.)+ef[nU]*R2I((SU+32.-Mf[nU])/64.)
+if qf[Cf[aU]+nU]==-2 then
+set qf[Cf[aU]+nU]=1
+elseif qf[Cf[aU]+nU]==-4 then
+set qf[Cf[aU]+nU]=-3
+endif
+set aU=eD[uU]
+set nU=eD[uU]
+set nU=R2I((xU+32.-yf[nU])/64.)+ef[nU]*R2I((SU-32.-Mf[nU])/64.)
+if qf[Cf[aU]+nU]==-2 then
+set qf[Cf[aU]+nU]=1
+elseif qf[Cf[aU]+nU]==-4 then
+set qf[Cf[aU]+nU]=-3
+endif
+set aU=eD[uU]
+set uU=eD[uU]
+set uU=R2I((xU+32.-yf[uU])/64.)+ef[uU]*R2I((SU+32.-Mf[uU])/64.)
+if qf[Cf[aU]+uU]==-2 then
+set qf[Cf[aU]+uU]=1
+elseif qf[Cf[aU]+uU]==-4 then
+set qf[Cf[aU]+uU]=-3
+endif
+endfunction
+function ai takes nothing returns boolean
+if not IsUnitType(GetEnumUnit(),UNIT_TYPE_FLYING) then
+return true
+endif
+if ar[Ip[5]]then
+return true
+endif
+return false
+endfunction
+function Ei takes nothing returns nothing
+local unit ni=GetEnumUnit()
+if (not IsUnitType(ni,UNIT_TYPE_DEAD))and GetUnitTypeId(ni)!=0 then
+if ai() then
+call UnitDamageTarget(vr[Ip[5]],GetEnumUnit(),Dr[Ip[5]],true,false,ATTACK_TYPE_MELEE,DAMAGE_TYPE_NORMAL,WEAPON_TYPE_WHOKNOWS)
+endif
+endif
+set ni=null
+endfunction
+function FG takes nothing returns nothing
+local unit BG=GetEnumUnit()
+local real OG
+local real KG
+local real hG
+local real QG
+if (not IsUnitType(BG,UNIT_TYPE_DEAD))and GetUnitTypeId(BG)!=0 and BG!=Wr[1]then
+set OG=GetUnitX(Wr[0])
+set KG=GetUnitY(Wr[0])
+set hG=GetUnitX(BG)
+set QG=GetUnitY(BG)
+set OG=SquareRoot((hG-OG)*(hG-OG)+(QG-KG)*(QG-KG))
+set wr[1]=wr[2]*.60*(1.-OG/500.)
+call UnitDamageTarget(Wr[5],GetEnumUnit(),wr[1],true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNKNOWN,WEAPON_TYPE_WHOKNOWS)
+endif
+set BG=null
+endfunction
+function FL takes nothing returns nothing
+if mr[xw]then
+if GetLocalPlayer()==Player(xw-1) then
+call SetUnitVertexColorBJ(GetEnumUnit(),60.,45.,60.,15.)
+endif
+elseif GetLocalPlayer()==Player(xw-1) then
+call SetUnitVertexColorBJ(GetEnumUnit(),25.,25.,25.,100.)
+endif
+endfunction
+function FM takes nothing returns nothing
+if GetUnitUserData(Qp[Op])==0 then
+set hp[Kp[Op]]=hp[Op]
+set Kp[hp[Op]]=Kp[Op]
+set Kp[Op]=0
+set Qp[Op]=null
+set hp[Op]=Fp
+set Fp=Op
+endif
+endfunction
+function Fd takes nothing returns boolean
+local integer Qd=GetUnitTypeId(GetTriggerUnit())
+if IsUnitType(GetTriggerUnit(),UNIT_TYPE_STRUCTURE) or Qd==$68303032 or Qd==$68303143 then
+return false
+endif
+return true
+endfunction
+function Gi takes nothing returns nothing
+local unit ei=GetEnumUnit()
+if (not IsUnitType(ei,UNIT_TYPE_DEAD))and GetUnitTypeId(ei)!=0 then
+set Ip[1]=GetUnitUserData(GetEnumUnit())
+set kp[Ip[1]]=kp[Ip[1]]+.10
+else
+call GroupRemoveUnit(lp,GetEnumUnit())
+endif
+set ei=null
+endfunction
+function HG takes nothing returns boolean
+return IsUnitEnemy(GetFilterUnit(),GetOwningPlayer(Wr[0]))
+endfunction
+function kq takes integer Tq,string Zq returns nothing
+set Zq=Zq+"/"+I2S(bw)
+if GetLocalPlayer()==Player(Tq) then
+call BlzFrameSetText(N,Zq)
+endif
+endfunction
+function ny takes integer Sy returns integer
+local integer ay=0
+loop
+exitwhen ay>Ew
+if nw[ay]==Sy then
+return ay
+endif
+set ay=ay+1
+endloop
+return 0
+endfunction
+function Hd takes nothing returns nothing
+local unit xd=GetTriggerUnit()
+local integer Sd=GetPlayerId(GetOwningPlayer(xd))+1
+local integer ad
+local integer nd
+local integer Ed
+local player td
+local playerstate Jd
+local playerstate md
+if Iw[Sd]>=bw then
+set nd=GetUnitPointValue(xd)
+set td=GetOwningPlayer(xd)
+set Jd=PLAYER_STATE_RESOURCE_GOLD
+if nd>0 then
+if Jd==PLAYER_STATE_RESOURCE_GOLD then
+set md=PLAYER_STATE_GOLD_GATHERED
+call SetPlayerState(td,md,GetPlayerState(td,md)+nd)
+elseif Jd==PLAYER_STATE_RESOURCE_LUMBER then
+set md=PLAYER_STATE_LUMBER_GATHERED
+call SetPlayerState(td,md,GetPlayerState(td,md)+nd)
+endif
+endif
+call SetPlayerState(td,Jd,GetPlayerState(td,Jd)+nd)
+call RemoveUnit(xd)
+call OY(4,Sd-1,-1,null)
+else
+set nd=ny(GetUnitTypeId(xd))
+if nd>0 then
+set yw[Sd]=yw[Sd]+tw[nd]
+set ad=fp[Sd]
+if ad!=Sd then
+set Sw[0]=GetRandomLocInRect(Jw[ad])
+call SetUnitX(xd,GetLocationX(Sw[0]))
+call SetUnitY(xd,GetLocationY(Sw[0]))
+call RemoveLocation(Sw[0])
+if BlzGetUnitBaseDamage(xd,0)<=0 then
+call IssuePointOrder(xd,"move",GetUnitX(xd),-5000.)
+else
+call IssuePointOrder(xd,"attack",GetUnitX(xd),-5000.)
+endif
+if Hw[nd]>0 then
+set Ed=0
+loop
+exitwhen Ed>Hw[nd]-1
+set Sw[0]=GetRandomLocInRect(Jw[ad])
+call CreateNUnitsAtLoc(1,nw[nd],Player(Sd-1),Sw[0],270.)
+call RemoveLocation(Sw[0])
+if BlzGetUnitBaseDamage(bj_lastCreatedUnit,0)<=0 then
+call IssuePointOrder(bj_lastCreatedUnit,"move",GetUnitX(bj_lastCreatedUnit),-5000.)
+else
+call IssuePointOrder(bj_lastCreatedUnit,"attack",GetUnitX(bj_lastCreatedUnit),-5000.)
+endif
+set Iw[Sd]=Iw[Sd]+1
+set Ed=Ed+1
+endloop
+endif
+set Iw[Sd]=Iw[Sd]+1
+call kq(Sd-1,I2S(Iw[Sd]))
+else
+call RemoveUnit(xd)
+endif
+endif
+endif
+set xd=null
+set td=null
+set Jd=null
+set md=null
+endfunction
+function He takes nothing returns boolean
+if dp<1. then
+return false
+endif
+if GetUnitTypeId(Hp)==$65303032 then
+return false
+endif
+if GetUnitTypeId(Hp)==$68303032 then
+return false
+endif
+return true
+endfunction
+function Ge takes nothing returns boolean
+if mp then
+return false
+endif
+if GetUnitTypeId(Hp)!=$68303159 then
+return false
+endif
+return true
+endfunction
+function Le takes nothing returns boolean
+if GetUnitTypeId(Hp)==$6830305a then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303130 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303253 then
+return true
+endif
+return false
+endfunction
+function Pe takes nothing returns boolean
+if GetUnitTypeId(np)==$75303033 then
+return true
+endif
+if GetUnitTypeId(np)==$68303148 then
+return true
+endif
+if GetUnitTypeId(np)==$68303245 then
+return true
+endif
+return false
+endfunction
+function Se takes nothing returns boolean
+if GetUnitAbilityLevel(np,$42303034)>0 then
+return true
+endif
+if GetUnitAbilityLevel(np,$42303036)>0 then
+return true
+endif
+if GetUnitAbilityLevel(np,$42303035)>0 then
+return true
+endif
+if GetUnitAbilityLevel(np,$42303037)>0 then
+return true
+endif
+if GetUnitAbilityLevel(np,$42303045)>0 then
+return true
+endif
+if GetUnitAbilityLevel(np,$42303046)>0 then
+return true
+endif
+return false
+endfunction
+function ae takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303139 then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830314c then
+return true
+endif
+return false
+endfunction
+function ee takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303043 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303156 then
+return true
+endif
+return false
+endfunction
+function ie takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303238 then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830324d then
+return true
+endif
+return false
+endfunction
+function ue takes nothing returns boolean
+if GetUnitAbilityLevel(np,$42303035)<=0 then
+return false
+endif
+if GetUnitAbilityLevel(np,$42303037)<=0 then
+return false
+endif
+return true
+endfunction
+function xe takes nothing returns boolean
+if GetUnitAbilityLevel(np,$42303034)<=0 then
+return false
+endif
+if GetUnitAbilityLevel(np,$42303036)<=0 then
+return false
+endif
+return true
+endfunction
+function Je takes nothing returns nothing
+local texttag ne
+local force Ee
+local player te
+if Le() then
+if GetUnitTypeId(Hp)==$6830305a then
+set Ip[0]=GetUnitUserData(Hp)
+set Xp[Ip[0]]=Xp[Ip[0]]+1
+if Xp[Ip[0]]>=6 then
+set dp=dp*1.80
+set Xp[Ip[0]]=0
+set Sw[0]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,Player(PLAYER_NEUTRAL_PASSIVE),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303133)
+call IssueTargetOrder(bj_lastCreatedUnit,"thunderbolt",np)
+call RemoveLocation(Sw[0])
+endif
+elseif GetUnitTypeId(Hp)==$68303130 then
+if GetRandomInt(1,$64)<=10 then
+set dp=dp*2.50
+set Sw[0]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,Player(PLAYER_NEUTRAL_PASSIVE),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303133)
+call IssueTargetOrder(bj_lastCreatedUnit,"thunderbolt",np)
+call RemoveLocation(Sw[0])
+endif
+elseif GetRandomInt(1,$64)<=10 then
+set dp=dp*3.
+set Sw[0]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,Player(PLAYER_NEUTRAL_PASSIVE),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303133)
+call IssueTargetOrder(bj_lastCreatedUnit,"thunderbolt",np)
+call RemoveLocation(Sw[0])
+endif
+endif
+if GetUnitTypeId(Hp)==$68303131 then
+set dp=dp+GetUnitState(np,UNIT_STATE_LIFE)*.0041
+endif
+if GetUnitTypeId(Hp)==$68303132 then
+set dp=dp+GetUnitState(np,UNIT_STATE_LIFE)*.0107
+endif
+if ee() then
+set Sw[0]=GetUnitLoc(Hp)
+set Sw[1]=GetUnitLoc(np)
+set wr[0]=DistanceBetweenPoints(Sw[0],Sw[1])
+if GetUnitTypeId(Hp)==$68303043 then
+set dp=dp*(1.+.25*(1.-wr[0]/500.))
+else
+set dp=dp*(1.+.4*(1.-wr[0]/500.))
+endif
+call RemoveLocation(Sw[0])
+call RemoveLocation(Sw[1])
+endif
+if Ge() then
+if GetRandomInt(0,$64)<=30 then
+set dp=dp*1.7
+call CreateTextTagUnitBJ(I2S(R2I(dp))+"!",Hp,32.,10.,100.,.0,.0,0.)
+set ne=bj_lastCreatedTextTag
+set Ee=bj_FORCE_ALL_PLAYERS
+if IsPlayerInForce(GetLocalPlayer(),Ee) then
+call SetTextTagVisibility(ne,true)
+endif
+call SetTextTagVelocityBJ(bj_lastCreatedTextTag,64.,90.)
+call SetTextTagSuspended(bj_lastCreatedTextTag,false)
+call SetTextTagPermanent(bj_lastCreatedTextTag,false)
+call SetTextTagLifespan(bj_lastCreatedTextTag,1.50)
+endif
+endif
+if ie() then
+if GetUnitStatePercent(Hp,UNIT_STATE_MANA,UNIT_STATE_MAX_MANA)>=99. then
+if GetUnitTypeId(Hp)==$68303238 then
+set dp=dp*2.5
+else
+set dp=dp*3.
+endif
+endif
+endif
+if GetUnitTypeId(Hp)==$68303234 then
+set wr[7]=GetUnitStatePercent(Hp,UNIT_STATE_MANA,UNIT_STATE_MAX_MANA)
+set wr[8]=wr[7]*.01*3.
+set dp=dp+dp*wr[8]
+endif
+if Pe() then
+set Sw[80]=GetUnitLoc(Hp)
+set Sw[81]=GetUnitLoc(np)
+if GetUnitTypeId(np)==$75303033 then
+if DistanceBetweenPoints(Sw[80],Sw[81])>500. then
+set dp=dp*.8
+endif
+elseif GetUnitTypeId(np)==$68303148 then
+if DistanceBetweenPoints(Sw[80],Sw[81])>400. then
+set dp=dp*.7
+endif
+elseif DistanceBetweenPoints(Sw[80],Sw[81])>300. then
+set dp=dp*.65
+endif
+call RemoveLocation(Sw[80])
+call RemoveLocation(Sw[81])
+endif
+if Se() then
+if xe() then
+set dp=dp*1.1
+elseif ue() then
+set dp=dp*1.16
+else
+set dp=dp*1.2
+endif
+endif
+if GetUnitAbilityLevel(np,$4230304c)>0 then
+set dp=dp*1.1
+endif
+if ae() then
+set Sw[10]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,Player(PLAYER_NEUTRAL_PASSIVE),Sw[10],bj_UNIT_FACING)
+set Ip[0]=GetUnitUserData(bj_lastCreatedUnit)
+set pr[Ip[0]]=bj_lastCreatedUnit
+set te=GetOwningPlayer(Hp)
+set vr[Ip[0]]=Rw[GetPlayerId(te)+1]
+set jr[Ip[0]]=.90
+set Sr[Ip[0]]="Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl"
+set ar[Ip[0]]=false
+if GetUnitTypeId(Hp)==$68303139 then
+set sr[Ip[0]]=200.
+set fr[Ip[0]]=false
+else
+set sr[Ip[0]]=250.
+set fr[Ip[0]]=true
+endif
+set Dr[Ip[0]]=dp
+call GroupAddUnit(rr,bj_lastCreatedUnit)
+if CountUnitsInGroup(rr)>0 then
+call EnableTrigger(CD)
+endif
+set dp=.0
+call RemoveLocation(Sw[10])
+endif
+set ne=null
+set Ee=null
+set te=null
+endfunction
+function KL takes nothing returns nothing
+set Sw[0]=GetUnitLoc(Rw[vw])
+set uw[0]=1
+loop
+exitwhen uw[0]>4
+set Sw[1]=PolarProjectionBJ(Sw[0],GetRandomReal(64.,512.),GetRandomReal(0.,360.))
+set bj_lastCreatedEffect=AddSpecialEffectLoc("Abilities\\Spells\\Human\\Flare\\FlareCaster.mdl",Sw[1])
+call RemoveLocation(Sw[1])
+set uw[0]=uw[0]+1
+endloop
+call RemoveLocation(Sw[0])
+endfunction
+function cc takes integer fc,integer sc,integer Wc returns boolean
+local integer Ac=sc+ef[fc]*Wc
+local integer qc=qf[Cf[fc]+Ac]
+local boolean Yc
+if sc>=ef[fc] or Wc>=Gf[fc] or sc<0 or Wc<0 then
+return false
+endif
+if qc==-3 then
+return true
+endif
+if qc>=1 and qc<cf then
+set qf[Cf[fc]+Ac]=cf
+set Yc=cc(fc,sc+Cw[Pf[fc]],Wc+Uw[Pf[fc]])
+if Yc then
+return true
+endif
+set Yc=cc(fc,sc+Cw[Pf[fc]+1],Wc+Uw[Pf[fc]+1])
+if Yc then
+return true
+endif
+set Yc=cc(fc,sc+Cw[Pf[fc]+3],Wc+Uw[Pf[fc]+3])
+if Yc then
+return true
+endif
+set Yc=cc(fc,sc+Cw[Pf[fc]+2],Wc+Uw[Pf[fc]+2])
+return Yc
+endif
+return false
+endfunction
+function KP takes nothing returns boolean
+local integer tP=Rf
+local integer JP=Qf
+local integer mP=Ff
+local integer HP=JP+ef[tP]*mP
+local integer BP=qf[Cf[tP]+HP]
+local boolean OP
+if JP>=ef[tP] or mP>=Gf[tP] or JP<0 or mP<0 then
+set Nf=false
+return true
+endif
+if BP==-3 then
+set Nf=true
+return true
+endif
+if BP>=1 and BP<cf then
+set qf[Cf[tP]+HP]=cf
+set OP=cc(tP,JP+Cw[Pf[tP]],mP+Uw[Pf[tP]])
+if OP then
+set Nf=true
+return true
+endif
+set OP=cc(tP,JP+Cw[Pf[tP]+1],mP+Uw[Pf[tP]+1])
+if OP then
+set Nf=true
+return true
+endif
+set OP=cc(tP,JP+Cw[Pf[tP]+3],mP+Uw[Pf[tP]+3])
+if OP then
+set Nf=true
+return true
+endif
+set OP=cc(tP,JP+Cw[Pf[tP]+2],mP+Uw[Pf[tP]+2])
+set Nf=OP
+return true
+endif
+set Nf=false
+return true
+endfunction
+function Ki takes nothing returns nothing
+local code ti
+local boolean Ji
+local real mi
+local location Hi
+local boolexpr Bi
+local group Oi
+set Ip[5]=GetUnitUserData(GetEnumUnit())
+set jr[Ip[5]]=jr[Ip[5]]-.10
+if jr[Ip[5]]<=.0 then
+set Sw[10]=GetUnitLoc(pr[Ip[5]])
+set bj_wantDestroyGroup=true
+set mi=sr[Ip[5]]
+set Hi=Sw[10]
+set Bi=Condition(tW)
+set Oi=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(Oi,Hi,mi,Bi)
+call DestroyBoolExpr(Bi)
+set ti=JW
+set Ji=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(Oi,ti)
+if Ji then
+call DestroyGroup(Oi)
+endif
+set bj_lastCreatedEffect=AddSpecialEffectLoc(Sr[Ip[5]],Sw[10])
+call BlzSetSpecialEffectScale(bj_lastCreatedEffect,.80)
+call BlzSetSpecialEffectTimeScale(bj_lastCreatedEffect,1.40)
+call DestroyEffect(bj_lastCreatedEffect)
+call RemoveLocation(Sw[10])
+if fr[Ip[5]]then
+set fr[Ip[5]]=false
+set jr[Ip[5]]=2.
+set Dr[Ip[5]]=Dr[Ip[5]]*.30
+set sr[Ip[5]]=sr[Ip[5]]*.30
+else
+call KillUnit(pr[Ip[5]])
+call GroupRemoveUnit(rr,pr[Ip[5]])
+endif
+endif
+set Hi=null
+set Bi=null
+set Oi=null
+endfunction
+function LP takes nothing returns nothing
+local integer MP=0
+local boolean dP=false
+loop
+exitwhen MP>=PD or dP
+if GetSpellAbilityId()==nD[MP]then
+set dP=true
+else
+set MP=MP+1
+endif
+endloop
+if dP then
+set xw=GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1
+call BlzSetUnitSkin(Rw[xw],uD[MP])
+call BlzSetUnitName(Rw[xw],"|cffffcc00"+GetPlayerName(Player(xw-1))+"|r")
+endif
+endfunction
+function kG takes nothing returns boolean
+if GetUnitAbilityLevel(np,$42303045)>0 then
+return true
+endif
+if GetUnitAbilityLevel(np,$42303046)>0 then
+return true
+endif
+return false
+endfunction
+function lG takes nothing returns boolean
+if GetUnitTypeId(np)==$75303030 then
+return true
+endif
+if GetUnitTypeId(np)==$6e303037 then
+return true
+endif
+if GetUnitTypeId(np)==$75303037 then
+return true
+endif
+return false
+endfunction
+function Li takes nothing returns nothing
+local rect ci
+local code Ci
+local boolean Ui
+local location yi
+local boolexpr Mi
+local group di
+if kG() then
+if GetRandomInt(0,$64)<=15 then
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Spells\\Undead\\AnimateDead\\AnimateDeadTarget.mdl",np,"origin")
+call DestroyEffect(bj_lastCreatedEffect)
+set ci=Bj
+set Sw[22]=Location(GetRectCenterX(ci),GetRectCenterY(ci))
+call CreateNUnitsAtLoc(1,$75303039,GetOwningPlayer(Hp),Sw[22],270.)
+call BlzSetUnitMaxHP(bj_lastCreatedUnit,R2I(GetUnitState(np,UNIT_STATE_MAX_LIFE)*1.25))
+call SetUnitLifePercentBJ(bj_lastCreatedUnit,100.)
+call RemoveLocation(Sw[22])
+endif
+endif
+if GetUnitTypeId(Hp)==$68303053 then
+set Sw[10]=GetUnitLoc(Hp)
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[10],AngleBetweenPoints(Sw[0],Sw[1]))
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303039)
+set Wr[0]=null
+set yi=Sw[10]
+set Mi=Condition(eW)
+set di=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(di,yi,400.,Mi)
+call DestroyBoolExpr(Mi)
+set Tp[0]=di
+set Wr[0]=GroupPickRandomUnit(Tp[0])
+call DestroyGroup(Tp[0])
+if Wr[0]!=null then
+call IssueTargetOrder(bj_lastCreatedUnit,"innerfire",Wr[0])
+endif
+call RemoveLocation(Sw[10])
+elseif lG() then
+set Sw[10]=GetUnitLoc(np)
+set bj_wantDestroyGroup=true
+set yi=Sw[10]
+if GetUnitTypeId(np)==$75303030 then
+set Mi=Condition(GW)
+set di=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(di,yi,200.,Mi)
+call DestroyBoolExpr(Mi)
+set Ci=iW
+set Ui=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(di,Ci)
+if Ui then
+call DestroyGroup(di)
+endif
+elseif GetUnitTypeId(np)==$6e303037 then
+set Mi=Condition(PW)
+set di=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(di,yi,200.,Mi)
+call DestroyBoolExpr(Mi)
+set Ci=uW
+set Ui=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(di,Ci)
+if Ui then
+call DestroyGroup(di)
+endif
+else
+set Mi=Condition(xW)
+set di=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(di,yi,200.,Mi)
+call DestroyBoolExpr(Mi)
+set Ci=SW
+set Ui=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(di,Ci)
+if Ui then
+call DestroyGroup(di)
+endif
+endif
+call RemoveLocation(Sw[10])
+endif
+set ci=null
+set yi=null
+set Mi=null
+set di=null
+endfunction
+function MG takes nothing returns boolean
+return IsUnitEnemy(GetFilterUnit(),GetOwningPlayer(Hp))
+endfunction
+function DL takes nothing returns boolean
+if GetUnitTypeId(GetTriggerUnit())==$6830304e then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303153 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303233 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303137 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303138 then
+return true
+endif
+return false
+endfunction
+function fL takes nothing returns boolean
+if GetUnitTypeId(GetTriggerUnit())==$68303238 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$6830324d then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303047 then
+return true
+endif
+return false
+endfunction
+function jL takes nothing returns boolean
+if GetUnitTypeId(GetTriggerUnit())==$6830315a then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$6830324a then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303156 then
+return true
+endif
+return false
+endfunction
+function ML takes nothing returns nothing
+local unitstate qL
+local code YL
+local boolean cL
+local location CL
+local boolexpr UL
+local group yL
+call UnitRemoveAbility(GetTriggerUnit(),$4152616c)
+if jL() then
+if GetUnitTypeId(GetTriggerUnit())==$68303156 then
+call SetUnitTimeScale(GetTriggerUnit(),2.5)
+else
+call SetUnitTimeScale(GetTriggerUnit(),5.)
+endif
+endif
+if DL() then
+if not IsUnitInGroup(GetTriggerUnit(),lp) then
+call GroupAddUnit(lp,GetTriggerUnit())
+endif
+endif
+if fL() then
+if GetUnitTypeId(GetTriggerUnit())==$6830324d then
+set qL=UNIT_STATE_MANA
+call SetUnitState(GetTriggerUnit(),UNIT_STATE_MANA,RMaxBJ(0.,GetUnitState(GetTriggerUnit(),qL)-200.))
+elseif GetUnitTypeId(GetTriggerUnit())==$68303047 then
+set qL=UNIT_STATE_MANA
+call SetUnitState(GetTriggerUnit(),UNIT_STATE_MANA,RMaxBJ(0.,GetUnitState(GetTriggerUnit(),qL)-200.))
+endif
+call UnitRemoveAbility(GetTriggerUnit(),$41303232)
+endif
+if GetTriggerEventId()==EVENT_PLAYER_UNIT_CONSTRUCT_FINISH then
+set Sw[50]=GetUnitLoc(GetTriggerUnit())
+set bj_wantDestroyGroup=true
+set CL=Sw[50]
+set UL=Condition(Bs)
+set yL=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(yL,CL,128.,UL)
+call DestroyBoolExpr(UL)
+set YL=Os
+set cL=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(yL,YL)
+if cL then
+call DestroyGroup(yL)
+endif
+call RemoveLocation(Sw[50])
+call SetUnitAnimation(Rw[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1],"stand")
+endif
+set qL=null
+set CL=null
+set UL=null
+set yL=null
+endfunction
+function Me takes nothing returns nothing
+set nr=$15b
+set Er=$29a
+set Rr=$77d
+endfunction
+function NM takes nothing returns nothing
+local integer RM
+set sp=1
+set Wp=1
+set Ap=1
+set qp=0
+set Yp=4
+set RM=0
+loop
+exitwhen RM==6
+set RM=RM+1
+endloop
+set RM=0
+loop
+exitwhen RM==26
+set RM=RM+1
+endloop
+endfunction
+function NY takes nothing returns nothing
+local integer gY=0
+local integer vY
+local integer RY
+loop
+exitwhen gY>Gw
+if sw[gY]>.0 then
+set sw[gY]=sw[gY]-.1
+if sw[gY]<=.0 then
+set vY=gY
+set RY=0
+set Aw[gY]=0
+set Dw[gY]=0
+set Ww[gY]=0
+set qw[gY]=-1
+set fw[gY]=.0
+loop
+exitwhen RY>12
+call SaveStr(cw,vY,RY,null)
+set RY=RY+1
+endloop
+endif
+endif
+if fw[gY]>.0 then
+set fw[gY]=fw[gY]-.1
+endif
+set gY=gY+1
+endloop
+endfunction
+function Ne takes nothing returns nothing
+local unitstate Re=UNIT_STATE_LIFE
+call SetUnitState(GetEnumUnit(),UNIT_STATE_LIFE,RMaxBJ(0.,GetUnitState(GetEnumUnit(),Re)+dp*.10))
+set Re=null
+endfunction
+function Dy takes integer oy,integer jy returns real
+if jy>=$64 and jy<$1f4 then
+return .5
+elseif jy>=$1f4 and jy<$3e8 then
+return 1.
+elseif jy>=$3e8 and jy<$5dc then
+return 2.
+elseif jy>=$5dc and jy<$7d0 then
+return 4.
+elseif jy>=$7d0 and jy<$9c4 then
+return 8.
+elseif jy>=$9c4 then
+return 9.5
+else
+return .0
+endif
+endfunction
+function Uy takes integer cy,integer Cy returns real
+if Cy>=$64 and Cy<$1f4 then
+return 6.
+elseif Cy>=$1f4 and Cy<$3e8 then
+return 2.
+elseif Cy>=$3e8 and Cy<$5dc then
+return 1.5
+elseif Cy>=$5dc and Cy<$7d0 then
+return 1.
+elseif Cy>=$7d0 and Cy<$9c4 then
+return .25
+elseif Cy>=$9c4 then
+return .10
+else
+return .0
+endif
+endfunction
+function Wy takes integer fy,integer sy returns real
+if sy>=$64 and sy<$1f4 then
+return 2.
+elseif sy>=$1f4 and sy<$3e8 then
+return 1.
+elseif sy>=$3e8 and sy<$5dc then
+return .75
+elseif sy>=$5dc and sy<$7d0 then
+return .5
+elseif sy>=$7d0 and sy<$9c4 then
+return .10
+else
+return .0
+endif
+endfunction
+function Yy takes integer Ay,integer qy returns real
+if qy>=$64 and qy<$1f4 then
+return 4.
+elseif qy>=$1f4 and qy<$3e8 then
+return 2.
+elseif qy>=$3e8 and qy<$5dc then
+return 1.
+elseif qy>=$5dc and qy<$7d0 then
+return .5
+elseif qy>=$7d0 and qy<$9c4 then
+return .125
+elseif qy>=$9c4 then
+return .05
+else
+return .0
+endif
+endfunction
+function dy takes integer yy,integer My returns real
+if My>=$64 and My<$1f4 then
+return 8.
+elseif My>=$1f4 and My<$3e8 then
+return 4.
+elseif My>=$3e8 and My<$5dc then
+return 3.
+elseif My>=$5dc and My<$7d0 then
+return 2.
+elseif My>=$7d0 and My<$9c4 then
+return 1.
+elseif My>=$9c4 then
+return .5
+else
+return .0
+endif
+endfunction
+function Py takes integer Ly returns integer
+local real ey=(13+iw/3)/iw
+local integer Gy=iw-(so-1)
+local real iy
+if gr then
+if Gy==1 then
+set iy=iw
+set Gy=R2I(ey*iy)
+set Gy=R2I(I2R(Gy)*dy(Ly,lr[Ly]))
+elseif Gy==2 then
+set iy=iw-1
+set Gy=R2I(ey*iy)
+set Gy=R2I(I2R(Gy)*Uy(Ly,lr[Ly]))
+elseif Gy==3 then
+set iy=iw-2
+set Gy=R2I(ey*iy)
+set Gy=R2I(I2R(Gy)*Yy(Ly,lr[Ly]))
+elseif I2R(so)/I2R(iw)>.5 then
+set iy=I2R(so*2)-I2R(iw)
+set Gy=R2I(ey*iy)
+set Gy=R2I(I2R(Gy)*Wy(Ly,lr[Ly]))
+else
+set iy=I2R(iw/2)-I2R(so)
+set Gy=R2I(ey*iy)
+set Gy=R2I(I2R(Gy)*Dy(Ly,lr[Ly]))*-1
+endif
+if Gy>0 then
+set oo[Ly]=" |r|cff00ff00+"+I2S(Gy)+"|r"
+elseif Gy==0 then
+set oo[Ly]=" |r|cffc0c0c0+"+I2S(Gy)+"|r"
+else
+set oo[Ly]=" |r|cffff0000"+I2S(Gy)+"|r"
+endif
+return Gy
+endif
+return 0
+endfunction
+function aL takes nothing returns boolean
+if GetPlayerController(Player(uw[0]-1))!=MAP_CONTROL_USER then
+return false
+endif
+if GetPlayerSlotState(Player(uw[0]-1))!=PLAYER_SLOT_STATE_PLAYING then
+return false
+endif
+return true
+endfunction
+function nL takes nothing returns boolean
+if GetPlayerController(Player(uw[0]-1))!=MAP_CONTROL_USER then
+return false
+endif
+if GetPlayerSlotState(Player(uw[0]-1))!=PLAYER_SLOT_STATE_PLAYING then
+return false
+endif
+return true
+endfunction
+function ry takes integer VU returns nothing
+local integer wy=0
+local integer py=-1
+if lr[VU+1]>po then
+set wo=GetPlayerName(Player(VU))
+set po=lr[VU+1]
+if po>=$64 then
+call MultiboardSetItemValueBJ(ew,1,iw+4,wo+"   |   "+I2S(po)+" Rating")
+else
+set wo="lolreported"
+set po=$64
+call MultiboardSetItemValueBJ(ew,1,iw+4,"lolreported   |   100 Rating")
+endif
+elseif GetPlayerName(Player(VU))==wo then
+set VU=0
+loop
+exitwhen wy>Gw
+if lr[wy+1]>VU then
+set py=wy
+set VU=lr[wy+1]
+endif
+set wy=wy+1
+endloop
+if py>=0 then
+set wo=GetPlayerName(Player(py))
+set po=lr[py+1]
+endif
+if po>=$64 then
+call MultiboardSetItemValueBJ(ew,1,iw+4,wo+"   |   "+I2S(po)+" Rating")
+else
+set wo="lolreported"
+set po=$64
+call MultiboardSetItemValueBJ(ew,1,iw+4,"lolreported   |   100 Rating")
+endif
+endif
+endfunction
+function OL takes nothing returns nothing
+local integer EL
+local integer tL
+local trigger JL
+local force mL
+local player HL
+local unit BL
+set hr[vw]=hr[vw]+1
+set so=so+1
+set EL=vw-1
+set tL=Py(vw)
+if gr then
+set lr[EL+1]=lr[EL+1]+tL
+if lr[EL+1]<$64 then
+set lr[EL+1]=$64
+endif
+endif
+call ry(EL)
+set br=vw
+set JL=Nj
+if TriggerEvaluate(JL) then
+call TriggerExecute(JL)
+endif
+call EnableTrigger(DD)
+set mL=bj_FORCE_ALL_PLAYERS
+if IsPlayerInForce(GetLocalPlayer(),mL) then
+call ClearTextMessages()
+endif
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,Lw[vw]+GetPlayerName(Player(vw-1))+"|r has won the game!")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"TRIGSTR_1556")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"TRIGSTR_1557")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"TRIGSTR_1558")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"TRIGSTR_1559")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,30.,"TRIGSTR_1560")
+set uw[0]=1
+loop
+exitwhen uw[0]>Gw
+if aL() then
+set HL=Player(uw[0]-1)
+set BL=Rw[vw]
+if GetLocalPlayer()==HL then
+call SetCameraTargetController(BL,0.,0.,false)
+endif
+endif
+set uw[0]=uw[0]+1
+endloop
+set uw[0]=1
+loop
+exitwhen uw[0]>iw
+set xw=GetPlayerId(Pw[uw[0]])+1
+if xw==vw then
+call MultiboardSetItemValueBJ(ew,4,uw[0]+1,I2S(lr[xw])+oo[xw])
+endif
+set uw[0]=uw[0]+1
+endloop
+call TriggerSleepAction(15.)
+set uw[0]=1
+loop
+exitwhen uw[0]>Gw
+if nL() then
+if vw==uw[0]then
+call CustomVictoryBJ(Player(uw[0]-1),true,true)
+else
+call CustomDefeatBJ(Player(uw[0]-1),"TRIGSTR_1543")
+endif
+endif
+set uw[0]=uw[0]+1
+endloop
+set JL=null
+set mL=null
+set HL=null
+set BL=null
+endfunction
+function by takes nothing returns boolean
+local integer Fy=0
+loop
+exitwhen Fy>Gw
+if GetPlayerState(Player(Fy),PLAYER_STATE_RESOURCE_GOLD)>hw or GetPlayerState(Player(Fy),PLAYER_STATE_RESOURCE_LUMBER)>Qw then
+call bY(9,-1,-1,null)
+return false
+endif
+set Fy=Fy+1
+endloop
+return true
+endfunction
+function PM takes nothing returns nothing
+local real GM
+local timer iM
+if by() then
+set Tr=true
+set iM=dw
+set GM=Fw
+call TimerStart(iM,GM,true,null)
+set iM=jo
+set GM=Wo
+call TimerStart(iM,GM,false,null)
+else
+set gr=false
+endif
+set iM=null
+endfunction
+function PU takes nothing returns nothing
+local unit WU=GetConstructingStructure()
+local real AU=GetUnitX(WU)
+local real qU=GetUnitY(WU)
+local integer YU=GetPlayerId(GetOwningPlayer(WU))
+local integer iU=eD[YU]
+local playerstate cU
+local playerstate CU
+local player UU
+local force yU
+local integer MU
+local integer dU
+local boolean LU
+local boolean eU
+local integer GU
+if AU<yf[iU] or AU>df[iU] or qU<Mf[iU] or qU>=Lf[iU]then
+set WU=null
+set cU=null
+set CU=null
+set UU=null
+set yU=null
+return
+endif
+set iU=eD[YU]
+set dU=eD[YU]
+set dU=R2I((AU-32.-yf[dU])/64.)+ef[dU]*R2I((qU-32.-Mf[dU])/64.)
+if qf[Cf[iU]+dU]>=1 then
+set qf[Cf[iU]+dU]=-2
+elseif qf[Cf[iU]+dU]==-3 then
+set qf[Cf[iU]+dU]=-4
+endif
+set iU=eD[YU]
+set dU=eD[YU]
+set dU=R2I((AU-32.-yf[dU])/64.)+ef[dU]*R2I((qU+32.-Mf[dU])/64.)
+if qf[Cf[iU]+dU]>=1 then
+set qf[Cf[iU]+dU]=-2
+elseif qf[Cf[iU]+dU]==-3 then
+set qf[Cf[iU]+dU]=-4
+endif
+set iU=eD[YU]
+set dU=eD[YU]
+set dU=R2I((AU+32.-yf[dU])/64.)+ef[dU]*R2I((qU-32.-Mf[dU])/64.)
+if qf[Cf[iU]+dU]>=1 then
+set qf[Cf[iU]+dU]=-2
+elseif qf[Cf[iU]+dU]==-3 then
+set qf[Cf[iU]+dU]=-4
+endif
+set iU=eD[YU]
+set dU=eD[YU]
+set dU=R2I((AU+32.-yf[dU])/64.)+ef[dU]*R2I((qU+32.-Mf[dU])/64.)
+if qf[Cf[iU]+dU]>=1 then
+set qf[Cf[iU]+dU]=-2
+elseif qf[Cf[iU]+dU]==-3 then
+set qf[Cf[iU]+dU]=-4
+endif
+set MU=eD[YU]
+set dU=uf[MU]
+set LU=false
+set eU=false
+set cf=cf+1
+loop
+exitwhen dU==0 or LU
+set GU=jf[dU]
+set GU=GU-GU/ef[MU]*ef[MU]
+set iU=jf[dU]/ef[MU]
+set Rf=MU
+set Qf=GU
+set Ff=iU
+call TriggerEvaluate(Hf)
+set eU=Nf
+if eU then
+set LU=true
+endif
+set dU=Df[dU]
+endloop
+if eU then
+else
+set iU=R2I(I2R(GetUnitPointValue(WU))*1.)
+set UU=GetOwningPlayer(WU)
+set cU=PLAYER_STATE_RESOURCE_GOLD
+if iU>0 then
+if cU==PLAYER_STATE_RESOURCE_GOLD then
+set CU=PLAYER_STATE_GOLD_GATHERED
+call SetPlayerState(UU,CU,GetPlayerState(UU,CU)+iU)
+elseif cU==PLAYER_STATE_RESOURCE_LUMBER then
+set CU=PLAYER_STATE_LUMBER_GATHERED
+call SetPlayerState(UU,CU,GetPlayerState(UU,CU)+iU)
+endif
+endif
+call SetPlayerState(UU,cU,GetPlayerState(UU,cU)+iU)
+set UU=GetOwningPlayer(WU)
+set yU=CreateForce()
+call ForceAddPlayer(yU,UU)
+set GD=yU
+call OY(10,YU,0,null)
+call DestroyForce(GD)
+call KillUnit(WU)
+call SetUnitAnimation(Rw[YU+1],"stand")
+endif
+set WU=null
+set cU=null
+set CU=null
+set UU=null
+set yU=null
+endfunction
+function QL takes nothing returns boolean
+return GetSpellAbilityId()==$41303044
+endfunction
+function QP takes nothing returns boolean
+return true
+endfunction
+function RL takes nothing returns nothing
+local group bL
+local code gL
+local boolean vL
+set xw=GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1
+set mr[xw]=not mr[xw]
+set bL=Jr[xw]
+set gL=bs
+set vL=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bL,gL)
+if vL then
+call DestroyGroup(bL)
+endif
+set bL=null
+endfunction
+function SL takes nothing returns nothing
+local integer LL=1
+local integer eL
+local player GL
+local playerstate iL
+local playerstate PL
+local texttag uL
+local force xL
+loop
+exitwhen LL>Gw
+if Mw[LL]>0 then
+set eL=yw[LL]
+set GL=Player(LL-1)
+set iL=PLAYER_STATE_RESOURCE_GOLD
+if eL>0 then
+if iL==PLAYER_STATE_RESOURCE_GOLD then
+set PL=PLAYER_STATE_GOLD_GATHERED
+call SetPlayerState(GL,PL,GetPlayerState(GL,PL)+eL)
+elseif iL==PLAYER_STATE_RESOURCE_LUMBER then
+set PL=PLAYER_STATE_LUMBER_GATHERED
+call SetPlayerState(GL,PL,GetPlayerState(GL,PL)+eL)
+endif
+endif
+call SetPlayerState(GL,iL,GetPlayerState(GL,iL)+eL)
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Items\\ResourceItems\\ResourceEffectTarget.mdl",Rw[LL],"origin"))
+call CreateTextTagUnitBJ("|cffffcc00+"+I2S(yw[LL])+"|r",Rw[LL],16.,10.,100.,100.,100.,0.)
+set uL=bj_lastCreatedTextTag
+set xL=bj_FORCE_ALL_PLAYERS
+if IsPlayerInForce(GetLocalPlayer(),xL) then
+call SetTextTagVisibility(uL,true)
+endif
+call SetTextTagVelocityBJ(bj_lastCreatedTextTag,48.,90.)
+call SetTextTagSuspended(bj_lastCreatedTextTag,false)
+call SetTextTagPermanent(bj_lastCreatedTextTag,false)
+call SetTextTagLifespan(bj_lastCreatedTextTag,1.20)
+call SetTextTagFadepoint(bj_lastCreatedTextTag,.80)
+if Do and Mw[LL]>=Ao+1 then
+set Mw[LL]=Mw[LL]-Ao
+endif
+endif
+set LL=LL+1
+endloop
+set GL=null
+set iL=null
+set PL=null
+set uL=null
+set xL=null
+endfunction
+function Si takes nothing returns boolean
+return IsUnitEnemy(GetFilterUnit(),GetOwningPlayer(vr[Ip[5]]))
+endfunction
+function TC takes nothing returns nothing
+local player IC=GetTriggerPlayer()
+local string XC
+call BlzGetTriggerSyncPrefix()
+set XC=BlzGetTriggerSyncData()
+set Mr[XD[GetPlayerId(IC)]]=false
+if Ar then
+set ir=XC
+set Pr=IC
+set udg_SaveLoadEvent=1.
+set udg_SaveLoadEvent=-1.
+endif
+set IC=null
+endfunction
+function AG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303151 then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830324c then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830324e then
+return true
+endif
+return false
+endfunction
+function Be takes nothing returns boolean
+if GetRandomInt(1,$64)>25 then
+return false
+endif
+if GetUnitTypeId(Hp)!=$68303250 then
+return false
+endif
+return true
+endfunction
+function GG takes nothing returns boolean
+if GetUnitTypeId(Hp)!=$68303252 then
+return false
+endif
+if mp then
+return false
+endif
+return true
+endfunction
+function Oe takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303039 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303041 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303042 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303236 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303157 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303250 then
+return true
+endif
+return false
+endfunction
+function Ke takes nothing returns boolean
+if not Oe() then
+return false
+endif
+if IsUnitType(np,UNIT_TYPE_ANCIENT) then
+return false
+endif
+return true
+endfunction
+function Qe takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303048 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303059 then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830314f then
+return true
+endif
+return false
+endfunction
+function SG takes nothing returns boolean
+if GetUnitTypeId(Hp)!=$6830324f then
+return false
+endif
+if mp then
+return false
+endif
+return true
+endfunction
+function Ve takes nothing returns boolean
+if GetUnitTypeId(Hp)==$6830314e then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303133 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303053 then
+return true
+endif
+return false
+endfunction
+function WG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303247 then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830324b then
+return true
+endif
+return false
+endfunction
+function YG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303238 then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830324d then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303047 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303155 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303234 then
+return true
+endif
+return false
+endfunction
+function aG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$6830304e then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303153 then
+return true
+endif
+return false
+endfunction
+function hA takes unit HA,real BA,real OA returns nothing
+local integer KA=GetUnitUserData(HA)
+if not IsUnitInGroup(HA,w) then
+set p[KA]=GetUnitDefaultMoveSpeed(HA)
+set r[KA]=p[KA]
+call GroupAddUnit(w,HA)
+set j[KA]=AddSpecialEffectTarget("Abilities\\Spells\\Other\\FrostDamage\\FrostDamage.mdl",HA,"overhead")
+endif
+set o[KA]=3.
+if r[KA]>p[KA]*(1.-OA) then
+set r[KA]=r[KA]-p[KA]*BA
+if r[KA]<=p[KA]*(1.-OA) then
+set r[KA]=p[KA]*(1.-OA)
+endif
+call SetUnitMoveSpeed(HA,r[KA])
+set BA=r[KA]/p[KA]*100.
+call SetUnitVertexColorBJ(HA,R2I(BA),R2I(BA),100.,0.)
+endif
+endfunction
+function he takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303058 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303037 then
+return true
+endif
+return false
+endfunction
+function pG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303134 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303135 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303242 then
+return true
+endif
+return false
+endfunction
+function qG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303238 then
+return true
+endif
+if GetUnitTypeId(Hp)==$6830324d then
+return true
+endif
+return false
+endfunction
+function sG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303137 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303138 then
+return true
+endif
+return false
+endfunction
+function wG takes nothing returns boolean
+if BlzGetUnitBaseDamage(np,0)<1 then
+return false
+endif
+if GetUnitAbilityLevel(np,$42303033)>0 then
+return false
+endif
+return true
+endfunction
+function yG takes nothing returns boolean
+if GetUnitTypeId(Hp)==$68303052 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303235 then
+return true
+endif
+if GetUnitTypeId(Hp)==$68303251 then
+return true
+endif
+return false
+endfunction
+function TG takes nothing returns nothing
+local group bG
+local boolexpr gG
+local code vG
+local location RG
+local boolean NG
+local real IG
+local player XG
+if Ke() then
+if GetUnitTypeId(Hp)==$68303039 then
+call hA(np,.15,.3)
+elseif GetUnitTypeId(Hp)==$68303041 then
+call hA(np,.15,.45)
+elseif GetUnitTypeId(Hp)==$68303042 then
+call hA(np,.20,.50)
+elseif GetUnitTypeId(Hp)==$68303236 then
+call hA(np,.25,.50)
+elseif GetUnitTypeId(Hp)==$68303157 then
+call hA(np,.25,.60)
+elseif Be() then
+call hA(np,.03,.75)
+endif
+endif
+if he() then
+if GetUnitTypeId(Hp)==$68303037 then
+call BlzSetUnitAttackCooldown(Hp,BlzGetUnitAttackCooldown(Hp,0)-.02,0)
+if BlzGetUnitAttackCooldown(Hp,0)<=.02 then
+call BlzSetUnitAttackCooldown(Hp,.5,0)
+endif
+else
+call BlzSetUnitAttackCooldown(Hp,BlzGetUnitAttackCooldown(Hp,0)-.03,0)
+if BlzGetUnitAttackCooldown(Hp,0)<=.03 then
+call BlzSetUnitAttackCooldown(Hp,.3,0)
+endif
+endif
+endif
+if Qe() then
+set Ip[0]=GetUnitUserData(Hp)
+if GetUnitTypeId(Hp)==$68303048 then
+if np==Rp[Ip[0]]then
+set Np[Ip[0]]=Np[Ip[0]]+1
+call BlzSetUnitBaseDamage(Hp,R2I(nr*(1.+.50*I2R(Np[Ip[0]]))),0)
+else
+set Np[Ip[0]]=0
+call BlzSetUnitBaseDamage(Hp,R2I(nr*(1.+.50*I2R(Np[Ip[0]]))),0)
+set Rp[Ip[0]]=np
+endif
+elseif GetUnitTypeId(Hp)==$68303059 then
+if np==Rp[Ip[0]]then
+set Np[Ip[0]]=Np[Ip[0]]+1
+call BlzSetUnitBaseDamage(Hp,R2I(Er*(1.+.80*I2R(Np[Ip[0]]))),0)
+else
+set Np[Ip[0]]=0
+call BlzSetUnitBaseDamage(Hp,R2I(Er*(1.+.80*I2R(Np[Ip[0]]))),0)
+set Rp[Ip[0]]=np
+endif
+else
+call BlzSetUnitAttackCooldown(Hp,GetRandomReal(1.,2.),0)
+if np==Rp[Ip[0]]then
+set Np[Ip[0]]=Np[Ip[0]]+1
+call BlzSetUnitBaseDamage(Hp,R2I(Rr*(1.+1.*I2R(Np[Ip[0]]))),0)
+else
+set Np[Ip[0]]=0
+call BlzSetUnitBaseDamage(Hp,R2I(Rr*(1.+1.*I2R(Np[Ip[0]]))),0)
+set Rp[Ip[0]]=np
+endif
+endif
+endif
+if Ve() then
+if GetUnitTypeId(Hp)==$6830314e then
+set Sw[10]=GetUnitLoc(Hp)
+set RG=Sw[10]
+set gG=Condition(pW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,400.,gG)
+call DestroyBoolExpr(gG)
+set Tp[0]=bG
+set bG=Tp[0]
+set vG=rW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call DestroyGroup(Tp[0])
+call RemoveLocation(Sw[10])
+else
+set Sw[10]=GetUnitLoc(Hp)
+set RG=Sw[10]
+set gG=Condition(oW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,400.,gG)
+call DestroyBoolExpr(gG)
+set Tp[0]=bG
+set bG=Tp[0]
+set vG=jW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call DestroyGroup(Tp[0])
+call RemoveLocation(Sw[10])
+endif
+endif
+if pG() then
+if wG() then
+set Sw[0]=GetUnitLoc(np)
+if GetUnitTypeId(Hp)==$68303134 then
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303141)
+call IssueTargetOrder(bj_lastCreatedUnit,"cripple",np)
+call RemoveLocation(Sw[0])
+elseif GetUnitTypeId(Hp)==$68303135 then
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303143)
+call IssueTargetOrder(bj_lastCreatedUnit,"cripple",np)
+call RemoveLocation(Sw[0])
+else
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$4130324b)
+call IssueTargetOrder(bj_lastCreatedUnit,"cripple",np)
+call RemoveLocation(Sw[0])
+endif
+endif
+endif
+if GetUnitTypeId(Hp)==$68303237 then
+if GetRandomInt(1,$64)<=50 then
+set Sw[10]=GetUnitLoc(Hp)
+set RG=Sw[10]
+set gG=Condition(DW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,700.,gG)
+call DestroyBoolExpr(gG)
+set Tp[0]=bG
+set bG=Tp[0]
+set vG=fW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call DestroyGroup(Tp[0])
+call RemoveLocation(Sw[10])
+endif
+endif
+if sG() then
+set Ip[0]=GetUnitUserData(Hp)
+if kp[Ip[0]]>=.45 then
+set kp[Ip[0]]=.0
+set Vp[Ip[0]]=Vp[Ip[0]]+1
+if Vp[Ip[0]]>=5 then
+set Vp[Ip[0]]=0
+if GetUnitTypeId(Hp)==$68303137 then
+set Sw[0]=GetUnitLoc(Hp)
+set Sw[1]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[0],AngleBetweenPoints(Sw[0],Sw[1]))
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303148)
+call IssuePointOrderLoc(bj_lastCreatedUnit,"carrionswarm",Sw[1])
+call RemoveLocation(Sw[0])
+call RemoveLocation(Sw[1])
+else
+set Sw[0]=GetUnitLoc(Hp)
+set Sw[1]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[0],AngleBetweenPoints(Sw[0],Sw[1]))
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303149)
+call IssuePointOrderLoc(bj_lastCreatedUnit,"carrionswarm",Sw[1])
+call RemoveLocation(Sw[0])
+call RemoveLocation(Sw[1])
+endif
+endif
+endif
+endif
+if WG() then
+if GetUnitAbilityLevel(np,$42303039)<=0 then
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Spells\\Orc\\EarthQuake\\EarthQuakeTarget.mdl",np,"origin")
+call DestroyEffect(bj_lastCreatedEffect)
+if GetUnitTypeId(Hp)==$68303247 then
+if GetRandomInt(0,$64)<=40 then
+set Sw[0]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303153)
+call IssueTargetOrder(bj_lastCreatedUnit,"innerfire",np)
+call RemoveLocation(Sw[0])
+endif
+elseif GetRandomInt(0,$64)<=50 then
+set Sw[0]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[0],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.30)
+call UnitAddAbility(bj_lastCreatedUnit,$41303154)
+call IssueTargetOrder(bj_lastCreatedUnit,"innerfire",np)
+call RemoveLocation(Sw[0])
+endif
+endif
+endif
+if AG() then
+if GetUnitTypeId(Hp)==$68303151 then
+if GetRandomInt(0,$64)<=15 and BlzGetUnitArmor(np)>=0. then
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl",np,"chest")
+call DestroyEffect(bj_lastCreatedEffect)
+call BlzSetUnitArmor(np,BlzGetUnitArmor(np)-1.)
+endif
+elseif GetUnitTypeId(Hp)==$6830324c then
+if GetRandomInt(0,$64)<=15 and BlzGetUnitArmor(np)>=0. then
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl",np,"chest")
+call DestroyEffect(bj_lastCreatedEffect)
+call BlzSetUnitArmor(np,BlzGetUnitArmor(np)-1.60)
+endif
+else
+call SetUnitState(Hp,UNIT_STATE_LIFE,RMaxBJ(0.,GetUnitState(Hp,UNIT_STATE_LIFE)+dp*.03))
+if GetRandomInt(0,$64)<=20 and BlzGetUnitArmor(np)>=0. then
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl",np,"chest")
+call DestroyEffect(bj_lastCreatedEffect)
+call BlzSetUnitArmor(np,BlzGetUnitArmor(np)-2.)
+endif
+endif
+endif
+if YG() then
+call SetUnitState(Hp,UNIT_STATE_MANA,RMaxBJ(0.,GetUnitState(Hp,UNIT_STATE_MANA)+1.))
+if GetUnitStatePercent(Hp,UNIT_STATE_MANA,UNIT_STATE_MAX_MANA)>=99. then
+if qG() then
+if GetUnitAbilityLevel(Hp,$41303232)<=0 then
+call UnitAddAbility(Hp,$41303232)
+endif
+elseif GetUnitTypeId(Hp)!=$68303234 then
+call SetUnitState(Hp,UNIT_STATE_MANA,RMaxBJ(0.,.0))
+if BlzGetUnitAttackCooldown(Hp,0)>.10 then
+call BlzSetUnitAttackCooldown(Hp,BlzGetUnitAttackCooldown(Hp,0)-.05,0)
+endif
+endif
+endif
+endif
+if yG() then
+if GetUnitStatePercent(Hp,UNIT_STATE_MANA,UNIT_STATE_MAX_MANA)>=99. then
+call SetUnitManaPercentBJ(Hp,.0)
+set Sw[40]=GetUnitLoc(Hp)
+call CreateNUnitsAtLoc(1,$65303032,GetOwningPlayer(Hp),Sw[40],bj_UNIT_FACING)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.50)
+if GetUnitTypeId(Hp)==$68303052 then
+if GetRandomInt(0,$64)<=50 then
+call UnitAddAbility(bj_lastCreatedUnit,$41303239)
+call IssueTargetOrder(bj_lastCreatedUnit,"firebolt",np)
+else
+call UnitAddAbility(bj_lastCreatedUnit,$41303241)
+call IssueTargetOrder(bj_lastCreatedUnit,"slow",np)
+endif
+elseif GetUnitTypeId(Hp)==$68303235 then
+if GetRandomInt(0,$64)<=33 then
+call UnitAddAbility(bj_lastCreatedUnit,$41303244)
+call IssueTargetOrder(bj_lastCreatedUnit,"firebolt",np)
+elseif GetRandomInt(0,$64)<=50 then
+call UnitAddAbility(bj_lastCreatedUnit,$41303245)
+call IssueTargetOrder(bj_lastCreatedUnit,"slow",np)
+else
+call UnitAddAbility(bj_lastCreatedUnit,$41303246)
+call IssueTargetOrder(bj_lastCreatedUnit,"entanglingroots",np)
+endif
+elseif GetRandomInt(0,$64)<=33 then
+call UnitAddAbility(bj_lastCreatedUnit,$41303251)
+call IssueTargetOrder(bj_lastCreatedUnit,"frostnova",np)
+elseif GetRandomInt(0,$64)<=50 then
+set Sw[41]=GetUnitLoc(np)
+call UnitAddAbility(bj_lastCreatedUnit,$41303252)
+call IssuePointOrderLoc(bj_lastCreatedUnit,"blizzard",Sw[41])
+call RemoveLocation(Sw[41])
+else
+call UnitAddAbility(bj_lastCreatedUnit,$41303253)
+set Sw[41]=GetUnitLoc(np)
+set bj_wantDestroyGroup=true
+set RG=Sw[41]
+set gG=Condition(sW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,180.,gG)
+call DestroyBoolExpr(gG)
+set vG=WW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call RemoveLocation(Sw[41])
+endif
+call RemoveLocation(Sw[40])
+endif
+endif
+if GetUnitTypeId(Hp)==$68303233 then
+set Ip[0]=GetUnitUserData(Hp)
+if kp[Ip[0]]>=.45 then
+set kp[Ip[0]]=.0
+call BlzSetUnitAttackCooldown(Hp,BlzGetUnitAttackCooldown(Hp,0)*.5,0)
+if BlzGetUnitAttackCooldown(Hp,0)<=.47 then
+call BlzSetUnitAttackCooldown(Hp,4.,0)
+endif
+if GetRandomInt(0,$64)<=20 then
+set Sw[10]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,Player(PLAYER_NEUTRAL_PASSIVE),Sw[10],bj_UNIT_FACING)
+set Ip[0]=GetUnitUserData(bj_lastCreatedUnit)
+set pr[Ip[0]]=bj_lastCreatedUnit
+set XG=GetOwningPlayer(Hp)
+set vr[Ip[0]]=Rw[GetPlayerId(XG)+1]
+set jr[Ip[0]]=.60
+set Sr[Ip[0]]="Abilities\\Spells\\NightElf\\Starfall\\StarfallTarget.mdl"
+set sr[Ip[0]]=200.
+set fr[Ip[0]]=false
+set ar[Ip[0]]=true
+set Dr[Ip[0]]=dp*.30
+call GroupAddUnit(rr,bj_lastCreatedUnit)
+if CountUnitsInGroup(rr)>0 then
+call EnableTrigger(CD)
+endif
+call RemoveLocation(Sw[10])
+endif
+endif
+endif
+if GG() then
+if GetRandomInt(0,$64)<=10 then
+set Sw[5]=GetUnitLoc(np)
+call CreateNUnitsAtLoc(1,$65303032,Player(PLAYER_NEUTRAL_PASSIVE),Sw[5],bj_UNIT_FACING)
+call UnitAddAbility(bj_lastCreatedUnit,$41303247)
+call UnitApplyTimedLife(bj_lastCreatedUnit,$42544c46,.50)
+set RG=Sw[5]
+set gG=Condition(AW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,128.,gG)
+call DestroyBoolExpr(gG)
+set Tp[0]=bG
+set bG=Tp[0]
+set vG=qW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call DestroyGroup(Tp[0])
+call RemoveLocation(Sw[5])
+endif
+endif
+if SG() then
+if GetRandomInt(0,$64)<=20 then
+call DisableTrigger(GetTriggeringTrigger())
+set Sw[5]=GetUnitLoc(Hp)
+set RG=Sw[5]
+set gG=Condition(YW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,300.,gG)
+call DestroyBoolExpr(gG)
+set Tp[0]=bG
+set bG=Tp[0]
+set vG=cW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call DestroyGroup(Tp[0])
+call RemoveLocation(Sw[5])
+call EnableTrigger(GetTriggeringTrigger())
+endif
+endif
+if aG() then
+set Ip[0]=GetUnitUserData(Hp)
+if kp[Ip[0]]>=.45 then
+if GetUnitTypeId(Hp)==$6830304e then
+set Zp[Ip[0]]=Zp[Ip[0]]-10.*kp[Ip[0]]
+if Zp[Ip[0]]<100. then
+set Zp[Ip[0]]=100.
+endif
+set kp[Ip[0]]=.0
+set Zp[Ip[0]]=Zp[Ip[0]]+20.
+if Zp[Ip[0]]>400. then
+set Zp[Ip[0]]=400.
+endif
+else
+set Zp[Ip[0]]=Zp[Ip[0]]-15.*kp[Ip[0]]
+if Zp[Ip[0]]<150. then
+set Zp[Ip[0]]=150.
+endif
+set kp[Ip[0]]=.0
+set Zp[Ip[0]]=Zp[Ip[0]]+30.
+if Zp[Ip[0]]>600. then
+set Zp[Ip[0]]=600.
+endif
+endif
+set Sw[10]=GetUnitLoc(np)
+set XG=GetOwningPlayer(Hp)
+set Wr[5]=Rw[GetPlayerId(XG)+1]
+set IG=Zp[Ip[0]]
+set RG=Sw[10]
+set gG=Condition(CW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,IG,gG)
+call DestroyBoolExpr(gG)
+set Tp[0]=bG
+set bG=Tp[0]
+set vG=UW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call DestroyGroup(Tp[0])
+call RemoveLocation(Sw[10])
+endif
+endif
+if GetUnitTypeId(Hp)==$68303232 then
+set Wr[0]=Hp
+set Wr[1]=np
+set XG=GetOwningPlayer(Hp)
+set Wr[5]=Rw[GetPlayerId(XG)+1]
+set wr[2]=dp
+set Sw[0]=GetUnitLoc(Hp)
+set RG=Sw[0]
+set gG=Condition(yW)
+set bG=CreateGroup()
+call GroupEnumUnitsInRangeOfLoc(bG,RG,512.,gG)
+call DestroyBoolExpr(gG)
+set Tp[0]=bG
+set bG=Tp[0]
+set vG=MW
+set NG=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(bG,vG)
+if NG then
+call DestroyGroup(bG)
+endif
+call DestroyGroup(Tp[0])
+call RemoveLocation(Sw[0])
+endif
+set bG=null
+set gG=null
+set RG=null
+set XG=null
+endfunction
+function TM takes nothing returns nothing
+local framehandle IM=BlzGetTriggerFrame()
+local unit XM
+if IM==X[0]then
+set Sw[5]=GetUnitLoc(Rw[GetPlayerId(GetTriggerPlayer())+1])
+call PanCameraToTimedLocForPlayer(GetTriggerPlayer(),Sw[5],0.)
+call RemoveLocation(Sw[5])
+set XM=Rw[GetPlayerId(GetTriggerPlayer())+1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call ClearSelection()
+call SelectUnit(XM,true)
+endif
+if GetLocalPlayer()==GetTriggerPlayer() then
+call BlzFrameSetEnable(IM,false)
+call BlzFrameSetEnable(IM,true)
+endif
+elseif IM==X[1]then
+set XM=Xw[GetPlayerId(GetTriggerPlayer())+1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call ClearSelection()
+call SelectUnit(XM,true)
+endif
+elseif IM==X[2]then
+set XM=Tw[GetPlayerId(GetTriggerPlayer())+1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call ClearSelection()
+call SelectUnit(XM,true)
+endif
+elseif IM==X[3]then
+set XM=Zw[GetPlayerId(GetTriggerPlayer())+1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call ClearSelection()
+call SelectUnit(XM,true)
+endif
+elseif IM==X[4]then
+set XM=wp[GetPlayerId(GetTriggerPlayer())+1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call ClearSelection()
+call SelectUnit(XM,true)
+endif
+endif
+set IM=null
+set XM=null
+endfunction
+function UG takes nothing returns nothing
+local unit CG=GetEnumUnit()
+if (not IsUnitType(CG,UNIT_TYPE_DEAD))and GetUnitTypeId(CG)!=0 then
+call IssueTargetOrder(bj_lastCreatedUnit,"thunderbolt",GetEnumUnit())
+endif
+set CG=null
+endfunction
+function UP takes nothing returns nothing
+local player cP
+local force CP
+set xw=GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1
+set cP=Player(xw-1)
+set CP=CreateForce()
+call ForceAddPlayer(CP,cP)
+set aw[0]=CP
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3869")
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3870")
+call DisplayTimedTextToForce(aw[0],5.,"Rating: "+I2S(lr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Games played: "+I2S(fo[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total wins: "+I2S(hr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total losses: "+I2S(Qr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total Lifes Stolen: "+I2S(Hr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total Lifes Leaked: "+I2S(Br[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3871")
+call DestroyForce(aw[0])
+set cP=null
+set CP=null
+endfunction
+function VG takes nothing returns boolean
+return IsUnitAlly(GetFilterUnit(),GetOwningPlayer(np))
+endfunction
+function VL takes nothing returns nothing
+call IssuePointOrder(GetTriggerUnit(),"move",GetUnitX(GetTriggerUnit()),-5000.)
+endfunction
+function AY takes player fY,framehandle sY,boolean WY returns nothing
+if GetLocalPlayer()==fY then
+call BlzFrameSetVisible(l,WY)
+call BlzFrameSetPoint(l,FRAMEPOINT_TOPLEFT,sY,FRAMEPOINT_TOPLEFT,-.001,.001)
+call BlzFrameSetPoint(l,FRAMEPOINT_BOTTOMRIGHT,sY,FRAMEPOINT_BOTTOMRIGHT,-.0012,-.0016)
+endif
+endfunction
+function DY takes player oY returns nothing
+local integer jY=0
+loop
+exitwhen jY>k
+if GetLocalPlayer()==oY then
+call BlzFrameSetEnable(X[jY],true)
+endif
+set jY=jY+1
+endloop
+endfunction
+function VM takes nothing returns nothing
+local framehandle lM
+if GetTriggerUnit()==Xw[GetPlayerId(GetTriggerPlayer())+1]then
+call DY(GetTriggerPlayer())
+set lM=X[1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call BlzFrameSetEnable(lM,false)
+endif
+call AY(GetTriggerPlayer(),X[1],true)
+elseif GetTriggerUnit()==Tw[GetPlayerId(GetTriggerPlayer())+1]then
+call DY(GetTriggerPlayer())
+set lM=X[2]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call BlzFrameSetEnable(lM,false)
+endif
+call AY(GetTriggerPlayer(),X[2],true)
+elseif GetTriggerUnit()==Zw[GetPlayerId(GetTriggerPlayer())+1]then
+call DY(GetTriggerPlayer())
+set lM=X[3]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call BlzFrameSetEnable(lM,false)
+endif
+call AY(GetTriggerPlayer(),X[3],true)
+elseif GetTriggerUnit()==wp[GetPlayerId(GetTriggerPlayer())+1]then
+call DY(GetTriggerPlayer())
+set lM=X[4]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call BlzFrameSetEnable(lM,false)
+endif
+call AY(GetTriggerPlayer(),X[4],true)
+endif
+set lM=null
+endfunction
+function WM takes nothing returns nothing
+local integer pM=1
+local integer rM
+local integer oM
+local real jM
+local real DM
+local location fM
+local rect sM
+call DisableTrigger(Xj)
+loop
+exitwhen pM>Gw
+set Jr[pM]=CreateGroup()
+if GetPlayerController(Player(pM-1))==MAP_CONTROL_USER and GetPlayerSlotState(Player(pM-1))==PLAYER_SLOT_STATE_PLAYING then
+set sM=tr[pM]
+set fM=Location(GetRectCenterX(sM),GetRectCenterY(sM))
+set jM=GetLocationX(fM)
+set DM=GetLocationY(fM)
+set rM=1
+loop
+exitwhen rM>5
+set jM=jM+128.
+set oM=1
+loop
+exitwhen oM>28
+set DM=DM+128.
+set bj_lastCreatedUnit=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),$65303033,jM,DM,.0)
+call PauseUnit(bj_lastCreatedUnit,true)
+call GroupAddUnit(Jr[pM],bj_lastCreatedUnit)
+call SetUnitVertexColorBJ(bj_lastCreatedUnit,.0,.0,.0,100.)
+set oM=oM+1
+endloop
+set DM=GetLocationY(fM)
+set rM=rM+1
+endloop
+call RemoveLocation(fM)
+endif
+set pM=pM+1
+endloop
+call EnableTrigger(Xj)
+set fM=null
+set sM=null
+endfunction
+function se takes nothing returns boolean
+if GetSpellAbilityId()==$41303035 then
+return true
+endif
+if GetSpellAbilityId()==$41303053 then
+return true
+endif
+return false
+endfunction
+function We takes nothing returns boolean
+return se()
+endfunction
+function XA takes integer NA returns nothing
+local integer IA=NA
+if F then
+return
+endif
+set F=true
+loop
+set NA=B[NA]
+exitwhen NA==0 or(IA==1 and yp or Mp*Mp==4) or (IA==4 and dp<=.0)or(IA==8 and Cp>.405)
+if (not K[NA])and IsTriggerEnabled(O[NA]) then
+set H=NA
+if TriggerEvaluate(O[NA]) then
+call TriggerExecute(O[NA])
+endif
+endif
+endloop
+set F=false
+endfunction
+function TA takes nothing returns nothing
+if Wp>1 then
+call XA(9)
+set Wp=1
+endif
+set Ap=1
+set Lp=null
+set ep=null
+call GroupClear(Gp)
+endfunction
+function lA takes nothing returns nothing
+local integer ZA=0
+local integer kA
+if G then
+set G=false
+if ip!=.0 and Pp!=qp then
+call XA(7)
+endif
+endif
+if s and(not i) then
+if P>0 then
+set i=true
+loop
+set kA=P
+set g=g+1
+loop
+set cp=J[ZA]
+call UnitDamageTarget(u[ZA],x[ZA],S[ZA],true,false,a[ZA],n[ZA],E[ZA])
+if ip!=.0 and Pp!=qp then
+call XA(7)
+endif
+set ZA=ZA+1
+exitwhen ZA==kA
+endloop
+exitwhen ZA==P
+endloop
+set g=0
+loop
+set ZA=ZA-1
+set K[t[ZA]]=false
+set h[t[ZA]]=0
+exitwhen ZA==0
+endloop
+set P=0
+set i=false
+endif
+call GroupClear(v)
+call GroupClear(R)
+endif
+endfunction
+function VA takes nothing returns nothing
+if ap!=.0 then
+call BlzSetUnitArmor(np,BlzGetUnitArmor(np)+ap)
+endif
+if U!=Sp then
+call BlzSetUnitIntegerField(np,UNIT_IF_ARMOR_TYPE,U)
+endif
+if d!=up then
+call BlzSetUnitIntegerField(np,UNIT_IF_DEFENSE_TYPE,d)
+endif
+endfunction
+function wq takes nothing returns nothing
+call VA()
+set s=true
+set W=false
+set dp=.0
+set Up=.0
+if Pp!=qp then
+call XA(5)
+set G=true
+endif
+call lA()
+endfunction
+function Wq takes nothing returns boolean
+local unit rq=GetEventDamageSource()
+local unit oq=GetTriggerUnit()
+local real jq=GetEventDamage()
+local attacktype Dq=BlzGetEventAttackType()
+local damagetype fq=BlzGetEventDamageType()
+local weapontype sq=BlzGetEventWeaponType()
+if F then
+if jq!=.0 then
+set S[P]=jq
+set u[P]=rq
+set x[P]=oq
+set a[P]=Dq
+set n[P]=fq
+set E[P]=sq
+set t[P]=H
+if cp==0 then
+set J[P]=sp
+else
+set J[P]=cp
+endif
+set Q=Q or b[H]
+call GroupAddUnit(v,Hp)
+call GroupAddUnit(R,np)
+if i and IsUnitInGroup(rq,v) and IsUnitInGroup(oq,R) then
+if Q and(not K[H]) then
+set b[H]=true
+if h[H]<g then
+set h[H]=h[H]+1
+if h[H]>=16 then
+set K[H]=true
+endif
+endif
+else
+set K[H]=true
+endif
+endif
+set P=P+1
+call BlzSetEventDamage(.0)
+endif
+else
+if not i then
+if f then
+if W then
+if fq!=DAMAGE_TYPE_SPIRIT_LINK and fq!=DAMAGE_TYPE_DEFENSIVE and fq!=DAMAGE_TYPE_PLANT then
+call wq()
+else
+set W=false
+set A=dp
+set q=ip
+set Y=Mp
+set c=Ep
+set y=Sp
+set M=U
+set L=up
+set e=d
+set C=ap
+set s=false
+endif
+else
+call lA()
+endif
+if rq!=ep then
+call TA()
+set ep=rq
+elseif oq==Lp then
+set Ap=Ap+1
+elseif not IsUnitInGroup(oq,Gp) then
+set Wp=Wp+1
+endif
+else
+call TimerStart(D,.0,false,Tf)
+set f=true
+set ep=rq
+set Lp=oq
+endif
+call GroupAddUnit(Gp,oq)
+endif
+set Mp=cp
+set Ep=cp!=0
+set yp=fq==null
+set ip=jq
+set Hp=rq
+set np=oq
+set dp=jq
+set xp=GetHandleId(Dq)
+set Pp=GetHandleId(fq)
+set Bp=GetHandleId(sq)
+set tp=false
+set Jp=false
+set mp=xp==0
+if Pp==Yp and(not mp) then
+set tp=IsUnitType(Hp,UNIT_TYPE_MELEE_ATTACKER)
+set Jp=IsUnitType(Hp,UNIT_TYPE_RANGED_ATTACKER)
+if tp and Jp then
+set tp=Bp>0
+set Jp=not tp
+endif
+endif
+set Sp=BlzGetUnitIntegerField(np,UNIT_IF_ARMOR_TYPE)
+set up=BlzGetUnitIntegerField(np,UNIT_IF_DEFENSE_TYPE)
+set U=Sp
+set d=up
+set ap=.0
+set Up=1.
+if jq!=.0 then
+if not yp then
+call XA(1)
+call BlzSetEventAttackType(ConvertAttackType(xp))
+call BlzSetEventDamageType(ConvertDamageType(Pp))
+call BlzSetEventWeaponType(ConvertWeaponType(Bp))
+if ap!=.0 then
+call BlzSetUnitArmor(np,BlzGetUnitArmor(np)-ap)
+endif
+if U!=Sp then
+call BlzSetUnitIntegerField(np,UNIT_IF_ARMOR_TYPE,Sp)
+endif
+if d!=up then
+call BlzSetUnitIntegerField(np,UNIT_IF_DEFENSE_TYPE,up)
+endif
+call BlzSetEventDamage(dp)
+endif
+set W=true
+else
+call XA(6)
+set s=true
+call lA()
+endif
+endif
+set Q=false
+set cp=0
+set rq=null
+set oq=null
+set Dq=null
+set fq=null
+set sq=null
+return false
+endfunction
+function Xi takes nothing returns nothing
+local integer Ri=0
+local location Ni=GetUnitLoc(GetTriggerUnit())
+local location Ii
+set Zr[0]="UI\\Feedback\\TargetPreSelected\\TargetPreSelected.mdl"
+if GetLocalPlayer()!=GetOwningPlayer(GetTriggerUnit()) then
+set Zr[0]=null
+endif
+loop
+exitwhen Ri>=36
+set Ii=PolarProjectionBJ(Ni,GetUnitDefaultAcquireRange(GetTriggerUnit()),10.*Ri)
+set bj_lastCreatedEffect=AddSpecialEffectLoc(Zr[0],Ii)
+call DestroyEffect(bj_lastCreatedEffect)
+call BlzSetSpecialEffectScale(bj_lastCreatedEffect,.2)
+call BlzSetSpecialEffectHeight(bj_lastCreatedEffect,8.)
+call RemoveLocation(Ii)
+set Ri=Ri+1
+endloop
+call RemoveLocation(Ni)
+set Ni=null
+set Ii=null
+endfunction
+function YP takes nothing returns boolean
+return GetSpellAbilityId()==$41303259
+endfunction
+function Jy takes integer Ey returns integer
+local integer ty=Ey
+loop
+exitwhen ty>Gw
+if Mw[ty]>0 and ty!=Ey then
+return ty
+endif
+set ty=ty+1
+endloop
+set ty=1
+loop
+exitwhen ty>Gw
+if Mw[ty]>0 and ty!=Ey then
+return ty
+endif
+set ty=ty+1
+endloop
+return Ey
+endfunction
+function Yd takes nothing returns nothing
+local code sd
+local boolean Wd
+local group Ad
+local integer qd
+set kw[GetPlayerId(GetTriggerPlayer())+1]=true
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,5.,Lw[GetPlayerId(GetTriggerPlayer())+1]+GetPlayerName(GetTriggerPlayer())+"|r has left the game!")
+set yw[GetPlayerId(GetTriggerPlayer())+1]=0
+set bj_wantDestroyGroup=true
+set Ad=CreateGroup()
+call GroupEnumUnitsOfPlayer(Ad,GetTriggerPlayer(),null)
+call DestroyBoolExpr(null)
+set sd=us
+set Wd=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(Ad,sd)
+if Wd then
+call DestroyGroup(Ad)
+endif
+set qd=1
+loop
+exitwhen qd>Gw
+if Mw[qd]>0 then
+set fp[qd]=Jy(qd)
+endif
+set qd=qd+1
+endloop
+set Ad=null
+endfunction
+function Yi takes nothing returns boolean
+return IsUnitAlly(GetFilterUnit(),GetOwningPlayer(Hp))
+endfunction
+function Ze takes nothing returns boolean
+local boolean Ie=IsUnitType(GetFilterUnit(),UNIT_TYPE_STRUCTURE)
+local boolean Xe=GetUnitState(GetFilterUnit(),UNIT_STATE_LIFE)>0.
+local boolean Te=IsUnitAlly(GetFilterUnit(),GetOwningPlayer(Hp))
+set Xe=Xe and Te
+return Ie and Xe
+endfunction
+function bA takes nothing returns nothing
+local unit QA=GetEnumUnit()
+local integer FA=GetUnitUserData(QA)
+set o[FA]=o[FA]-.25
+if o[FA]<=.0 then
+call GroupRemoveUnit(w,QA)
+call DestroyEffect(j[FA])
+if (not IsUnitType(QA,UNIT_TYPE_DEAD))and GetUnitTypeId(QA)!=0 then
+call SetUnitVertexColorBJ(QA,100.,100.,100.,0.)
+call SetUnitMoveSpeed(QA,p[FA])
+endif
+endif
+set QA=null
+endfunction
+function bd takes nothing returns nothing
+call RemoveUnit(GetEnumUnit())
+endfunction
+function bi takes nothing returns nothing
+local group hi=rr
+local code Qi=mW
+local boolean Fi=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(hi,Qi)
+if Fi then
+call DestroyGroup(hi)
+endif
+if CountUnitsInGroup(rr)<=0 then
+call DisableTrigger(GetTriggeringTrigger())
+endif
+set hi=null
+endfunction
+function cG takes nothing returns boolean
+return IsUnitEnemy(GetFilterUnit(),GetOwningPlayer(Hp))
+endfunction
+function cd takes nothing returns boolean
+return GetUnitTypeId(GetTrainedUnit())==$68303143
+endfunction
+function de takes nothing returns boolean
+if dp<1. then
+return false
+endif
+if GetUnitTypeId(Hp)==$65303032 then
+return false
+endif
+if GetUnitTypeId(Hp)==$68303032 then
+return false
+endif
+return true
+endfunction
+function eG takes nothing returns nothing
+local unit dG=GetEnumUnit()
+local boolean LG
+if (not IsUnitType(dG,UNIT_TYPE_DEAD))and GetUnitTypeId(dG)!=0 then
+set LG=GetUnitAbilityLevel(GetEnumUnit(),$4230304a)<=0
+else
+set LG=false
+endif
+if LG then
+call UnitDamageTarget(Hp,GetEnumUnit(),dp*.30,true,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,WEAPON_TYPE_WHOKNOWS)
+call IssueTargetOrder(bj_lastCreatedUnit,"slow",GetEnumUnit())
+endif
+set dG=null
+endfunction
+function yc takes integer Uc returns string
+if Uc==0 then
+return qr+"\\SaveSlot_"+"Unknown"+".pld"
+elseif Uc>0 and Uc<1 or Uc>10 then
+return qr+"\\SaveSlot_"+"Unknown"+".pld"
+elseif Uc<0 then
+return qr+"\\SaveSlot_"+"Manual"+".pld"
+endif
+return qr+"\\SaveSlot_"+I2S(Uc)+".pld"
+endfunction
+function tc takes integer ic,integer Pc,boolean uc returns string
+local string xc=yc(ic)
+local integer Sc
+local string ac
+local string nc
+local integer Ec
+set ic=bD[0]
+if ic==0 then
+set ic=FD+1
+set FD=ic
+else
+set bD[0]=bD[ic]
+endif
+set vD[ic]=xc
+set RD[ic]=null
+set xc=bq(ic,true)
+set Sc=StringLength(xc)
+set nc=""
+set Ec=0
+set ic=0
+loop
+exitwhen ic>Sc
+set ac=SubString(xc,ic,ic+1)
+if ac=="\n" then
+set Ec=Ec+1
+if Ec>Pc then
+return nc
+endif
+if not uc then
+set nc=""
+endif
+else
+set nc=nc+ac
+endif
+set ic=ic+1
+endloop
+if Ec==Pc then
+return nc
+endif
+return null
+endfunction
+function pU takes player ZC,integer kC returns nothing
+local integer VC=GetPlayerId(ZC)
+local string lC=yc(kC)
+local integer wU=bD[0]
+if wU==0 then
+set wU=FD+1
+set FD=wU
+else
+set bD[0]=bD[wU]
+endif
+set vD[wU]=lC
+set RD[wU]=null
+if StringLength(bq(wU,true))<=1 then
+return
+elseif Mr[XD[VC]]then
+else
+set lC=tc(kC,1,false)
+if GetLocalPlayer()==ZC then
+call BlzSendSyncData("S",lC)
+endif
+call ClearTextMessages()
+endif
+endfunction
+function YM takes integer qM returns nothing
+if (not kw[qM+1])and GetPlayerController(Player(qM))==MAP_CONTROL_USER and GetPlayerSlotState(Player(qM))==PLAYER_SLOT_STATE_PLAYING then
+call pU(Player(qM),1)
+endif
+endfunction
+function yM takes nothing returns nothing
+local integer cM=0
+local integer CM=0
+local integer UM=0
+loop
+exitwhen cM>Gw-1
+if ro[cM+1]>CM then
+set CM=ro[cM+1]
+set UM=cM+1
+endif
+set cM=cM+1
+endloop
+set wo=Vr[UM]
+set po=CM
+if CM>=$64 then
+call MultiboardSetItemValueBJ(ew,1,iw+4,wo+"   |   "+I2S(po)+" Rating")
+else
+set wo="lolreported"
+set po=$64
+call MultiboardSetItemValueBJ(ew,1,iw+4,"lolreported   |   100 Rating")
+endif
+endfunction
+function eM takes nothing returns nothing
+local integer MM
+local integer dM
+local integer LM
+call YM(0)
+call YM(1)
+call YM(2)
+call YM(3)
+call YM(4)
+call YM(5)
+call YM(6)
+call YM(7)
+call YM(8)
+call YM(9)
+call YM(10)
+call YM(11)
+call YM(12)
+call YM(13)
+call YM(14)
+call YM(15)
+call YM(16)
+call YM(17)
+call TriggerSleepAction(3.33)
+call yM()
+set MM=0
+set dM=$65
+set LM=-1
+loop
+exitwhen MM>Gw
+if lr[MM+1]>dM then
+set dM=lr[MM+1]
+set LM=MM
+endif
+set MM=MM+1
+endloop
+set dM=LM+1
+if dM>0 then
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,12.,"Highest rated player this game: "+Lw[dM]+GetPlayerName(Player(dM-1))+"|r with "+I2S(lr[dM])+" rating!")
+endif
+endfunction
+function ed takes nothing returns nothing
+local unit Cd=GetTriggerUnit()
+local player Md=GetOwningPlayer(Cd)
+local force yd=CreateForce()
+local integer Ud
+local playerstate dd
+local playerstate Ld
+call ForceAddPlayer(yd,Md)
+set Ud=R2I(GetUnitPointValue(Cd)*gw)
+set Md=GetOwningPlayer(Cd)
+set dd=PLAYER_STATE_RESOURCE_GOLD
+if Ud>0 then
+if dd==PLAYER_STATE_RESOURCE_GOLD then
+set Ld=PLAYER_STATE_GOLD_GATHERED
+call SetPlayerState(Md,Ld,GetPlayerState(Md,Ld)+Ud)
+elseif dd==PLAYER_STATE_RESOURCE_LUMBER then
+set Ld=PLAYER_STATE_LUMBER_GATHERED
+call SetPlayerState(Md,Ld,GetPlayerState(Md,Ld)+Ud)
+endif
+endif
+call SetPlayerState(Md,dd,GetPlayerState(Md,dd)+Ud)
+call OY(11,GetPlayerId(GetOwningPlayer(Cd)),-1,"You received |cffffcc00"+I2S(Ud)+"|r gold for selling |cffffcc00"+GetUnitName(Cd)+"|r.")
+call DestroyForce(yd)
+call RemoveUnit(GetTrainedUnit())
+call KillUnit(Cd)
+set Cd=null
+set yd=null
+set Md=null
+set dd=null
+set Ld=null
+endfunction
+function fG takes nothing returns nothing
+if GetRandomInt(0,$64)<=35 then
+call IssueTargetOrder(Hp,"attack",GetEnumUnit())
+endif
+endfunction
+function rP takes nothing returns boolean
+if uw[0]<$1f4 then
+return false
+endif
+if uw[0]>$bb8 then
+return false
+endif
+return true
+endfunction
+function fP takes nothing returns nothing
+local camerafield oP
+local real jP
+local force DP
+set uw[0]=S2I(SubString(GetEventPlayerChatString(),4,StringLength(GetEventPlayerChatString())))
+if rP() then
+set Vw[GetPlayerId(GetTriggerPlayer())+1]=I2R(uw[0])
+set oP=CAMERA_FIELD_TARGET_DISTANCE
+set jP=Vw[GetPlayerId(GetTriggerPlayer())+1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call SetCameraField(oP,jP,.0)
+endif
+else
+set DP=CreateForce()
+call ForceAddPlayer(DP,GetTriggerPlayer())
+set lw=DP
+call DisplayTimedTextToForce(lw,5.,"TRIGSTR_4409")
+call DestroyForce(lw)
+endif
+set oP=null
+set DP=null
+endfunction
+function fd takes nothing returns nothing
+call RemoveUnit(GetEnumUnit())
+endfunction
+function fe takes nothing returns nothing
+local integer je=2
+local integer De
+loop
+exitwhen je>iw+1
+set De=GetPlayerId(Pw[je-1])+1
+if Mw[De]>0 then
+if GetPlayerSlotState(Pw[je-1])==PLAYER_SLOT_STATE_LEFT then
+call MultiboardSetItemValueBJ(ew,2,je,Lw[0]+I2S(Mw[De])+"|r")
+call MultiboardSetItemValueBJ(ew,3,je,Lw[0]+I2S(yw[De])+"|r")
+call MultiboardSetItemValueBJ(ew,4,je,Lw[0]+I2S(lr[De])+oo[De])
+else
+call MultiboardSetItemValueBJ(ew,2,je,I2S(Mw[De]))
+call MultiboardSetItemValueBJ(ew,3,je,I2S(yw[De]))
+endif
+endif
+set je=je+1
+endloop
+if Tr then
+call BlzFrameSetText(I,"|cffffcc00Income: "+I2S(R2I(TimerGetRemaining(dw))+1)+"s|r")
+else
+call BlzFrameSetText(I,"|cffffcc00Game Start: "+I2S(R2I(TimerGetRemaining(Xr))+1)+"s|r")
+endif
+endfunction
+function fi takes nothing returns nothing
+local unit ji=GetEnumUnit()
+local unitstate Di
+if (not IsUnitType(ji,UNIT_TYPE_DEAD))and GetUnitTypeId(ji)!=0 and GetEnumUnit()!=np then
+set Di=UNIT_STATE_LIFE
+call SetUnitState(GetEnumUnit(),UNIT_STATE_LIFE,RMaxBJ(0.,GetUnitState(GetEnumUnit(),Di)+1500.))
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Spells\\Undead\\DarkRitual\\DarkRitualCaster.mdl",GetEnumUnit(),"chest")
+call DestroyEffect(bj_lastCreatedEffect)
+endif
+set ji=null
+set Di=null
+endfunction
+function gA takes nothing returns nothing
+call ForGroup(w,If)
+endfunction
+function gP takes nothing returns boolean
+local integer FP=hD[Rf]
+local integer bP
+loop
+exitwhen FP==0
+set bP=HD[FP]
+call GA(FP)
+set FP=bP
+endloop
+return true
+endfunction
+function gd takes nothing returns nothing
+call IssuePointOrder(GetEnumUnit(),"move",GetUnitX(GetEnumUnit()),-5000.)
+endfunction
+function xy takes nothing returns nothing
+local integer uy=0
+set iw=0
+loop
+exitwhen uy>=Gw
+if GetPlayerController(Player(uy))==MAP_CONTROL_USER and GetPlayerSlotState(Player(uy))==PLAYER_SLOT_STATE_PLAYING then
+set iw=iw+1
+set Pw[iw]=Player(uy)
+endif
+set uy=uy+1
+endloop
+endfunction
+function gy takes nothing returns nothing
+set Bw="2.7c (2020-02-22)"
+set Fr=25
+set Gw=18
+set Nr=7
+set Ow=25
+set Kw=20
+set hw=30
+set Qw=4
+set Ir=15.
+set jp=0
+set op=0
+set gw=.75
+set bw=$64
+set Fw=10.
+set Wo=1485.
+set Ao=3
+set rp[0]=$68303246
+set rp[1]=$68303057
+set rp[2]=$68303136
+call xy()
+set Lw[0]="|cff404040"
+set Lw[1]="|cffff0303"
+set Lw[2]="|cff0042ff"
+set Lw[3]="|cff1ce6b9"
+set Lw[4]="|cff540081"
+set Lw[5]="|cfffffc00"
+set Lw[6]="|cfffe8a0e"
+set Lw[7]="|cff20c000"
+set Lw[8]="|cffe55bb0"
+set Lw[9]="|cff959697"
+set Lw[10]="|cff7ebff1"
+set Lw[11]="|cff106246"
+set Lw[12]="|cff4a2a04"
+set Lw[13]="|cff9b0000"
+set Lw[14]="|cff0000c3"
+set Lw[15]="|cff00eaff"
+set Lw[16]="|cffbe00fe"
+set Lw[17]="|cffebcd87"
+set Lw[18]="|cfff8a48b"
+set Lw[19]="|cffbfff80"
+set Lw[20]="|cffdcb9eb"
+set Lw[21]="|cff282828"
+set Lw[22]="|cffebf0ff"
+set Lw[23]="|cff00781e"
+set Lw[24]="|cffa46f33"
+set Ew=1
+set nw[Ew]=$6e303045
+set tw[Ew]=1
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303043
+set tw[Ew]=2
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303033
+set tw[Ew]=3
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303030
+set tw[Ew]=5
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303035
+set tw[Ew]=6
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$68303055
+set tw[Ew]=8
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303030
+set tw[Ew]=12
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303041
+set tw[Ew]=16
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303031
+set tw[Ew]=20
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303046
+set tw[Ew]=32
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$68303142
+set tw[Ew]=25
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303038
+set tw[Ew]=75
+set Hw[Ew]=0
+set Ew=Ew+1
+set nw[Ew]=$68303148
+set tw[Ew]=$64
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6f303030
+set tw[Ew]=$c8
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303032
+set tw[Ew]=$145
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303033
+set tw[Ew]=$258
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303042
+set tw[Ew]=$2ee
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303036
+set tw[Ew]=$3b6
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303034
+set tw[Ew]=$4e2
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303039
+set tw[Ew]=$5dc
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303032
+set tw[Ew]=$7d0
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$68303149
+set tw[Ew]=$4e2
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303037
+set tw[Ew]=$cb2
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303044
+set tw[Ew]=$1388
+set Hw[Ew]=0
+set Ew=Ew+1
+set nw[Ew]=$75303038
+set tw[Ew]=-$7d0
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303048
+set tw[Ew]=$cb2
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303036
+set tw[Ew]=$ea6
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6f303032
+set tw[Ew]=$1388
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$68303245
+set tw[Ew]=$1482
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303037
+set tw[Ew]=$186a
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6e303047
+set tw[Ew]=$1c52
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$68303231
+set tw[Ew]=$1d4c
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303034
+set tw[Ew]=$222e
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$65303030
+set tw[Ew]=-$4e20
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$75303035
+set tw[Ew]=-$c350
+set Hw[Ew]=2
+set Ew=Ew+1
+set nw[Ew]=$6830314d
+set tw[Ew]=-$186a0
+set Hw[Ew]=0
+set Ew=Ew+1
+set nw[Ew]=$75303039
+set tw[Ew]=0
+set Hw[Ew]=0
+set Nw[1]=Zo
+set Nw[2]=wj
+set Nw[3]=jj
+set Nw[4]=Wj
+set Nw[5]=cj
+set Nw[6]=Mj
+set Nw[7]=Gj
+set Nw[8]=xj
+set Nw[9]=Ej
+set Nw[10]=qo
+set Nw[11]=Uo
+set Nw[12]=Lo
+set Nw[13]=Po
+set Nw[14]=ao
+set Nw[15]=mo
+set Nw[16]=Ko
+set Nw[17]=bo
+set Nw[18]=No
+set Jw[1]=Vo
+set Jw[2]=oj
+set Jw[3]=sj
+set Jw[4]=Yj
+set Jw[5]=yj
+set Jw[6]=ej
+set Jw[7]=uj
+set Jw[8]=nj
+set Jw[9]=mj
+set Jw[10]=Co
+set Jw[11]=do
+set Jw[12]=io
+set Jw[13]=So
+set Jw[14]=Jo
+set Jw[15]=Oo
+set Jw[16]=Fo
+set Jw[17]=Ro
+set Jw[18]=To
+set mw[1]=ko
+set mw[2]=pj
+set mw[3]=Dj
+set mw[4]=Aj
+set mw[5]=Cj
+set mw[6]=dj
+set mw[7]=ij
+set mw[8]=Sj
+set mw[9]=tj
+set mw[10]=Yo
+set mw[11]=yo
+set mw[12]=eo
+set mw[13]=uo
+set mw[14]=no
+set mw[15]=Ho
+set mw[16]=ho
+set mw[17]=go
+set mw[18]=Io
+set tr[1]=lo
+set tr[2]=rj
+set tr[3]=fj
+set tr[4]=qj
+set tr[5]=Uj
+set tr[6]=Lj
+set tr[7]=Pj
+set tr[8]=aj
+set tr[9]=Jj
+set tr[10]=co
+set tr[11]=Mo
+set tr[12]=Go
+set tr[13]=xo
+set tr[14]=Eo
+set tr[15]=Bo
+set tr[16]=Qo
+set tr[17]=vo
+set tr[18]=Xo
+call TriggerExecute(WD)
+call FogEnable(false)
+call FogMaskEnable(false)
+call SetGameSpeed(MAP_SPEED_FASTEST)
+call SetMapFlag(MAP_LOCK_SPEED,true)
+call SetFloatGameState(GAME_STATE_TIME_OF_DAY,bj_MELEE_STARTING_TOD)
+call BlzHideCinematicPanels(true)
+call CinematicModeExBJ(true,bj_FORCE_ALL_PLAYERS,bj_CINEMODE_INTERFACEFADE)
+call CinematicFadeBJ(bj_CINEFADETYPE_FADEOUT,.0,"ReplaceableTextures\\CameraMasks\\Black_mask.blp",100.,100.,100.,0.)
+endfunction
+function hP takes nothing returns boolean
+return true
+endfunction
+function iG takes nothing returns boolean
+return IsUnitEnemy(GetFilterUnit(),GetOwningPlayer(Hp))
+endfunction
+function kL takes nothing returns nothing
+local unit IL=GetTriggerUnit()
+local integer XL=GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1
+local integer TL=GetPlayerId(GetOwningPlayer(GetKillingUnit()))+1
+local integer ZL=GetUnitTypeId(IL)
+if IsUnitType(IL,UNIT_TYPE_STRUCTURE) then
+set IL=null
+return
+endif
+if ZL!=$65303031 and ZL!=$6e30304a and ZL!=$6e303031 and ZL!=$65303032 then
+set Kr[TL]=Kr[TL]+1
+set Iw[XL]=Iw[XL]-1
+call kq(XL-1,I2S(Iw[XL]))
+endif
+if ZL!=$65303032 then
+call TriggerSleepAction(3.)
+endif
+call RemoveUnit(IL)
+set IL=null
+endfunction
+function ZM takes nothing returns boolean
+if GetUnitTypeId(GetTriggerUnit())==$68303158 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303054 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303141 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303246 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303057 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303136 then
+return true
+endif
+return false
+endfunction
+function kM takes nothing returns boolean
+if Dp[GetPlayerId(GetTriggerPlayer())+1]then
+return false
+endif
+if not ZM() then
+return false
+endif
+return true
+endfunction
+function lL takes nothing returns boolean
+return GetUnitTypeId(GetTriggerUnit())==$6e30304a or GetUnitTypeId(GetTriggerUnit())==$6e303031
+endfunction
+function le takes nothing returns nothing
+local unitstate ke=UNIT_STATE_LIFE
+call SetUnitState(GetEnumUnit(),UNIT_STATE_LIFE,RMaxBJ(0.,GetUnitState(GetEnumUnit(),ke)+dp*.05))
+set ke=null
+endfunction
+function mG takes nothing returns nothing
+local unit JG=GetEnumUnit()
+if (not IsUnitType(JG,UNIT_TYPE_DEAD))and GetUnitTypeId(JG)!=0 and GetEnumUnit()!=np then
+call UnitDamageTarget(Wr[5],GetEnumUnit(),dp,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,WEAPON_TYPE_WHOKNOWS)
+endif
+set JG=null
+endfunction
+function QM takes nothing returns nothing
+local integer HM=bj_MAX_PLAYER_SLOTS
+local boolexpr BM=Filter(Cs)
+local region OM=CreateRegion()
+local trigger KM=GetTriggeringTrigger()
+local rect hM=GetWorldBounds()
+call RegionAddRect(OM,hM)
+call TriggerRegisterEnterRegion(KM,OM,BM)
+call TriggerClearActions(KM)
+call TriggerAddAction(KM,Us)
+set bp=true
+loop
+set HM=HM-1
+call GroupEnumUnitsOfPlayer(bj_lastCreatedGroup,Player(HM),BM)
+exitwhen HM==0
+endloop
+call RemoveRect(hM)
+set BM=null
+set OM=null
+set KM=null
+set hM=null
+endfunction
+function mM takes nothing returns nothing
+call ExecuteFunc("QM")
+endfunction
+function nP takes nothing returns boolean
+return true
+endfunction
+function By takes region my returns integer
+local integer Hy=1
+loop
+exitwhen Hy>Gw
+if my==iD[Hy]then
+return Hy
+endif
+set Hy=Hy+1
+endloop
+return 0
+endfunction
+function Qy takes nothing returns nothing
+local integer Oy=1
+local integer Ky=0
+local integer hy=0
+if vw>0 then
+return
+endif
+loop
+exitwhen Oy>Gw
+if Mw[Oy]>0 then
+set hy=Oy
+set Ky=Ky+1
+endif
+set Oy=Oy+1
+endloop
+if Ky<=1 then
+set vw=hy
+call TriggerExecute(jD)
+endif
+endfunction
+function rY takes player wY returns nothing
+local integer pY=0
+loop
+exitwhen pY>k
+if GetLocalPlayer()==wY then
+call BlzFrameSetVisible(X[pY],false)
+endif
+set pY=pY+1
+endloop
+endfunction
+function oL takes nothing returns nothing
+local unit vd=GetTriggerUnit()
+local integer Rd=By(GetTriggeringRegion())
+local integer Nd=GetPlayerId(GetOwningPlayer(vd))+1
+local force Id
+local integer Xd
+local playerstate Td
+local playerstate Zd
+local code kd
+local boolean ld
+local player Vd
+local rect wL
+local group pL
+local trigger rL
+if Rd>0 then
+if Mw[Rd]>=1 then
+if kw[Rd]then
+set Mw[Nd]=Mw[Nd]+Mw[Rd]
+set Hr[Nd]=Hr[Nd]+Mw[Rd]
+set Br[Rd]=Br[Rd]+Mw[Rd]
+set Mw[Rd]=0
+else
+set Vd=Player(Nd-1)
+set Id=CreateForce()
+call ForceAddPlayer(Id,Vd)
+set aw[0]=Id
+set Vd=Player(Rd-1)
+set Id=CreateForce()
+call ForceAddPlayer(Id,Vd)
+set aw[1]=Id
+call OY(2,Rd-1,Nd-1,null)
+call OY(1,Nd-1,Rd-1,null)
+call DestroyForce(aw[0])
+call DestroyForce(aw[1])
+set Mw[Rd]=Mw[Rd]-1
+set Mw[Nd]=Mw[Nd]+1
+set Hr[Nd]=Hr[Nd]+1
+set Br[Rd]=Br[Rd]+1
+endif
+set Xd=fp[Rd]
+if Xd==Nd then
+set Xd=Jy(Nd)
+endif
+if Xd!=Nd then
+set Sw[0]=GetRandomLocInRect(Jw[Xd])
+call SetUnitY(vd,GetLocationY(Sw[0]))
+call SetUnitX(vd,GetLocationX(Sw[0]))
+call RemoveLocation(Sw[0])
+if BlzGetUnitBaseDamage(vd,0)<=0 then
+call IssuePointOrder(vd,"move",GetUnitX(vd),-5000.)
+else
+call IssuePointOrder(vd,"attack",GetUnitX(vd),-5000.)
+endif
+else
+call RemoveUnit(vd)
+endif
+if Mw[Rd]<=0 then
+set Xd=1
+loop
+exitwhen Xd>Gw
+if Mw[Xd]>0 then
+set fp[Xd]=Jy(Xd)
+endif
+set Xd=Xd+1
+endloop
+set so=so+1
+set Xd=jp
+set Vd=Player(Nd-1)
+set Zd=PLAYER_STATE_RESOURCE_GOLD
+if Xd>0 then
+if Zd==PLAYER_STATE_RESOURCE_GOLD then
+set Td=PLAYER_STATE_GOLD_GATHERED
+call SetPlayerState(Vd,Td,GetPlayerState(Vd,Td)+Xd)
+elseif Zd==PLAYER_STATE_RESOURCE_LUMBER then
+set Td=PLAYER_STATE_LUMBER_GATHERED
+call SetPlayerState(Vd,Td,GetPlayerState(Vd,Td)+Xd)
+endif
+endif
+call SetPlayerState(Vd,Zd,GetPlayerState(Vd,Zd)+Xd)
+set Xd=op
+set Vd=Player(Nd-1)
+set Zd=PLAYER_STATE_RESOURCE_LUMBER
+if Xd>0 then
+if Zd==PLAYER_STATE_RESOURCE_GOLD then
+set Td=PLAYER_STATE_GOLD_GATHERED
+call SetPlayerState(Vd,Td,GetPlayerState(Vd,Td)+Xd)
+elseif Zd==PLAYER_STATE_RESOURCE_LUMBER then
+set Td=PLAYER_STATE_LUMBER_GATHERED
+call SetPlayerState(Vd,Td,GetPlayerState(Vd,Td)+Xd)
+endif
+endif
+call SetPlayerState(Vd,Zd,GetPlayerState(Vd,Zd)+Xd)
+call bY(0,Nd,Rd,null)
+call bY(3,Nd,Rd,Lw[Rd]+GetPlayerName(Player(Rd-1))+"|r has been defeated by "+Lw[Nd]+GetPlayerName(Player(Nd-1))+"|r!")
+call bY(0,Nd,Rd,null)
+set bj_wantDestroyGroup=true
+set Vd=Player(Rd-1)
+set pL=CreateGroup()
+call GroupEnumUnitsOfPlayer(pL,Vd,null)
+call DestroyBoolExpr(null)
+set kd=ts
+set ld=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(pL,kd)
+if ld then
+call DestroyGroup(pL)
+endif
+set bj_wantDestroyGroup=true
+set wL=Nw[Rd]
+set pL=CreateGroup()
+call GroupEnumUnitsInRect(pL,wL,null)
+call DestroyBoolExpr(null)
+set kd=Js
+set ld=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(pL,kd)
+if ld then
+call DestroyGroup(pL)
+endif
+set yw[Rd]=0
+call AY(Player(Rd-1),X[0],false)
+call rY(Player(Rd-1))
+set Qr[Rd]=Qr[Rd]+1
+set Xd=Rd-1
+set Nd=Py(Rd)
+if gr then
+set lr[Xd+1]=lr[Xd+1]+Nd
+if lr[Xd+1]<$64 then
+set lr[Xd+1]=$64
+endif
+endif
+call ry(Xd)
+set br=Rd
+set rL=Nj
+if TriggerEvaluate(rL) then
+call TriggerExecute(rL)
+endif
+set Rd=1
+loop
+exitwhen Rd>iw
+if Mw[GetPlayerId(Pw[Rd])+1]<=0 then
+call MultiboardSetItemValueBJ(ew,1,Rd+1,Lw[0]+GetPlayerName(Pw[Rd])+"|r")
+call MultiboardSetItemValueBJ(ew,2,Rd+1,Lw[0]+"--|r")
+call MultiboardSetItemValueBJ(ew,3,Rd+1,Lw[0]+"--|r")
+call MultiboardSetItemValueBJ(ew,4,Rd+1,Lw[0]+I2S(lr[GetPlayerId(Pw[Rd])+1])+oo[GetPlayerId(Pw[Rd])+1])
+endif
+set Rd=Rd+1
+endloop
+call Qy()
+endif
+else
+set Xd=fp[Nd]
+if Xd==Nd then
+set Xd=Jy(Nd)
+endif
+if Xd!=Nd then
+set Sw[0]=GetRandomLocInRect(Jw[Xd])
+call SetUnitY(vd,GetLocationY(Sw[0]))
+call SetUnitX(vd,GetLocationX(Sw[0]))
+call RemoveLocation(Sw[0])
+if BlzGetUnitBaseDamage(vd,0)<=0 then
+call IssuePointOrder(vd,"move",GetUnitX(vd),-5000.)
+else
+call IssuePointOrder(vd,"attack",GetUnitX(vd),-5000.)
+endif
+else
+call RemoveUnit(vd)
+endif
+endif
+endif
+set vd=null
+set Id=null
+set Td=null
+set Zd=null
+set Vd=null
+set wL=null
+set pL=null
+set rL=null
+endfunction
+function oi takes nothing returns boolean
+return IsUnitAlly(GetFilterUnit(),GetOwningPlayer(np))
+endfunction
+function ki takes nothing returns boolean
+if uw[0]<$1f4 then
+return false
+endif
+if uw[0]>$bb8 then
+return false
+endif
+return true
+endfunction
+function pP takes nothing returns nothing
+local camerafield li
+local real Vi
+local force wP
+set uw[0]=S2I(SubString(GetEventPlayerChatString(),5,StringLength(GetEventPlayerChatString())))
+if ki() then
+set Vw[GetPlayerId(GetTriggerPlayer())+1]=I2R(uw[0])
+set li=CAMERA_FIELD_TARGET_DISTANCE
+set Vi=Vw[GetPlayerId(GetTriggerPlayer())+1]
+if GetLocalPlayer()==GetTriggerPlayer() then
+call SetCameraField(li,Vi,.0)
+endif
+else
+set wP=CreateForce()
+call ForceAddPlayer(wP,GetTriggerPlayer())
+set lw=wP
+call DisplayTimedTextToForce(lw,5.,"TRIGSTR_1998")
+call DestroyForce(lw)
+endif
+set li=null
+set wP=null
+endfunction
+function wd takes nothing returns boolean
+if GetUnitTypeId(GetTriggerUnit())==$68303158 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303054 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303141 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303246 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303057 then
+return true
+endif
+if GetUnitTypeId(GetTriggerUnit())==$68303136 then
+return true
+endif
+return false
+endfunction
+function pd takes nothing returns boolean
+if Dp[GetPlayerId(GetTriggerPlayer())+1]then
+return false
+endif
+if not wd() then
+return false
+endif
+return true
+endfunction
+function pq takes nothing returns nothing
+set f=false
+if W then
+call wq()
+else
+if (not s)and P>0 then
+set s=true
+endif
+call lA()
+endif
+call TA()
+set ip=.0
+endfunction
+function sP takes nothing returns boolean
+if GetPlayerController(Player(uw[0]-1))!=MAP_CONTROL_USER then
+return false
+endif
+if GetPlayerSlotState(Player(uw[0]-1))!=PLAYER_SLOT_STATE_PLAYING then
+return false
+endif
+return true
+endfunction
+function qP takes nothing returns nothing
+local player WP
+local force AP
+if GetEventPlayerChatString()=="-stats" then
+set xw=GetPlayerId(GetTriggerPlayer())+1
+set WP=Player(xw-1)
+set AP=CreateForce()
+call ForceAddPlayer(AP,WP)
+set aw[0]=AP
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3355")
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3356")
+call DisplayTimedTextToForce(aw[0],5.,"Rating: "+I2S(lr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Games played: "+I2S(fo[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total wins: "+I2S(hr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total losses: "+I2S(Qr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total Lifes Stolen: "+I2S(Hr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total Lifes Leaked: "+I2S(Br[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3357")
+call DestroyForce(aw[0])
+else
+set uw[0]=S2I(SubString(GetEventPlayerChatString(),6,StringLength(GetEventPlayerChatString())))
+if sP() then
+set xw=uw[0]
+set AP=CreateForce()
+call ForceAddPlayer(AP,GetTriggerPlayer())
+set aw[0]=AP
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3358")
+call DisplayTimedTextToForce(aw[0],5.,"|cffffcc00"+GetPlayerName(Player(xw-1))+"|r stats:")
+call DisplayTimedTextToForce(aw[0],5.,"Rating: "+I2S(lr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Games played: "+I2S(fo[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total wins: "+I2S(hr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total losses: "+I2S(Qr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total Lifes Stolen: "+I2S(Hr[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"Total Lifes Leaked: "+I2S(Br[xw]))
+call DisplayTimedTextToForce(aw[0],5.,"TRIGSTR_3360")
+call DestroyForce(aw[0])
+endif
+endif
+set WP=null
+set AP=null
+endfunction
+function qe takes nothing returns nothing
+local unit Ae
+call DisableTrigger(lj)
+call DisableTrigger(kj)
+set Dp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]=true
+if GetSpellAbilityId()==$41303035 then
+set pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]=pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]+1
+elseif GetSpellAbilityId()==$41303053 then
+set pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]=pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]-1
+endif
+if pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]<0 then
+set pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]=2
+elseif pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]>2 then
+set pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]=0
+endif
+set Sw[3]=GetUnitLoc(GetTriggerUnit())
+call RemoveUnit(wp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1])
+call CreateNUnitsAtLoc(1,rp[pp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]],GetOwningPlayer(GetTriggerUnit()),Sw[3],bj_UNIT_FACING)
+set wp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]=bj_lastCreatedUnit
+set Ae=bj_lastCreatedUnit
+if GetLocalPlayer()==GetOwningPlayer(GetTriggerUnit()) then
+call ClearSelection()
+call SelectUnit(Ae,true)
+endif
+call RemoveLocation(Sw[3])
+set Dp[GetPlayerId(GetOwningPlayer(GetTriggerUnit()))+1]=false
+call EnableTrigger(lj)
+call EnableTrigger(kj)
+set Ae=null
+endfunction
+function qi takes nothing returns nothing
+local unit Wi=GetEnumUnit()
+local unitstate Ai
+if (not IsUnitType(Wi,UNIT_TYPE_DEAD))and GetUnitTypeId(Wi)!=0 and GetEnumUnit()!=np then
+set Ai=UNIT_STATE_LIFE
+call SetUnitState(GetEnumUnit(),UNIT_STATE_LIFE,RMaxBJ(0.,GetUnitState(GetEnumUnit(),Ai)+2.))
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Spells\\Undead\\DarkRitual\\DarkRitualCaster.mdl",GetEnumUnit(),"chest")
+call DestroyEffect(bj_lastCreatedEffect)
+endif
+set Wi=null
+set Ai=null
+endfunction
+function qq takes nothing returns boolean
+local real Aq=GetEventDamage()
+if F or ip==.0 then
+return false
+endif
+if W then
+set W=false
+else
+if ip!=.0 and Pp!=qp then
+call XA(7)
+endif
+set s=true
+set Hp=GetEventDamageSource()
+set np=GetTriggerUnit()
+set dp=A
+set ip=q
+set xp=GetHandleId(BlzGetEventAttackType())
+set Pp=GetHandleId(BlzGetEventDamageType())
+set Bp=GetHandleId(BlzGetEventWeaponType())
+set Mp=Y
+set Ep=c
+set Sp=y
+set up=L
+set ap=C
+set U=M
+set d=e
+set tp=false
+set Jp=false
+set mp=xp==0
+if Pp==Yp and(not mp) then
+set tp=IsUnitType(Hp,UNIT_TYPE_MELEE_ATTACKER)
+set Jp=IsUnitType(Hp,UNIT_TYPE_RANGED_ATTACKER)
+if tp and Jp then
+set tp=Bp>0
+set Jp=not tp
+endif
+endif
+endif
+call VA()
+if dp!=.0 and Aq!=.0 then
+set Up=Aq/dp
+elseif dp>.0 then
+set Up=.0
+else
+set Up=1.
+endif
+set dp=dp*Up
+if dp>.0 then
+call XA(4)
+set Cp=GetWidgetLife(np)-dp
+if Cp<=.405 then
+call XA(8)
+set dp=GetWidgetLife(np)-Cp
+if Mp<0 and Cp<=.405 then
+call SetUnitExploded(np,true)
+endif
+endif
+endif
+call BlzSetEventDamage(dp)
+if Pp!=qp then
+call XA(5)
+endif
+set G=true
+if dp==.0 then
+call lA()
+endif
+return false
+endfunction
+function rd takes nothing returns nothing
+call DY(GetTriggerPlayer())
+call AY(GetTriggerPlayer(),X[0],false)
+endfunction
+function ri takes nothing returns nothing
+local unit wi=GetEnumUnit()
+local unitstate pi
+if (not IsUnitType(wi,UNIT_TYPE_DEAD))and GetUnitTypeId(wi)!=0 and GetEnumUnit()!=np then
+set pi=UNIT_STATE_LIFE
+call SetUnitState(GetEnumUnit(),UNIT_STATE_LIFE,RMaxBJ(0.,GetUnitState(GetEnumUnit(),pi)+3200.))
+set bj_lastCreatedEffect=AddSpecialEffectTarget("Abilities\\Spells\\Undead\\DarkRitual\\DarkRitualCaster.mdl",GetEnumUnit(),"chest")
+call DestroyEffect(bj_lastCreatedEffect)
+endif
+set wi=null
+set pi=null
+endfunction
+function sL takes nothing returns boolean
+return (not IsUnitType(GetFilterUnit(),UNIT_TYPE_STRUCTURE))and IsUnitEnemy(GetFilterUnit(),GetOwningPlayer(GetTriggerUnit()))
+endfunction
+function si takes nothing returns boolean
+return IsUnitAlly(GetFilterUnit(),GetOwningPlayer(np))
+endfunction
+function tG takes nothing returns boolean
+local boolean nG=not IsUnitType(GetFilterUnit(),UNIT_TYPE_STRUCTURE)
+local boolean EG=IsUnitEnemy(GetFilterUnit(),GetOwningPlayer(Hp))
+return nG and EG
+endfunction
+function PY takes string GY returns string
+local integer iY=StringLength(GY)-1
+set rw=""
+loop
+exitwhen iY<0
+set rw=rw+SubString(GY,iY,iY+1)
+set iY=iY-1
+endloop
+set GY=rw
+return GY
+endfunction
+function TU takes integer NU returns nothing
+local integer IU=0
+local integer XU=0
+loop
+exitwhen IU>=PD
+if lr[NU]>=xD[IU] and fo[NU]>=SD[IU] and aD[IU]!=0 then
+call SetPlayerTechResearched(Player(NU-1),aD[IU],1)
+endif
+if lr[NU]>=xD[IU] and fo[NU]>=SD[IU]then
+set XU=uD[IU]
+endif
+set IU=IU+1
+endloop
+call BlzSetUnitSkin(Rw[NU],XU)
+call DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\Levelup\\LevelupCaster.mdl",Rw[NU],"origin"))
+call BlzSetUnitName(Rw[NU],"|cffffcc00"+GetPlayerName(Player(NU-1))+"|r")
+endfunction
+function pA takes nothing returns integer
+local integer wA=xf
+if wA!=0 then
+set xf=af[wA]
+else
+set Sf=Sf+1
+set wA=Sf
+endif
+if wA>$1ffe then
+return 0
+endif
+set af[wA]=-1
+return wA
+endfunction
+function sA takes nothing returns integer
+local integer fA=BD
+if fA!=0 then
+set BD=KD[fA]
+else
+set OD=OD+1
+set fA=OD
+endif
+if fA>$1ffe then
+return 0
+endif
+set KD[fA]=-1
+return fA
+endfunction
+function Zc takes nothing returns integer
+local integer Xc=pA()
+local integer Tc
+set nf[Xc]=0.
+set Tc=sA()
+set hD[Tc]=0
+set QD[Tc]=StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")
+set Ef[Xc]=Tc
+return Xc
+endfunction
+function lc takes integer kc returns nothing
+if kc==0 then
+return
+elseif af[kc]!=-1 then
+return
+endif
+call mA(Ef[kc])
+set af[kc]=xf
+set xf=kc
+endfunction
+function nA takes integer uA,integer xA,integer SA returns integer
+local integer aA=0
+if HD[uA]!=0 then
+set aA=nA(HD[uA],xA,SA)
+endif
+set aA=mD[uA]+aA*xA
+set xA=aA/SA
+set aA=aA-xA*SA
+set mD[uA]=xA
+return aA
+endfunction
+function VW takes nothing returns integer
+local integer lW=ED
+if lW!=0 then
+set ED=JD[lW]
+else
+set tD=tD+1
+set lW=tD
+endif
+if lW>$1ffe then
+return 0
+endif
+set JD[lW]=-1
+return lW
+endfunction
+function hc takes string Oc returns integer
+local integer Kc=0
+loop
+exitwhen Kc>=StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`") or Oc==SubString("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`",Kc,Kc+1)
+set Kc=Kc+1
+endloop
+return Kc
+endfunction
+function MC takes integer YC,string cC returns nothing
+local integer CC=StringLength(cC)-1
+local integer yC=VW()
+local integer UC
+set HD[yC]=0
+set mD[yC]=0
+set UC=yC
+set hD[Ef[YC]]=yC
+loop
+set mD[UC]=hc(SubString(cC,CC,CC+1))
+exitwhen CC<=0
+set YC=VW()
+set HD[YC]=0
+set mD[YC]=0
+set HD[UC]=YC
+set UC=HD[UC]
+set CC=CC-1
+endloop
+endfunction
+function PA takes integer iA returns boolean
+if HD[iA]==0 and mD[iA]==0 then
+return true
+elseif HD[iA]!=0 and PA(HD[iA]) then
+call GA(HD[iA])
+set HD[iA]=0
+return mD[iA]==0
+else
+return false
+endif
+endfunction
+function Bc takes string mc returns integer
+local integer Hc=0
+loop
+exitwhen Hc>=StringLength("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") or mc==SubString("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",Hc,Hc+1)
+set Hc=Hc+1
+endloop
+return Hc
+endfunction
+function Rc takes string Qc returns integer
+local integer bc=0
+local integer gc=StringLength(Qc)
+local integer array Fc
+local integer vc
+set Qc=StringCase(Qc,true)
+loop
+exitwhen bc>=gc
+set vc=Bc(SubString(Qc,bc,bc+1))
+set Fc[vc]=Fc[vc]+1
+set bc=bc+1
+endloop
+set bc=0
+set gc=StringLength("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+set vc=0
+loop
+exitwhen bc>=gc
+set vc=Fc[bc]*Fc[bc]*bc+Fc[bc]*vc+vc+$c7
+set bc=bc+1
+endloop
+if vc<0 then
+set vc=-vc
+endif
+return vc
+endfunction
+function Ic takes integer Nc returns integer
+if Nc>=StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`") then
+return Nc-StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")
+elseif Nc<0 then
+return Nc+StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")
+else
+return Nc
+endif
+endfunction
+function SC takes integer dC,integer LC,integer eC returns nothing
+local integer GC=GetRandomInt(0,$7fffffff)
+local integer PC=hD[Ef[dC]]
+local integer iC
+local integer uC
+local integer xC
+if eC==-1 then
+set uC=Ef[dC]
+set uC=hD[uC]
+loop
+set xC=HD[uC]
+exitwhen xC==0
+set uC=xC
+endloop
+call SetRandomSeed(mD[uC])
+set mD[PC]=Ic(mD[PC]+eC*GetRandomInt(0,StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")-1))
+set uC=mD[PC]
+endif
+call SetRandomSeed(LC)
+loop
+exitwhen PC==0
+if eC==-1 then
+set iC=mD[PC]
+endif
+set mD[PC]=Ic(mD[PC]+eC*GetRandomInt(0,StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")-1))
+if eC==1 then
+set iC=mD[PC]
+endif
+set iC=iC+GetRandomInt(0,StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")-1)
+call SetRandomSeed(iC)
+set uC=mD[PC]
+set PC=HD[PC]
+endloop
+if eC==1 then
+call SetRandomSeed(uC)
+set mD[hD[Ef[dC]]]=Ic(mD[hD[Ef[dC]]]+eC*GetRandomInt(0,StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")-1))
+endif
+call SetRandomSeed(GC)
+endfunction
+function vC takes integer KC,player hC,string QC,integer FC returns boolean
+local integer bC
+local integer gC
+set FC=Rc(GetPlayerName(hC))+FC*73
+call MC(KC,QC)
+call SC(KC,FC,-1)
+set FC=Ef[KC]
+set FC=nA(hD[FC],QD[FC],$1389)
+call PA(hD[Ef[KC]])
+set gC=FC
+set FC=0
+set KC=hD[Ef[KC]]
+loop
+exitwhen KC==0
+set bC=mD[KC]
+set bC=FC+79*FC/(bC+1)+$125*bC/(1+FC-FC/StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")*StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`"))+$1df
+set bC=bC-bC/$1388*$1388
+if bC<0 then
+set bC=bC+$1388
+endif
+set FC=bC
+set KC=HD[KC]
+endloop
+return gC==FC
+endfunction
+function tM takes nothing returns nothing
+local force SM
+local integer aM
+local player nM
+local player EM
+set dr=0
+set Gr=Zc()
+if not vC(Gr,Pr,ir,1) then
+set kr[GetPlayerId(Pr)+1]=true
+set nM=Pr
+set SM=CreateForce()
+call ForceAddPlayer(SM,nM)
+if IsPlayerInForce(GetLocalPlayer(),SM) then
+call DisplayTextToPlayer(GetLocalPlayer(),0.,0.,"TRIGSTR_3194")
+endif
+set nM=Pr
+set SM=CreateForce()
+call ForceAddPlayer(SM,nM)
+if IsPlayerInForce(GetLocalPlayer(),SM) then
+call DisplayTextToPlayer(GetLocalPlayer(),0.,0.,"TRIGSTR_3339")
+endif
+set SM=null
+set nM=null
+set EM=null
+return
+endif
+if kr[GetPlayerId(Pr)+1]then
+else
+set dr=dr+1
+set er[dr]=$2000
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+if Lr[dr]!=Fr then
+set nM=Pr
+set SM=CreateForce()
+call ForceAddPlayer(SM,nM)
+if IsPlayerInForce(GetLocalPlayer(),SM) then
+call DisplayTextToPlayer(GetLocalPlayer(),0.,0.,"TRIGSTR_3825")
+endif
+set nM=Pr
+set SM=CreateForce()
+call ForceAddPlayer(SM,nM)
+if IsPlayerInForce(GetLocalPlayer(),SM) then
+call DisplayTextToPlayer(GetLocalPlayer(),0.,0.,"TRIGSTR_3826")
+endif
+set kr[GetPlayerId(Pr)+1]=true
+else
+set uw[0]=1
+loop
+exitwhen uw[0]>12
+set dr=dr+1
+set er[dr]=ww
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+set ow[uw[0]]=Lr[dr]
+set uw[0]=uw[0]+1
+endloop
+set Zr[0]=""
+set uw[0]=1
+loop
+exitwhen uw[0]>12
+set Zr[0]=Zr[0]+pw[ow[uw[0]]]
+set uw[0]=uw[0]+1
+endloop
+set Vr[GetPlayerId(Pr)+1]=PY(Zr[0])
+set dr=dr+1
+set er[dr]=$8000
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+set ro[GetPlayerId(Pr)+1]=Lr[dr]
+set dr=dr+1
+set er[dr]=$8000
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+set Br[GetPlayerId(Pr)+1]=Lr[dr]
+set dr=dr+1
+set er[dr]=$8000
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+set Hr[GetPlayerId(Pr)+1]=Lr[dr]
+set dr=dr+1
+set er[dr]=$8000
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+set Qr[GetPlayerId(Pr)+1]=Lr[dr]
+set dr=dr+1
+set er[dr]=$8000
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+set hr[GetPlayerId(Pr)+1]=Lr[dr]
+set dr=dr+1
+set er[dr]=$8000
+set aM=Ef[Gr]
+set Lr[dr]=nA(hD[aM],QD[aM],er[dr]+1)
+set lr[GetPlayerId(Pr)+1]=Lr[dr]
+if lr[GetPlayerId(Pr)+1]<$64 then
+set lr[GetPlayerId(Pr)+1]=$64
+endif
+set nM=Pr
+set aM=Qr[GetPlayerId(Pr)+1]
+set EM=Pr
+set fo[GetPlayerId(nM)+1]=aM+hr[GetPlayerId(EM)+1]
+call TU(GetPlayerId(Pr)+1)
+set kr[GetPlayerId(Pr)+1]=true
+set uw[0]=1
+loop
+exitwhen uw[0]>iw+1
+if uw[0]>=2 then
+set uw[1]=uw[0]-1
+if uw[1]==GetPlayerId(Pr)+1 then
+call MultiboardSetItemValueBJ(ew,4,uw[0],I2S(lr[GetPlayerId(Pw[uw[1]])+1]))
+endif
+endif
+set uw[0]=uw[0]+1
+endloop
+endif
+endif
+call lc(Gr)
+set SM=null
+set nM=null
+set EM=null
+endfunction
+function NC takes nothing returns nothing
+local integer RC=0
+loop
+exitwhen RC>=yr
+call SaveInteger(tf,1,Ur[RC],RC)
+set RC=RC+1
+endloop
+set RC=0
+loop
+exitwhen RC>=Cr
+call SaveInteger(tf,2,cr[RC],RC)
+set RC=RC+1
+endloop
+set RC=1
+loop
+exitwhen RC>=Yr or ur[RC]=="" or ur[RC]==null
+call SaveInteger(tf,3,StringHash(ur[RC]),RC)
+set RC=RC+1
+endloop
+endfunction
+function uM takes nothing returns nothing
+set Ar=true
+set qr="LTWR\\Data"+I2S(Fr)
+set Yr=1
+set cr[0]=0
+set Cr=1
+set Ur[0]=GetItemTypeId(null)
+set yr=1
+call NC()
+endfunction
+function ud takes nothing returns boolean
+local integer Pd=GetUnitTypeId(GetTriggerUnit())
+if IsUnitType(GetTriggerUnit(),UNIT_TYPE_STRUCTURE) or Pd==$68303246 or Pd==$68303057 or Pd==$68303136 or Pd==$65303032 or Pd==$65303031 or Pd==$68303143 then
+return false
+endif
+return true
+endfunction
+function JM takes nothing returns boolean
+if not bp then
+return false
+endif
+if GetUnitUserData(GetFilterUnit())!=0 then
+return false
+endif
+return true
+endfunction
+function vM takes nothing returns boolean
+local integer bM=Op
+local integer gM
+if JM() then
+set gp=gp+1
+if gp==32 then
+set gp=0
+set Op=hp[0]
+loop
+exitwhen Op==0
+set gM=hp[Op]
+if GetUnitUserData(Qp[Op])==0 then
+set hp[Kp[Op]]=hp[Op]
+set Kp[hp[Op]]=Kp[Op]
+set Kp[Op]=0
+set Qp[Op]=null
+set hp[Op]=Fp
+set Fp=Op
+endif
+set Op=gM
+endloop
+endif
+if Fp==0 then
+set Op=vp+1
+set vp=Op
+else
+set Op=Fp
+set Fp=hp[Op]
+endif
+set Qp[Op]=GetFilterUnit()
+call SetUnitUserData(Qp[Op],Op)
+set Kp[hp[0]]=Op
+set hp[Op]=hp[0]
+set hp[0]=Op
+set Op=bM
+endif
+return false
+endfunction
+function eq takes trigger Cq,string Uq,integer yq returns nothing
+local integer Mq=1
+local integer dq=0
+local integer Lq=0
+if Uq=="udg_DamageModifierEvent" then
+if yq<3 then
+set Lq=yq+1
+endif
+if B[1]==0 then
+set B[1]=2
+set B[2]=3
+set K[2]=true
+set K[3]=true
+endif
+set Mq=4
+elseif Uq=="udg_DamageEvent" then
+set Mq=2
+set dq=4
+elseif Uq=="udg_AfterDamageEvent" then
+set dq=6
+elseif Uq=="udg_LethalDamageEvent" then
+set dq=7
+elseif Uq=="udg_AOEDamageEvent" then
+set dq=8
+else
+return
+endif
+set dq=IMaxBJ(IMinBJ(yq,Mq),1)+dq
+loop
+set yq=dq
+set dq=B[dq]
+exitwhen dq==Lq
+endloop
+set m=m+1
+set B[yq]=m
+set B[m]=Lq
+set O[m]=Cq
+endfunction
+function vP takes nothing returns boolean
+call eq(bf,gf,R2I(vf))
+return true
+endfunction
+function ve takes nothing returns boolean
+local boolean Fe=IsUnitType(GetFilterUnit(),UNIT_TYPE_STRUCTURE)
+local boolean be=GetUnitState(GetFilterUnit(),UNIT_STATE_LIFE)>0.
+local boolean ge=IsUnitAlly(GetFilterUnit(),GetOwningPlayer(Hp))
+set ge=be and ge
+return Fe and ge
+endfunction
+function vi takes nothing returns boolean
+return GetSpellAbilityId()==$41303257
+endfunction
+function vy takes nothing returns nothing
+call RemoveUnit(GetEnumUnit())
+endfunction
+function Ry takes nothing returns boolean
+if uw[0]<2 then
+return false
+endif
+if uw[0]>iw+1 then
+return false
+endif
+return true
+endfunction
+function lU takes string ZU returns string
+local integer kU=StringLength(ZU)
+loop
+set kU=kU-1
+exitwhen kU<0
+if SubString(ZU,kU,kU+1)=="#" then
+return SubString(ZU,0,kU)
+endif
+endloop
+return ZU
+endfunction
+function Vq takes string lq returns string
+if SubString(lq,34,35)!="\\" then
+return lq
+endif
+return SubString(lq,0,34)+"Disabled\\DIS"+SubString(lq,35,StringLength(lq))
+endfunction
+function qY takes nothing returns nothing
+call BlzLoadTOCFile("war3mapImported\\LTWUI.toc")
+set N=BlzGetFrameByName("ResourceBarSupplyText",0)
+set I=BlzGetFrameByName("ResourceBarUpkeepText",0)
+set l=BlzCreateFrameByType("SPRITE","MyHeroIndikator",BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI,0),"",0)
+call BlzFrameSetModel(l,"UI\\Feedback\\Autocast\\UI-ModalButtonOn.mdl",0)
+call BlzFrameSetScale(l,1.)
+call BlzFrameSetVisible(l,false)
+set X[0]=BlzCreateFrame("LTWUIButton",BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI,0),0,0)
+set T[0]=BlzGetFrameByName("LTWUIButtonIcon",0)
+set Z[0]=BlzGetFrameByName("LTWUIButtonIconDisabled",0)
+call BlzFrameSetAbsPoint(X[0],FRAMEPOINT_CENTER,.22330001,.16)
+call BlzFrameSetSize(X[0],.036,.036)
+call BlzTriggerRegisterFrameEvent(Zj,X[0],FRAMEEVENT_CONTROL_CLICK)
+call BlzFrameSetTexture(T[0],"ReplaceableTextures\\CommandButtons\\BTNPeasant.blp",0,false)
+call BlzFrameSetTexture(Z[0],Vq("ReplaceableTextures\\CommandButtons\\BTNPeasant.blp"),0,false)
+call BlzFrameSetEnable(X[0],true)
+set X[1]=BlzCreateFrame("LTWUIButton",BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI,0),0,1)
+set T[1]=BlzGetFrameByName("LTWUIButtonIcon",1)
+set Z[1]=BlzGetFrameByName("LTWUIButtonIconDisabled",1)
+call BlzFrameSetAbsPoint(X[1],FRAMEPOINT_CENTER,.3637,.16)
+call BlzFrameSetSize(X[1],.036,.036)
+call BlzTriggerRegisterFrameEvent(Zj,X[1],FRAMEEVENT_CONTROL_CLICK)
+call BlzFrameSetTexture(T[1],"ReplaceableTextures\\CommandButtons\\BTNFarm.blp",0,false)
+call BlzFrameSetTexture(Z[1],Vq("ReplaceableTextures\\CommandButtons\\BTNFarm.blp"),0,false)
+call BlzFrameSetEnable(X[1],true)
+set X[2]=BlzCreateFrame("LTWUIButton",BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI,0),0,2)
+set T[2]=BlzGetFrameByName("LTWUIButtonIcon",2)
+set Z[2]=BlzGetFrameByName("LTWUIButtonIconDisabled",2)
+call BlzFrameSetAbsPoint(X[2],FRAMEPOINT_CENTER,.4006,.16)
+call BlzFrameSetSize(X[2],.036,.036)
+call BlzTriggerRegisterFrameEvent(Zj,X[2],FRAMEEVENT_CONTROL_CLICK)
+call BlzFrameSetTexture(T[2],"ReplaceableTextures\\CommandButtons\\BTNHumanBarracks.blp",0,false)
+call BlzFrameSetTexture(Z[2],Vq("ReplaceableTextures\\CommandButtons\\BTNHumanBarracks.blp"),0,false)
+call BlzFrameSetEnable(X[2],true)
+set X[3]=BlzCreateFrame("LTWUIButton",BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI,0),0,3)
+set T[3]=BlzGetFrameByName("LTWUIButtonIcon",3)
+set Z[3]=BlzGetFrameByName("LTWUIButtonIconDisabled",3)
+call BlzFrameSetAbsPoint(X[3],FRAMEPOINT_CENTER,.4375,.16)
+call BlzFrameSetSize(X[3],.036,.036)
+call BlzTriggerRegisterFrameEvent(Zj,X[3],FRAMEEVENT_CONTROL_CLICK)
+call BlzFrameSetTexture(T[3],"ReplaceableTextures\\CommandButtons\\BTNCastle.blp",0,false)
+call BlzFrameSetTexture(Z[3],Vq("ReplaceableTextures\\CommandButtons\\BTNCastle.blp"),0,false)
+call BlzFrameSetEnable(X[3],true)
+set X[4]=BlzCreateFrame("LTWUIButton",BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI,0),0,4)
+set T[4]=BlzGetFrameByName("LTWUIButtonIcon",4)
+set Z[4]=BlzGetFrameByName("LTWUIButtonIconDisabled",4)
+call BlzFrameSetAbsPoint(X[4],FRAMEPOINT_CENTER,.2611,.16)
+call BlzFrameSetSize(X[4],.036,.036)
+call BlzTriggerRegisterFrameEvent(Zj,X[4],FRAMEEVENT_CONTROL_CLICK)
+call BlzFrameSetTexture(T[4],"ReplaceableTextures\\CommandButtons\\BTNArcaneSanctum.blp",0,false)
+call BlzFrameSetTexture(Z[4],Vq("ReplaceableTextures\\CommandButtons\\BTNArcaneSanctum.blp"),0,false)
+call BlzFrameSetEnable(X[4],true)
+set k=4
+endfunction
+function wM takes nothing returns nothing
+local trigger Ny
+local code Iy
+local boolean Xy
+local group Ty
+local unit Zy
+local player ky
+local integer ly
+local sound Vy
+call TimerStart(Xr,Ir,false,null)
+set Ny=Rj
+if TriggerEvaluate(Ny) then
+call TriggerExecute(Ny)
+endif
+call TriggerSleepAction(.25)
+set uw[0]=1
+loop
+exitwhen uw[0]>Gw
+set iD[uw[0]]=CreateRegion()
+call RegionAddRect(iD[uw[0]],mw[uw[0]])
+call TriggerRegisterEnterRegion(rD,iD[uw[0]],null)
+if GetPlayerSlotState(Player(uw[0]-1))==PLAYER_SLOT_STATE_EMPTY then
+set bj_wantDestroyGroup=true
+set ky=Player(uw[0]-1)
+set Ty=CreateGroup()
+call GroupEnumUnitsOfPlayer(Ty,ky,null)
+call DestroyBoolExpr(null)
+set Iy=js
+set Xy=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(Ty,Iy)
+if Xy then
+call DestroyGroup(Ty)
+endif
+else
+call SetPlayerName(Player(uw[0]-1),lU(GetPlayerName(Player(uw[0]-1))))
+endif
+set kw[uw[0]]=false
+call RemoveAllGuardPositions(Player(uw[0]-1))
+set uw[0]=uw[0]+1
+endloop
+call TriggerSleepAction(.25)
+set uw[0]=1
+loop
+exitwhen uw[0]>iw
+set xw=GetPlayerId(Pw[uw[0]])+1
+set Sw[0]=GetStartLocationLoc(GetPlayerStartLocation(Pw[uw[0]]))
+call CreateNUnitsAtLoc(1,$68303032,Pw[uw[0]],Sw[0],90.)
+set Rw[xw]=bj_lastCreatedUnit
+call BlzSetUnitName(bj_lastCreatedUnit,"|cffffcc00"+GetPlayerName(Player(xw-1))+"|r")
+call RemoveLocation(Sw[0])
+set Zy=bj_lastCreatedUnit
+set ky=Pw[uw[0]]
+if GetLocalPlayer()==ky then
+call ClearSelection()
+call SelectUnit(Zy,true)
+endif
+call SetPlayerStateBJ(Pw[uw[0]],PLAYER_STATE_RESOURCE_GOLD,hw)
+call SetPlayerStateBJ(Pw[uw[0]],PLAYER_STATE_RESOURCE_LUMBER,Qw)
+set yw[xw]=Kw
+set Mw[xw]=Ow
+set lr[xw]=$64
+call SetPlayerState(Pw[uw[0]],PLAYER_STATE_GIVES_BOUNTY,IntegerTertiaryOp(true,1,0))
+call TriggerRegisterPlayerEvent(wD,Pw[uw[0]],EVENT_PLAYER_LEAVE)
+call TriggerRegisterPlayerSelectionEventBJ(kj,Player(xw-1),true)
+call TriggerRegisterPlayerSelectionEventBJ(lj,Player(xw-1),false)
+call TriggerRegisterPlayerChatEvent(UD,Player(xw-1),"-zoom",false)
+call TriggerRegisterPlayerChatEvent(yD,Player(xw-1),"-cam",false)
+call TriggerRegisterPlayerChatEvent(MD,Player(xw-1),"-stats",false)
+set Sw[0]=GetRandomLocInRect(Bj)
+call CreateNUnitsAtLoc(1,$68303158,Player(xw-1),Sw[0],bj_UNIT_FACING)
+set Xw[xw]=bj_lastCreatedUnit
+call CreateNUnitsAtLoc(1,$68303054,Player(xw-1),Sw[0],bj_UNIT_FACING)
+set Tw[xw]=bj_lastCreatedUnit
+call CreateNUnitsAtLoc(1,$68303141,Player(xw-1),Sw[0],bj_UNIT_FACING)
+set Zw[xw]=bj_lastCreatedUnit
+call CreateNUnitsAtLoc(1,$68303246,Player(xw-1),Sw[0],bj_UNIT_FACING)
+set wp[xw]=bj_lastCreatedUnit
+call UnitRemoveAbility(bj_lastCreatedUnit,$4152616c)
+call RemoveLocation(Sw[0])
+set uw[0]=uw[0]+1
+endloop
+set ly=1
+loop
+exitwhen ly>Gw
+if Mw[ly]>0 then
+set fp[ly]=Jy(ly)
+endif
+set ly=ly+1
+endloop
+call CinematicModeExBJ(false,bj_FORCE_ALL_PLAYERS,bj_CINEMODE_INTERFACEFADE)
+call qY()
+call TriggerSleepAction(.25)
+call CreateMultiboardBJ(4,iw+4,"|cffff0f37LTW: Reforged "+Bw+"|r")
+set ew=bj_lastCreatedMultiboard
+set uw[0]=1
+loop
+exitwhen uw[0]>iw+4
+set uw[1]=1
+loop
+exitwhen uw[1]>4
+call MultiboardSetItemStyleBJ(ew,uw[1],uw[0],true,false)
+set uw[1]=uw[1]+1
+endloop
+call MultiboardSetItemWidthBJ(ew,1,uw[0],10.)
+call MultiboardSetItemWidthBJ(ew,2,uw[0],3.)
+call MultiboardSetItemWidthBJ(ew,3,uw[0],6.)
+call MultiboardSetItemWidthBJ(ew,4,uw[0],6.)
+if Ry() then
+set uw[1]=uw[0]-1
+call MultiboardSetItemValueBJ(ew,1,uw[0],Lw[GetPlayerId(Pw[uw[1]])+1]+GetPlayerName(Pw[uw[1]])+"|r")
+call MultiboardSetItemValueBJ(ew,2,uw[0],I2S(Mw[GetPlayerId(Pw[uw[1]])+1]))
+call MultiboardSetItemValueBJ(ew,3,uw[0],I2S(yw[GetPlayerId(Pw[uw[1]])+1]))
+call MultiboardSetItemValueBJ(ew,4,uw[0],"TRIGSTR_3831")
+if GetPlayerSlotState(Pw[uw[1]])==PLAYER_SLOT_STATE_EMPTY then
+call MultiboardSetItemValueBJ(ew,1,uw[0],Lw[0]+GetPlayerName(Pw[uw[1]])+"|r")
+endif
+elseif uw[0]<=iw+1 then
+call MultiboardSetItemValueBJ(ew,1,uw[0],"TRIGSTR_3886")
+call MultiboardSetItemValueBJ(ew,2,uw[0],"TRIGSTR_3887")
+call MultiboardSetItemValueBJ(ew,3,uw[0],"TRIGSTR_3888")
+call MultiboardSetItemValueBJ(ew,4,uw[0],"TRIGSTR_3889")
+else
+call MultiboardSetItemWidthBJ(ew,1,uw[0],25.)
+call MultiboardSetItemWidthBJ(ew,2,uw[0],.50)
+call MultiboardSetItemWidthBJ(ew,3,uw[0],.50)
+call MultiboardSetItemWidthBJ(ew,4,uw[0],.50)
+endif
+set uw[0]=uw[0]+1
+endloop
+call MultiboardSetItemValueBJ(ew,1,iw+2,"TRIGSTR_3890")
+call MultiboardSetItemValueBJ(ew,1,iw+3,"TRIGSTR_3891")
+call MultiboardSetItemValueBJ(ew,1,iw+4,"TRIGSTR_3892")
+call MultiboardMinimize(ew,false)
+call TriggerExecute(Fj)
+call TriggerExecute(bj)
+call TriggerSleepAction(.50)
+set uD[PD]=$68706561
+set xD[PD]=0
+set SD[PD]=0
+set aD[PD]=0
+set nD[PD]=$41303330
+set PD=PD+1
+set uD[PD]=$686d696c
+set xD[PD]=0
+set SD[PD]=5
+set aD[PD]=$52303052
+set nD[PD]=$41303331
+set PD=PD+1
+set uD[PD]=$6e686577
+set xD[PD]=0
+set SD[PD]=10
+set aD[PD]=$52303053
+set nD[PD]=$41303332
+set PD=PD+1
+set uD[PD]=$6e626565
+set xD[PD]=$96
+set SD[PD]=15
+set aD[PD]=$52303051
+set nD[PD]=$41303333
+set PD=PD+1
+set uD[PD]=$68727268
+set xD[PD]=$c8
+set SD[PD]=35
+set aD[PD]=$52303056
+set nD[PD]=$41303334
+set PD=PD+1
+set uD[PD]=$6e656d69
+set xD[PD]=$12c
+set SD[PD]=40
+set aD[PD]=$52303057
+set nD[PD]=$41303335
+set PD=PD+1
+set uD[PD]=$6e62656c
+set xD[PD]=$1f4
+set SD[PD]=50
+set aD[PD]=$52303058
+set nD[PD]=$41303336
+set PD=PD+1
+set uD[PD]=$68637468
+set xD[PD]=$2ee
+set SD[PD]=65
+set aD[PD]=$5230305a
+set nD[PD]=$41303337
+set PD=PD+1
+set uD[PD]=$6e6d726d
+set xD[PD]=$3e8
+set SD[PD]=$64
+set aD[PD]=$52303131
+set nD[PD]=$41303338
+set PD=PD+1
+set uD[PD]=$6e676767
+set xD[PD]=$5dc
+set SD[PD]=$96
+set aD[PD]=$52303135
+set nD[PD]=$41303339
+set PD=PD+1
+set uD[PD]=$48617266
+set xD[PD]=$9c4
+set SD[PD]=$fa
+set aD[PD]=$52303137
+set nD[PD]=$41303341
+set PD=PD+1
+set Ny=gj
+if TriggerEvaluate(Ny) then
+call TriggerExecute(Ny)
+endif
+call CinematicFadeBJ(bj_CINEFADETYPE_FADEIN,1.,"ReplaceableTextures\\CameraMasks\\Black_mask.blp",100.,100.,100.,0.)
+set Vy=Oj
+if Vy!=null then
+call StartSound(Vy)
+endif
+call TriggerSleepAction(.50)
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"|cffff0f37L I N E   T O W E R   W A R S:   R E F O R G E D   |   "+Bw+"|r")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_3802")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_3803")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_3804")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_3806")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_3807")
+if iw>=Nr then
+set gr=true
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_3808")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_4354")
+else
+set gr=false
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"|cffff0000Player stats will not be recorded during this game ("+I2S(Nr)+" players minimum).|r")
+call DisplayTimedTextToForce(bj_FORCE_ALL_PLAYERS,15.,"TRIGSTR_3810")
+endif
+set Ny=null
+set Ty=null
+set Zy=null
+set ky=null
+set Vy=null
+endfunction
+function xG takes nothing returns nothing
+local unit PG=GetEnumUnit()
+local unitstate uG
+if (not IsUnitType(PG,UNIT_TYPE_DEAD))and GetUnitTypeId(PG)!=0 then
+set PG=Hp
+set uG=UNIT_STATE_LIFE
+call UnitDamageTarget(PG,GetEnumUnit(),GetUnitState(GetEnumUnit(),uG)*.02,true,false,ATTACK_TYPE_NORMAL,DAMAGE_TYPE_NORMAL,WEAPON_TYPE_WHOKNOWS)
+endif
+set PG=null
+set uG=null
+endfunction
+function Xq takes string Rq,string Nq returns nothing
+local integer Iq=bD[0]
+if Iq==0 then
+set Iq=FD+1
+set FD=Iq
+else
+set bD[0]=bD[Iq]
+endif
+set vD[Iq]=Rq
+set RD[Iq]=null
+call Oq(aq(Iq,Nq))
+endfunction
+function Gc takes player Mc,string dc,integer Lc,string ec returns integer
+if GetLocalPlayer()==Mc then
+call Xq(yc(Lc),dc+"\n"+ec)
+endif
+return Lc
+endfunction
+function LA takes real CA,real UA returns real
+local real yA=1.
+local real MA=.0
+local real dA=1.
+if CA<0. then
+return .0
+endif
+if CA<1. then
+set CA=1./CA
+set dA=-1.
+endif
+loop
+exitwhen CA<1.0001
+if CA>UA then
+set CA=CA/UA
+set MA=MA+yA
+else
+set UA=SquareRoot(UA)
+set yA=yA/2.
+endif
+endloop
+return dA*MA
+endfunction
+function fC takes integer Vc,integer wC,integer pC returns nothing
+local integer rC
+local integer oC
+local integer jC
+local integer DC
+set nf[Vc]=nf[Vc]+LA(pC+1,StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`"))
+set rC=Ef[Vc]
+set oC=pC+1
+set jC=hD[rC]
+set pC=0
+loop
+exitwhen jC==0 and pC==0
+set DC=oC*mD[jC]+pC
+set pC=DC/QD[rC]
+set mD[jC]=DC-pC*QD[rC]
+if HD[jC]==0 and pC!=0 then
+set DC=VW()
+set HD[DC]=0
+set mD[DC]=0
+set HD[jC]=DC
+endif
+set jC=HD[jC]
+endloop
+set Vc=Ef[Vc]
+set pC=wC
+set wC=hD[Vc]
+if wC==0 then
+set rC=VW()
+set HD[rC]=0
+set mD[rC]=0
+set wC=rC
+set hD[Vc]=rC
+endif
+loop
+exitwhen pC==0
+set rC=mD[wC]+pC
+set pC=rC/QD[Vc]
+set rC=rC-pC*QD[Vc]
+set mD[wC]=rC
+if HD[wC]==0 then
+set rC=VW()
+set HD[rC]=0
+set mD[rC]=0
+set HD[wC]=rC
+endif
+set wC=HD[wC]
+endloop
+endfunction
+function qC takes integer sC returns nothing
+local integer AC=hD[Ef[sC]]
+local integer WC
+set sC=R2I(1.+nf[sC])
+loop
+exitwhen AC==0
+set WC=AC
+set AC=HD[AC]
+set sC=sC-1
+endloop
+loop
+exitwhen sC<=0
+set AC=VW()
+set HD[AC]=0
+set mD[AC]=0
+set HD[WC]=AC
+set WC=HD[WC]
+set sC=sC-1
+endloop
+endfunction
+function OC takes integer aC,player nC,integer EC returns string
+local string tC
+local integer JC
+local integer mC
+local integer HC
+local integer BC
+set EC=Rc(GetPlayerName(nC))+EC*73
+call PA(hD[Ef[aC]])
+set BC=aC
+set mC=0
+set JC=hD[Ef[aC]]
+loop
+exitwhen JC==0
+set HC=mD[JC]
+set HC=mC+79*mC/(HC+1)+$125*HC/(1+mC-mC/StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`")*StringLength("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`"))+$1df
+set HC=HC-HC/$1388*$1388
+if HC<0 then
+set HC=HC+$1388
+endif
+set mC=HC
+set JC=HD[JC]
+endloop
+call fC(BC,mC,$1388)
+call PA(hD[Ef[aC]])
+call qC(aC)
+call SC(aC,EC,1)
+set EC=hD[Ef[aC]]
+set tC=""
+loop
+exitwhen EC==0
+set aC=mD[EC]
+set tC=SubString("!#$%&'()*+,-.0123456789:;=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}`",aC,aC+1)+tC
+set EC=HD[EC]
+endloop
+return tC
+endfunction
+function eY takes integer dY,integer LY returns integer
+set dY=0
+set rw=SubString(wo,LY-1,LY)
+loop
+exitwhen dY>ww
+if rw==pw[dY]then
+return dY
+endif
+set dY=dY+1
+endloop
+return 0
+endfunction
+function xM takes nothing returns nothing
+if gr then
+set dr=0
+set Lr[dr]=lr[br]
+set er[dr]=$8000
+set dr=dr+1
+set Lr[dr]=hr[br]
+set er[dr]=$8000
+set dr=dr+1
+set Lr[dr]=Qr[br]
+set er[dr]=$8000
+set dr=dr+1
+set Lr[dr]=Hr[br]
+set er[dr]=$8000
+set dr=dr+1
+set Lr[dr]=Br[br]
+set er[dr]=$8000
+set dr=dr+1
+set Lr[dr]=po
+set er[dr]=$8000
+set uw[0]=1
+loop
+exitwhen uw[0]>12
+set dr=dr+1
+if StringLength(wo)>=uw[0]then
+set Lr[dr]=eY(0,uw[0])
+else
+set Lr[dr]=ww
+endif
+set er[dr]=ww
+set uw[0]=uw[0]+1
+endloop
+set dr=dr+1
+set Lr[dr]=Fr
+set er[dr]=$2000
+set Gr=Zc()
+set bj_forLoopAIndex=0
+set bj_forLoopAIndexEnd=dr
+loop
+exitwhen bj_forLoopAIndex>bj_forLoopAIndexEnd
+call fC(Gr,Lr[bj_forLoopAIndex],er[bj_forLoopAIndex])
+set bj_forLoopAIndex=bj_forLoopAIndex+1
+endloop
+set xr=""
+set xr=OC(Gr,Player(br-1),1)
+call Gc(Player(br-1),"jDhVg",1,xr)
+endif
+endfunction
+function xi takes nothing returns nothing
+local group ii=lp
+local code Pi=nW
+local boolean ui=bj_wantDestroyGroup
+set bj_wantDestroyGroup=false
+call ForGroup(ii,Pi)
+if ui then
+call DestroyGroup(ii)
+endif
+set ii=null
+endfunction
+function ye takes nothing returns nothing
+local player ce
+local playerstate Ce
+local playerstate Ue
+if GetResearched()==$52303055 then
+call OY(8,GetPlayerId(GetOwningPlayer(GetTriggerUnit())),-1,null)
+set ce=GetOwningPlayer(GetTriggerUnit())
+set Ce=PLAYER_STATE_RESOURCE_LUMBER
+if Ce==PLAYER_STATE_RESOURCE_GOLD then
+set Ue=PLAYER_STATE_GOLD_GATHERED
+call SetPlayerState(ce,Ue,GetPlayerState(ce,Ue)+1)
+elseif Ce==PLAYER_STATE_RESOURCE_LUMBER then
+set Ue=PLAYER_STATE_LUMBER_GATHERED
+call SetPlayerState(ce,Ue,GetPlayerState(ce,Ue)+1)
+endif
+call SetPlayerState(ce,Ce,GetPlayerState(ce,Ce)+1)
+endif
+set ce=null
+set Ce=null
+set Ue=null
+endfunction
+function kW takes nothing returns nothing
+set w=CreateGroup()
+set D=CreateTimer()
+set s=true
+set A=.0
+set q=.0
+set C=.0
+set m=9
+set v=CreateGroup()
+set R=CreateGroup()
+set N=null
+set I=null
+set l=null
+set V=CreateForce()
+set rw=""
+set jw=CreateForce()
+set Yw=""
+set cw=InitHashtable()
+set dw=null
+set ew=null
+set lw=null
+set udg_LethalDamageEvent=0.
+set Lp=null
+set ep=null
+set Gp=null
+set np=null
+set Hp=null
+set udg_DamageModifierEvent=0.
+set udg_DamageEvent=0.
+set lp=null
+set rr=null
+set udg_SaveLoadEvent=0.
+set Pr=null
+set Xr=null
+set jo=null
+set qo=null
+set Yo=null
+set co=null
+set Co=null
+set Uo=null
+set yo=null
+set Mo=null
+set do=null
+set Lo=null
+set eo=null
+set Go=null
+set io=null
+set Po=null
+set uo=null
+set xo=null
+set So=null
+set ao=null
+set no=null
+set Eo=null
+set Jo=null
+set mo=null
+set Ho=null
+set Bo=null
+set Oo=null
+set Ko=null
+set ho=null
+set Qo=null
+set Fo=null
+set bo=null
+set go=null
+set vo=null
+set Ro=null
+set No=null
+set Io=null
+set Xo=null
+set To=null
+set Zo=null
+set ko=null
+set lo=null
+set Vo=null
+set wj=null
+set pj=null
+set rj=null
+set oj=null
+set jj=null
+set Dj=null
+set fj=null
+set sj=null
+set Wj=null
+set Aj=null
+set qj=null
+set Yj=null
+set cj=null
+set Cj=null
+set Uj=null
+set yj=null
+set Mj=null
+set dj=null
+set Lj=null
+set ej=null
+set Gj=null
+set ij=null
+set Pj=null
+set uj=null
+set xj=null
+set Sj=null
+set aj=null
+set nj=null
+set Ej=null
+set tj=null
+set Jj=null
+set mj=null
+set Hj=null
+set Bj=null
+set Oj=null
+set Kj=null
+set hj=null
+set Qj=null
+set Fj=null
+set bj=null
+set gj=null
+set vj=null
+set Rj=null
+set Nj=null
+set Ij=null
+set Xj=null
+set Tj=null
+set Zj=null
+set kj=null
+set lj=null
+set Vj=null
+set wD=null
+set pD=null
+set rD=null
+set oD=null
+set jD=null
+set DD=null
+set fD=null
+set sD=null
+set WD=null
+set AD=null
+set qD=null
+set YD=null
+set cD=null
+set CD=null
+set UD=null
+set yD=null
+set MD=null
+set dD=null
+set LD=null
+set GD=CreateForce()
+set ND=bj_MAX_PLAYER_SLOTS
+call CreateGroup()
+set ff=CreateTrigger()
+set cf=1
+set tf=InitHashtable()
+set If=function bA
+set Xf=function gA
+set Tf=function pq
+set Zf=function qq
+set kf=function Wq
+set lf=function CY
+set Vf=function NY
+set ws=function TC
+set ps=function PU
+set rs=function EU
+set os=function gy
+set js=function vy
+set Ds=function wM
+set fs=function WM
+set ss=function AM
+set Ws=function eM
+set As=function PM
+set qs=function uM
+set Ys=function xM
+set cs=function tM
+set Cs=function vM
+set Us=function FM
+set ys=function mM
+set Ms=function NM
+set ds=function TM
+set Ls=function kM
+set es=function VM
+set Gs=function pd
+set is=function rd
+set Ps=function Dd
+set us=function fd
+set xs=function Yd
+set Ss=function cd
+set as=function ed
+set ns=function ud
+set Es=function Hd
+set ts=function bd
+set Js=function gd
+set ms=function Fd
+set Hs=function oL
+set Bs=function sL
+set Os=function AL
+set Ks=function ML
+set hs=function SL
+set Qs=function OL
+set Fs=function KL
+set bs=function FL
+set gs=function QL
+set vs=function RL
+set Rs=function kL
+set Ns=function lL
+set Is=function VL
+set Xs=function fe
+set Ts=function We
+set Zs=function qe
+set ks=function ye
+set ls=function Me
+set Vs=function de
+set wW=function Je
+set pW=function Ze
+set rW=function le
+set oW=function ve
+set jW=function Ne
+set DW=function DG
+set fW=function fG
+set sW=function cG
+set WW=function UG
+set AW=function MG
+set qW=function eG
+set YW=function iG
+set cW=function xG
+set CW=function tG
+set UW=function mG
+set yW=function HG
+set MW=function FG
+set dW=function He
+set LW=function TG
+set eW=function Yi
+set GW=function si
+set iW=function qi
+set PW=function oi
+set uW=function fi
+set xW=function VG
+set SW=function ri
+set aW=function Li
+set nW=function Gi
+set EW=function xi
+set tW=function Si
+set JW=function Ei
+set mW=function Ki
+set HW=function bi
+set BW=function vi
+set OW=function Xi
+set KW=function pP
+set hW=function fP
+set QW=function qP
+set FW=function YP
+set bW=function UP
+set gW=function LP
+set vW=function nP
+set RW=function EP
+set NW=function KP
+set IW=function hP
+set XW=function QP
+set TW=function gP
+set ZW=function vP
+endfunction
+function rU takes nothing returns nothing
+call TriggerAddAction(ff,ws)
+endfunction
+function uY takes nothing returns nothing
+set pw[0]="?"
+set ww=ww+1
+set pw[ww]="a"
+set ww=ww+1
+set pw[ww]="b"
+set ww=ww+1
+set pw[ww]="c"
+set ww=ww+1
+set pw[ww]="d"
+set ww=ww+1
+set pw[ww]="e"
+set ww=ww+1
+set pw[ww]="f"
+set ww=ww+1
+set pw[ww]="g"
+set ww=ww+1
+set pw[ww]="h"
+set ww=ww+1
+set pw[ww]="i"
+set ww=ww+1
+set pw[ww]="j"
+set ww=ww+1
+set pw[ww]="k"
+set ww=ww+1
+set pw[ww]="l"
+set ww=ww+1
+set pw[ww]="m"
+set ww=ww+1
+set pw[ww]="n"
+set ww=ww+1
+set pw[ww]="o"
+set ww=ww+1
+set pw[ww]="p"
+set ww=ww+1
+set pw[ww]="q"
+set ww=ww+1
+set pw[ww]="r"
+set ww=ww+1
+set pw[ww]="s"
+set ww=ww+1
+set pw[ww]="t"
+set ww=ww+1
+set pw[ww]="u"
+set ww=ww+1
+set pw[ww]="v"
+set ww=ww+1
+set pw[ww]="w"
+set ww=ww+1
+set pw[ww]="x"
+set ww=ww+1
+set pw[ww]="y"
+set ww=ww+1
+set pw[ww]="z"
+set ww=ww+1
+set pw[ww]="å"
+set ww=ww+1
+set pw[ww]="ä"
+set ww=ww+1
+set pw[ww]="ö"
+set ww=ww+1
+set pw[ww]="A"
+set ww=ww+1
+set pw[ww]="B"
+set ww=ww+1
+set pw[ww]="C"
+set ww=ww+1
+set pw[ww]="D"
+set ww=ww+1
+set pw[ww]="E"
+set ww=ww+1
+set pw[ww]="F"
+set ww=ww+1
+set pw[ww]="G"
+set ww=ww+1
+set pw[ww]="H"
+set ww=ww+1
+set pw[ww]="I"
+set ww=ww+1
+set pw[ww]="J"
+set ww=ww+1
+set pw[ww]="K"
+set ww=ww+1
+set pw[ww]="L"
+set ww=ww+1
+set pw[ww]="M"
+set ww=ww+1
+set pw[ww]="N"
+set ww=ww+1
+set pw[ww]="O"
+set ww=ww+1
+set pw[ww]="P"
+set ww=ww+1
+set pw[ww]="Q"
+set ww=ww+1
+set pw[ww]="R"
+set ww=ww+1
+set pw[ww]="S"
+set ww=ww+1
+set pw[ww]="T"
+set ww=ww+1
+set pw[ww]="U"
+set ww=ww+1
+set pw[ww]="V"
+set ww=ww+1
+set pw[ww]="W"
+set ww=ww+1
+set pw[ww]="X"
+set ww=ww+1
+set pw[ww]="Y"
+set ww=ww+1
+set pw[ww]="Z"
+set ww=ww+1
+set pw[ww]="Å"
+set ww=ww+1
+set pw[ww]="Ä"
+set ww=ww+1
+set pw[ww]="Ö"
+set ww=ww+1
+set pw[ww]="1"
+set ww=ww+1
+set pw[ww]="2"
+set ww=ww+1
+set pw[ww]="3"
+set ww=ww+1
+set pw[ww]="4"
+set ww=ww+1
+set pw[ww]="5"
+set ww=ww+1
+set pw[ww]="6"
+set ww=ww+1
+set pw[ww]="7"
+set ww=ww+1
+set pw[ww]="8"
+set ww=ww+1
+set pw[ww]="9"
+set ww=ww+1
+set pw[ww]="0"
+set ww=ww+1
+set pw[ww]="!"
+set ww=ww+1
+set pw[ww]="#"
+set ww=ww+1
+set pw[ww]="¤"
+set ww=ww+1
+set pw[ww]=""
+set ww=ww+1
+set pw[ww]="&"
+set ww=ww+1
+set pw[ww]="/"
+set ww=ww+1
+set pw[ww]="("
+set ww=ww+1
+set pw[ww]=")"
+set ww=ww+1
+set pw[ww]="="
+set ww=ww+1
+set pw[ww]="?"
+set ww=ww+1
+set pw[ww]="`"
+set ww=ww+1
+set pw[ww]="´"
+set ww=ww+1
+set pw[ww]="_"
+set ww=ww+1
+set pw[ww]="-"
+set ww=ww+1
+set pw[ww]="."
+set ww=ww+1
+set pw[ww]=":"
+set ww=ww+1
+set pw[ww]=","
+set ww=ww+1
+set pw[ww]=";"
+set ww=ww+1
+set pw[ww]="|"
+set ww=ww+1
+set pw[ww]="æ"
+set ww=ww+1
+set pw[ww]="Æ"
+set ww=ww+1
+set pw[ww]="ø"
+set ww=ww+1
+set pw[ww]="Ø"
+set ww=ww+1
+set pw[ww]=" "
+set ww=ww+1
+set pw[ww]=""
+endfunction
+function DA takes nothing returns integer
+local integer jA=pf
+if jA!=0 then
+set pf=of[jA]
+else
+set rf=rf+1
+set jA=rf
+endif
+if jA>$1ffe then
+return 0
+endif
+set jf[jA]=0
+set Df[jA]=0
+set of[jA]=-1
+return jA
+endfunction
+function oA takes nothing returns integer
+local integer rA=sf
+if rA!=0 then
+set sf=Af[rA]
+else
+set Wf=Wf+1
+set rA=Wf
+endif
+if rA>$1ffe then
+return 0
+endif
+set uf[rA]=0
+set Af[rA]=-1
+return rA
+endfunction
+function Dc takes real TY,real ZY,real kY,real lY,integer VY returns integer
+local integer wc=oA()
+local integer pc
+local integer rc
+local integer oc
+local integer jc
+set yf[wc]=TY
+set Mf[wc]=ZY
+set df[wc]=kY
+set Lf[wc]=lY
+set pc=R2I(TY/64.)
+set rc=R2I(ZY/64.)
+set oc=R2I(kY/64.)
+set jc=R2I(lY/64.)
+set ef[wc]=oc-pc
+set Gf[wc]=jc-rc
+set Cf[wc]=Yf
+set Yf=Yf+ef[wc]*Gf[wc]
+set Uf[wc]=Yf-1
+set Pf[wc]=VY
+set VY=Cf[wc]
+loop
+exitwhen VY>Uf[wc]
+set qf[VY]=1
+set VY=VY+1
+endloop
+return wc
+endfunction
+function sU takes rect DU,integer fU returns integer
+return Dc(GetRectMinX(DU),GetRectMinY(DU),GetRectMaxX(DU),GetRectMaxY(DU),fU)
+endfunction
+function bU takes integer tU,rect JU,integer mU,integer HU,integer BU returns nothing
+local integer OU
+local integer KU
+local integer hU
+local integer QU
+local integer FU
+set eD[tU]=sU(JU,BU)
+set OU=eD[tU]
+set BU=0
+set KU=0
+set hU=0
+set QU=0
+if mU==0 then
+set BU=ef[OU]-1
+set QU=1
+elseif mU==1 then
+set hU=1
+set KU=Gf[OU]-1
+elseif mU==2 then
+set BU=0
+set QU=1
+elseif mU==3 then
+set hU=1
+set KU=0
+endif
+loop
+exitwhen BU>=ef[OU] or KU>=Gf[OU]
+set FU=BU+KU*ef[OU]
+set mU=DA()
+set jf[mU]=FU
+if uf[OU]==0 then
+set uf[OU]=mU
+else
+set Df[mU]=uf[OU]
+set uf[OU]=mU
+endif
+set BU=BU+hU
+set KU=KU+QU
+endloop
+set tU=eD[tU]
+set KU=HU
+set mU=0
+set OU=0
+set hU=0
+set BU=0
+if HU==0 then
+set mU=ef[tU]-1
+set BU=1
+elseif HU==1 then
+set hU=1
+set OU=Gf[tU]-1
+elseif HU==2 then
+set mU=0
+set BU=1
+elseif HU==3 then
+set hU=1
+set OU=0
+endif
+loop
+exitwhen mU>=ef[tU] or OU>=Gf[tU]
+set HU=mU+OU*ef[tU]
+if qf[Cf[tU]+HU]==-2 then
+set qf[Cf[tU]+HU]=-4
+elseif qf[Cf[tU]+HU]>=1 then
+set qf[Cf[tU]+HU]=-3
+endif
+set mU=mU+hU
+set OU=OU+BU
+endloop
+set Pf[tU]=KU
+endfunction
+function vU takes nothing returns nothing
+local trigger gU=CreateTrigger()
+call bU(0,Zo,1,3,3)
+call bU(1,wj,1,3,3)
+call bU(2,jj,1,3,3)
+call bU(3,Wj,1,3,3)
+call bU(4,cj,1,3,3)
+call bU(5,Mj,1,3,3)
+call bU(6,Gj,1,3,3)
+call bU(7,xj,1,3,3)
+call bU(8,Ej,1,3,3)
+call bU(9,qo,1,3,3)
+call bU(10,Uo,1,3,3)
+call bU(11,Lo,1,3,3)
+call bU(12,Po,1,3,3)
+call bU(13,ao,1,3,3)
+call bU(14,mo,1,3,3)
+call bU(15,Ko,1,3,3)
+call bU(16,bo,1,3,3)
+call bU(17,No,1,3,3)
+call TriggerAddAction(gU,ps)
+call TriggerRegisterAnyUnitEventBJ(gU,EVENT_PLAYER_UNIT_CONSTRUCT_START)
+set gU=CreateTrigger()
+call TriggerAddAction(gU,rs)
+call TriggerRegisterAnyUnitEventBJ(gU,EVENT_PLAYER_UNIT_DEATH)
+set gU=null
+endfunction
+function main takes nothing returns nothing
+local trigger SP
+call kW()
+call SetCameraBounds((-7424.)+GetCameraMargin(CAMERA_MARGIN_LEFT),(-5120.)+GetCameraMargin(CAMERA_MARGIN_BOTTOM),11520.-GetCameraMargin(CAMERA_MARGIN_RIGHT),10368.-GetCameraMargin(CAMERA_MARGIN_TOP),(-7424.)+GetCameraMargin(CAMERA_MARGIN_LEFT),10368.-GetCameraMargin(CAMERA_MARGIN_TOP),11520.-GetCameraMargin(CAMERA_MARGIN_RIGHT),(-5120.)+GetCameraMargin(CAMERA_MARGIN_BOTTOM))
+call SetDayNightModels("Environment\\DNC\\DNCLordaeron\\DNCLordaeronTerrain\\DNCLordaeronTerrain.mdl","Environment\\DNC\\DNCLordaeron\\DNCLordaeronUnit\\DNCLordaeronUnit.mdl")
+call NewSoundEnvironment("Default")
+call SetAmbientDaySound("CityScapeDay")
+call SetAmbientNightSound("CityScapeNight")
+call SetMapMusic("Music",true,0)
+call RU()
+set qo=Rect(-6720.,4928.,-5696.,8896.)
+set Yo=Rect(-6720.,4608.,-5696.,4928.)
+set co=Rect(-6656.,4992.,-6528.,5120.)
+set Co=Rect(-6688.,8928.,-5728.,9376.)
+set Uo=Rect(-4672.,4928.,-3648.,8896.)
+set yo=Rect(-4672.,4608.,-3648.,4928.)
+set Mo=Rect(-4608.,4992.,-4480.,5120.)
+set do=Rect(-4640.,8928.,-3680.,9376.)
+set Lo=Rect(-2624.,4928.,-1600.,8896.)
+set eo=Rect(-2624.,4608.,-1600.,4928.)
+set Go=Rect(-2560.,4992.,-2432.,5120.)
+set io=Rect(-2592.,8928.,-1632.,9376.)
+set Po=Rect(-576.,4928.,448.,8896.)
+set uo=Rect(-576.,4608.,448.,4928.)
+set xo=Rect(-512.,4992.,-384.,5120.)
+set So=Rect(-544.,8928.,416.,9376.)
+set ao=Rect(1472.,4928.,2496.,8896.)
+set no=Rect(1472.,4608.,2496.,4928.)
+set Eo=Rect(1536.,4992.,1664.,5120.)
+set Jo=Rect(1504.,8928.,2464.,9376.)
+set mo=Rect(3520.,4928.,4544.,8896.)
+set Ho=Rect(3520.,4608.,4544.,4928.)
+set Bo=Rect(3584.,4992.,3712.,5120.)
+set Oo=Rect(3552.,8928.,4512.,9376.)
+set Ko=Rect(5568.,4928.,6592.,8896.)
+set ho=Rect(5568.,4608.,6592.,4928.)
+set Qo=Rect(5632.,4992.,5760.,5120.)
+set Fo=Rect(5600.,8928.,6560.,9376.)
+set bo=Rect(7616.,4928.,8640.,8896.)
+set go=Rect(7616.,4608.,8640.,4928.)
+set vo=Rect(7680.,4992.,7808.,5120.)
+set Ro=Rect(7648.,8928.,8608.,9376.)
+set No=Rect(9664.,4928.,10688.,8896.)
+set Io=Rect(9664.,4608.,10688.,4928.)
+set Xo=Rect(9728.,4992.,9856.,5120.)
+set To=Rect(9696.,8928.,10656.,9376.)
+set Zo=Rect(-6720.,-2112.,-5696.,1856.)
+set ko=Rect(-6720.,-2432.,-5696.,-2112.)
+set lo=Rect(-6656.,-2048.,-6528.,-1920.)
+set Vo=Rect(-6688.,1888.,-5728.,2336.)
+set wj=Rect(-4672.,-2112.,-3648.,1856.)
+set pj=Rect(-4672.,-2432.,-3648.,-2112.)
+set rj=Rect(-4608.,-2048.,-4480.,-1920.)
+set oj=Rect(-4640.,1888.,-3680.,2336.)
+set jj=Rect(-2624.,-2112.,-1600.,1856.)
+set Dj=Rect(-2624.,-2432.,-1600.,-2112.)
+set fj=Rect(-2560.,-2048.,-2432.,-1920.)
+set sj=Rect(-2592.,1888.,-1632.,2336.)
+set Wj=Rect(-576.,-2112.,448.,1856.)
+set Aj=Rect(-576.,-2432.,448.,-2112.)
+set qj=Rect(-512.,-2048.,-384.,-1920.)
+set Yj=Rect(-544.,1888.,416.,2336.)
+set cj=Rect(1472.,-2112.,2496.,1856.)
+set Cj=Rect(1472.,-2432.,2496.,-2112.)
+set Uj=Rect(1536.,-2048.,1664.,-1920.)
+set yj=Rect(1504.,1888.,2464.,2336.)
+set Mj=Rect(3520.,-2112.,4544.,1856.)
+set dj=Rect(3520.,-2432.,4544.,-2112.)
+set Lj=Rect(3584.,-2048.,3712.,-1920.)
+set ej=Rect(3552.,1888.,4512.,2336.)
+set Gj=Rect(5568.,-2112.,6592.,1856.)
+set ij=Rect(5568.,-2432.,6592.,-2112.)
+set Pj=Rect(5632.,-2048.,5760.,-1920.)
+set uj=Rect(5600.,1888.,6560.,2336.)
+set xj=Rect(7616.,-2112.,8640.,1856.)
+set Sj=Rect(7616.,-2432.,8640.,-2112.)
+set aj=Rect(7680.,-2048.,7808.,-1920.)
+set nj=Rect(7648.,1888.,8608.,2336.)
+set Ej=Rect(9664.,-2112.,10688.,1856.)
+set tj=Rect(9664.,-2432.,10688.,-2112.)
+set Jj=Rect(9728.,-2048.,9856.,-1920.)
+set mj=Rect(9696.,1888.,10656.,2336.)
+set Hj=Rect(1408.,-4704.,2560.,-4256.)
+set Bj=Rect(1504.,-4640.,2464.,-4320.)
+call iP()
+call InitBlizzard()
+call ExecuteFunc("aP")
+call ExecuteFunc("RA")
+call ExecuteFunc("cq")
+call ExecuteFunc("uY")
+call ExecuteFunc("XY")
+call ExecuteFunc("rU")
+call vU()
+call jU()
+call GP()
+set SP=hj
+if TriggerEvaluate(SP) then
+call TriggerExecute(SP)
+endif
+set SP=Xj
+if TriggerEvaluate(SP) then
+call TriggerExecute(SP)
+endif
+set SP=Tj
+if TriggerEvaluate(SP) then
+call TriggerExecute(SP)
+endif
+call DestroyTrigger(CreateTrigger())
+set SP=null
+endfunction
+function PP takes nothing returns nothing
+call SetPlayerStartLocation(Player(0),0)
+call ForcePlayerStartLocation(Player(0),0)
+call SetPlayerColor(Player(0),ConvertPlayerColor(0))
+call SetPlayerRacePreference(Player(0),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(0),false)
+call SetPlayerController(Player(0),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(1),1)
+call ForcePlayerStartLocation(Player(1),1)
+call SetPlayerColor(Player(1),ConvertPlayerColor(1))
+call SetPlayerRacePreference(Player(1),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(1),false)
+call SetPlayerController(Player(1),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(2),2)
+call ForcePlayerStartLocation(Player(2),2)
+call SetPlayerColor(Player(2),ConvertPlayerColor(2))
+call SetPlayerRacePreference(Player(2),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(2),false)
+call SetPlayerController(Player(2),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(3),3)
+call ForcePlayerStartLocation(Player(3),3)
+call SetPlayerColor(Player(3),ConvertPlayerColor(3))
+call SetPlayerRacePreference(Player(3),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(3),false)
+call SetPlayerController(Player(3),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(4),4)
+call ForcePlayerStartLocation(Player(4),4)
+call SetPlayerColor(Player(4),ConvertPlayerColor(4))
+call SetPlayerRacePreference(Player(4),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(4),false)
+call SetPlayerController(Player(4),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(5),5)
+call ForcePlayerStartLocation(Player(5),5)
+call SetPlayerColor(Player(5),ConvertPlayerColor(5))
+call SetPlayerRacePreference(Player(5),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(5),false)
+call SetPlayerController(Player(5),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(6),6)
+call ForcePlayerStartLocation(Player(6),6)
+call SetPlayerColor(Player(6),ConvertPlayerColor(6))
+call SetPlayerRacePreference(Player(6),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(6),false)
+call SetPlayerController(Player(6),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(7),7)
+call ForcePlayerStartLocation(Player(7),7)
+call SetPlayerColor(Player(7),ConvertPlayerColor(7))
+call SetPlayerRacePreference(Player(7),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(7),false)
+call SetPlayerController(Player(7),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(8),8)
+call ForcePlayerStartLocation(Player(8),8)
+call SetPlayerColor(Player(8),ConvertPlayerColor(8))
+call SetPlayerRacePreference(Player(8),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(8),false)
+call SetPlayerController(Player(8),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(9),9)
+call ForcePlayerStartLocation(Player(9),9)
+call SetPlayerColor(Player(9),ConvertPlayerColor(9))
+call SetPlayerRacePreference(Player(9),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(9),false)
+call SetPlayerController(Player(9),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(10),10)
+call ForcePlayerStartLocation(Player(10),10)
+call SetPlayerColor(Player(10),ConvertPlayerColor(10))
+call SetPlayerRacePreference(Player(10),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(10),false)
+call SetPlayerController(Player(10),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(11),11)
+call ForcePlayerStartLocation(Player(11),11)
+call SetPlayerColor(Player(11),ConvertPlayerColor(11))
+call SetPlayerRacePreference(Player(11),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(11),false)
+call SetPlayerController(Player(11),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(12),12)
+call ForcePlayerStartLocation(Player(12),12)
+call SetPlayerColor(Player(12),ConvertPlayerColor(12))
+call SetPlayerRacePreference(Player(12),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(12),false)
+call SetPlayerController(Player(12),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(13),13)
+call ForcePlayerStartLocation(Player(13),13)
+call SetPlayerColor(Player(13),ConvertPlayerColor(13))
+call SetPlayerRacePreference(Player(13),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(13),false)
+call SetPlayerController(Player(13),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(14),14)
+call ForcePlayerStartLocation(Player(14),14)
+call SetPlayerColor(Player(14),ConvertPlayerColor(14))
+call SetPlayerRacePreference(Player(14),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(14),false)
+call SetPlayerController(Player(14),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(15),15)
+call ForcePlayerStartLocation(Player(15),15)
+call SetPlayerColor(Player(15),ConvertPlayerColor(15))
+call SetPlayerRacePreference(Player(15),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(15),false)
+call SetPlayerController(Player(15),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(16),16)
+call ForcePlayerStartLocation(Player(16),16)
+call SetPlayerColor(Player(16),ConvertPlayerColor(16))
+call SetPlayerRacePreference(Player(16),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(16),false)
+call SetPlayerController(Player(16),MAP_CONTROL_USER)
+call SetPlayerStartLocation(Player(17),17)
+call ForcePlayerStartLocation(Player(17),17)
+call SetPlayerColor(Player(17),ConvertPlayerColor(17))
+call SetPlayerRacePreference(Player(17),RACE_PREF_HUMAN)
+call SetPlayerRaceSelectable(Player(17),false)
+call SetPlayerController(Player(17),MAP_CONTROL_USER)
+endfunction
+function uP takes nothing returns nothing
+call SetPlayerTeam(Player(0),0)
+call SetPlayerTeam(Player(1),0)
+call SetPlayerTeam(Player(2),0)
+call SetPlayerTeam(Player(3),0)
+call SetPlayerTeam(Player(4),0)
+call SetPlayerTeam(Player(5),0)
+call SetPlayerTeam(Player(6),0)
+call SetPlayerTeam(Player(7),0)
+call SetPlayerTeam(Player(8),0)
+call SetPlayerTeam(Player(9),1)
+call SetPlayerTeam(Player(10),1)
+call SetPlayerTeam(Player(11),1)
+call SetPlayerTeam(Player(12),1)
+call SetPlayerTeam(Player(13),1)
+call SetPlayerTeam(Player(14),1)
+call SetPlayerTeam(Player(15),1)
+call SetPlayerTeam(Player(16),1)
+call SetPlayerTeam(Player(17),1)
+endfunction
+function xP takes nothing returns nothing
+call SetStartLocPrioCount(1,2)
+call SetStartLocPrio(1,0,0,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(1,1,2,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(2,6)
+call SetStartLocPrio(2,0,1,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(2,1,6,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(2,2,7,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(2,3,8,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(2,4,9,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(2,5,10,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(3,6)
+call SetStartLocPrio(3,0,4,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(3,1,6,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(3,2,7,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(3,3,8,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(3,4,9,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(3,5,10,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(4,2)
+call SetStartLocPrio(4,0,3,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(4,1,5,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(5,1)
+call SetStartLocPrio(5,0,4,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(6,4)
+call SetStartLocPrio(6,0,7,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(6,1,8,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(6,2,9,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(6,3,10,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(7,4)
+call SetStartLocPrio(7,0,6,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(7,1,8,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(7,2,9,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(7,3,10,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(8,4)
+call SetStartLocPrio(8,0,6,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(8,1,7,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(8,2,9,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(8,3,10,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(9,4)
+call SetStartLocPrio(9,0,6,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(9,1,7,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(9,2,8,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(9,3,10,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(10,4)
+call SetStartLocPrio(10,0,6,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(10,1,7,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(10,2,8,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(10,3,9,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(11,1)
+call SetStartLocPrio(11,0,12,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(12,2)
+call SetStartLocPrio(12,0,11,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(12,1,13,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(13,2)
+call SetStartLocPrio(13,0,12,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(13,1,14,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(14,2)
+call SetStartLocPrio(14,0,13,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(14,1,15,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(15,2)
+call SetStartLocPrio(15,0,14,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(15,1,16,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(16,2)
+call SetStartLocPrio(16,0,15,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrio(16,1,17,MAP_LOC_PRIO_HIGH)
+call SetStartLocPrioCount(17,1)
+call SetStartLocPrio(17,0,16,MAP_LOC_PRIO_HIGH)
+endfunction
+function config takes nothing returns nothing
+call SetMapName("TRIGSTR_024")
+call SetMapDescription("TRIGSTR_284")
+call SetPlayers(18)
+call SetTeams(18)
+call SetGamePlacement(MAP_PLACEMENT_TEAMS_TOGETHER)
+call DefineStartLocation(0,-6208.,-320.)
+call DefineStartLocation(1,-4160.,-320.)
+call DefineStartLocation(2,-2112.,-320.)
+call DefineStartLocation(3,-64.,-320.)
+call DefineStartLocation(4,1984.,-320.)
+call DefineStartLocation(5,4032.,-320.)
+call DefineStartLocation(6,6080.,-320.)
+call DefineStartLocation(7,8128.,-320.)
+call DefineStartLocation(8,10176.,-320.)
+call DefineStartLocation(9,-6208.,6848.)
+call DefineStartLocation(10,-4160.,6848.)
+call DefineStartLocation(11,-2112.,6848.)
+call DefineStartLocation(12,-64.,6848.)
+call DefineStartLocation(13,1984.,6848.)
+call DefineStartLocation(14,4032.,6848.)
+call DefineStartLocation(15,6080.,6848.)
+call DefineStartLocation(16,8128.,6848.)
+call DefineStartLocation(17,10176.,6848.)
+call PP()
+call uP()
+call xP()
+endfunction

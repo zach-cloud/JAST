@@ -1,0 +1,1 @@
+// sample mapglobalsstring udg_myVarinteger i = 1integer i = 2endglobalsfunction InitGlobals takes nothing returns nothinglocal integer x = 0endfunction
