@@ -1,3 +1,5 @@
+All Integer fields are Little Endian. All Strings are null-terminated. The null-terminator byte is 0x00.
+
 Structure: War3map.w3u/t/a
 
 versionId [uint32]: Usually 2
@@ -5,9 +7,6 @@ numModified [uint32]: Shows how many default objects have been modified
 modifiedObject [Structure[numModified]]: Structure defining the modified objects
 numObjectsCount [uint32]: Shows how many new objects were created
 newObjects [Structure[newObjectsCount]]: Structure defining the new objects
-fileTerminator1 [uint32]: Always zero
-fileTerminator2 [uint32]: Always zero
-
 
 Structure: ModifiedObject
 
@@ -20,8 +19,8 @@ modifiedField [Structure[modifiedFieldsCount]]: The data of the field
 Structure: ModifiedField
 
 fieldcode [byte[4]]: The code for the modified field
-unknown [uint32]: Not always zero. Purpose unknown.
-fieldData [String]: Declares the data of that field. Null (00) terminated string.
+fieldType [uint32]: 0 for int, 1 for real, for unsigned real, 3 for string
+fieldData [String/uint32/real/ureal]: Declares the data of that field.
 rawcode [byte[4]]: The rawcode of this original modified object. Matches the first found rawcodes.
 
 
@@ -36,6 +35,8 @@ newObjectField [Structure[modifiedFieldsCount]]: The data of the fields
 Structure: NewObjectField
 
 fieldcode [byte[4]]: The code for the modified field
+fieldType [uint32]: 0 for int, 1 for real, for unsigned real, 3 for string
+fieldData [String/uint32/real/ureal]: Declares the data of that field.
 unknown [uint32]: Not always zero. Purpose unknown.
-fieldData [String]: Declares the data of that field. Null (00) terminated string.
-unknown [uint32]: Not always zero. Purpose unknown.
+
+** Note the minor but important difference between NewObjectField structure and ModifiedField structure!
