@@ -1,1 +1,1 @@
-java -Xmx1g -jar JAST-0.1.0.jar
+java -Xmx1g -jar JAST-0.1.1.jar
