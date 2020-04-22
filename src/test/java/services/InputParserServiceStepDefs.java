@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import model.InputModel;
 import org.junit.Assert;
-import services.InputParserService;
 
 public class InputParserServiceStepDefs {
 
@@ -46,6 +45,38 @@ public class InputParserServiceStepDefs {
     public void hashbreak_input_is_parsed() {
         IInputParserService parserService = new InputParserService();
         this.model = parserService.splitInput(IInputParserService.SplitType.HASHBREAK, inputLine);
+    }
+
+    @When("Rawcode input is parsed")
+    public void rawcode_input_is_parsed() {
+        IInputParserService parserService = new InputParserService();
+        this.model = parserService.splitInput(IInputParserService.SplitType.RAWCODE, inputLine);
+    }
+
+    @When("Optimize input is parsed")
+    public void optimize_input_is_parsed() {
+        IInputParserService parserService = new InputParserService();
+        this.model = parserService.splitInput(IInputParserService.SplitType.OPTIMIZE, inputLine);
+    }
+
+    @Then("Rawcode wtsfile should be {string}")
+    public void rawcode_wtsfile_should_be(String wtsString) {
+        Assert.assertEquals(wtsString, model.getWtsFile());
+    }
+
+    @Then("Optimize Output should be {string}")
+    public void optimize_Output_should_be(String output) {
+        Assert.assertEquals(output, model.getOutputPath());
+    }
+
+    @Then("Rawcode input should be {string}")
+    public void rawcode_input_should_be(String input) {
+        Assert.assertEquals(input, model.getRawcodeInput());
+    }
+
+    @Then("Rawcode output should be {string}")
+    public void rawcode_output_should_be(String output) {
+        Assert.assertEquals(output, model.getRawcodeOutput());
     }
 
     @Then("Tree1 should exist")

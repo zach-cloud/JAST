@@ -1,0 +1,80 @@
+Header:
+int: File Version = (usually 1)
+x bytes: Original objects table*
+y bytes: Custom objects table*
+
+Data:
+*Table definition:
+int: number n of objects on this table, if 0 on the original table, then skip the default object table. This is the number of following units. Even if we don't have any changes on original table, this value must be there.
+n times a object definition structure*.
+
+*Object definition structure:
+char[4]: original object ID (see table at the bottom where you can get the object IDs*)
+char[4]: new object ID. (if it is on original table, this is 0, since it isn't used)
+int: number m of modifications for this object
+m times a modification structure*
+
+*Modification structure:
+char[4] modification ID (see the table at the bottom where you can get the mod IDs*)
+int: variable type* t
+[int: level/variation (this integer is only used by some object files depending on the object type, for example the units file doesn’t use this additional integer, but the ability file does, see the table at the bottom to see which object files use this int*) in the ability and upgrade file this is the level of the ability/upgrade, in the doodads file this is the variation, set to 0 if the object doesn't have more than one level/variation]
+[int: data pointer (again this int is only used by those object files that also use the level/variation int, see table*) in reality this is only used in the ability file for values that are originally stored in one of the Data columns in AbilityData.slk, this int tells the game to which of those columns the value resolves (0 = A, 1 = B, 2 = C, 3 = D, 4 = F, 5 = G, 6 = H), for example if the change applies to the column DataA3 the level int will be set to 3 and the data pointer to 0]
+int, float or string: value of the modification depending on the variable type specified by t
+int: end of modification structure (this is either 0, or equal to the original object ID or equal to the new object ID of the current object, when reading files you can use this to check if the format is correct, when writing a file you should use the new object ID of the current object here)
+
+
+
+
+
+
+
+
+
+
+
+Header:
+int: W3U Version = 1
+x bytes: Original Units table*
+y bytes: User-created units table*
+
+Data:
+*Table definition:
+int: number n of units on this table.
+If 0 on original table, then skip default unit table. This is the number of following units. Even if we don't have any changes on original table, this value must be there.
+n times a unit definition structure*.
+
+*Unit definition structure:
+char[4]: original unit ID (get the IDs from "Units\UnitData.slk" of war3.mpq)
+char[4]: new unit ID. If it is on original table, this is 0, since it isn't used.
+int: number m of modifications for this unit
+m times a modification structure*
+
+*Modification structure:
+char[4] modification ID code (get the IDs from "Units\UnitMetaData.slk" of war3.mpq)
+int: variable type* t (0=int, 1=real, 2=unreal, 3=String,...)
+t type: value (length depends on the type t specified before)
+int: end of unit definition (usually 0)
+
+*Variable types:
+0=int
+1=real
+2=unreal
+3=string
+4=bool
+5=char
+6=unitList
+7=itemList
+8=regenType
+9=attackType
+10=weaponType
+11=targetType
+12=moveType
+13=defenseType
+14=pathingTexture
+15=upgradeList
+16=stringList
+17=abilityList
+18=heroAbilityList
+19=missileArt
+20=attributeType
+21=attackBits

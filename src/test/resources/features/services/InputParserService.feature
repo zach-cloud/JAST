@@ -31,3 +31,22 @@ Feature: Test the input parser
     Given Input to be parsed "hashbreak 49839573"
     When Hashbreak input is parsed
     Then Hash should be "49839573"
+
+  Scenario: Test optimizer handler input
+    Given Input to be parsed "optimize src/test/resources/war3map1 output.j"
+    When Optimize input is parsed
+    Then Tree1 should exist
+    Then Optimize Output should be "output.j"
+
+  Scenario: Test rawcode handler input
+    Given Input to be parsed "rawcodes war3map.w3t out/rawcodes.txt"
+    When Rawcode input is parsed
+    Then Rawcode input should be "war3map.w3t"
+    Then Rawcode output should be "out/rawcodes.txt"
+
+  Scenario: Test rawcode handler input with wts
+    Given Input to be parsed "rawcodes war3map.w3t out/rawcodes.txt war3map.wts"
+    When Rawcode input is parsed
+    Then Rawcode input should be "war3map.w3t"
+    Then Rawcode output should be "out/rawcodes.txt"
+    Then Rawcode wtsfile should be "war3map.wts"

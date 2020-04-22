@@ -16,7 +16,8 @@ public interface IInputParserService {
         RENAME,
         HASH,
         HASHBREAK,
-        OPTIMIZE
+        OPTIMIZE,
+        RAWCODE
     }
 
     /**

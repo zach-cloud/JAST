@@ -59,4 +59,13 @@ public abstract class AbstractComamnd implements ICommand {
     protected void setOutputService(IOutputService outputService) {
         this.outputService = outputService;
     }
+
+    /**
+     * For tests
+     *
+     * @param writerService Mock writer service
+     */
+    protected void setWriterService(IFileWriterService writerService) {
+        this.writerService = writerService;
+    }
 }
