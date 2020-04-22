@@ -12,6 +12,9 @@ public final class InputModel {
     private String newName = null;
     private String hash = null;
     private String plaintext = null;
+    private String rawcodeInput = null;
+    private String rawcodeOutput = null;
+    private String wtsFile = null;
 
     public ISyntaxTree getTree1() {
         return tree1;
@@ -75,5 +78,29 @@ public final class InputModel {
 
     public void setPlaintext(String plaintext) {
         this.plaintext = plaintext;
+    }
+
+    public String getRawcodeInput() {
+        return rawcodeInput;
+    }
+
+    public void setRawcodeInput(String rawcodeInput) {
+        this.rawcodeInput = rawcodeInput;
+    }
+
+    public String getRawcodeOutput() {
+        return rawcodeOutput;
+    }
+
+    public void setRawcodeOutput(String rawcodeOutput) {
+        this.rawcodeOutput = rawcodeOutput;
+    }
+
+    public String getWtsFile() {
+        return wtsFile;
+    }
+
+    public void setWtsFile(String wtsFile) {
+        this.wtsFile = wtsFile;
     }
 }

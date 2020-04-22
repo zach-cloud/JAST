@@ -40,6 +40,7 @@ public final class HelpCommand extends AbstractComamnd implements ICommand {
         print("\thash [h] <text> : computes StringHash of input");
         print("\thashbreak [hb] <hash> : computes plaintext of StringHash. May take some time. Only uses printable characters.");
         print("\toptimize [opt] <war3map.j> <out.j> : optimizes some GUI code from the .j");
+        print("\trawcodes [rc] <war3map.w3t> <out.txt> <optional: war3map.wts> : Retrieves rawcodes from map and formats them. If wts is provided, restores strings.");
         print("\tquit : quits the program");
         print("System is pre-programmed with cheatpacks: NZCP.j, JJCP.j, and FAI.j");
         print("When adding custom activators, if a space is desired, type: \"\\s\"");

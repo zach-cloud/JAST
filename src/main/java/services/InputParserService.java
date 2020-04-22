@@ -34,6 +34,8 @@ public class InputParserService implements IInputParserService {
             return splitRename(inputLine);
         } else if(type == SplitType.OPTIMIZE) {
             return splitOptimize(inputLine);
+        } else if(type == SplitType.RAWCODE) {
+            return splitRawcode(inputLine);
         } else {
             throw new IllegalArgumentException("Unknown type: " + type.name());
         }
@@ -150,6 +152,27 @@ public class InputParserService implements IInputParserService {
         String[] parts = inputLine.split("\\s");
         inputModel.setTree1(SyntaxTree.readTree(new File(parts[1])));
         inputModel.setOutputPath(parts[2]);
+        return inputModel;
+    }
+
+    /**
+     * Splits the input line into an input model
+     * to be used in generating rawcodes
+     *
+     * @param inputLine Input line containing:
+     *                  1) Input file path
+     *                  2) Output file path
+     *                  3) [Optional] WTS File path
+     * @return         Input model
+     */
+    public InputModel splitRawcode(String inputLine) {
+        InputModel inputModel = new InputModel();
+        String[] parts = inputLine.split("\\s");
+        inputModel.setRawcodeInput(parts[1]);
+        inputModel.setRawcodeOutput(parts[2]);
+        if(parts.length > 3) {
+            inputModel.setWtsFile(parts[3]);
+        }
         return inputModel;
     }
 }
