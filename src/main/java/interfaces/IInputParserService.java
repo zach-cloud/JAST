@@ -17,7 +17,8 @@ public interface IInputParserService {
         HASH,
         HASHBREAK,
         OPTIMIZE,
-        RAWCODE
+        RAWCODE,
+        MPQEDIT
     }
 
     /**
