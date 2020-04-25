@@ -2,6 +2,7 @@ package rawcode;
 
 import org.apache.commons.io.IOUtils;
 import java.io.*;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -198,7 +199,7 @@ public class RawcodeBinaryReader {
             ByteBuffer stream = ByteBuffer.allocate(fileData.length);
             stream.put(fileData);
             stream.order(ByteOrder.LITTLE_ENDIAN);
-            stream.flip();
+            ((Buffer)stream).flip();
             return readObject(stream);
         } catch (IOException ex) {
             throw new RuntimeException("File does not exist: " + input.getName());

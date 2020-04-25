@@ -2,8 +2,6 @@
 
 This is a multi-purpose and open-source tool for modifying JASS Script files.
 
-This tool is not an MPQ editor or extractor.
-
 ### Features
 
 - Code merging: given two war3map.j files, logically merges them together to contain the functionality of both.
@@ -12,6 +10,8 @@ This tool is not an MPQ editor or extractor.
 - Basic syntax checking: makes sure there are no obvious compile errors in the script file.
 - Variable and function renamer: rename anything in the file without any of the typical problems that a find/replace would introduce.
 - String Hash calculation and breaker: find StringHash of a plaintext string, and brute force a hashed value
+- MPQ Extraction and Import
+- Clean rawcode generation
 
 ### Sample usage
 
