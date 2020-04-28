@@ -36,6 +36,8 @@ public class InputParserService implements IInputParserService {
             return splitOptimize(inputLine);
         } else if(type == SplitType.RAWCODE) {
             return splitRawcode(inputLine);
+        } else if(type == SplitType.MPQEDIT) {
+            return splitMpqEdit(inputLine);
         } else {
             throw new IllegalArgumentException("Unknown type: " + type.name());
         }
@@ -173,6 +175,23 @@ public class InputParserService implements IInputParserService {
         if(parts.length > 3) {
             inputModel.setWtsFile(parts[3]);
         }
+        return inputModel;
+    }
+
+    /**
+     * Splits the input line into an input model
+     * to be used in modifying mpq
+     *
+     * @param inputLine Input line containing:
+     *                  1) Input file path
+     *                  2) Output directory
+     * @return         Input model
+     */
+    public InputModel splitMpqEdit(String inputLine) {
+        InputModel inputModel = new InputModel();
+        String[] parts = inputLine.split("\\s");
+        inputModel.setInputMpq(parts[1]);
+        inputModel.setMpqDirectory(parts[2]);
         return inputModel;
     }
 }

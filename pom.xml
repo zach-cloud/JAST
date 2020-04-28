@@ -6,7 +6,7 @@
 
     <groupId>JAST</groupId>
     <artifactId>JAST</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,6 @@
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.surefire.version>2.22.1</maven.surefire.version>
     </properties>
-
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -47,7 +46,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
@@ -61,6 +59,11 @@
             <version>14</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.inwc3</groupId>
+            <artifactId>JMPQ3</artifactId>
+            <version>1.7.14</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -137,5 +140,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
 </project>
