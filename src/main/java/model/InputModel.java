@@ -15,6 +15,8 @@ public final class InputModel {
     private String rawcodeInput = null;
     private String rawcodeOutput = null;
     private String wtsFile = null;
+    private String inputMpq = null;
+    private String mpqDirectory = null;
 
     public ISyntaxTree getTree1() {
         return tree1;
@@ -102,5 +104,21 @@ public final class InputModel {
 
     public void setWtsFile(String wtsFile) {
         this.wtsFile = wtsFile;
+    }
+
+    public String getInputMpq() {
+        return inputMpq;
+    }
+
+    public void setInputMpq(String inputMpq) {
+        this.inputMpq = inputMpq;
+    }
+
+    public String getMpqDirectory() {
+        return mpqDirectory;
+    }
+
+    public void setMpqDirectory(String mpqDirectory) {
+        this.mpqDirectory = mpqDirectory;
     }
 }

@@ -37,7 +37,9 @@ public final class JAST {
         NZCPDCommand,
         ReplaceStringCommand,
         OptimizeGuiCommand,
-        RawcodeCommand
+        RawcodeCommand,
+        ExtractCommand,
+        ImportCommand
     }
 
     /**
