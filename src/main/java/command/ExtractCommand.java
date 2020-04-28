@@ -9,6 +9,14 @@ import java.io.File;
 public class ExtractCommand extends AbstractComamnd {
 
     private MpqEditor editor;
+
+    public ExtractCommand() {
+        editor = null; //initialized by extract command
+    }
+
+    public ExtractCommand(MpqEditor editor) {
+        this.editor = editor;
+    }
     
     @Override
     public boolean isCommend(String input) {
@@ -18,8 +26,10 @@ public class ExtractCommand extends AbstractComamnd {
     @Override
     public void execute(String input) {
         InputModel model = parser.splitInput(IInputParserService.SplitType.MPQEDIT, input);
-        editor = new MpqEditor(new File(model.getInputMpq()));
-        editor.extractFiles(new File(model.getOutputDirectory()));
+        if(editor == null) {
+            editor = new MpqEditor(new File(model.getInputMpq()));
+        }
+        editor.extractFiles(new File(model.getMpqDirectory()));
     }
 
 }

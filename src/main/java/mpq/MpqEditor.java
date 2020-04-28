@@ -91,6 +91,11 @@ public class MpqEditor {
                 System.out.println("File not found: " + file);
             }
         }
+        try {
+            mpqEditor.close(false, false, false);
+        } catch (IOException ex) {
+            System.out.println("Could not close MPQ: " + ex.getMessage());
+        }
     }
 
     /**
@@ -122,6 +127,11 @@ public class MpqEditor {
                     System.out.println("Unable to insert file: " + filename);
                 }
             }
+        }
+        try {
+            mpqEditor.close(false, false, false);
+        } catch (IOException ex) {
+            System.out.println("Could not close MPQ: " + ex.getMessage());
         }
     }
 }

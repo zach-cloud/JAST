@@ -38,7 +38,8 @@ public final class JAST {
         ReplaceStringCommand,
         OptimizeGuiCommand,
         RawcodeCommand,
-        ExtractCommand
+        ExtractCommand,
+        ImportCommand
     }
 
     /**

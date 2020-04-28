@@ -191,7 +191,7 @@ public class InputParserService implements IInputParserService {
         InputModel inputModel = new InputModel();
         String[] parts = inputLine.split("\\s");
         inputModel.setInputMpq(parts[1]);
-        inputModel.setOutputDirectory(parts[2]);
+        inputModel.setMpqDirectory(parts[2]);
         return inputModel;
     }
 }
