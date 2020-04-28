@@ -11,3 +11,5 @@ I just wanted to get a release out fast with usable functionality. Efforts will 
 Any new feature requests or bugs reported will also be added ASAP.
 
 Also there's a restriction that I didn't mention before but is worth mentioning now that it can export files: the program DOES NOT handle spaces in commands well. If you extract files from a map, make sure the map name has no spaces in it. I know it sucks, but the command line interface is temporary as said above. I won't spend too much time making the command line user friendly when I could be working on a user interface for it that provides much more value.
+
+Added apache 2.0 license to the repo and release. It basically officially says that you can do whatever you want with the program and source, and it's provided as is.
