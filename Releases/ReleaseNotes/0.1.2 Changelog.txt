@@ -2,8 +2,8 @@
 - Supports exporting MPQ files. Command: "export <myMap.w3x> <outputDirectory>".
 - This command exports war3map.j, war3map.wts, war3map.w3u, war3map.w3a, and war3map.w3t files if they exist in the archive.
 - Support for external cheatpacks added. To leverage this, put your cheatpacks in a folder called "cheatpacks" at the root of the program.
-- If not provided as external cheatpacks, the system will use JJCP or NZCP as internal cheatpacks. However external ones are prioritized.
-- MPQ inserting is not yet supported. The software used to modify MPQs (JMPQ3) is sort of broken. I will be looking into this in the future but it's low priortity since there are so many MPQ editors out there.
+- If not provided as external cheatpacks, the system will use JJCP or NZCP as internal cheatpacks. However external ones are prioritized. Folder is included in the release. Don't change the activator if you want the program's custom activator stuff to work (it expects the default).
+- MPQ inserting is not yet supported. The software used to modify MPQs (JMPQ3) is sort of broken. I will be looking into this in the future but it's low priority since there are so many MPQ editors out there.
 
 I will now begin the long and annoying process of making this a graphical application rather than a command-line application.
 I'm aware that people don't like command line applications and therefore won't even try this program because of it.
