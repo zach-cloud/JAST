@@ -48,7 +48,6 @@ Feature: Test WTS String node
     Then WTS String should be:
     """
     STRING 883
-    // Units: u006 (Crypt Fiend), Hotkey (Hotkey)
     {
     E
     }

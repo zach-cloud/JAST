@@ -77,6 +77,21 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(functionDeclaration.toString()).append("\n");
+        builder.append(statements.toFormattedString(indentationLevel)).append("\n");
+        builder.append("endfunction");
+        return builder.toString();
+    }
+
+    /**
      * Parse the JASS code contained in the Scanner into a model object
      */
     @Override

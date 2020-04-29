@@ -408,6 +408,17 @@ public final class Argument extends AbstractNode implements IFunctionRenameable,
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        return this.toString();
+    }
+
+    /**
      * Ensures the state of this argument is not corrupted.
      * Should not happen under regular usage.
      */

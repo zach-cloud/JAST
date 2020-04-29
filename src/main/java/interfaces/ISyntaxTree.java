@@ -72,4 +72,18 @@ public interface ISyntaxTree {
      * @param file  File to write to
      */
     void write(File file);
+
+    /**
+     * Returns the Tree as a formatted String
+     *
+     * @return  Formatted tree
+     */
+    String getFormatted();
+
+    /**
+     * Returns the Tree as a non-formatted String
+     *
+     * @return  Non-formatted tree
+     */
+    String getString();
 }

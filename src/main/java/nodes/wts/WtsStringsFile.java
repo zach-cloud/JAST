@@ -85,6 +85,23 @@ public class WtsStringsFile extends AbstractNode {
         return builder.toString();
     }
 
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder builder = new StringBuilder();
+        for(WtsString string : strings) {
+            addTabs(builder, indentationLevel);
+            builder.append(string.toFormattedString(indentationLevel+1)).append("\n");
+        }
+        removeFinalCharacter(builder);
+        return builder.toString();
+    }
+
     public List<WtsString> getStrings() {
         return Collections.unmodifiableList(strings);
     }

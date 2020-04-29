@@ -203,6 +203,35 @@ public final class IfStatement extends AbstractStatement implements IFunctionRen
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder built = new StringBuilder();
+        addTabs(built, indentationLevel);
+        built.append("if ").append(condition.toString()).append(" then").append("\n");
+        built.append(thenStatements.toFormattedString(indentationLevel+1)).append("\n");
+        for(int i = 0; i < elseifConditions.size(); i++) {
+            // Elseif order is maintained by List
+            addTabs(built, indentationLevel);
+            built.append("elseif ").append(elseifConditions.get(i).toString()).append(" then").append("\n");
+            built.append(elseifStatements.get(i).toFormattedString(indentationLevel+1)).append("\n");
+        }
+        // Else comes last always
+        if(elseStatements != null) {
+            addTabs(built, indentationLevel);
+            built.append("else").append("\n");
+            built.append(elseStatements.toFormattedString(indentationLevel+1)).append("\n");
+        }
+        addTabs(built, indentationLevel);
+        built.append("endif");
+        return built.toString();
+    }
+
+    /**
      * Parse the JASS code contained in the Scanner into a model object
      */
     @Override

@@ -1,9 +1,9 @@
 package nodes.functions;
 
+import exception.ParsingException;
 import interfaces.IFunctionRenameable;
 import interfaces.IVariableRenameable;
 import nodes.AbstractFunction;
-import exception.ParsingException;
 import nodes.AbstractNode;
 import tree.TreeContext;
 
@@ -12,19 +12,17 @@ import java.util.Scanner;
 /**
  * Represents a Native Function. Looks like a function, but begins with "native" rather than "function"
  */
-public final class NativeFunction extends AbstractFunction implements IFunctionRenameable, IVariableRenameable {
+public final class TypeFunction extends AbstractFunction implements IFunctionRenameable, IVariableRenameable {
 
     private String name;
-    private Inputs inputs;
-    private Output output;
-    private boolean constant;
+    private String flags;
 
     /**
      * Sets up this node with a scanner to receive words.
      *
      * @param inputScanner Scanner containing JASS code
      */
-    public NativeFunction(Scanner inputScanner, TreeContext context) {
+    public TypeFunction(Scanner inputScanner, TreeContext context) {
         super(inputScanner, context);
     }
 
@@ -33,12 +31,10 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
      *
      * @param context
      */
-    public NativeFunction(TreeContext context, String name, Inputs inputs, Output output, boolean constant) {
+    public TypeFunction(TreeContext context, String name, String flags) {
         super(context);
         this.name = name;
-        this.inputs = inputs;
-        this.output = output;
-        this.constant = constant;
+        this.flags = flags;
     }
 
     /**
@@ -51,25 +47,16 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
         while(line.contains("  ")) {
             line = line.replace("  ", " ");
         }
-        if(line.startsWith("constant ")) {
-            line = line.substring("constant ".length());
-            this.constant = true;
+        if(line.startsWith("type ")) {
+            line = line.substring("type ".length());
+        }
+        if(line.contains(" ")) {
+            name = line.substring(0, line.indexOf(" "));
+            line = line.substring(1+name.length());
+            flags = line;
         } else {
-            this.constant = false;
+            name = line;
         }
-        if(!line.startsWith("native ")) {
-            throw new ParsingException("Not a native declaration: " + line);
-        }
-        line = line.substring("native ".length());
-        String name = line.substring(0, line.indexOf(" "));
-        line = line.substring(name.length());
-        String inputs = line.substring(0, line.indexOf("returns"));
-        line = line.substring(inputs.length());
-        String outputs = line;
-
-        this.name = name;
-        this.inputs = new Inputs(new Scanner(inputs), context);
-        this.output = new Output(new Scanner(outputs), context);
     }
 
     /**
@@ -93,7 +80,7 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
      */
     @Override
     public final AbstractNode renameFunction(String oldFunctionName, String newFunctionName) {
-        return new NativeFunction(context, rename(name, oldFunctionName, newFunctionName), inputs, output, constant);
+        return new TypeFunction(context, rename(name, oldFunctionName, newFunctionName), flags);
     }
 
     /**
@@ -105,10 +92,10 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
     @Override
     public final String toString() {
         StringBuilder builder = new StringBuilder();
-        if(constant) {
-            builder.append("constant ");
+        builder.append("type ").append(name);
+        if(flags != null && !flags.isEmpty()) {
+            builder.append(" ").append(flags);
         }
-        builder.append("native ").append(name).append(" ").append(inputs.toString()).append(" ").append(output.toString());
         return builder.toString();
     }
 
@@ -128,11 +115,4 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
         return name;
     }
 
-    public final Inputs getInputs() {
-        return inputs;
-    }
-
-    public final Output getOutput() {
-        return output;
-    }
 }

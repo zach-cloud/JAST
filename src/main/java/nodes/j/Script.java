@@ -44,6 +44,21 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(globalsSection.toFormattedString(indentationLevel+1));
+        builder.append("\n");
+        builder.append(functionsSection.toFormattedString(indentationLevel+1));
+        return builder.toString();
+    }
+
+    /**
      * Parse the JASS code contained in the Scanner into a model object
      */
     @Override

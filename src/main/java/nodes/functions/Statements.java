@@ -112,6 +112,24 @@ public final class Statements extends AbstractNode implements IMergable, IFuncti
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder built = new StringBuilder();
+        for (AbstractStatement statement : statements) {
+            built.append(statement.toFormattedString(indentationLevel)).append("\n");
+        }
+        if (built.length() > 0) {
+            built.setLength(built.length() - 1);
+        }
+        return built.toString();
+    }
+
+    /**
      * Parse the JASS code contained in the Scanner into a model object
      */
     @Override

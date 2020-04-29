@@ -155,6 +155,17 @@ public final class Variable extends AbstractNode implements IFunctionRenameable,
         return converted.toString();
     }
 
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        return this.toString();
+    }
+
     public final String getType() {
         return type;
     }

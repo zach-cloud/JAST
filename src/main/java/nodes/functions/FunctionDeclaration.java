@@ -57,6 +57,17 @@ public final class FunctionDeclaration extends AbstractNode implements IFunction
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        return this.toString();
+    }
+
+    /**
      * Renames the variable and all uses of this variable.
      *
      * @param oldVariableName   Existing variable name
