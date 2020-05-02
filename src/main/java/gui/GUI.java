@@ -1,11 +1,13 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
@@ -13,15 +15,6 @@ import javafx.stage.Stage;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
-import org.fxmisc.richtext.model.StyleSpans;
-import org.fxmisc.richtext.model.StyleSpansBuilder;
-import org.reactfx.Subscription;
-
-import java.time.Duration;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class GUI extends Application {
 
@@ -31,7 +24,7 @@ public class GUI extends Application {
         MenuBar menuBar = makeMenus(controller);
         VBox root = new VBox(menuBar);
         CodeArea jassCodeEditor = setupEditorBox(root, controller);
-        setupScene(stage, root);
+        setupScene(controller, stage, root);
         makeElementsFillScreen(stage, root);
         bindElementSizes(stage, root, jassCodeEditor);
         stage.show();
@@ -43,7 +36,9 @@ public class GUI extends Application {
         MenuBar menuBar = new MenuBar();
         makeFileMenu(controller, menuBar);
         makeEditMenu(controller, menuBar);
+        makeModifyMenu(controller, menuBar);
         makeCodeMenu(controller, menuBar);
+        makeUtilityMenu(controller, menuBar);
         return menuBar;
     }
 
@@ -61,11 +56,12 @@ public class GUI extends Application {
         return jassCodeEditor;
     }
 
-    private void setupScene(Stage stage, VBox root) {
+    private void setupScene(Controller controller, Stage stage, VBox root) {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         scene.getStylesheets().add(GUI.class.getResource("jass-keywords.css").toExternalForm());
         stage.setTitle("JASS AST Modifier");
+        controller.setupHotkeys(scene);
     }
 
     private void bindElementSizes(Stage stage, VBox root, CodeArea jassCodeEditor) {
@@ -95,16 +91,55 @@ public class GUI extends Application {
         MenuItem fileMenuButton1 = new MenuItem("Open");
         MenuItem fileMenuButton2 = new MenuItem("Save");
         MenuItem fileMenuButton3 = new MenuItem("Exit");
+        MenuItem fileMenuButton4 = new MenuItem("About");
 
         fileMenuButton1.setOnAction(controller::open);
         fileMenuButton2.setOnAction(controller::save);
         fileMenuButton3.setOnAction(controller::close);
+        fileMenuButton4.setOnAction(controller::about);
 
         fileMenu.getItems().add(fileMenuButton1);
         fileMenu.getItems().add(fileMenuButton2);
         fileMenu.getItems().add(fileMenuButton3);
+        fileMenu.getItems().add(fileMenuButton4);
 
         menuBar.getMenus().add(fileMenu);
+    }
+
+    private void makeUtilityMenu(Controller controller, MenuBar menuBar) {
+        Menu utilityMenu = new Menu("Utility");
+
+        MenuItem utilityButton1 = new MenuItem("Generate Rawcodes");
+        MenuItem utilityButton2 = new MenuItem("Compute Stringhash");
+        MenuItem utilityButton3 = new MenuItem("Break Stringhash");
+
+        utilityMenu.getItems().add(utilityButton1);
+        utilityMenu.getItems().add(utilityButton2);
+        utilityMenu.getItems().add(utilityButton3);
+
+        utilityButton1.setOnAction(controller::generateRawcodes);
+        utilityButton2.setOnAction(controller::computeStringhash);
+        utilityButton3.setOnAction(controller::breakStringhash);
+
+        menuBar.getMenus().add(utilityMenu);
+    }
+
+    private void makeEditMenu(Controller controller, MenuBar menuBar) {
+        Menu editMenu = new Menu("Edit");
+
+        MenuItem undoButton = new MenuItem("Undo");
+        MenuItem redoButton = new MenuItem("Redo");
+        MenuItem searchButton = new MenuItem("Search");
+
+        editMenu.getItems().add(undoButton);
+        editMenu.getItems().add(redoButton);
+        editMenu.getItems().add(searchButton);
+
+        undoButton.setOnAction(controller::undo);
+        redoButton.setOnAction(controller::redo);
+        searchButton.setOnAction(controller::search);
+
+        menuBar.getMenus().add(editMenu);
     }
 
     private void makeCodeMenu(Controller controller, MenuBar menuBar) {
@@ -125,8 +160,8 @@ public class GUI extends Application {
         menuBar.getMenus().add(codeMenu);
     }
 
-    private void makeEditMenu(Controller controller, MenuBar menuBar) {
-        Menu editMenu = new Menu("Edit");
+    private void makeModifyMenu(Controller controller, MenuBar menuBar) {
+        Menu modifyMenu = new Menu("Modify");
 
         MenuItem editButton1 = new MenuItem("Add NZCP");
         MenuItem editButton2 = new MenuItem("Add JJCP");
@@ -138,7 +173,6 @@ public class GUI extends Application {
         MenuItem editButton8 = new MenuItem("Rename Function");
         MenuItem editButton9 = new MenuItem("Rename Variable");
 
-
         editButton1.setOnAction(controller::addNzcp);
         editButton2.setOnAction(controller::addJjcp);
         editButton3.setOnAction(controller::addNzcpD);
@@ -149,17 +183,17 @@ public class GUI extends Application {
         editButton8.setOnAction(controller::renameScriptFunction);
         editButton9.setOnAction(controller::renameScriptVariable);
 
-        editMenu.getItems().add(editButton1);
-        editMenu.getItems().add(editButton2);
-        editMenu.getItems().add(editButton3);
-        editMenu.getItems().add(editButton4);
-        editMenu.getItems().add(editButton5);
-        editMenu.getItems().add(editButton6);
-        editMenu.getItems().add(editButton7);
-        editMenu.getItems().add(editButton8);
-        editMenu.getItems().add(editButton9);
+        modifyMenu.getItems().add(editButton1);
+        modifyMenu.getItems().add(editButton2);
+        modifyMenu.getItems().add(editButton3);
+        modifyMenu.getItems().add(editButton4);
+        modifyMenu.getItems().add(editButton5);
+        modifyMenu.getItems().add(editButton6);
+        modifyMenu.getItems().add(editButton7);
+        modifyMenu.getItems().add(editButton8);
+        modifyMenu.getItems().add(editButton9);
 
-        menuBar.getMenus().add(editMenu);
+        menuBar.getMenus().add(modifyMenu);
     }
 
 

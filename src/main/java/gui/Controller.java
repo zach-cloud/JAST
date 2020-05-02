@@ -4,8 +4,12 @@ import helper.CheatpackLoader;
 import interfaces.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import nodes.AbstractFunction;
@@ -55,7 +59,7 @@ public class Controller {
     private FileChooser openFileChooser;
     private FileChooser writeFileChooser;
     private OpenType openType;
-    private Map<String,String> configurations;
+    private Map<String, String> configurations;
 
     private IExitProgramService exitProgramService;
     private IBlizzardLoaderService blizzardLoaderService;
@@ -72,10 +76,10 @@ public class Controller {
         this.writeFileChooser = new FileChooser();
         this.optimizer = new GuiOptimizerService();
         this.configurations = cfgService.readConfigFile(CFG_PATH);
-        if(configurations.containsKey(CURRENT_PATH_READ)) {
+        if (configurations.containsKey(CURRENT_PATH_READ)) {
             openFileChooser.setInitialDirectory(new File(configurations.get(CURRENT_PATH_READ)));
         }
-        if(configurations.containsKey(CURRENT_PATH_WRITE)) {
+        if (configurations.containsKey(CURRENT_PATH_WRITE)) {
             writeFileChooser.setInitialDirectory(new File(configurations.get(CURRENT_PATH_WRITE)));
         }
         natives = new ArrayList<>();
@@ -155,7 +159,7 @@ public class Controller {
         setupKeywords();
         Subscription cleanupWhenNoLongerNeedIt = jassCodeEditor
                 .multiPlainChanges()
-                .successionEnds(Duration.ofMillis(500))
+                .successionEnds(Duration.ofMillis(100))
                 .subscribe(ignore -> jassCodeEditor.setStyleSpans(0, computeHighlighting(jassCodeEditor.getText())));
 
         final Pattern whiteSpace = Pattern.compile("^\\s+");
@@ -205,30 +209,26 @@ public class Controller {
     }
 
     private StyleSpans<Collection<String>> computeHighlighting(String text) {
-        if (openType == OpenType.SCRIPT || openType == OpenType.TEXTFILE) {
-            Matcher matcher = pattern.matcher(text);
-            int lastKwEnd = 0;
-            StyleSpansBuilder<Collection<String>> spansBuilder
-                    = new StyleSpansBuilder<>();
-            while (matcher.find()) {
-                String styleClass =
-                        matcher.group("NATIVE") != null ? "native" :
-                                matcher.group("KEYWORD") != null ? "keyword" :
-                                        matcher.group("PAREN") != null ? "paren" :
-                                                matcher.group("BRACKET") != null ? "bracket" :
-                                                        matcher.group("STRING") != null ? "string" :
-                                                                matcher.group("COMMENT") != null ? "comment" :
-                                                                        null; /* never happens */
-                assert styleClass != null;
-                spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
-                spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
-                lastKwEnd = matcher.end();
-            }
-            spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
-            return spansBuilder.create();
-        } else {
-            return new StyleSpansBuilder<Collection<String>>().create();
+        Matcher matcher = pattern.matcher(text);
+        int lastKwEnd = 0;
+        StyleSpansBuilder<Collection<String>> spansBuilder
+                = new StyleSpansBuilder<>();
+        while (matcher.find()) {
+            String styleClass =
+                    matcher.group("NATIVE") != null ? "native" :
+                            matcher.group("KEYWORD") != null ? "keyword" :
+                                    matcher.group("PAREN") != null ? "paren" :
+                                            matcher.group("BRACKET") != null ? "bracket" :
+                                                    matcher.group("STRING") != null ? "string" :
+                                                            matcher.group("COMMENT") != null ? "comment" :
+                                                                    null; /* never happens */
+            assert styleClass != null;
+            spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
+            spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
+            lastKwEnd = matcher.end();
         }
+        spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
+        return spansBuilder.create();
     }
 
     public void open(ActionEvent e) {
@@ -295,12 +295,12 @@ public class Controller {
     /**
      * Merges code files together based on input.
      *
-     * @param dedupe    True if code should be de-duped before inserting
-     * @param tree1     First syntax tree to merge
-     * @param tree2     Second syntax tree to merge
+     * @param dedupe True if code should be de-duped before inserting
+     * @param tree1  First syntax tree to merge
+     * @param tree2  Second syntax tree to merge
      */
     public ISyntaxTree merge(boolean dedupe, ISyntaxTree tree1, ISyntaxTree tree2) {
-        if(dedupe) {
+        if (dedupe) {
             changeStatus("De-duplicating variables/functions");
             tree2 = tree2.deduplicate(new RandomNameGeneratorService());
             changeStatus("Completed variable/function deduplication");
@@ -312,22 +312,27 @@ public class Controller {
     }
 
     public void addNzcp(ActionEvent e) {
-
+        applyGeneric(false, "NZCP", "easymode");
     }
 
     public void addJjcp(ActionEvent e) {
-
+        applyGeneric(false, "JJCP", "wc3edit");
     }
 
     public void addNzcpD(ActionEvent e) {
-
+        applyGeneric(true, "NZCP", "easymode");
     }
 
     public void addJjcpD(ActionEvent e) {
-        String activator = JOptionPane.showInputDialog("Enter custom activator");
-        ISyntaxTree userTree = SyntaxTree.readTree(jassCodeEditor.getText());
-        ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName("JJCP"));
+        applyGeneric(true, "JJCP", "wc3edit");
+    }
 
+    private void applyGeneric(boolean dedupe, String cpName, String defaultActivator) {
+        String activator = JOptionPane.showInputDialog("Enter custom activator (no dash)");
+        ISyntaxTree userTree = SyntaxTree.readTree(jassCodeEditor.getText());
+        ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
+        ISyntaxTree cp = cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
+        jassCodeEditor.replaceText(merge(dedupe, userTree, cp).getString());
     }
 
     public void genericFileMerge(boolean dedupe) {
@@ -431,5 +436,67 @@ public class Controller {
         } catch (Exception ex) {
             changeStatus(ex.getMessage());
         }
+    }
+
+    public void generateRawcodes(ActionEvent e) {
+
+    }
+
+    public void computeStringhash(ActionEvent e) {
+
+    }
+
+    public void breakStringhash(ActionEvent e) {
+
+    }
+
+    public void about(ActionEvent e) {
+
+    }
+
+    public void undo(ActionEvent e) {
+        jassCodeEditor.undo();
+    }
+
+    public void redo(ActionEvent e) {
+        jassCodeEditor.redo();
+    }
+
+    public void search(ActionEvent e) {
+        Platform.runLater(() -> jassCodeEditor.moveTo(jassCodeEditor.position(3, 0).toOffset()));
+        jassCodeEditor.showParagraphAtTop(57);
+    }
+
+    public void setupHotkeys(Scene scene) {
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            final KeyCombination openHotkey = new KeyCodeCombination(KeyCode.O,
+                    KeyCombination.CONTROL_DOWN);
+            final KeyCombination saveHotkey = new KeyCodeCombination(KeyCode.S,
+                    KeyCombination.CONTROL_DOWN);
+            final KeyCombination undoHotkey = new KeyCodeCombination(KeyCode.Z,
+                    KeyCombination.CONTROL_DOWN);
+            final KeyCombination redoHotkey = new KeyCodeCombination(KeyCode.Y,
+                    KeyCombination.CONTROL_DOWN);
+            final KeyCombination searchHotkey = new KeyCodeCombination(KeyCode.F,
+                    KeyCombination.CONTROL_DOWN);
+            public void handle(KeyEvent ke) {
+                if (openHotkey.match(ke)) {
+                    open(null);
+                    ke.consume();
+                } else if(saveHotkey.match(ke)) {
+                    save(null);
+                    ke.consume();
+                } else if(undoHotkey.match(ke)) {
+                    undo(null);
+                    ke.consume();
+                } else if(redoHotkey.match(ke)) {
+                    redo(null);
+                    ke.consume();
+                } else if(searchHotkey.match(ke)) {
+                    search(null);
+                    ke.consume();
+                }
+            }
+        });
     }
 }
