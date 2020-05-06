@@ -17,5 +17,5 @@ public interface IHashBreakService {
     /**
      * Runs the hash breaking service and displays result to user
      */
-    void runBreak();
+    String runBreak();
 }

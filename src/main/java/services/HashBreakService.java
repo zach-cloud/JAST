@@ -43,7 +43,7 @@ public class HashBreakService implements IHashBreakService {
      * Runs the hash breaking service and displays result to user
      */
     @Override
-    public void runBreak() {
+    public String runBreak() {
         if(thread == null) {
             throw new IllegalArgumentException("Hash breaker service was not initialized and will not run");
         }
@@ -57,5 +57,6 @@ public class HashBreakService implements IHashBreakService {
         thread.run();
         outputService.print("Result: " + thread.getPlaintext());
         exec.shutdown();
+        return thread.getPlaintext();
     }
 }

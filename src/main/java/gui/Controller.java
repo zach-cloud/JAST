@@ -3,6 +3,8 @@ package gui;
 import helper.CheatpackLoader;
 import interfaces.*;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -12,11 +14,14 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
+import model.InputModel;
 import nodes.AbstractFunction;
 import nodes.j.Variable;
 import nodes.wts.WtsStringsFile;
 import org.apache.commons.io.FileUtils;
 import org.fxmisc.richtext.CodeArea;
+import javafx.stage.PopupWindow;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
 import org.reactfx.Subscription;
@@ -39,11 +44,12 @@ public class Controller {
     public static final String CURRENT_PATH_READ = "currentPathRead";
     public static final String CURRENT_PATH_WRITE = "currentPathWrite";
     private List<String> natives;
+    private List<String> autocompleteEntries;
     private String[] keywords = {"if", "then", "else", "endif", "function", "takes",
             "nothing", "returns", "endfunction", "globals", "endglobals",
             "loop", "endloop", "exitwhen", "constant", "local",
             "call", "set", "null", "elseif", "return"};
-
+    private String currentAutocompleteWord = "";
     private Pattern pattern;
 
     enum OpenType {
@@ -60,12 +66,19 @@ public class Controller {
     private FileChooser writeFileChooser;
     private OpenType openType;
     private Map<String, String> configurations;
+    private SearchWindow searchWindow;
+    private StringHashWindow stringHashWindow;
+
+    private List<AbstractFunction> commonFunctions;
+    private List<Variable> commonVariables;
 
     private IExitProgramService exitProgramService;
     private IBlizzardLoaderService blizzardLoaderService;
     private IFileWriterService writerService;
     private ICFGService cfgService;
     private IGuiOptimizerService optimizer;
+    private IHashBreakService hashBreakService;
+    private IHashService hashService;
 
     public Controller() {
         this.exitProgramService = new ExitProgramServiceGUI();
@@ -75,6 +88,8 @@ public class Controller {
         this.openFileChooser = new FileChooser();
         this.writeFileChooser = new FileChooser();
         this.optimizer = new GuiOptimizerService();
+        this.hashBreakService = new HashBreakService();
+        this.hashService = new HashService();
         this.configurations = cfgService.readConfigFile(CFG_PATH);
         if (configurations.containsKey(CURRENT_PATH_READ)) {
             openFileChooser.setInitialDirectory(new File(configurations.get(CURRENT_PATH_READ)));
@@ -83,6 +98,9 @@ public class Controller {
             writeFileChooser.setInitialDirectory(new File(configurations.get(CURRENT_PATH_WRITE)));
         }
         natives = new ArrayList<>();
+        commonVariables = new ArrayList<>();
+        commonFunctions = new ArrayList<>();
+        this.autocompleteEntries = new ArrayList<>();
         addFilters(openFileChooser);
         addFilters(writeFileChooser);
     }
@@ -177,9 +195,11 @@ public class Controller {
     private void addKeywords(ISyntaxTree tree) {
         for (AbstractFunction function : tree.getScript().getFunctionsSection().getFunctions()) {
             natives.add(function.getName());
+            commonFunctions.add(function);
         }
         for (Variable variable : tree.getScript().getGlobalsSection().getGlobalVariables()) {
             natives.add(variable.getName());
+            commonVariables.add(variable);
         }
     }
 
@@ -443,15 +463,37 @@ public class Controller {
     }
 
     public void computeStringhash(ActionEvent e) {
-
+        if(stringHashWindow == null) {
+            stringHashWindow = new StringHashWindow(this);
+        }
+        stringHashWindow.show();
     }
 
     public void breakStringhash(ActionEvent e) {
+        computeStringhash(e);
+    }
 
+    public void calculateStringHash(ActionEvent e) {
+        InputModel model = new InputModel();
+        model.setPlaintext(stringHashWindow.getHashText());
+        stringHashWindow.setResult(hashService.runHash(model));
+    }
+
+    public void breakStringhashExecute(ActionEvent e) {
+        InputModel model = new InputModel();
+        model.setHash(stringHashWindow.getHashText());
+        hashBreakService.setHash(model);
+        stringHashWindow.setResult(hashBreakService.runBreak());
+    }
+
+    public void closeStringHash(ActionEvent e) {
+        if(stringHashWindow != null) {
+            stringHashWindow.hide();
+        }
     }
 
     public void about(ActionEvent e) {
-
+        JOptionPane.showMessageDialog(null, "JAST - Managed JASS Code Modifier\nOpen source: https://github.com/zach-cloud/JAST");
     }
 
     public void undo(ActionEvent e) {
@@ -463,8 +505,35 @@ public class Controller {
     }
 
     public void search(ActionEvent e) {
-        Platform.runLater(() -> jassCodeEditor.moveTo(jassCodeEditor.position(3, 0).toOffset()));
-        jassCodeEditor.showParagraphAtTop(57);
+        if(searchWindow == null) {
+            searchWindow = new SearchWindow(this);
+        }
+        searchWindow.show();
+    }
+
+    public void searchExecute(ActionEvent e) {
+        if(searchWindow != null) {
+            regexFind(jassCodeEditor, searchWindow.getSearchText(), jassCodeEditor.getCaretPosition());
+        }
+    }
+
+    private void regexFind(CodeArea area, String regex, int offset) {
+        Matcher matcher = Pattern.compile(Pattern.quote(regex)).matcher(area.getText().substring(offset));
+        if (matcher.find()) {
+            int start = matcher.start();
+            int end = matcher.end();
+            area.selectRange(start + offset, end + offset);
+            int current = jassCodeEditor.getCurrentParagraph();
+            jassCodeEditor.showParagraphAtTop(current);
+        } else {
+            JOptionPane.showMessageDialog(null, "No matches found");
+        }
+    }
+
+    public void closeSearch(ActionEvent e) {
+        if(searchWindow != null) {
+            searchWindow.hide();
+        }
     }
 
     public void setupHotkeys(Scene scene) {
@@ -498,5 +567,38 @@ public class Controller {
                 }
             }
         });
+    }
+
+    public void setupAutocomplete(Scene scene) {
+        for(AbstractFunction function : commonFunctions) {
+            autocompleteEntries.add(function.getName());
+        }
+
+        PopupWindow popup = new Popup();
+
+        jassCodeEditor.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if(t1.length() > s.length()) {
+                    char lastChar = t1.charAt(t1.length()-1);
+                    if(lastChar == ' ' || lastChar == '\n') {
+                        currentAutocompleteWord = "";
+                    } else {
+                        currentAutocompleteWord += lastChar;
+                    }
+                } else {
+                    currentAutocompleteWord = currentAutocompleteWord.substring(0, currentAutocompleteWord.length()-1);
+                }
+            }
+        });
+
+        Subscription cleanupWhenNoLongerNeedIt = jassCodeEditor
+                .multiPlainChanges()
+                .successionEnds(Duration.ofMillis(500))
+                .subscribe(ignore -> showAutocomplete());
+    }
+
+    private void showAutocomplete() {
+
     }
 }

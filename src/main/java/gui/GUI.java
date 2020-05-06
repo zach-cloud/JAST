@@ -1,14 +1,9 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -24,12 +19,13 @@ public class GUI extends Application {
         MenuBar menuBar = makeMenus(controller);
         VBox root = new VBox(menuBar);
         CodeArea jassCodeEditor = setupEditorBox(root, controller);
+        controller.setupHighlighting();
         setupScene(controller, stage, root);
         makeElementsFillScreen(stage, root);
         bindElementSizes(stage, root, jassCodeEditor);
         stage.show();
         setBackgroundColor(jassCodeEditor);
-        controller.setupHighlighting();
+
     }
 
     private MenuBar makeMenus(Controller controller) {
@@ -62,6 +58,7 @@ public class GUI extends Application {
         scene.getStylesheets().add(GUI.class.getResource("jass-keywords.css").toExternalForm());
         stage.setTitle("JASS AST Modifier");
         controller.setupHotkeys(scene);
+        controller.setupAutocomplete(scene);
     }
 
     private void bindElementSizes(Stage stage, VBox root, CodeArea jassCodeEditor) {
@@ -195,8 +192,6 @@ public class GUI extends Application {
 
         menuBar.getMenus().add(modifyMenu);
     }
-
-
 
     public void main(String[] args) {
         launch(args);

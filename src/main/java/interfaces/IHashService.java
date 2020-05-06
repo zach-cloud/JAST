@@ -12,5 +12,5 @@ public interface IHashService {
      *
      * @param input Formatted user input
      */
-    void runHash(InputModel input);
+    String runHash(InputModel input);
 }
