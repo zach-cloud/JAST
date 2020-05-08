@@ -194,7 +194,7 @@ public final class IfStatement extends AbstractStatement implements IFunctionRen
             built.append(elseifStatements.get(i).toString()).append("\n");
         }
         // Else comes last always
-        if(elseStatements != null) {
+        if(elseStatements != null && !elseStatements.getStatements().isEmpty()) {
             built.append("else").append("\n");
             built.append(elseStatements.toString()).append("\n");
         }

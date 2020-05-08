@@ -27,8 +27,6 @@ Feature: Test inlining returns functions
     set player004 = GetEnumPlayer()
     call ForceAddPlayerSimple(GetEnumPlayer(),force001)
     call QuestMessageBJ(force001,bj_QUESTMESSAGE_UPDATED,"4.2 - 24")
-    else
-
     endif
     endfunction
     """

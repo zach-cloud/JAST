@@ -30,8 +30,6 @@ Feature: Optimize GUI Conditions
     set player004 = GetEnumPlayer()
     call ForceAddPlayerSimple(GetEnumPlayer(),force001)
     call QuestMessageBJ(force001,bj_QUESTMESSAGE_UPDATED,"4.2 - 24")
-    else
-
     endif
     endfunction
     """
@@ -72,8 +70,6 @@ Feature: Optimize GUI Conditions
     set player004 = GetEnumPlayer()
     call ForceAddPlayerSimple(GetEnumPlayer(),force001)
     call QuestMessageBJ(force001,bj_QUESTMESSAGE_UPDATED,"4.2 - 24")
-    else
-
     endif
     endfunction
     """
@@ -135,8 +131,6 @@ Feature: Optimize GUI Conditions
     function Func0068 takes nothing returns nothing
     if Func0031() then
     call ForGroupBJ(GetUnitsInRectMatching(GetPlayableMapRect(),Condition(function Func0029)),function Func0030)
-    else
-
     endif
     endfunction
     """
