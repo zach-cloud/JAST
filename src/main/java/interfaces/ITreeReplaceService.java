@@ -15,4 +15,15 @@ public interface ITreeReplaceService {
      * @param inputLine User's formatted input
      */
     void replace(TreeReplaceService.ReplacementType type, InputModel inputLine);
+
+    /**
+     * Runs a generic replacement for tree
+     *
+     * @param type          Replacement type option
+     * @param oldEntityName Old entity name
+     * @param newEntityName New entity name
+     * @param tree          Input tree
+     * @return              Replaced tree
+     */
+    ISyntaxTree replace(TreeReplaceService.ReplacementType type, String oldEntityName, String newEntityName, ISyntaxTree tree);
 }

@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 import model.InputModel;
+import mpq.MpqEditor;
 import nodes.AbstractFunction;
 import nodes.j.Variable;
 import nodes.wts.WtsStringsFile;
@@ -68,6 +69,9 @@ public class Controller {
     private Map<String, String> configurations;
     private SearchWindow searchWindow;
     private StringHashWindow stringHashWindow;
+    private String objectsFilePath;
+    private String stringsFilePath;
+    private String mpqPath;
 
     private List<AbstractFunction> commonFunctions;
     private List<Variable> commonVariables;
@@ -79,6 +83,9 @@ public class Controller {
     private IGuiOptimizerService optimizer;
     private IHashBreakService hashBreakService;
     private IHashService hashService;
+    private IRawcodeService rawcodeService;
+    private ITreeReplaceService treeReplaceService;
+    private MpqEditor mpqEditor;
 
     public Controller() {
         this.exitProgramService = new ExitProgramServiceGUI();
@@ -90,6 +97,7 @@ public class Controller {
         this.optimizer = new GuiOptimizerService();
         this.hashBreakService = new HashBreakService();
         this.hashService = new HashService();
+        this.treeReplaceService = new TreeReplaceService();
         this.configurations = cfgService.readConfigFile(CFG_PATH);
         if (configurations.containsKey(CURRENT_PATH_READ)) {
             openFileChooser.setInitialDirectory(new File(configurations.get(CURRENT_PATH_READ)));
@@ -155,17 +163,19 @@ public class Controller {
 
     private void openObjects(File file) {
         this.openType = OpenType.OBJECTSFILE;
-
+        this.objectsFilePath = file.getAbsolutePath();
+        generateRawcodes(null);
     }
 
     private void openStrings(File file) {
         this.openType = OpenType.STRINGS;
+        this.stringsFilePath = file.getAbsolutePath();
         genericReadText(file);
     }
 
     private void openMpq(File file) {
         this.openType = OpenType.MPQ;
-
+        this.mpqPath = file.getAbsolutePath();
     }
 
     private void openText(File file) {
@@ -293,17 +303,21 @@ public class Controller {
     }
 
     public void save(ActionEvent e) {
-        changeStatus("Prompting file open");
-        File selectedFile = writeFileChooser.showSaveDialog(null);
-        if (selectedFile != null) {
-            configurations.put(CURRENT_PATH_WRITE, selectedFile.getParent());
-            cfgService.writeConfigFile(CFG_PATH, configurations);
-            long time = System.currentTimeMillis();
-            writerService.writeString(jassCodeEditor.getText(), selectedFile.getAbsolutePath());
-            time = System.currentTimeMillis() - time;
-            changeStatus("File saved successfully", time);
-        } else {
-            changeStatus("Save cancelled");
+        try {
+            changeStatus("Prompting file open");
+            File selectedFile = writeFileChooser.showSaveDialog(null);
+            if (selectedFile != null) {
+                configurations.put(CURRENT_PATH_WRITE, selectedFile.getParent());
+                cfgService.writeConfigFile(CFG_PATH, configurations);
+                long time = System.currentTimeMillis();
+                writerService.writeString(jassCodeEditor.getText(), selectedFile.getAbsolutePath());
+                time = System.currentTimeMillis() - time;
+                changeStatus("File saved successfully", time);
+            } else {
+                changeStatus("Save cancelled");
+            }
+        } catch (Exception ex) {
+            changeStatus("Failed to save file.");
         }
     }
 
@@ -348,11 +362,15 @@ public class Controller {
     }
 
     private void applyGeneric(boolean dedupe, String cpName, String defaultActivator) {
+        try {
         String activator = JOptionPane.showInputDialog("Enter custom activator (no dash)");
         ISyntaxTree userTree = SyntaxTree.readTree(jassCodeEditor.getText());
         ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
         ISyntaxTree cp = cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
         jassCodeEditor.replaceText(merge(dedupe, userTree, cp).getString());
+        } catch (Exception ex) {
+            changeStatus("Failed to parse tree.");
+        }
     }
 
     public void genericFileMerge(boolean dedupe) {
@@ -368,7 +386,7 @@ public class Controller {
             time = System.currentTimeMillis() - time;
             changeStatus("Done with merging", time);
         } catch (Exception ex) {
-            changeStatus(ex.getMessage());
+            changeStatus("Failed to parse file");
         }
     }
 
@@ -380,34 +398,52 @@ public class Controller {
         genericFileMerge(true);
     }
 
-    public void renameScriptVariable(ActionEvent e) {
+    public void rename(TreeReplaceService.ReplacementType type) {
+        long time = System.currentTimeMillis();
+        String nameOne = JOptionPane.showInputDialog("Enter name to replace");
+        String nameTwo = JOptionPane.showInputDialog("Enter name to replace with");
+        ISyntaxTree syntaxTree = SyntaxTree.readTree(jassCodeEditor.getText());
+        jassCodeEditor.replaceText(treeReplaceService.replace(type, nameOne, nameTwo, syntaxTree).toString());
+        time = System.currentTimeMillis() - time;
+        changeStatus("Renamed successfully", time);
+    }
 
+    public void renameScriptVariable(ActionEvent e) {
+        rename(TreeReplaceService.ReplacementType.VARIABLE);
     }
 
     public void renameScriptFunction(ActionEvent e) {
-
+        rename(TreeReplaceService.ReplacementType.FUNCTION);
     }
 
     public void optimizeGui(ActionEvent e) {
-        long time = System.currentTimeMillis();
-        changeStatus("Reading Syntax Tree");
-        ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
-        changeStatus("Writing tree");
-        String newData = optimizer.optimize(tree).getString();
-        jassCodeEditor.replaceText(newData);
-        time = System.currentTimeMillis() - time;
-        changeStatus("Optimized GUI", time);
+        try {
+            long time = System.currentTimeMillis();
+            changeStatus("Reading Syntax Tree");
+            ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
+            changeStatus("Writing tree");
+            String newData = optimizer.optimize(tree).getString();
+            jassCodeEditor.replaceText(newData);
+            time = System.currentTimeMillis() - time;
+            changeStatus("Optimized GUI", time);
+        } catch (Exception ex) {
+            changeStatus("Failed to parse tree.");
+        }
     }
 
     public void scrambleNames(ActionEvent e) {
-        long time = System.currentTimeMillis();
-        changeStatus("Reading Syntax Tree");
-        ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
-        changeStatus("Writing tree");
-        String newData = tree.deduplicate(new RandomNameGeneratorService()).getString();
-        jassCodeEditor.replaceText(newData);
-        time = System.currentTimeMillis() - time;
-        changeStatus("Scrambled names", time);
+        try {
+            long time = System.currentTimeMillis();
+            changeStatus("Reading Syntax Tree");
+            ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
+            changeStatus("Writing tree");
+            String newData = tree.deduplicate(new RandomNameGeneratorService()).getString();
+            jassCodeEditor.replaceText(newData);
+            time = System.currentTimeMillis() - time;
+            changeStatus("Scrambled names", time);
+        } catch (Exception ex) {
+            changeStatus("Failed to parse tree.");
+        }
     }
 
     public void reformatCode(ActionEvent e) {
@@ -459,11 +495,54 @@ public class Controller {
     }
 
     public void generateRawcodes(ActionEvent e) {
+        try {
+            long time = System.currentTimeMillis();
+            rawcodeService = new RawcodeService();
+            if (objectsFilePath == null) {
+                open(e);
+            }
+            if (objectsFilePath != null) {
+                if (stringsFilePath != null) {
+                    rawcodeService.addWTS(stringsFilePath);
+                }
+                jassCodeEditor.replaceText(rawcodeService.makeRawcodesFrom(objectsFilePath));
+            } else {
+                JOptionPane.showMessageDialog(null, "Cannot generate rawcodes from specified file.");
+            }
+            time = System.currentTimeMillis() - time;
+            changeStatus("Generated rawcodes", time);
+        } catch (Exception ex) {
+            changeStatus("Failed to generate rawcodes.");
+        }
+    }
 
+    public void extractMpq(ActionEvent e) {
+        try {
+            long time = System.currentTimeMillis();
+            if (mpqPath == null) {
+                open(e);
+            }
+            if (mpqPath != null) {
+                File file = new File("tempFiles/");
+                if (file.exists()) {
+                    file.delete();
+                }
+                file.mkdirs();
+                file.delete();
+                mpqEditor = new MpqEditor(new File(mpqPath));
+                mpqEditor.extractFiles(file);
+            } else {
+                JOptionPane.showMessageDialog(null, "Cannot extract from specified file.");
+            }
+            time = System.currentTimeMillis() - time;
+            changeStatus("Extracted to /tempFiles", time);
+        } catch (Exception ex) {
+            changeStatus("Failed to extract files.");
+        }
     }
 
     public void computeStringhash(ActionEvent e) {
-        if(stringHashWindow == null) {
+        if (stringHashWindow == null) {
             stringHashWindow = new StringHashWindow(this);
         }
         stringHashWindow.show();
@@ -487,7 +566,7 @@ public class Controller {
     }
 
     public void closeStringHash(ActionEvent e) {
-        if(stringHashWindow != null) {
+        if (stringHashWindow != null) {
             stringHashWindow.hide();
         }
     }
@@ -505,14 +584,14 @@ public class Controller {
     }
 
     public void search(ActionEvent e) {
-        if(searchWindow == null) {
+        if (searchWindow == null) {
             searchWindow = new SearchWindow(this);
         }
         searchWindow.show();
     }
 
     public void searchExecute(ActionEvent e) {
-        if(searchWindow != null) {
+        if (searchWindow != null) {
             regexFind(jassCodeEditor, searchWindow.getSearchText(), jassCodeEditor.getCaretPosition());
         }
     }
@@ -526,12 +605,12 @@ public class Controller {
             int current = jassCodeEditor.getCurrentParagraph();
             jassCodeEditor.showParagraphAtTop(current);
         } else {
-            JOptionPane.showMessageDialog(null, "No matches found");
+            JOptionPane.showMessageDialog(null, "No more matches found");
         }
     }
 
     public void closeSearch(ActionEvent e) {
-        if(searchWindow != null) {
+        if (searchWindow != null) {
             searchWindow.hide();
         }
     }
@@ -548,20 +627,21 @@ public class Controller {
                     KeyCombination.CONTROL_DOWN);
             final KeyCombination searchHotkey = new KeyCodeCombination(KeyCode.F,
                     KeyCombination.CONTROL_DOWN);
+
             public void handle(KeyEvent ke) {
                 if (openHotkey.match(ke)) {
                     open(null);
                     ke.consume();
-                } else if(saveHotkey.match(ke)) {
+                } else if (saveHotkey.match(ke)) {
                     save(null);
                     ke.consume();
-                } else if(undoHotkey.match(ke)) {
+                } else if (undoHotkey.match(ke)) {
                     undo(null);
                     ke.consume();
-                } else if(redoHotkey.match(ke)) {
+                } else if (redoHotkey.match(ke)) {
                     redo(null);
                     ke.consume();
-                } else if(searchHotkey.match(ke)) {
+                } else if (searchHotkey.match(ke)) {
                     search(null);
                     ke.consume();
                 }
@@ -570,24 +650,23 @@ public class Controller {
     }
 
     public void setupAutocomplete(Scene scene) {
-        for(AbstractFunction function : commonFunctions) {
+        for (AbstractFunction function : commonFunctions) {
             autocompleteEntries.add(function.getName());
         }
-
         PopupWindow popup = new Popup();
 
         jassCodeEditor.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if(t1.length() > s.length()) {
-                    char lastChar = t1.charAt(t1.length()-1);
-                    if(lastChar == ' ' || lastChar == '\n') {
+                if (t1.length() > s.length()) {
+                    char lastChar = t1.charAt(t1.length() - 1);
+                    if (lastChar == ' ' || lastChar == '\n') {
                         currentAutocompleteWord = "";
                     } else {
                         currentAutocompleteWord += lastChar;
                     }
                 } else {
-                    currentAutocompleteWord = currentAutocompleteWord.substring(0, currentAutocompleteWord.length()-1);
+                    currentAutocompleteWord = currentAutocompleteWord.substring(0, currentAutocompleteWord.length() - 1);
                 }
             }
         });

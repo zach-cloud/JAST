@@ -117,10 +117,14 @@ public class MpqEditor {
         List<File> files = new ArrayList<>();
         List<File> directories = new ArrayList<>();
         recursiveFolderDiscovery(directory, directories, files);
+        mpqEditor.setExternalListfile(new File("listfile.txt"));
         for(File file : files) {
             if (!file.getName().equals("README.txt") && file.exists() && !file.isDirectory()) {
                 String filename = getName(file, directory);
                 try {
+                    if(mpqEditor.hasFile(filename)) {
+                        mpqEditor.deleteFile(filename);
+                    }
                     mpqEditor.insertFile(filename, file, false);
                     System.out.println("Inserted file: " + filename);
                 } catch (IOException ex) {
@@ -129,8 +133,9 @@ public class MpqEditor {
             }
         }
         try {
-            mpqEditor.close(false, false, false);
+            mpqEditor.close(true, false, false);
         } catch (IOException ex) {
+            ex.printStackTrace();
             System.out.println("Could not close MPQ: " + ex.getMessage());
         }
     }

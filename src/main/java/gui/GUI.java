@@ -107,16 +107,20 @@ public class GUI extends Application {
         Menu utilityMenu = new Menu("Utility");
 
         MenuItem utilityButton1 = new MenuItem("Generate Rawcodes");
-        MenuItem utilityButton2 = new MenuItem("Compute Stringhash");
-        MenuItem utilityButton3 = new MenuItem("Break Stringhash");
+        MenuItem utilityButton2 = new MenuItem("Extract MPQ");
+        MenuItem utilityButton3 = new MenuItem("Compute Stringhash");
+        MenuItem utilityButton4 = new MenuItem("Break Stringhash");
+
 
         utilityMenu.getItems().add(utilityButton1);
         utilityMenu.getItems().add(utilityButton2);
         utilityMenu.getItems().add(utilityButton3);
+        utilityMenu.getItems().add(utilityButton4);
 
         utilityButton1.setOnAction(controller::generateRawcodes);
-        utilityButton2.setOnAction(controller::computeStringhash);
-        utilityButton3.setOnAction(controller::breakStringhash);
+        utilityButton2.setOnAction(controller::extractMpq);
+        utilityButton3.setOnAction(controller::computeStringhash);
+        utilityButton4.setOnAction(controller::breakStringhash);
 
         menuBar.getMenus().add(utilityMenu);
     }

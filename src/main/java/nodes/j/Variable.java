@@ -128,7 +128,11 @@ public final class Variable extends AbstractNode implements IFunctionRenameable,
     }
 
     public boolean usesAsFunction(String functionName) {
-        return initialValue.usesAsFunction(functionName);
+        if(initialValue != null) {
+            return initialValue.usesAsFunction(functionName);
+        } else {
+            return false;
+        }
     }
 
     /**
