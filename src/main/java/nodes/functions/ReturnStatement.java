@@ -87,6 +87,20 @@ public final class ReturnStatement extends AbstractStatement implements IFunctio
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder built = new StringBuilder();
+        addTabs(built, indentationLevel);
+        built.append(this.toString());
+        return built.toString();
+    }
+
+    /**
      * Parse the JASS code contained in the Scanner into a model object
      */
     @Override

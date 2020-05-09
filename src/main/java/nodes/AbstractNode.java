@@ -147,6 +147,27 @@ public abstract class AbstractNode implements IAbstractNode {
     public abstract String toString();
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel  Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    public abstract String toFormattedString(int indentationLevel);
+
+    /**
+     * Adds tab characters to this StringBuilder
+     *
+     * @param currentString Current Stringbuilder to add to
+     * @param indentationLevel  Indentation level to add up to
+     */
+    protected void addTabs(StringBuilder currentString, int indentationLevel) {
+        for(int i = 0; i < indentationLevel; i++) {
+            currentString.append("    ");
+        }
+    }
+
+
+    /**
      * Determines whether the line should have parenthesis trimmed from it
      *
      * @param origin    JASS Code

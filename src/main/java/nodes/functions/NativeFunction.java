@@ -47,6 +47,10 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
     @Override
     protected final void readNode() {
         String line = readLine();
+        line = line.replace("\t", " ");
+        while(line.contains("  ")) {
+            line = line.replace("  ", " ");
+        }
         if(line.startsWith("constant ")) {
             line = line.substring("constant ".length());
             this.constant = true;
@@ -106,6 +110,17 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
         }
         builder.append("native ").append(name).append(" ").append(inputs.toString()).append(" ").append(output.toString());
         return builder.toString();
+    }
+
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        return this.toString();
     }
 
     @Override

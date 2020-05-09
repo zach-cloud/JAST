@@ -1,0 +1,15 @@
+0.1.2 release notes:
+- Supports exporting MPQ files. Command: "export <myMap.w3x> <outputDirectory>".
+- This command exports war3map.j, war3map.wts, war3map.w3u, war3map.w3a, and war3map.w3t files if they exist in the archive.
+- Support for external cheatpacks added. To leverage this, put your cheatpacks in a folder called "cheatpacks" at the root of the program.
+- If not provided as external cheatpacks, the system will use JJCP or NZCP as internal cheatpacks. However external ones are prioritized. Folder is included in the release. Don't change the activator if you want the program's custom activator stuff to work (it expects the default).
+- MPQ inserting is not yet supported. The software used to modify MPQs (JMPQ3) is sort of broken. I will be looking into this in the future but it's low priority since there are so many MPQ editors out there.
+
+I will now begin the long and annoying process of making this a graphical application rather than a command-line application.
+I'm aware that people don't like command line applications and therefore won't even try this program because of it.
+I just wanted to get a release out fast with usable functionality. Especially since it contains some unique stuff like gui optimization and string hash breaking that is not available/easily findable otherwise. Efforts will now be placed on making it more user-friendly.
+Any new feature requests or bugs reported will also be added ASAP.
+
+Also there's a restriction that I didn't mention before but is worth mentioning now that it can export files: the program DOES NOT handle spaces in commands well. If you extract files from a map, make sure the map name has no spaces in it. I know it sucks, but the command line interface is temporary as said above. I won't spend too much time making the command line user friendly when I could be working on a user interface for it that provides much more value.
+
+Added apache 2.0 license to the repo and release. It basically officially says that you can do whatever you want with the program and source (use it, modify it, try to make money with it, I don't care), and it's provided as is.

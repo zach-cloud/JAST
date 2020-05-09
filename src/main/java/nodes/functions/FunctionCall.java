@@ -131,6 +131,17 @@ public final class FunctionCall extends AbstractNode implements IFunctionRenamea
         return functionName + built.toString();
     }
 
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        return this.toString();
+    }
+
     public final FunctionCall renameVariable(String oldVariableName, String newVariableName) {
         List<Argument> newArguments = new ArrayList<>();
         for(Argument arg : argumentsList) {

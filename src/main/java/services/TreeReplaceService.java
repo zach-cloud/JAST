@@ -5,9 +5,6 @@ import interfaces.IOutputService;
 import interfaces.ISyntaxTree;
 import interfaces.ITreeReplaceService;
 import model.InputModel;
-import tree.SyntaxTree;
-
-import java.io.File;
 
 /**
  * Helper service for replacing values from a syntax tree
@@ -25,6 +22,11 @@ public class TreeReplaceService implements ITreeReplaceService {
     public TreeReplaceService(IOutputService outputService, IFileWriterService writerService) {
         this.outputService = outputService;
         this.writerService = writerService;
+    }
+
+    public TreeReplaceService() {
+        this.outputService = new OutputService();
+        this.writerService = new FileWriterService();
     }
 
     /**
@@ -48,6 +50,21 @@ public class TreeReplaceService implements ITreeReplaceService {
         ISyntaxTree tree = inputLine.getTree1();
         String oldEntityName = inputLine.getOldName();
         String newEntityName = inputLine.getNewName();
+        ISyntaxTree outputTree = replace(type, oldEntityName, newEntityName, tree);
+        writerService.write(outputTree, inputLine.getOutputPath());
+        outputService.print("Rename completed successfully");
+    }
+
+    /**
+     * Runs a generic replacement for tree
+     *
+     * @param type          Replacement type option
+     * @param oldEntityName Old entity name
+     * @param newEntityName New entity name
+     * @param tree          Input tree
+     * @return              Replaced tree
+     */
+    public ISyntaxTree replace(ReplacementType type, String oldEntityName, String newEntityName, ISyntaxTree tree) {
         ISyntaxTree outputTree = null;
         if(type == ReplacementType.VARIABLE) {
             outputTree = tree.renameVariable(oldEntityName, newEntityName);
@@ -56,7 +73,6 @@ public class TreeReplaceService implements ITreeReplaceService {
         } else if(type == ReplacementType.STRING) {
             outputTree = tree.renameVariable("\"" + oldEntityName + "\"", "\"" + newEntityName + "\"");
         }
-        writerService.write(outputTree, inputLine.getOutputPath());
-        outputService.print("Rename completed successfully");
+        return outputTree;
     }
 }

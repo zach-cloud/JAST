@@ -109,6 +109,24 @@ public class GlobalsSection extends AbstractNode implements IMergable, IVariable
         return builtString.toString();
     }
 
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder builtString = new StringBuilder();
+        builtString.append("globals").append("\n");
+        for (Variable globalVariable : globalVariables) {
+            addTabs(builtString, indentationLevel);
+            builtString.append(globalVariable.toFormattedString(indentationLevel+1)).append("\n");
+        }
+        builtString.append("endglobals");
+        return builtString.toString();
+    }
+
     public List<Variable> getGlobalVariables() {
         return Collections.unmodifiableList(globalVariables);
     }

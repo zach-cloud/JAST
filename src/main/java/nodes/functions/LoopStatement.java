@@ -48,6 +48,23 @@ public final class LoopStatement extends AbstractStatement implements IFunctionR
         return built.toString();
     }
 
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder built = new StringBuilder();
+        addTabs(built, indentationLevel);
+        built.append("loop").append("\n");
+        built.append(statements.toFormattedString(indentationLevel+1)).append("\n");
+        addTabs(built, indentationLevel);
+        built.append("endloop");
+        return built.toString();
+    }
+
     public final AbstractStatement renameVariable(String oldVariableName, String newVariableName) {
         return new LoopStatement((Statements)statements.renameVariable(oldVariableName, newVariableName), context);
     }

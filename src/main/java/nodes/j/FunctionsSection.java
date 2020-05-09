@@ -8,6 +8,7 @@ import nodes.AbstractFunction;
 import nodes.functions.Function;
 import nodes.functions.NativeFunction;
 import exception.ParsingException;
+import nodes.functions.TypeFunction;
 import tree.TreeContext;
 
 import java.util.ArrayList;
@@ -95,6 +96,22 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
     }
 
     /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder builder = new StringBuilder();
+        for(AbstractFunction function: functions) {
+            builder.append(function.toFormattedString(indentationLevel)).append("\n");
+        }
+        removeFinalCharacter(builder);
+        return builder.toString();
+    }
+
+    /**
      * Parse the JASS code contained in the Scanner into a model object
      */
     @Override
@@ -126,6 +143,9 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
             } else if(line.startsWith("native ") || line.startsWith("constant native ")) {
                 NativeFunction nativeFunction = new NativeFunction(new Scanner(line), context);
                 functions.add(nativeFunction);
+            } else if(line.startsWith("type ")) {
+                TypeFunction typeFunction = new TypeFunction(new Scanner(line), context);
+                functions.add(typeFunction);
             } else {
                 // Not a Function or Native
                 if(!line.isEmpty()) {
@@ -149,6 +169,7 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
     @Override
     public final AbstractNode merge(AbstractNode other) {
         Function mainFunction = null;
+        Function configFunction = null;
 
         List<AbstractFunction> newFunctions = new ArrayList<>();
         FunctionsSection otherFunctions = (FunctionsSection)other;
@@ -165,7 +186,9 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
         for(AbstractFunction function : functions) {
             if(function instanceof Function) {
                 if(function.getName().equals("main")) {
-                    mainFunction = (Function)function;
+                    mainFunction = (Function) function;
+                } else if(function.getName().equals("config")) {
+                    configFunction = (Function )function;
                 } else {
                     newFunctions.add(function);
                 }
@@ -175,11 +198,16 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
         for(AbstractFunction function : otherFunctions.functions) {
             if(function instanceof Function) {
                 if(function.getName().equals("main") && mainFunction != null) {
-                    mainFunction = (Function)mainFunction.merge(function);
+                    mainFunction = (Function) mainFunction.merge(function);
+                } else if(function.getName().equals("config") && mainFunction != null) {
+                    configFunction = (Function) configFunction.merge(function);
                 } else {
                     newFunctions.add(function);
                 }
             }
+        }
+        if(configFunction != null) {
+            newFunctions.add(configFunction);
         }
         if(mainFunction != null) {
             newFunctions.add(mainFunction);

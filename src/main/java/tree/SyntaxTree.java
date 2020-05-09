@@ -207,4 +207,24 @@ public final class SyntaxTree implements ISyntaxTree {
     public final String toString() {
         return script.toString();
     }
+
+    /**
+     * Returns the Tree as a formatted String
+     *
+     * @return Formatted tree
+     */
+    @Override
+    public String getFormatted() {
+        return script.toFormattedString(0);
+    }
+
+    /**
+     * Returns the Tree as a non-formatted String
+     *
+     * @return Non-formatted tree
+     */
+    @Override
+    public String getString() {
+        return toString();
+    }
 }

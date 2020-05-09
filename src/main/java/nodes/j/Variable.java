@@ -128,7 +128,11 @@ public final class Variable extends AbstractNode implements IFunctionRenameable,
     }
 
     public boolean usesAsFunction(String functionName) {
-        return initialValue.usesAsFunction(functionName);
+        if(initialValue != null) {
+            return initialValue.usesAsFunction(functionName);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -153,6 +157,17 @@ public final class Variable extends AbstractNode implements IFunctionRenameable,
             converted.append("=").append(initialValue);
         }
         return converted.toString();
+    }
+
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        return this.toString();
     }
 
     public final String getType() {

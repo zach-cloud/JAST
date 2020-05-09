@@ -29,7 +29,9 @@ public class HashService implements IHashService {
      * @param input Formatted user input
      */
     @Override
-    public void runHash(InputModel input) {
-        outputService.print("Result: " + SStrHash2.hash(input.getPlaintext()));
+    public String runHash(InputModel input) {
+        String result = SStrHash2.hash(input.getPlaintext());
+        outputService.print("Result: " + result);
+        return result;
     }
 }

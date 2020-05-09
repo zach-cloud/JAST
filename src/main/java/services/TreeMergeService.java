@@ -91,6 +91,6 @@ public class TreeMergeService implements ITreeMergeService {
      */
     public void applyJjcp(boolean dedupe, InputModel input) {
         input.setTree2(SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName("JJCP.j")));
-        applyCp(dedupe, "JJCP.j", "-cheats  ", input);
+        applyCp(dedupe, "JJCP.j", "wc3edit", input);
     }
 }

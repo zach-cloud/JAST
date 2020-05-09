@@ -6,7 +6,7 @@
 
     <groupId>JAST</groupId>
     <artifactId>JAST</artifactId>
-    <version>0.1.2</version>
+    <version>1.0.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -63,6 +63,12 @@
             <groupId>com.github.inwc3</groupId>
             <artifactId>JMPQ3</artifactId>
             <version>1.7.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fxmisc.richtext</groupId>
+            <artifactId>richtextfx</artifactId>
+            <version>0.10.5</version>
         </dependency>
     </dependencies>
 

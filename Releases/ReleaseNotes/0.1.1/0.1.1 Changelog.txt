@@ -1,0 +1,9 @@
+Now creates clean rawcode files from war3map.w3u/a/t/etc. No WC3 installation needed. No other app needed to clean them.
+
+Usage:
+"rc in/war3map.w3t out/myRawcodes.txt"
+
+If the generated rawcode names have "TRIGSTR_000" and such on them, then extract the war3map.wts file and do:
+"rc in/war3map.w3t out/myRawcodes.txt in/war3map.wts"
+
+It will merge the wts file automatically and correct the names.

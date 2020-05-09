@@ -109,6 +109,20 @@ public final class CallStatement extends AbstractStatement implements IFunctionR
         return "call " + callArgument.toString();
     }
 
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
+        StringBuilder built = new StringBuilder();
+        addTabs(built, indentationLevel);
+        built.append(this.toString());
+        return built.toString();
+    }
+
     public final String getFunctionName() {
         return functionName;
     }

@@ -120,13 +120,28 @@ public final class WtsString extends AbstractNode {
      */
     @Override
     public final String toString() {
+        String builtString = getKey() + "\n" +
+                "{" + "\n" +
+                value + "\n" +
+                "}";
+        return builtString;
+    }
+
+    /**
+     * Converts this node back to its original form.
+     *
+     * @param indentationLevel Current indentation level
+     * @return Original form of this node (code or string) with indentation
+     */
+    @Override
+    public String toFormattedString(int indentationLevel) {
         StringBuilder builtString = new StringBuilder();
         builtString.append(getKey()).append("\n");
-        if(getComment() != null) {
-            builtString.append(getComment()).append("\n");
-        }
         builtString.append("{").append("\n");
-        builtString.append(value).append("\n");
+        for(String line : value.toString().split("\n")) {
+            addTabs(builtString, indentationLevel);
+            builtString.append(line).append("\n");
+        }
         builtString.append("}");
         return builtString.toString();
     }
