@@ -19,7 +19,6 @@ public class GUI extends Application {
         MenuBar menuBar = makeMenus(controller);
         VBox root = new VBox(menuBar);
         CodeArea jassCodeEditor = setupEditorBox(root, controller);
-        controller.setupHighlighting();
         setupScene(controller, stage, root);
         makeElementsFillScreen(stage, root);
         bindElementSizes(stage, root, jassCodeEditor);
@@ -58,7 +57,7 @@ public class GUI extends Application {
         scene.getStylesheets().add(GUI.class.getResource("jass-keywords.css").toExternalForm());
         stage.setTitle("JASS AST Modifier");
         controller.setupHotkeys(scene);
-        controller.setupAutocomplete(scene);
+        //controller.setupAutocomplete(scene);
     }
 
     private void bindElementSizes(Stage stage, VBox root, CodeArea jassCodeEditor) {
@@ -149,14 +148,17 @@ public class GUI extends Application {
         MenuItem codeButton1 = new MenuItem("Reformat code");
         MenuItem codeButton2 = new MenuItem("De-format code");
         MenuItem codeButton3 = new MenuItem("Optimize GUI Triggers");
+        MenuItem codeButton4 = new MenuItem("Toggle Syntaxt Highlighting");
 
         codeMenu.getItems().add(codeButton1);
         codeMenu.getItems().add(codeButton2);
         codeMenu.getItems().add(codeButton3);
+        codeMenu.getItems().add(codeButton4);
 
         codeButton1.setOnAction(controller::reformatCode);
         codeButton2.setOnAction(controller::minifyCode);
         codeButton3.setOnAction(controller::optimizeGui);
+        codeButton4.setOnAction(controller::toggleSyntaxHighlighting);
 
         menuBar.getMenus().add(codeMenu);
     }

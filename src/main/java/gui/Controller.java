@@ -76,6 +76,8 @@ public class Controller {
     private List<AbstractFunction> commonFunctions;
     private List<Variable> commonVariables;
 
+    private Subscription highlighting = null;
+
     private IExitProgramService exitProgramService;
     private IBlizzardLoaderService blizzardLoaderService;
     private IFileWriterService writerService;
@@ -100,10 +102,16 @@ public class Controller {
         this.treeReplaceService = new TreeReplaceService();
         this.configurations = cfgService.readConfigFile(CFG_PATH);
         if (configurations.containsKey(CURRENT_PATH_READ)) {
-            openFileChooser.setInitialDirectory(new File(configurations.get(CURRENT_PATH_READ)));
+            File currentPath = new File(configurations.get(CURRENT_PATH_READ));
+            if (currentPath.exists()) {
+                openFileChooser.setInitialDirectory(currentPath);
+            }
         }
         if (configurations.containsKey(CURRENT_PATH_WRITE)) {
-            writeFileChooser.setInitialDirectory(new File(configurations.get(CURRENT_PATH_WRITE)));
+            File currentPath = new File(configurations.get(CURRENT_PATH_WRITE));
+            if (currentPath.exists()) {
+                writeFileChooser.setInitialDirectory(currentPath);
+            }
         }
         natives = new ArrayList<>();
         commonVariables = new ArrayList<>();
@@ -183,11 +191,21 @@ public class Controller {
         genericReadText(file);
     }
 
+    public void toggleSyntaxHighlighting(ActionEvent e) {
+        if (highlighting == null) {
+            setupHighlighting();
+            jassCodeEditor.setStyleSpans(0, computeHighlighting(jassCodeEditor.getText()));
+        } else {
+            highlighting.unsubscribe();
+            highlighting = null;
+        }
+    }
+
     public void setupHighlighting() {
         setupKeywords();
-        Subscription cleanupWhenNoLongerNeedIt = jassCodeEditor
+        highlighting = jassCodeEditor
                 .multiPlainChanges()
-                .successionEnds(Duration.ofMillis(100))
+                .successionEnds(Duration.ofMillis(500))
                 .subscribe(ignore -> jassCodeEditor.setStyleSpans(0, computeHighlighting(jassCodeEditor.getText())));
 
         final Pattern whiteSpace = Pattern.compile("^\\s+");
@@ -298,6 +316,7 @@ public class Controller {
                 changeStatus("File loading cancelled");
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to open file: " + ex.getMessage());
         }
     }
@@ -317,6 +336,7 @@ public class Controller {
                 changeStatus("Save cancelled");
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to save file.");
         }
     }
@@ -363,12 +383,13 @@ public class Controller {
 
     private void applyGeneric(boolean dedupe, String cpName, String defaultActivator) {
         try {
-        String activator = JOptionPane.showInputDialog("Enter custom activator (no dash)");
-        ISyntaxTree userTree = SyntaxTree.readTree(jassCodeEditor.getText());
-        ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
-        ISyntaxTree cp = cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
-        jassCodeEditor.replaceText(merge(dedupe, userTree, cp).getString());
+            String activator = JOptionPane.showInputDialog("Enter custom activator (no dash)");
+            ISyntaxTree userTree = SyntaxTree.readTree(jassCodeEditor.getText());
+            ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
+            ISyntaxTree cp = cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
+            jassCodeEditor.replaceText(merge(dedupe, userTree, cp).getString());
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to parse tree.");
         }
     }
@@ -386,6 +407,7 @@ public class Controller {
             time = System.currentTimeMillis() - time;
             changeStatus("Done with merging", time);
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to parse file");
         }
     }
@@ -427,6 +449,7 @@ public class Controller {
             time = System.currentTimeMillis() - time;
             changeStatus("Optimized GUI", time);
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to parse tree.");
         }
     }
@@ -442,6 +465,7 @@ public class Controller {
             time = System.currentTimeMillis() - time;
             changeStatus("Scrambled names", time);
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to parse tree.");
         }
     }
@@ -466,6 +490,7 @@ public class Controller {
                 changeStatus("Formatted WTS code", time);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus(ex.getMessage());
         }
     }
@@ -490,6 +515,7 @@ public class Controller {
                 changeStatus("Wrote WTS code", time);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus(ex.getMessage());
         }
     }
@@ -512,6 +538,7 @@ public class Controller {
             time = System.currentTimeMillis() - time;
             changeStatus("Generated rawcodes", time);
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to generate rawcodes.");
         }
     }
@@ -537,6 +564,7 @@ public class Controller {
             time = System.currentTimeMillis() - time;
             changeStatus("Extracted to /tempFiles", time);
         } catch (Exception ex) {
+            ex.printStackTrace();
             changeStatus("Failed to extract files.");
         }
     }
