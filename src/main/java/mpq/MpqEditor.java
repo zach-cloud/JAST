@@ -26,6 +26,7 @@ public class MpqEditor {
         try {
             mpqEditor = new JMpqEditor(file, MPQOpenOption.FORCE_V0);
         } catch (IOException ex) {
+            ex.printStackTrace();
             throw new RuntimeException("Could not open MPQ. It is either corrupt or non-existent.");
         }
     }
