@@ -39,11 +39,15 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Controller for the GUI elements.
+ */
 public class Controller {
 
     private static final String CFG_PATH = "init.cfg";
-    public static final String CURRENT_PATH_READ = "currentPathRead";
-    public static final String CURRENT_PATH_WRITE = "currentPathWrite";
+    private static final String CURRENT_PATH_READ = "currentPathRead";
+    private static final String CURRENT_PATH_WRITE = "currentPathWrite";
+
     private List<String> natives;
     private List<String> autocompleteEntries;
     private String[] keywords = {"if", "then", "else", "endif", "function", "takes",
@@ -53,6 +57,10 @@ public class Controller {
     private String currentAutocompleteWord = "";
     private Pattern pattern;
 
+    /**
+     * Determines which type of file was opened.
+     * TODO: Do I need this?
+     */
     enum OpenType {
         MPQ,
         SCRIPT,
@@ -72,6 +80,7 @@ public class Controller {
     private String objectsFilePath;
     private String stringsFilePath;
     private String mpqPath;
+    private boolean formattingDesired = false;
 
     private List<AbstractFunction> commonFunctions;
     private List<Variable> commonVariables;
@@ -89,7 +98,24 @@ public class Controller {
     private ITreeReplaceService treeReplaceService;
     private MpqEditor mpqEditor;
 
+    /**
+     * Instantiates all necessary services, etc.
+     */
     public Controller() {
+        createServices();
+        readConfigs();
+        natives = new ArrayList<>();
+        commonVariables = new ArrayList<>();
+        commonFunctions = new ArrayList<>();
+        this.autocompleteEntries = new ArrayList<>();
+        addFilters(openFileChooser);
+        addFilters(writeFileChooser);
+    }
+
+    /**
+     * Creates the required services for running app.
+     */
+    private void createServices() {
         this.exitProgramService = new ExitProgramServiceGUI();
         this.blizzardLoaderService = new BlizzardLoaderService();
         this.writerService = new FileWriterService();
@@ -101,6 +127,12 @@ public class Controller {
         this.hashService = new HashService();
         this.treeReplaceService = new TreeReplaceService();
         this.configurations = cfgService.readConfigFile(CFG_PATH);
+    }
+
+    /**
+     * Reads the desired start directory of the file choosers
+     */
+    private void readConfigs() {
         if (configurations.containsKey(CURRENT_PATH_READ)) {
             File currentPath = new File(configurations.get(CURRENT_PATH_READ));
             if (currentPath.exists()) {
@@ -113,14 +145,13 @@ public class Controller {
                 writeFileChooser.setInitialDirectory(currentPath);
             }
         }
-        natives = new ArrayList<>();
-        commonVariables = new ArrayList<>();
-        commonFunctions = new ArrayList<>();
-        this.autocompleteEntries = new ArrayList<>();
-        addFilters(openFileChooser);
-        addFilters(writeFileChooser);
     }
 
+    /**
+     * Adds appropriate filters to the file chooser
+     *
+     * @param fileChooser File chooser to add filters to
+     */
     private void addFilters(FileChooser fileChooser) {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Any files", "*.*"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Script files (*.j)", "*.j"));
@@ -132,30 +163,48 @@ public class Controller {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text files (*.txt)", "*.txt"));
     }
 
-    public Label getStatusLabel() {
-        return statusLabel;
-    }
-
+    /**
+     * Sets the status label of this controller
+     *
+     * @param statusLabel Status label
+     */
     public void setStatusLabel(Label statusLabel) {
         this.statusLabel = statusLabel;
     }
 
+    /**
+     * Changes the current status
+     *
+     * @param status Desired status
+     */
     private void changeStatus(String status) {
         statusLabel.setText(status);
     }
 
+    /**
+     * Changes the current status
+     *
+     * @param status Desired status
+     * @param time   Time taken to finish the last action
+     */
     private void changeStatus(String status, long time) {
         statusLabel.setText(status + " (" + time + " ms)");
     }
 
-    public CodeArea getJassCodeEditor() {
-        return jassCodeEditor;
-    }
-
+    /**
+     * Sets the available jass code editor
+     *
+     * @param jassCodeEditor The jass code editor
+     */
     public void setJassCodeEditor(CodeArea jassCodeEditor) {
         this.jassCodeEditor = jassCodeEditor;
     }
 
+    /**
+     * Reads the provided file as text
+     *
+     * @param file File to read
+     */
     private void genericReadText(File file) {
         try {
             jassCodeEditor.replaceText(FileUtils.readFileToString(file, Charset.defaultCharset()));
@@ -164,49 +213,67 @@ public class Controller {
         }
     }
 
+    /**
+     * Opens the script file
+     *
+     * @param file Script file
+     */
     private void openScript(File file) {
         this.openType = OpenType.SCRIPT;
         genericReadText(file);
     }
 
+    /**
+     * Opens the objects file
+     *
+     * @param file Objects file
+     */
     private void openObjects(File file) {
         this.openType = OpenType.OBJECTSFILE;
         this.objectsFilePath = file.getAbsolutePath();
         generateRawcodes(null);
     }
 
+    /**
+     * Opens the Strings file
+     *
+     * @param file Strings file
+     */
     private void openStrings(File file) {
         this.openType = OpenType.STRINGS;
         this.stringsFilePath = file.getAbsolutePath();
         genericReadText(file);
     }
 
+    /**
+     * Opens the MPQ file and extracts it
+     *
+     * @param file MPQ file
+     */
     private void openMpq(File file) {
         this.openType = OpenType.MPQ;
         this.mpqPath = file.getAbsolutePath();
     }
 
+    /**
+     * Opens the given text file
+     *
+     * @param file Text file
+     */
     private void openText(File file) {
         this.openType = OpenType.TEXTFILE;
         genericReadText(file);
     }
 
-    public void toggleSyntaxHighlighting(ActionEvent e) {
-        if (highlighting == null) {
-            setupHighlighting();
-            jassCodeEditor.setStyleSpans(0, computeHighlighting(jassCodeEditor.getText()));
-        } else {
-            highlighting.unsubscribe();
-            highlighting = null;
-        }
-    }
-
+    /**
+     * Sets up syntax highlighting
+     */
     public void setupHighlighting() {
         setupKeywords();
-        highlighting = jassCodeEditor
-                .multiPlainChanges()
-                .successionEnds(Duration.ofMillis(500))
-                .subscribe(ignore -> jassCodeEditor.setStyleSpans(0, computeHighlighting(jassCodeEditor.getText())));
+        jassCodeEditor.getVisibleParagraphs().addModificationObserver
+                (
+                        new VisibleParagraphStyler<>(jassCodeEditor, this::computeHighlighting)
+                );
 
         final Pattern whiteSpace = Pattern.compile("^\\s+");
         jassCodeEditor.addEventHandler(KeyEvent.KEY_PRESSED, KE ->
@@ -220,6 +287,11 @@ public class Controller {
         });
     }
 
+    /**
+     * Reads keywords from common/blizzard
+     *
+     * @param tree Keywords tree
+     */
     private void addKeywords(ISyntaxTree tree) {
         for (AbstractFunction function : tree.getScript().getFunctionsSection().getFunctions()) {
             natives.add(function.getName());
@@ -231,6 +303,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Sets up keywords to use in syntax highlighting
+     */
     private void setupKeywords() {
         addKeywords(blizzardLoaderService.loadCommon());
         addKeywords(blizzardLoaderService.loadBlizzard());
@@ -256,6 +331,12 @@ public class Controller {
         );
     }
 
+    /**
+     * Computes syntax highlighting for text
+     *
+     * @param text Text to highlight
+     * @return Highlighted spans
+     */
     private StyleSpans<Collection<String>> computeHighlighting(String text) {
         Matcher matcher = pattern.matcher(text);
         int lastKwEnd = 0;
@@ -279,6 +360,9 @@ public class Controller {
         return spansBuilder.create();
     }
 
+    /**
+     * Prompts the user to open a file
+     */
     public void open(ActionEvent e) {
         try {
             changeStatus("Prompting file open");
@@ -321,6 +405,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Prompts the user to save the file
+     */
     public void save(ActionEvent e) {
         try {
             changeStatus("Prompting file open");
@@ -341,6 +428,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Closes application
+     */
     public void close(ActionEvent e) {
         changeStatus("Exiting program");
         exitProgramService.exit();
@@ -362,25 +452,45 @@ public class Controller {
         ISyntaxTree tree3 = tree1.merge(tree2);
         changeStatus("Merged into " + tree3.getScript().getGlobalsSection().getGlobalVariables().size() + " variables and " + tree3.getScript().getFunctionsSection().getFunctions().size() + " functions.");
         jassCodeEditor.replaceText(tree3.getString());
+        formatIfDesired();
         return tree3;
     }
 
+    /**
+     * Adds NZCP to the map.
+     */
     public void addNzcp(ActionEvent e) {
         applyGeneric(false, "NZCP", "easymode");
     }
 
+    /**
+     * Adds JJCP to the map.
+     */
     public void addJjcp(ActionEvent e) {
         applyGeneric(false, "JJCP", "wc3edit");
     }
 
+    /**
+     * Adds NZCP to the map and deduplicates
+     */
     public void addNzcpD(ActionEvent e) {
         applyGeneric(true, "NZCP", "easymode");
     }
 
+    /**
+     * Adds JJCP to the map and deduplicates
+     */
     public void addJjcpD(ActionEvent e) {
         applyGeneric(true, "JJCP", "wc3edit");
     }
 
+    /**
+     * Applies a generic cheatpack to the map
+     *
+     * @param dedupe           True if CP should be deduped
+     * @param cpName           Name of the pack
+     * @param defaultActivator Default activator of pack
+     */
     private void applyGeneric(boolean dedupe, String cpName, String defaultActivator) {
         try {
             String activator = JOptionPane.showInputDialog("Enter custom activator (no dash)");
@@ -388,12 +498,18 @@ public class Controller {
             ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
             ISyntaxTree cp = cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
             jassCodeEditor.replaceText(merge(dedupe, userTree, cp).getString());
+            formatIfDesired();
         } catch (Exception ex) {
             ex.printStackTrace();
             changeStatus("Failed to parse tree.");
         }
     }
 
+    /**
+     * Merges code files together
+     *
+     * @param dedupe True if code should be deduped, false if not
+     */
     public void genericFileMerge(boolean dedupe) {
         try {
             long time = System.currentTimeMillis();
@@ -403,6 +519,7 @@ public class Controller {
                 ISyntaxTree tree1 = SyntaxTree.readTree(jassCodeEditor.getText());
                 ISyntaxTree tree2 = SyntaxTree.readTree(selectedFile);
                 jassCodeEditor.replaceText(merge(dedupe, tree1, tree2).getString());
+                formatIfDesired();
             }
             time = System.currentTimeMillis() - time;
             changeStatus("Done with merging", time);
@@ -412,32 +529,53 @@ public class Controller {
         }
     }
 
+    /**
+     * Merges scripts together without deduplication
+     */
     public void mergeScript(ActionEvent e) {
         genericFileMerge(false);
     }
 
+    /**
+     * Merges scripts together with deduplication
+     */
     public void mergeScriptD(ActionEvent e) {
         genericFileMerge(true);
     }
 
+    /**
+     * Renames a script entity generically
+     *
+     * @param type Rename type to apply
+     */
     public void rename(TreeReplaceService.ReplacementType type) {
         long time = System.currentTimeMillis();
         String nameOne = JOptionPane.showInputDialog("Enter name to replace");
         String nameTwo = JOptionPane.showInputDialog("Enter name to replace with");
         ISyntaxTree syntaxTree = SyntaxTree.readTree(jassCodeEditor.getText());
         jassCodeEditor.replaceText(treeReplaceService.replace(type, nameOne, nameTwo, syntaxTree).toString());
+        formatIfDesired();
         time = System.currentTimeMillis() - time;
         changeStatus("Renamed successfully", time);
     }
 
+    /**
+     * Renames a script variable
+     */
     public void renameScriptVariable(ActionEvent e) {
         rename(TreeReplaceService.ReplacementType.VARIABLE);
     }
 
+    /**
+     * Renames a script function
+     */
     public void renameScriptFunction(ActionEvent e) {
         rename(TreeReplaceService.ReplacementType.FUNCTION);
     }
 
+    /**
+     * Optimizes GUI conditions into a single condition and inlines it
+     */
     public void optimizeGui(ActionEvent e) {
         try {
             long time = System.currentTimeMillis();
@@ -446,6 +584,7 @@ public class Controller {
             changeStatus("Writing tree");
             String newData = optimizer.optimize(tree).getString();
             jassCodeEditor.replaceText(newData);
+            formatIfDesired();
             time = System.currentTimeMillis() - time;
             changeStatus("Optimized GUI", time);
         } catch (Exception ex) {
@@ -454,6 +593,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Scrambles all variable and function names
+     */
     public void scrambleNames(ActionEvent e) {
         try {
             long time = System.currentTimeMillis();
@@ -462,6 +604,7 @@ public class Controller {
             changeStatus("Writing tree");
             String newData = tree.deduplicate(new RandomNameGeneratorService()).getString();
             jassCodeEditor.replaceText(newData);
+            formatIfDesired();
             time = System.currentTimeMillis() - time;
             changeStatus("Scrambled names", time);
         } catch (Exception ex) {
@@ -470,7 +613,20 @@ public class Controller {
         }
     }
 
+    /**
+     * If formatting is set to true, will format the code. else does nothing.
+     */
+    private void formatIfDesired() {
+        if (formattingDesired) {
+            reformatCode(null);
+        }
+    }
+
+    /**
+     * Reformats the code into a readable format
+     */
     public void reformatCode(ActionEvent e) {
+        formattingDesired = true;
         try {
             if (openType == OpenType.SCRIPT || openType == OpenType.TEXTFILE) {
                 long time = System.currentTimeMillis();
@@ -495,7 +651,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Minifies/de-formats the code
+     */
     public void minifyCode(ActionEvent e) {
+        formattingDesired = false;
         try {
             if (openType == OpenType.SCRIPT || openType == OpenType.TEXTFILE) {
                 long time = System.currentTimeMillis();
@@ -520,6 +680,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Generates rawcodes from an open objects file
+     * Or prompts open of an objects file if not selected already
+     */
     public void generateRawcodes(ActionEvent e) {
         try {
             long time = System.currentTimeMillis();
@@ -543,6 +707,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Extracts
+     *
+     * @param e
+     */
     public void extractMpq(ActionEvent e) {
         try {
             long time = System.currentTimeMillis();

@@ -24,7 +24,7 @@ public class GUI extends Application {
         bindElementSizes(stage, root, jassCodeEditor);
         stage.show();
         setBackgroundColor(jassCodeEditor);
-
+        controller.setupHighlighting();
     }
 
     private MenuBar makeMenus(Controller controller) {
@@ -148,17 +148,14 @@ public class GUI extends Application {
         MenuItem codeButton1 = new MenuItem("Reformat code");
         MenuItem codeButton2 = new MenuItem("De-format code");
         MenuItem codeButton3 = new MenuItem("Optimize GUI Triggers");
-        MenuItem codeButton4 = new MenuItem("Toggle Syntaxt Highlighting");
 
         codeMenu.getItems().add(codeButton1);
         codeMenu.getItems().add(codeButton2);
         codeMenu.getItems().add(codeButton3);
-        codeMenu.getItems().add(codeButton4);
 
         codeButton1.setOnAction(controller::reformatCode);
         codeButton2.setOnAction(controller::minifyCode);
         codeButton3.setOnAction(controller::optimizeGui);
-        codeButton4.setOnAction(controller::toggleSyntaxHighlighting);
 
         menuBar.getMenus().add(codeMenu);
     }
