@@ -1,0 +1,3 @@
+Fix a problem with syntax highlighting performance
+Option to enable/disable syntax highlighting removed
+Syntax highlighting on by default
