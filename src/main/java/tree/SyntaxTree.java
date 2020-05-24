@@ -9,8 +9,6 @@ import services.RandomNameGeneratorService;
 import nodes.AbstractFunction;
 import nodes.j.Script;
 import services.PreprocessFileService;
-import services.SyntaxCheckerService;
-import interfaces.ISyntaxChecker;
 import interfaces.ISyntaxTree;
 import nodes.j.Variable;
 import org.apache.commons.io.FileUtils;
@@ -36,8 +34,6 @@ public final class SyntaxTree implements ISyntaxTree {
      */
     public SyntaxTree(Script script) {
         this.script = script;
-        ISyntaxChecker checker = new SyntaxCheckerService();
-        checker.syntaxCheck(this);
     }
 
     /**
@@ -52,8 +48,6 @@ public final class SyntaxTree implements ISyntaxTree {
         try {
             Script script = new Script(preprocessor.preprocessFile(new Scanner(input)), context);
             ISyntaxTree tree = new SyntaxTree(script);
-            ISyntaxChecker checker = new SyntaxCheckerService();
-            checker.syntaxCheck(tree);
             return tree;
         } catch (Exception ex) {
             throw new ParsingException("Failed to parse tree: " + ex.getMessage() + ". Last line: " + context.getLastLine());
