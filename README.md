@@ -10,21 +10,11 @@ This is a multi-purpose and open-source tool for modifying JASS Script files.
 - Basic syntax checking: makes sure there are no obvious compile errors in the script file.
 - Variable and function renamer: rename anything in the file without any of the typical problems that a find/replace would introduce.
 - String Hash calculation and breaker: find StringHash of a plaintext string, and brute force a hashed value
-- MPQ Extraction and Import
-- Clean rawcode generation
-
-### Sample usage
-
-Extract your war3map.j file into the same directory as JAST.jar
-Start the jar: "java -jar JAST.jar"
-You can type "help" for the commands helpfile
-Type "nzcp war3map.j myActivator out/war3map.j" to add NZCP to the given war3map.j
-Or: "jjcp war3map.j myActivator out/war3map.j" to add JJCP to the given war3map.j
-Then import out/war3map.j back into the map (as war3map.j)
-
-Did you write a custom command and want to add it? Just make sure to have it in the same folder as this program, with a globals/endlgobals/main section, and then do:
-"merge war3map.j myCc.j out/war3map.j"
-And it merges the code for you!
+- MPQ Extraction
+- Clean rawcode generation: Create rawcodes from object files
+- Syntax checking: Uses PJASS for advanced syntax checking
+- Un-hexing code: No more annoying $HEX errors.
+- Script formatting: Indents code to the appropriate values
 
 ### Possible Planned Features
 
@@ -34,10 +24,7 @@ And it merges the code for you!
 - WTS String Merging: Combines the war3map.wts file back into the war3map.j file so that you can see what the strings are.
 - Logical Single Player Detection: Attempts to search for Single Player conditions based on some given user inputs
 - Logical Anticheat Detection: Attempts to search for anti-cheats
-- More advanced syntax checking and integration with common.j and blizzard.j
-- Format script files: corrects the indentation of a script to make it more readable
 - Deobfuscate: Perform some basic code de-obfuscation in order to make it more readable. Applies some basic logic rules.
-- Creating a user interface for this tool and eventually creating a fully funcitonal IDE
 - Integrate with war3map.wtg writer to restore GUI triggers from script
 - And more!
 
@@ -47,6 +34,7 @@ And it merges the code for you!
 - Portable: Any computer with Java installed can run this program. No redistributable, DLLs, or WC3 Install is required.
 - Programmatically robust: Uses a Abstract Syntax Tree internally, which is how modern IDEs parse their code. Written with test-driven design, and tested on real war3map.j files. This sort of parsing will not be confused by things like comments and fake main methods.
 - Open source: If you want to know how something is done, just check the source code.
+- Simple, clean, easy-to-use user interface.
 
 ### Feedback & Contributions
 
