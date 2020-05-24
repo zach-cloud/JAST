@@ -98,6 +98,7 @@ public class Controller {
     private IRawcodeService rawcodeService;
     private ITreeReplaceService treeReplaceService;
     private ISyntaxChecker syntaxCheckerService;
+    private IUnhexService unhexService;
     private MpqEditor mpqEditor;
 
     /**
@@ -129,6 +130,7 @@ public class Controller {
         this.hashService = new HashService();
         this.treeReplaceService = new TreeReplaceService();
         this.syntaxCheckerService = new SyntaxCheckerService(writerService);
+        this.unhexService = new UnhexService();
         this.configurations = cfgService.readConfigFile(CFG_PATH);
     }
 
@@ -887,5 +889,12 @@ public class Controller {
                         SyntaxTree.readTree(jassCodeEditor.getText()));
 
         resultWindow.start(new Stage());
+    }
+
+    public void unhex(ActionEvent e) {
+        ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
+        unhexService.unhex(tree);
+        jassCodeEditor.replaceText(tree.toString());
+        formatIfDesired();
     }
 }

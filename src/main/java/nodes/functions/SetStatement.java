@@ -7,6 +7,8 @@ import nodes.AbstractStatement;
 import exception.ParsingException;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -125,5 +127,11 @@ public final class SetStatement extends AbstractStatement implements IFunctionRe
 
     public final String getValue() {
         return variableArgument.toString();
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        arguments.addAll(variableArgument.getArguments());
+        return arguments;
     }
 }

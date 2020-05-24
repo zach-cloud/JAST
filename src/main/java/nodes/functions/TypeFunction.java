@@ -7,6 +7,8 @@ import nodes.AbstractFunction;
 import nodes.AbstractNode;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -115,4 +117,8 @@ public final class TypeFunction extends AbstractFunction implements IFunctionRen
         return name;
     }
 
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        return arguments;
+    }
 }

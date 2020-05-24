@@ -7,6 +7,8 @@ import nodes.AbstractStatement;
 import exception.ParsingException;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -119,5 +121,11 @@ public final class ReturnStatement extends AbstractStatement implements IFunctio
 
     public final String getReturnBody() {
         return returnArgument.toString();
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        arguments.addAll(returnArgument.getArguments());
+        return arguments;
     }
 }

@@ -50,7 +50,7 @@ Feature: Test the If statement node
     When If Statement is read
     Then If Statements should be:
     """
-    if nd>0 then
+    if nd > 0 then
     if Jd == PLAYER_STATE_RESOURCE_GOLD then
     set md = PLAYER_STATE_GOLD_GATHERED
     call SetPlayerState(td,md,GetPlayerState(td,md) + nd)

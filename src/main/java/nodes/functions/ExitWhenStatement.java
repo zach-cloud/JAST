@@ -7,6 +7,8 @@ import nodes.AbstractStatement;
 import exception.ParsingException;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -117,5 +119,11 @@ public final class ExitWhenStatement extends AbstractStatement implements IFunct
 
     public final Argument getExitwhenCondition() {
         return exitwhenCondition;
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        arguments.addAll(exitwhenCondition.getArguments());
+        return arguments;
     }
 }

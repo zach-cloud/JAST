@@ -1,0 +1,1 @@
+java -Xmx1g -jar JAST-1.0.2.jar gui

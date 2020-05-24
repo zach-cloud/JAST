@@ -427,4 +427,30 @@ public final class IfStatement extends AbstractStatement implements IFunctionRen
     public final List<Statements> getElseifStatements() {
         return Collections.unmodifiableList(elseifStatements);
     }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        if(condition != null) {
+            arguments.addAll(condition.getArguments());
+        }
+        if(thenStatements != null) {
+            for(Argument arg : thenStatements.getArguments()) {
+                arguments.addAll(arg.getArguments());
+            }
+        }
+        if(elseStatements != null) {
+            for(Argument arg : elseStatements.getArguments()) {
+                arguments.addAll(arg.getArguments());
+            }
+        }
+        for(Argument oldArgument : elseifConditions) {
+            arguments.addAll(oldArgument.getArguments());
+        }
+        for(Statements oldStatements : elseifStatements) {
+            for(Argument arg : oldStatements.getArguments()) {
+                arguments.addAll(arg.getArguments());
+            }
+        }
+        return arguments;
+    }
 }

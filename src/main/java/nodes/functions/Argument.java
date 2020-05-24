@@ -3,7 +3,9 @@ package nodes.functions;
 import exception.ParsingException;
 import interfaces.IFunctionRenameable;
 import interfaces.IVariableRenameable;
+import nodes.AbstractFunction;
 import nodes.AbstractNode;
+import nodes.j.Variable;
 import tree.TreeContext;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,6 +177,14 @@ public final class Argument extends AbstractNode implements IFunctionRenameable,
     @Override
     protected final void readNode() {
         String line = readLine();
+        line = line.replace("<", "< ");
+        line = line.replaceAll("< =", "<=");
+        line = line.replace(">", "> ");
+        line = line.replaceAll("> =", ">=");
+        readIntoArgument(line);
+    }
+
+    private final void readIntoArgument(String line) {
         line = line.trim();
         line = formatSpacing(line);
         // Handle the annoying "is it < or <=" case by using spacing
@@ -446,5 +456,28 @@ public final class Argument extends AbstractNode implements IFunctionRenameable,
 
     public Argument getNotPart() {
         return notPart;
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> baseArguments = new ArrayList<>();
+
+        if(basicArgument != null) {
+            baseArguments.add(this);
+        } else if(aggregation != null && !aggregation.isEmpty()) {
+            for(Argument arg : aggregation) {
+                baseArguments.addAll(arg.getArguments());
+            }
+        } else if(functionCall != null) {
+            baseArguments.add(this);
+            for(Argument arg : functionCall.getArguments()) {
+                baseArguments.addAll(arg.getArguments());
+            }
+        }
+
+        return baseArguments;
+    }
+
+    public void setArgument(String line) {
+        readIntoArgument(line);
     }
 }

@@ -39,15 +39,15 @@ Feature: Test the Loop Statement node
     Then Loop Statement should be:
     """
     loop
-    exitwhen gY>Gw
+    exitwhen gY > Gw
     loop
-    exitwhen RY>12
+    exitwhen RY > 12
     call SaveStr(cw,vY,RY,null)
     set RY = RY + 1
     endloop
     endloop
     """
-    Then Loop exit condition block should be "gY>Gw"
+    Then Loop exit condition block should be "gY > Gw"
     Then Loop should have 2 statements
 
   @LoopStatement

@@ -7,6 +7,8 @@ import nodes.AbstractStatement;
 import exception.ParsingException;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -147,5 +149,11 @@ public final class LoopStatement extends AbstractStatement implements IFunctionR
 
     public final Statements getStatements() {
         return statements;
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        arguments.addAll(statements.getArguments());
+        return arguments;
     }
 }

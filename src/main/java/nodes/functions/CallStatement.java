@@ -7,6 +7,8 @@ import nodes.AbstractStatement;
 import exception.ParsingException;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -125,5 +127,11 @@ public final class CallStatement extends AbstractStatement implements IFunctionR
 
     public final String getFunctionName() {
         return functionName;
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        arguments.addAll(callArgument.getArguments());
+        return arguments;
     }
 }

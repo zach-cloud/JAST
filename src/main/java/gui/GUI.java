@@ -148,17 +148,20 @@ public class GUI extends Application {
         MenuItem codeButton1 = new MenuItem("Reformat code");
         MenuItem codeButton2 = new MenuItem("De-format code");
         MenuItem codeButton3 = new MenuItem("Optimize GUI Triggers");
-        MenuItem codeButton4 = new MenuItem("Syntax check");
+        MenuItem codeButton4 = new MenuItem("Syntax check code");
+        MenuItem codeButton5 = new MenuItem("Un-hex code");
 
         codeMenu.getItems().add(codeButton1);
         codeMenu.getItems().add(codeButton2);
         codeMenu.getItems().add(codeButton3);
         codeMenu.getItems().add(codeButton4);
+        codeMenu.getItems().add(codeButton5);
 
         codeButton1.setOnAction(controller::reformatCode);
         codeButton2.setOnAction(controller::minifyCode);
         codeButton3.setOnAction(controller::optimizeGui);
         codeButton4.setOnAction(controller::syntaxCheck);
+        codeButton5.setOnAction(controller::unhex);
 
         menuBar.getMenus().add(codeMenu);
     }

@@ -8,6 +8,8 @@ import nodes.j.Variable;
 import exception.ParsingException;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -128,5 +130,13 @@ public final class LocalStatement extends AbstractStatement implements IFunction
 
     public final boolean isArray() {
         return localVariable.isArray();
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        if(localVariable.getInitialValue() != null) {
+            arguments.addAll(localVariable.getInitialValue().getArguments());
+        }
+        return arguments;
     }
 }

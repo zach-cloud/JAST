@@ -357,7 +357,7 @@ Feature: Test the Function node
     local string ss2s=""
     local integer is2s=StringLength(s2s)
     loop
-    exitwhen i2i>is2s
+    exitwhen i2i > is2s
     if SubString(s2s,i2i,i2i + 1) == "*" then
     set ss2s = ss2s + "|cff"
     elseif SubString(s2s,i2i,i2i + 1) == "-" then
@@ -379,7 +379,7 @@ Feature: Test the Function node
     local string ss2s=""
     local integer is2s=StringLength(s2s)
     loop
-    exitwhen i2i>is2s
+    exitwhen i2i > is2s
     if SubString(s2s,i2i,i2i + 1) == "*" then
     set ss2s = ss2s + "|cff"
     elseif SubString(s2s,i2i,i2i + 1) == "-" then
