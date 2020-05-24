@@ -1,5 +1,6 @@
 package services;
 
+import interfaces.IFileWriterService;
 import nodes.AbstractFunction;
 import nodes.AbstractStatement;
 import nodes.functions.Function;
@@ -13,7 +14,12 @@ import nodes.j.Variable;
 import exception.SyntaxErrorException;
 import interfaces.ISyntaxChecker;
 import interfaces.ISyntaxTree;
+import tree.SyntaxTree;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,45 +28,87 @@ import java.util.Set;
  */
 public class SyntaxCheckerService implements ISyntaxChecker {
 
+    private IFileWriterService fileWriterService;
+
+    public SyntaxCheckerService() {
+        this.fileWriterService = new FileWriterService();
+    }
+
+    public SyntaxCheckerService(IFileWriterService fileWriterService) {
+        this.fileWriterService = fileWriterService;
+    }
+
     /**
      * Checks the tree for valid syntax.
      *
      * @param tree  Syntax tree to check
      */
     @Override
-    public void syntaxCheck(ISyntaxTree tree) throws SyntaxErrorException {
-        Script script = tree.getScript();
-        GlobalsSection globalsSection = script.getGlobalsSection();
-        FunctionsSection functionsSection = script.getFunctionsSection();
-        checkVariableCollisions(globalsSection);
-        checkFunctionsCollisions(functionsSection);
+    public String syntaxCheck(ISyntaxTree tree) throws SyntaxErrorException {
+        // Check that pjass exists
+        checkForPjass();
+        // Make temp file containing code
+        deleteTempFile();
+        fileWriterService.write(tree, "PJASS/tmp.j");
+        String result = executePjassCommands();
+        deleteTempFile();
+        return result;
     }
 
-    /**
-     * Checks for variable name collisions in the globals section.
-     *
-     * @param globals Globals section
-     */
-    private void checkVariableCollisions(GlobalsSection globals) throws SyntaxErrorException {
-        Set<String> tempSet = new HashSet<>();
-        for(Variable variable : globals.getGlobalVariables()) {
-            if(!tempSet.add(variable.getName())) {
-                throw new SyntaxErrorException("Variable collision at: " + variable.toString());
+    private String executePjassCommands() {
+        try {
+            String userPath = System.getProperty("user.dir") + "/";
+            Runtime rt = Runtime.getRuntime();
+            String command = userPath + "PJASS/pjass.exe " + userPath + "PJASS/common.j " + userPath + "PJASS/blizzard.j " + userPath + "PJASS/common.ai " + userPath + "PJASS/tmp.j ";
+            Process proc = rt.exec(command);
+
+            BufferedReader stdInput = new BufferedReader(new
+                    InputStreamReader(proc.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new
+                    InputStreamReader(proc.getErrorStream()));
+
+            StringBuilder result = new StringBuilder();
+
+            addStreamToStringBuilder(stdInput, result);
+            addStreamToStringBuilder(stdError, result);
+
+            return result.toString();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return ex.getMessage();
+        }
+    }
+
+    private void addStreamToStringBuilder(BufferedReader stream, StringBuilder result) throws IOException {
+        String s = null;
+        while ((s = stream.readLine()) != null) {
+            result.append(s).append("\n");
+        }
+    }
+
+    private void deleteTempFile() {
+        File tempFile = new File("PJASS/tmp.j");
+        if(tempFile.exists()) {
+            tempFile.delete();
+        }
+    }
+
+    private void checkForPjass() {
+        String[] expectedFiles = {"PJASS/pjass.exe",
+                "PJASS/blizzard.j", "PJASS/common.j",
+                "PJASS/common.ai"};
+        for(String expectedFileName : expectedFiles) {
+            File expectedFile = new File(expectedFileName);
+            if(!expectedFile.exists()) {
+                throw new IllegalStateException("File does not exist: " + expectedFile.getAbsolutePath());
             }
         }
     }
 
-    /**
-     * Checks for function name collisions in the globals section.
-     *
-     * @param functions Functions section
-     */
-    private void checkFunctionsCollisions(FunctionsSection functions) throws SyntaxErrorException {
-        Set<String> tempSet = new HashSet<>();
-        for(AbstractFunction function : functions.getFunctions()) {
-            if(!tempSet.add(function.getName())) {
-                throw new SyntaxErrorException("Function collision at: " + function.toString());
-            }
-        }
+    public static void main(String[] args) {
+        SyntaxCheckerService syntaxCheckerService = new SyntaxCheckerService();
+        ISyntaxTree tree = SyntaxTree.readTree(new File("badSyntax1"));
+        System.out.println(syntaxCheckerService.syntaxCheck(tree));
     }
 }

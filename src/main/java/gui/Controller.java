@@ -15,6 +15,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
 import model.InputModel;
 import mpq.MpqEditor;
 import nodes.AbstractFunction;
@@ -96,6 +97,7 @@ public class Controller {
     private IHashService hashService;
     private IRawcodeService rawcodeService;
     private ITreeReplaceService treeReplaceService;
+    private ISyntaxChecker syntaxCheckerService;
     private MpqEditor mpqEditor;
 
     /**
@@ -126,6 +128,7 @@ public class Controller {
         this.hashBreakService = new HashBreakService();
         this.hashService = new HashService();
         this.treeReplaceService = new TreeReplaceService();
+        this.syntaxCheckerService = new SyntaxCheckerService(writerService);
         this.configurations = cfgService.readConfigFile(CFG_PATH);
     }
 
@@ -876,5 +879,13 @@ public class Controller {
 
     private void showAutocomplete() {
 
+    }
+
+    public void syntaxCheck(ActionEvent e) {
+        SyntaxCheckResultWindow resultWindow =
+                new SyntaxCheckResultWindow(syntaxCheckerService,
+                        SyntaxTree.readTree(jassCodeEditor.getText()));
+
+        resultWindow.start(new Stage());
     }
 }
