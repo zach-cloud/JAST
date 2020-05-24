@@ -131,7 +131,7 @@ public final class CallStatement extends AbstractStatement implements IFunctionR
 
     public final List<Argument> getArguments() {
         List<Argument> arguments = new ArrayList<>();
-        arguments.add(callArgument);
+        arguments.addAll(callArgument.getArguments());
         return arguments;
     }
 }

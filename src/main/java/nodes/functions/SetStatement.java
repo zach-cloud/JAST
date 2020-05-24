@@ -131,7 +131,7 @@ public final class SetStatement extends AbstractStatement implements IFunctionRe
 
     public final List<Argument> getArguments() {
         List<Argument> arguments = new ArrayList<>();
-        arguments.add(variableArgument);
+        arguments.addAll(variableArgument.getArguments());
         return arguments;
     }
 }

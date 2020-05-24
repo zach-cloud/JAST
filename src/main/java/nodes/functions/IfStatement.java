@@ -431,19 +431,25 @@ public final class IfStatement extends AbstractStatement implements IFunctionRen
     public final List<Argument> getArguments() {
         List<Argument> arguments = new ArrayList<>();
         if(condition != null) {
-            arguments.add(condition);
+            arguments.addAll(condition.getArguments());
         }
         if(thenStatements != null) {
-            arguments.addAll(thenStatements.getArguments());
+            for(Argument arg : thenStatements.getArguments()) {
+                arguments.addAll(arg.getArguments());
+            }
         }
         if(elseStatements != null) {
-            arguments.addAll(elseStatements.getArguments());
+            for(Argument arg : elseStatements.getArguments()) {
+                arguments.addAll(arg.getArguments());
+            }
         }
         for(Argument oldArgument : elseifConditions) {
-            arguments.add(oldArgument);
+            arguments.addAll(oldArgument.getArguments());
         }
         for(Statements oldStatements : elseifStatements) {
-            arguments.addAll(oldStatements.getArguments());
+            for(Argument arg : oldStatements.getArguments()) {
+                arguments.addAll(arg.getArguments());
+            }
         }
         return arguments;
     }

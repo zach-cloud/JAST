@@ -177,6 +177,10 @@ public final class Argument extends AbstractNode implements IFunctionRenameable,
     @Override
     protected final void readNode() {
         String line = readLine();
+        line = line.replace("<", "< ");
+        line = line.replaceAll("< =", "<=");
+        line = line.replace(">", "> ");
+        line = line.replaceAll("> =", ">=");
         readIntoArgument(line);
     }
 

@@ -180,7 +180,9 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
         }
 
         for(Argument argument : baseArguments) {
-            finalArguments.addAll(argument.getArguments());
+            if(argument != null) {
+                finalArguments.addAll(argument.getArguments());
+            }
         }
 
         return finalArguments;

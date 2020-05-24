@@ -181,7 +181,9 @@ public final class FunctionCall extends AbstractNode implements IFunctionRenamea
 
     public final List<Argument> getArguments() {
         List<Argument> arguments = new ArrayList<>();
-        arguments.addAll(argumentsList);
+        for(Argument argument : argumentsList) {
+            arguments.addAll(argument.getArguments());
+        }
         return arguments;
     }
 }

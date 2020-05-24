@@ -53,5 +53,5 @@ Feature: Test the Local Statement node
     When Local statement is read
     Then Local statement should be:
     """
-    local boolean Vrv=(Vev == ITEM_TYPE_POWERUP and GetUnitAbilityLevel(u,'A0HP')>0)
+    local boolean Vrv=(Vev == ITEM_TYPE_POWERUP and GetUnitAbilityLevel(u,'A0HP') > 0)
     """

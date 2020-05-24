@@ -123,7 +123,7 @@ public final class ExitWhenStatement extends AbstractStatement implements IFunct
 
     public final List<Argument> getArguments() {
         List<Argument> arguments = new ArrayList<>();
-        arguments.add(exitwhenCondition);
+        arguments.addAll(exitwhenCondition.getArguments());
         return arguments;
     }
 }

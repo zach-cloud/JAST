@@ -125,7 +125,7 @@ public final class ReturnStatement extends AbstractStatement implements IFunctio
 
     public final List<Argument> getArguments() {
         List<Argument> arguments = new ArrayList<>();
-        arguments.add(returnArgument);
+        arguments.addAll(returnArgument.getArguments());
         return arguments;
     }
 }
