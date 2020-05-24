@@ -3,10 +3,16 @@ package nodes.j;
 import interfaces.IFunctionRenameable;
 import interfaces.IMergable;
 import interfaces.IVariableRenameable;
+import nodes.AbstractFunction;
 import nodes.AbstractNode;
 import exception.ParsingException;
+import nodes.functions.Argument;
+import nodes.functions.Function;
+import nodes.functions.Statements;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -159,5 +165,24 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
         GlobalsSection newGlobals = (GlobalsSection)this.globalsSection.merge(otherScript.globalsSection);
         FunctionsSection newFunctions = (FunctionsSection)this.functionsSection.merge(otherScript.functionsSection);
         return new Script(newGlobals, newFunctions, context);
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> baseArguments = new ArrayList<>();
+        List<Argument> finalArguments = new ArrayList<>();
+
+        for(Variable variable : globalsSection.getGlobalVariables()) {
+            baseArguments.add(variable.getInitialValue());
+        }
+
+        for(AbstractFunction function : functionsSection.getFunctions()) {
+            baseArguments.addAll(function.getArguments());
+        }
+
+        for(Argument argument : baseArguments) {
+            finalArguments.addAll(argument.getArguments());
+        }
+
+        return finalArguments;
     }
 }

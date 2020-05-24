@@ -6,8 +6,11 @@ import interfaces.IMergable;
 import interfaces.IVariableRenameable;
 import nodes.AbstractFunction;
 import nodes.AbstractNode;
+import nodes.AbstractStatement;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -173,5 +176,11 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
         }
         Function other = (Function) obj;
         return this.toString().equals(other.toString());
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        arguments.addAll(statements.getArguments());
+        return arguments;
     }
 }

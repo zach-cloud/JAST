@@ -2,8 +2,10 @@ package nodes;
 
 import interfaces.IFunctionRenameable;
 import interfaces.IVariableRenameable;
+import nodes.functions.Argument;
 import tree.TreeContext;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -37,4 +39,6 @@ public abstract class AbstractFunction extends AbstractNode implements IFunction
      * @return  Function name.
      */
     public abstract String getName();
+
+    public abstract List<Argument> getArguments();
 }

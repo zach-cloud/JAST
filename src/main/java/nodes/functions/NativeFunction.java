@@ -7,6 +7,8 @@ import exception.ParsingException;
 import nodes.AbstractNode;
 import tree.TreeContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -134,5 +136,10 @@ public final class NativeFunction extends AbstractFunction implements IFunctionR
 
     public final Output getOutput() {
         return output;
+    }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        return arguments;
     }
 }

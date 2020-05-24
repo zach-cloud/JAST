@@ -349,4 +349,12 @@ public final class Statements extends AbstractNode implements IMergable, IFuncti
         }
         return new Statements(newStatements, context);
     }
+
+    public final List<Argument> getArguments() {
+        List<Argument> arguments = new ArrayList<>();
+        for(AbstractStatement statement : getStatements()) {
+            arguments.addAll(statement.getArguments());
+        }
+        return arguments;
+    }
 }

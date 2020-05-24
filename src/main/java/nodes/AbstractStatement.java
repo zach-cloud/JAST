@@ -2,6 +2,7 @@ package nodes;
 
 import interfaces.IFunctionRenameable;
 import interfaces.IVariableRenameable;
+import nodes.functions.Argument;
 import nodes.functions.Statements;
 import tree.TreeContext;
 
@@ -45,4 +46,6 @@ public abstract class AbstractStatement extends AbstractNode implements IFunctio
     public abstract AbstractStatement inline(String functionName, String newText);
 
     public abstract boolean usesAsFunction(String functionName);
+
+    public abstract List<Argument> getArguments();
 }
