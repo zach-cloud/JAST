@@ -3,3 +3,4 @@ Open source resources used:
 - JMPQ3 ( https://github.com/inwc3/JMPQ3 ) - MPQ Extraction
 - RichTextFX ( https://github.com/FXMisc/RichTextFX/issues ) - JASS Code Editor area
 - Apache Commons
+- PJASS (Syntax Checker)

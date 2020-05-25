@@ -1,0 +1,3 @@
+Try to fix some additional bugs with the syntax highlighting crashing
+Added timing to the unhex command
+Adjusted colors of syntax highlighting to match JASSCaft's
