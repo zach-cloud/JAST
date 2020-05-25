@@ -9,6 +9,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to help automatically create a Release Package of JAST
+ */
 public class JASTDeployer {
 
     private final String VERSION = "1.0.3";
@@ -31,10 +34,17 @@ public class JASTDeployer {
     private final String RUN_DESTINATION = RELEASES_DESTINATION + "run.sh";
     private final String RUN_CLI_DESTINATION = RELEASES_DESTINATION + "run-cli.sh";
 
+    /**
+     * Default constructor. Nothing to initialize.
+     */
     public JASTDeployer() {
 
     }
 
+    /**
+     * Copies all JAST-related files into a ReleasePackage directory
+     * Assumed that "mvn package" was already executed
+     */
     public void run() throws IOException {
         copyFile(JAR_PATH, JAR_DESTINATION);
         copyFile(LICENSE_PATH, LICENSE_DESTINATION);
@@ -45,6 +55,12 @@ public class JASTDeployer {
         copyFolder(PJASS_PATH, PJASS_DESTINATION);
     }
 
+    /**
+     * Copies all files within a folder.
+     *
+     * @param path          Source folder
+     * @param destination   Destination folder
+     */
     private void copyFolder(String path, String destination) throws IOException {
         File origin = new File(path);
         List<File> recursiveFiles = new ArrayList<>();
@@ -55,10 +71,23 @@ public class JASTDeployer {
         }
     }
 
+    /**
+     * Writes the string to a file
+     *
+     * @param contents      Data to write
+     * @param destination   Destination file
+     */
     private void writeFileContents(String contents, String destination) throws IOException {
         FileUtils.write(new File(destination), contents, Charset.defaultCharset());
+        System.out.println("Wrote file: " + destination);
     }
 
+    /**
+     * Copies a file
+     *
+     * @param path          Source file
+     * @param destination   Destination file
+     */
     private void copyFile(String path, String destination) throws IOException {
         System.out.println("Copying file: " + path + " to: " + destination);
         File file = new File(path);
@@ -77,6 +106,11 @@ public class JASTDeployer {
 
     }
 
+    /**
+     * Main method to execute and deploy a JAST package.
+     *
+     * @param args  Ignored
+     */
     public static void main(String[] args) throws IOException {
         new JASTDeployer().run();
     }
