@@ -1,28 +1,49 @@
-.keyword {
-    -fx-fill: purple;
+.virtual-flow {
+    -fx-background-color: #273045;
+}
+
+.styled-text-area .text{
+    -fx-fill:#e0dbdf;
+}
+
+.lineno {
+    -fx-background-color: #333851;
+}
+
+.lineno .text {
+    -fx-fill: #666c82;
+}
+
+.styled-text-area .text.keyword {
+    -fx-fill: #cfb47e;
     -fx-font-weight: bold;
 }
-.native {
-    -fx-fill: blue;
+.styled-text-area .text.native {
+    -fx-fill: #94be9d;
     -fx-font-weight: bold;
 }
-.semicolon {
+.styled-text-area .text.type {
+    -fx-fill: #c05f61;
     -fx-font-weight: bold;
 }
-.paren {
-    -fx-fill: firebrick;
+.styled-text-area .text.semicolon {
     -fx-font-weight: bold;
 }
-.bracket {
-    -fx-fill: darkgreen;
+.styled-text-area .text.paren {
+    -fx-fill: #cfb47e;
     -fx-font-weight: bold;
 }
-.string {
-    -fx-fill: green;
+.styled-text-area .text.bracket {
+    -fx-fill: #cfb47e;
+    -fx-font-weight: bold;
 }
-.comment {
-	-fx-fill: gray;
+.styled-text-area .text.string {
+    -fx-fill: #6291ba;
 }
+.styled-text-area .text.comment {
+	-fx-fill: #929497;
+}
+
 .paragraph-box:has-caret {
-    -fx-background-color: #f2f9fc;
+    -fx-background-color: #333851;
 }
