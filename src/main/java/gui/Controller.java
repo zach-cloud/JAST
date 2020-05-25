@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 /**
  * Controller for the GUI elements.
  */
-public class Controller {
+public final class Controller {
 
     private static final String CFG_PATH = "init.cfg";
     private static final String CURRENT_PATH_READ = "currentPathRead";
