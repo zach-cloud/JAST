@@ -8,7 +8,8 @@ import org.reactfx.collection.ListModification;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-class VisibleParagraphStyler<PS, SEG, S> implements Consumer<ListModification> {
+public final class VisibleParagraphStyler<PS, SEG, S> implements Consumer<ListModification> {
+
     private final GenericStyledArea<PS, SEG, S> area;
     private final Function<String, StyleSpans<S>> computeStyles;
     private int prevParagraph, prevTextLength;

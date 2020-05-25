@@ -1,5 +1,6 @@
 package mpq;
 
+import helper.FileHelper;
 import systems.crigges.jmpq3.JMpqEditor;
 import systems.crigges.jmpq3.JMpqException;
 import systems.crigges.jmpq3.MPQOpenOption;
@@ -40,26 +41,6 @@ public class MpqEditor {
         this.mpqEditor = editor;
     }
 
-    /**
-     * Finds all files under a folder recursively.
-     *
-     * @param start         Folder to start at
-     * @param foldersList   Empty folder list to store results in
-     * @param filesList     Empty files ist to store results in
-     */
-    private static void recursiveFolderDiscovery(File start, List<File> foldersList, List<File> filesList) {
-        if (start.isDirectory()) {
-            foldersList.add(start);
-            File[] files = start.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    recursiveFolderDiscovery(file, foldersList, filesList);
-                }
-            }
-        } else {
-            filesList.add(start);
-        }
-    }
 
     /**
      * Extracts all required files into the targeted directory
@@ -112,7 +93,7 @@ public class MpqEditor {
     public void packFiles(File directory) {
         List<File> files = new ArrayList<>();
         List<File> directories = new ArrayList<>();
-        recursiveFolderDiscovery(directory, directories, files);
+        FileHelper.recursiveFolderDiscovery(directory, directories, files);
         //mpqEditor.setExternalListfile(new File("listfile.txt"));
         for(File file : files) {
             if (!file.getName().equals("README.txt") && file.exists() && !file.isDirectory()) {
