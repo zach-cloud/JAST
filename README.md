@@ -30,7 +30,6 @@ This is a multi-purpose and open-source tool for modifying JASS Script files.
 
 ### Advantages over other tools
 
-- Lightweight: Comes as a single .jar file with NZCP/JJCP/FAI packaged with it.
 - Portable: Any computer with Java installed can run this program. No redistributable, DLLs, or WC3 Install is required.
 - Programmatically robust: Uses a Abstract Syntax Tree internally, which is how modern IDEs parse their code. Written with test-driven design, and tested on real war3map.j files. This sort of parsing will not be confused by things like comments and fake main methods.
 - Open source: If you want to know how something is done, just check the source code.
