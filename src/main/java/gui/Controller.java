@@ -900,9 +900,12 @@ public class Controller {
     }
 
     public void unhex(ActionEvent e) {
+        long time = System.currentTimeMillis();
         ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
         unhexService.unhex(tree);
         jassCodeEditor.replaceText(tree.toString());
         formatIfDesired();
+        time = time - System.currentTimeMillis();
+        changeStatus("Unhexed code", time);
     }
 }
