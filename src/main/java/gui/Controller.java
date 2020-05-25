@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import model.InputModel;
 import mpq.MpqEditor;
 import nodes.AbstractFunction;
+import nodes.functions.TypeFunction;
 import nodes.j.Variable;
 import nodes.wts.WtsStringsFile;
 import org.apache.commons.io.FileUtils;
@@ -50,6 +51,7 @@ public class Controller {
     private static final String CURRENT_PATH_WRITE = "currentPathWrite";
 
     private List<String> natives;
+    private List<String> types;
     private List<String> autocompleteEntries;
     private String[] keywords = {"if", "then", "else", "endif", "function", "takes",
             "nothing", "returns", "endfunction", "globals", "endglobals",
@@ -86,8 +88,6 @@ public class Controller {
     private List<AbstractFunction> commonFunctions;
     private List<Variable> commonVariables;
 
-    private Subscription highlighting = null;
-
     private IExitProgramService exitProgramService;
     private IBlizzardLoaderService blizzardLoaderService;
     private IFileWriterService writerService;
@@ -108,6 +108,7 @@ public class Controller {
         createServices();
         readConfigs();
         natives = new ArrayList<>();
+        types = new ArrayList<>();
         commonVariables = new ArrayList<>();
         commonFunctions = new ArrayList<>();
         this.autocompleteEntries = new ArrayList<>();
@@ -299,7 +300,11 @@ public class Controller {
      */
     private void addKeywords(ISyntaxTree tree) {
         for (AbstractFunction function : tree.getScript().getFunctionsSection().getFunctions()) {
-            natives.add(function.getName());
+            if(function instanceof TypeFunction) {
+                types.add(function.getName());
+            } else {
+                natives.add(function.getName());
+            }
             commonFunctions.add(function);
         }
         for (Variable variable : tree.getScript().getGlobalsSection().getGlobalVariables()) {
@@ -314,12 +319,13 @@ public class Controller {
     private void setupKeywords() {
         addKeywords(blizzardLoaderService.loadCommon());
         addKeywords(blizzardLoaderService.loadBlizzard());
-        natives.add("string");
-        natives.add("integer");
-        natives.add("real");
-        natives.add("boolean");
+        types.add("string");
+        types.add("integer");
+        types.add("real");
+        types.add("boolean");
         String[] array = natives.toArray(new String[0]);
         String KEYWORDS_PATTERN = "\\b(" + String.join("|", keywords) + ")\\b";
+        String TYPE_PATTERN = "\\b(" + String.join("|", types) + ")\\b";
         String NATIVE_PATTERN = "\\b(" + String.join("|", array) + ")\\b";
         String PAREN_PATTERN = "\\(|\\)";
         String BRACKET_PATTERN = "\\[|\\]";
@@ -329,6 +335,7 @@ public class Controller {
         pattern = Pattern.compile(
                 "(?<NATIVE>" + NATIVE_PATTERN + ")"
                         + "|(?<KEYWORD>" + KEYWORDS_PATTERN + ")"
+                        + "|(?<TYPE>" + TYPE_PATTERN + ")"
                         + "|(?<PAREN>" + PAREN_PATTERN + ")"
                         + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
                         + "|(?<STRING>" + STRING_PATTERN + ")"
@@ -351,6 +358,7 @@ public class Controller {
             String styleClass =
                     matcher.group("NATIVE") != null ? "native" :
                             matcher.group("KEYWORD") != null ? "keyword" :
+                                    matcher.group("TYPE") != null ? "type" :
                                     matcher.group("PAREN") != null ? "paren" :
                                             matcher.group("BRACKET") != null ? "bracket" :
                                                     matcher.group("STRING") != null ? "string" :
