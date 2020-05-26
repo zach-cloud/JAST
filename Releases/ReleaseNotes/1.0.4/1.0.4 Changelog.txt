@@ -1,0 +1,3 @@
+Fixed a problem with syntax checking when the program was placed in a directory with spaces in the name.
+Improved error handling when syntax checking crashes
+Made the syntax checking results window larger

@@ -59,7 +59,8 @@ public class SyntaxCheckerService implements ISyntaxChecker {
         try {
             String userPath = System.getProperty("user.dir") + "/";
             Runtime rt = Runtime.getRuntime();
-            String command = userPath + "PJASS/pjass.exe " + userPath + "PJASS/common.j " + userPath + "PJASS/blizzard.j " + userPath + "PJASS/common.ai " + userPath + "PJASS/tmp.j ";
+            String command = "\"" + userPath + "PJASS/pjass.exe\" \"" + userPath + "PJASS/common.j\" \"" + userPath + "PJASS/blizzard.j\" \"" + userPath + "PJASS/common.ai\" \"" + userPath + "PJASS/tmp.j\"";
+            System.out.println("Sending command: " + command);
             Process proc = rt.exec(command);
 
             BufferedReader stdInput = new BufferedReader(new

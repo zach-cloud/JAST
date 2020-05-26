@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class JASTDeployer {
 
-    private final String VERSION = "1.0.3";
+    private final String VERSION = "1.0.4";
     private final String USER_PATH = System.getProperty("user.dir") + "\\";
 
     private final String JAR_PATH = USER_PATH + "target\\JAST-" + VERSION + ".jar";

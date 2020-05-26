@@ -28,17 +28,27 @@ public class SyntaxCheckResultWindow extends Application {
         VBox root = new VBox();
         this.resultsBox = new TextArea();
         resultsBox.setText("Running syntax check. . .");
+        resultsBox.setMinHeight(400);
+        resultsBox.setMinWidth(600);
+        resultsBox.setPrefHeight(400);
+        resultsBox.setPrefWidth(600);
+        root.setMinHeight(400);
+        root.setMinWidth(600);
+        root.setPrefHeight(400);
+        root.setPrefWidth(600);
+        stage.setHeight(400);
+        stage.setWidth(600);
         root.getChildren().add(resultsBox);
-
         setupScene(stage, root);
-        stage.setHeight(200);
-        stage.setWidth(300);
         stage.show();
-
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                resultsBox.setText(syntaxCheckerService.syntaxCheck(tree));
+                try {
+                    resultsBox.setText(syntaxCheckerService.syntaxCheck(tree));
+                } catch (Exception ex) {
+                    resultsBox.setText("An error occurred when trying to syntax check:\n" + ex.getMessage());
+                }
             }
         });
     }
