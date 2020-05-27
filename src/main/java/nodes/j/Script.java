@@ -9,6 +9,7 @@ import exception.ParsingException;
 import nodes.functions.Argument;
 import nodes.functions.Function;
 import nodes.functions.Statements;
+import nodes.functions.TypeFunction;
 import tree.TreeContext;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
 
     private GlobalsSection globalsSection;
     private FunctionsSection functionsSection;
+    private List<TypeFunction> types;
 
     /**
      * Sets up this node with a scanner to receive words.
@@ -32,10 +34,11 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
         super(inputScanner, context);
     }
 
-    public Script(GlobalsSection globalsSection, FunctionsSection functionsSection, TreeContext context) {
+    public Script(GlobalsSection globalsSection, FunctionsSection functionsSection, List<TypeFunction> types, TreeContext context) {
         super(context);
         this.globalsSection = globalsSection;
         this.functionsSection = functionsSection;
+        this.types = types;
     }
 
     /**
@@ -77,15 +80,21 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
             String line = readLine();
             if(line.equals("globals")) {
                 // Read the entire script until endglobals
-                if(readingFunctions) {
+                if (readingFunctions) {
                     throw new ParsingException("Globals in functions section not supported: " + line);
                 }
-                if(!readingGlobals) {
+                if (!readingGlobals) {
                     readingGlobals = true;
                     currentAccumulatedString.append(line).append("\n");
                 } else {
                     throw new ParsingException("Nested globals section not supported: " + line);
                 }
+            } else if(line.startsWith("type")) {
+                if(types == null) {
+                    types = new ArrayList<>();
+                }
+                TypeFunction typeFunction = new TypeFunction(new Scanner(line), context);
+                types.add(typeFunction);
             } else if(line.equals("endglobals")) {
                 // Read the entire script until EOF
                 if(readingFunctions) {
@@ -101,13 +110,8 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
                 } else {
                     throw new ParsingException("Found endglobals before globals: " + line);
                 }
-            } else if(readingFunctions || readingGlobals) {
-                currentAccumulatedString.append(line).append("\n");
             } else {
-                // Some sort of invalid junk line outside of globals/endglobals.
-                if(!line.isEmpty()) {
-                    throw new ParsingException("Unrecognized line in script: " + line);
-                }
+                currentAccumulatedString.append(line).append("\n");
             }
         }
         if(readingFunctions) {
@@ -127,7 +131,7 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
     public final AbstractNode renameVariable(String oldVariableName, String newVariableName) {
         GlobalsSection newGlobals = (GlobalsSection)globalsSection.renameVariable(oldVariableName, newVariableName);
         FunctionsSection newFunctions = (FunctionsSection)functionsSection.renameVariable(oldVariableName, newVariableName);
-        return new Script(newGlobals, newFunctions, context);
+        return new Script(newGlobals, newFunctions, types, context);
     }
 
     /**
@@ -141,7 +145,7 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
     public final AbstractNode renameFunction(String oldFunctionName, String newFunctionName) {
         GlobalsSection newGlobals = globalsSection;
         FunctionsSection newFunctions = (FunctionsSection)functionsSection.renameFunction(oldFunctionName, newFunctionName);
-        return new Script(newGlobals, newFunctions, context);
+        return new Script(newGlobals, newFunctions, types, context);
     }
 
     public final GlobalsSection getGlobalsSection() {
@@ -164,7 +168,7 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
         Script otherScript = (Script)other;
         GlobalsSection newGlobals = (GlobalsSection)this.globalsSection.merge(otherScript.globalsSection);
         FunctionsSection newFunctions = (FunctionsSection)this.functionsSection.merge(otherScript.functionsSection);
-        return new Script(newGlobals, newFunctions, context);
+        return new Script(newGlobals, newFunctions, types, context);
     }
 
     public final List<Argument> getArguments() {
@@ -186,5 +190,9 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
         }
 
         return finalArguments;
+    }
+
+    public List<TypeFunction> getTypes() {
+        return types;
     }
 }

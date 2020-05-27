@@ -2,6 +2,7 @@ package deployer;
 
 import helper.FileHelper;
 import org.apache.commons.io.FileUtils;
+import settings.Settings;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class JASTDeployer {
 
-    private final String VERSION = "1.0.4";
+    private final String VERSION = "1.1.0";
     private final String USER_PATH = System.getProperty("user.dir") + "\\";
 
     private final String JAR_PATH = USER_PATH + "target\\JAST-" + VERSION + ".jar";
@@ -51,7 +52,9 @@ public class JASTDeployer {
         writeFileContents(RUN_CONTENTS, RUN_DESTINATION);
         writeFileContents(RUN_CLI_CONTENTS, RUN_CLI_DESTINATION);
         copyFolder(BLIZZARD_PATH, BLIZZARD_DESTINATION);
-        copyFolder(CHEATPACKS_PATH, CHEATPACKS_DESTINATION);
+        if(Settings.CHEATING_ENABLED) {
+            copyFolder(CHEATPACKS_PATH, CHEATPACKS_DESTINATION);
+        }
         copyFolder(PJASS_PATH, PJASS_DESTINATION);
     }
 

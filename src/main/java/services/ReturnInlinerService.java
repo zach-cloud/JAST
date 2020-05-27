@@ -45,7 +45,7 @@ public class ReturnInlinerService implements IReturnInlinerService {
                 }
             }
         }
-        return new SyntaxTree(new Script(original.getScript().getGlobalsSection(), new FunctionsSection(newFunctions, new TreeContext()), new TreeContext()));
+        return new SyntaxTree(new Script(original.getScript().getGlobalsSection(), new FunctionsSection(newFunctions, new TreeContext()), original.getTypes(), new TreeContext()));
     }
 
     private boolean usesAsFunction(ISyntaxTree original, String functionName) {
@@ -82,7 +82,8 @@ public class ReturnInlinerService implements IReturnInlinerService {
                             function.getStatements().getStatements().get(0) instanceof ReturnStatement &&
                             toInline == null &&
                             !usesAsFunction(original, function.getName()) &&
-                            function.getFunctionDeclaration().getOutput().getType().equals("boolean")) {
+                            function.getFunctionDeclaration().getOutput().getType().equals("boolean") &&
+                            function.getFunctionDeclaration().getInputs().getInputs().isEmpty()) {
                         toInline = function;
                     }
                 }

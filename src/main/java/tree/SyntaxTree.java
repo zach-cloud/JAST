@@ -5,6 +5,7 @@ import exception.ParsingException;
 import exception.RenameFailureException;
 import exception.WritingException;
 import interfaces.IPreprocessFileService;
+import nodes.functions.TypeFunction;
 import services.RandomNameGeneratorService;
 import nodes.AbstractFunction;
 import nodes.j.Script;
@@ -50,6 +51,7 @@ public final class SyntaxTree implements ISyntaxTree {
             ISyntaxTree tree = new SyntaxTree(script);
             return tree;
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new ParsingException("Failed to parse tree: " + ex.getMessage() + ". Last line: " + context.getLastLine());
         }
     }
@@ -220,5 +222,10 @@ public final class SyntaxTree implements ISyntaxTree {
     @Override
     public String getString() {
         return toString();
+    }
+
+    @Override
+    public List<TypeFunction> getTypes() {
+        return script.getTypes();
     }
 }

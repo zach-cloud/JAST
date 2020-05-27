@@ -35,7 +35,7 @@ public class GuiCompressorService implements IGuiCompressorService {
                 Statements statements = function.getStatements();
                 List<AbstractStatement> abstractStatements = statements.getStatements();
                 // Should be an If Statement with an inner return, and then endif and return
-                if(abstractStatements.size() == 2) {
+                if(abstractStatements.size() == 2 && function.getFunctionDeclaration().getInputs().getInputs().isEmpty()) {
                     // Grab the if and return statement
                     AbstractStatement statement1 = abstractStatements.get(0);
                     AbstractStatement statement2 = abstractStatements.get(1);

@@ -2,6 +2,7 @@ package command;
 
 import interfaces.ICommand;
 import interfaces.IOutputService;
+import settings.Settings;
 
 /**
  * A command to show the help file to the user
@@ -28,10 +29,12 @@ public final class HelpCommand extends AbstractComamnd implements ICommand {
     public void execute(String input) {
         print("Type a command to use the program. The following are supported command:");
         print("\thelp : display this help file");
-        print("\tnzcp [nz] <input.j> <activator> <output.j> : adds NZCP to map");
-        print("\tnzcp-d [nzd] <input.j> <activator> <output.j> : adds NZCP to map and avoids collision");
-        print("\tjjcp [jj] <input.j> <activator> <output.j> : adds JJCP to map");
-        print("\tjjcp-d [jjd] <input.j> <activator> <output.j> : adds JJCP to map and avoids collision");
+        if(Settings.CHEATING_ENABLED) {
+            print("\tnzcp [nz] <input.j> <activator> <output.j> : adds NZCP to map");
+            print("\tnzcp-d [nzd] <input.j> <activator> <output.j> : adds NZCP to map and avoids collision");
+            print("\tjjcp [jj] <input.j> <activator> <output.j> : adds JJCP to map");
+            print("\tjjcp-d [jjd] <input.j> <activator> <output.j> : adds JJCP to map and avoids collision");
+        }
         print("\tmerge [m] <first.j> <second.j> <output.j> : merges scripts together");
         print("\tmerge-d [md] <first.j> <second.j> <output.j> : merges scripts together and avoids collisions");
         print("\treplacestring [rs] <input.j> <stringText> <newStringText> <output.j> : replaces string literal. Do not include quotes");

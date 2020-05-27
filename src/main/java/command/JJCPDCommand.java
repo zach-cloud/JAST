@@ -4,6 +4,7 @@ import interfaces.ITreeMergeService;
 import services.TreeMergeService;
 import interfaces.ICommand;
 import interfaces.IInputParserService;
+import settings.Settings;
 
 /**
  * A command to allow the user to merge code files
@@ -28,7 +29,7 @@ public final class JJCPDCommand extends AbstractComamnd implements ICommand {
      */
     @Override
     public boolean isCommend(String input) {
-        return input.matches("^jjcp-d [^ ]+ [^ ]+ [^ ]+$") || input.matches("^jjd [^ ]+ [^ ]+ [^ ]+$");
+        return Settings.CHEATING_ENABLED && input.matches("^jjcp-d [^ ]+ [^ ]+ [^ ]+$") || input.matches("^jjd [^ ]+ [^ ]+ [^ ]+$");
     }
 
     /**

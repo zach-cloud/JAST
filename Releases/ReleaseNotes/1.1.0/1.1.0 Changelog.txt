@@ -1,0 +1,15 @@
+Additional theme options have been added. Users can select from dark theme, JASSCraft theme, and light theme.
+Dark theme will be selected by default
+Your theme choice will be remembered between application runs (stored in init.cfg)
+Fixed a bug with GUI Optimizer that made the program attempt to inline functions that could not be inlined
+Hotkey added for syntax checking (F9)
+Hotkey added for fomatting code (F8)
+Hotkey added for about (F1) which displays all hotkeys and help
+Function browser added: will automatically update as you type and show functions that match what you are typing
+The function browser will display anything from blizzard.j and common.j
+The function browser will open at the bottom of the screen and can be closed through the menu
+You can also manually search the function browser by using the menu
+Hotkey added for function browser toggle (F10)
+Autocomplete functionality added
+When Function Browser is enabled, Autocomplete is enabled by default
+To use autocomplete, press the Ctrl + Enter key. It will autofill at the current selected text with the first entry found in the Function Browser.

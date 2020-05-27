@@ -54,7 +54,11 @@ public class GuiOptimizerService implements IGuiOptimizerService {
                 newFunctions.add(function);
             }
         }
-        ISyntaxTree firstTree = new SyntaxTree(new Script(original.getScript().getGlobalsSection(), new FunctionsSection(newFunctions, new TreeContext()), new TreeContext()));
+        ISyntaxTree firstTree = new SyntaxTree(
+                new Script(original.getScript().getGlobalsSection(),
+                        new FunctionsSection(newFunctions,
+                                new TreeContext()), original.getTypes(),
+                        new TreeContext()));
         return inlinerService.inlineAll(firstTree);
     }
 

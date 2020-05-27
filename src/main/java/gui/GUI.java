@@ -10,20 +10,22 @@ import javafx.stage.Stage;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
+import settings.Settings;
 
-public class GUI extends Application {
+public final class GUI extends Application {
 
     @Override
     public void start(Stage stage) {
         Controller controller = new Controller();
         MenuBar menuBar = makeMenus(controller);
         VBox root = new VBox(menuBar);
-        CodeArea jassCodeEditor = setupEditorBox(root, controller);
+        setupEditorBox(root, controller);
         setupScene(controller, stage, root);
         makeElementsFillScreen(stage, root);
-        bindElementSizes(stage, root, jassCodeEditor);
+        controller.setStage(stage);
+        controller.setRoot(root);
+        controller.bindElementSizes();
         stage.show();
-        setBackgroundColor(jassCodeEditor);
         controller.setupHighlighting();
     }
 
@@ -34,41 +36,37 @@ public class GUI extends Application {
         makeModifyMenu(controller, menuBar);
         makeCodeMenu(controller, menuBar);
         makeUtilityMenu(controller, menuBar);
+        makeStyleMenu(controller, menuBar);
+        makeBrowserMenu(controller, menuBar);
         return menuBar;
     }
 
     private CodeArea setupEditorBox(VBox root, Controller controller) {
         final CodeArea jassCodeEditor = new CodeArea();
         final Label statusLabel = new Label("Initialized Successfully (0 ms)");
+        final CodeArea functionBrowser = new CodeArea();
+        functionBrowser.setEditable(false);
         jassCodeEditor.setWrapText(true);
-        jassCodeEditor.setStyle("-fx-text-fill: white;");
         jassCodeEditor.setParagraphGraphicFactory(LineNumberFactory.get(jassCodeEditor));
 
         root.getChildren().add(new VirtualizedScrollPane<>(jassCodeEditor));
+        root.getChildren().add(new Label(" "));
+        root.getChildren().add(functionBrowser);
         root.getChildren().add(statusLabel);
         controller.setStatusLabel(statusLabel);
         controller.setJassCodeEditor(jassCodeEditor);
+        controller.setFunctionBrowser(functionBrowser);
         return jassCodeEditor;
     }
 
     private void setupScene(Controller controller, Stage stage, VBox root) {
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        scene.getStylesheets().add(GUI.class.getResource("jass-keywords.css").toExternalForm());
+        controller.setScene(scene);
         stage.setTitle("JASS AST Modifier");
         controller.setupHotkeys(scene);
-        //controller.setupAutocomplete(scene);
-    }
-
-    private void bindElementSizes(Stage stage, VBox root, CodeArea jassCodeEditor) {
-        root.prefHeightProperty().bind(stage.heightProperty());
-        jassCodeEditor.prefHeightProperty().bind(root.heightProperty());
-    }
-
-    private void setBackgroundColor(CodeArea jassCodeEditor) {
-        //jassCodeEditor.setBackground(new Background(new BackgroundFill(Paint.valueOf("black"), null, null)));
-        //Region region = ( Region ) jassCodeEditor.lookup( ".content" );
-        //region.setBackground( new Background( new BackgroundFill( Color.rgb(43,43, 43), CornerRadii.EMPTY, Insets.EMPTY ) ) );
+        controller.applyDefault();
+        controller.setupAutocomplete(scene);
     }
 
     private void makeElementsFillScreen(Stage stage, VBox root) {
@@ -169,30 +167,36 @@ public class GUI extends Application {
     private void makeModifyMenu(Controller controller, MenuBar menuBar) {
         Menu modifyMenu = new Menu("Modify");
 
+
         MenuItem editButton1 = new MenuItem("Add NZCP");
         MenuItem editButton2 = new MenuItem("Add JJCP");
         MenuItem editButton3 = new MenuItem("Add NZCP (Deduplicate)");
         MenuItem editButton4 = new MenuItem("Add JJCP (Deduplicate)");
+
         MenuItem editButton5 = new MenuItem("Merge Scripts");
         MenuItem editButton6 = new MenuItem("Merge Scripts (Deduplicate)");
         MenuItem editButton7 = new MenuItem("Scramble Names");
         MenuItem editButton8 = new MenuItem("Rename Function");
         MenuItem editButton9 = new MenuItem("Rename Variable");
 
+
         editButton1.setOnAction(controller::addNzcp);
         editButton2.setOnAction(controller::addJjcp);
         editButton3.setOnAction(controller::addNzcpD);
         editButton4.setOnAction(controller::addJjcpD);
+
         editButton5.setOnAction(controller::mergeScript);
         editButton6.setOnAction(controller::mergeScriptD);
         editButton7.setOnAction(controller::scrambleNames);
         editButton8.setOnAction(controller::renameScriptFunction);
         editButton9.setOnAction(controller::renameScriptVariable);
 
-        modifyMenu.getItems().add(editButton1);
-        modifyMenu.getItems().add(editButton2);
-        modifyMenu.getItems().add(editButton3);
-        modifyMenu.getItems().add(editButton4);
+        if (Settings.CHEATING_ENABLED) {
+            modifyMenu.getItems().add(editButton1);
+            modifyMenu.getItems().add(editButton2);
+            modifyMenu.getItems().add(editButton3);
+            modifyMenu.getItems().add(editButton4);
+        }
         modifyMenu.getItems().add(editButton5);
         modifyMenu.getItems().add(editButton6);
         modifyMenu.getItems().add(editButton7);
@@ -200,6 +204,45 @@ public class GUI extends Application {
         modifyMenu.getItems().add(editButton9);
 
         menuBar.getMenus().add(modifyMenu);
+    }
+
+    private void makeStyleMenu(Controller controller, MenuBar menuBar) {
+        Menu stylesMenu = new Menu("Styles");
+
+        MenuItem styleButton1 = new MenuItem("Dark Theme");
+        MenuItem styleButton2 = new MenuItem("JASSCraft Theme");
+        MenuItem styleButton3 = new MenuItem("Light Theme");
+
+        styleButton1.setOnAction(controller::applyDarkTheme);
+        styleButton2.setOnAction(controller::applyJasscraftTheme);
+        styleButton3.setOnAction(controller::applyLightTheme);
+
+        stylesMenu.getItems().add(styleButton1);
+        stylesMenu.getItems().add(styleButton2);
+        stylesMenu.getItems().add(styleButton3);
+
+        menuBar.getMenus().add(stylesMenu);
+    }
+
+    private void makeBrowserMenu(Controller controller, MenuBar menuBar) {
+        Menu browserMenu = new Menu("Function Browser");
+
+        MenuItem browserButton1 = new MenuItem("Show Function Browser");
+        MenuItem browserButton2 = new MenuItem("Hide Function Browser");
+        MenuItem browserButton3 = new MenuItem("Search for Function");
+        MenuItem browserButton4 = new MenuItem("Clear Function Browser");
+
+        browserMenu.getItems().add(browserButton1);
+        browserMenu.getItems().add(browserButton2);
+        browserMenu.getItems().add(browserButton3);
+        browserMenu.getItems().add(browserButton4);
+
+        browserButton1.setOnAction(controller::showFunctionBrowser);
+        browserButton2.setOnAction(controller::hideFunctionBrowser);
+        browserButton3.setOnAction(controller::searchForFunction);
+        browserButton4.setOnAction(controller::clearBrowser);
+
+        menuBar.getMenus().add(browserMenu);
     }
 
     public void main(String[] args) {

@@ -13,18 +13,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import model.InputModel;
 import mpq.MpqEditor;
 import nodes.AbstractFunction;
-import nodes.functions.TypeFunction;
+import nodes.functions.*;
 import nodes.j.Variable;
 import nodes.wts.WtsStringsFile;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.fxmisc.richtext.CodeArea;
-import javafx.stage.PopupWindow;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
 import org.reactfx.Subscription;
@@ -49,6 +49,7 @@ public final class Controller {
     private static final String CFG_PATH = "init.cfg";
     private static final String CURRENT_PATH_READ = "currentPathRead";
     private static final String CURRENT_PATH_WRITE = "currentPathWrite";
+    private static final String CURRENT_THEME = "currentTheme";
 
     private List<String> natives;
     private List<String> types;
@@ -74,6 +75,7 @@ public final class Controller {
 
     private Label statusLabel;
     private CodeArea jassCodeEditor;
+    private CodeArea functionBrowser;
     private FileChooser openFileChooser;
     private FileChooser writeFileChooser;
     private OpenType openType;
@@ -83,7 +85,17 @@ public final class Controller {
     private String objectsFilePath;
     private String stringsFilePath;
     private String mpqPath;
+    private Scene scene;
+    private Stage stage;
+    private VBox root;
+    private String autocompleteDesired;
     private boolean formattingDesired = false;
+    private boolean browserDisplayed = false;
+
+    private String currentTheme;
+    private String jasscraftTheme;
+    private String darkTheme;
+    private String lightTheme;
 
     private List<AbstractFunction> commonFunctions;
     private List<Variable> commonVariables;
@@ -114,6 +126,26 @@ public final class Controller {
         this.autocompleteEntries = new ArrayList<>();
         addFilters(openFileChooser);
         addFilters(writeFileChooser);
+        setupStyles();
+
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public void setRoot(VBox root) {
+        this.root = root;
+    }
+
+    public void setupStyles() {
+        jasscraftTheme = GUI.class.getResource("jass-keywords-jasscraft.css").toExternalForm();
+        darkTheme = GUI.class.getResource("jass-keywords-darktheme.css").toExternalForm();
+        lightTheme = GUI.class.getResource("jass-keywords-lighttheme.css").toExternalForm();
     }
 
     /**
@@ -150,6 +182,9 @@ public final class Controller {
             if (currentPath.exists()) {
                 writeFileChooser.setInitialDirectory(currentPath);
             }
+        }
+        if (configurations.containsKey(CURRENT_THEME)) {
+            currentTheme = configurations.get(CURRENT_THEME);
         }
     }
 
@@ -204,6 +239,10 @@ public final class Controller {
      */
     public void setJassCodeEditor(CodeArea jassCodeEditor) {
         this.jassCodeEditor = jassCodeEditor;
+    }
+
+    public void setFunctionBrowser(CodeArea functionBrowser) {
+        this.functionBrowser = functionBrowser;
     }
 
     /**
@@ -299,12 +338,13 @@ public final class Controller {
      * @param tree Keywords tree
      */
     private void addKeywords(ISyntaxTree tree) {
-        for (AbstractFunction function : tree.getScript().getFunctionsSection().getFunctions()) {
-            if(function instanceof TypeFunction) {
-                types.add(function.getName());
-            } else {
-                natives.add(function.getName());
+        if(tree.getTypes() != null) {
+            for (TypeFunction type : tree.getTypes()) {
+                types.add(type.getName());
             }
+        }
+        for (AbstractFunction function : tree.getScript().getFunctionsSection().getFunctions()) {
+            natives.add(function.getName());
             commonFunctions.add(function);
         }
         for (Variable variable : tree.getScript().getGlobalsSection().getGlobalVariables()) {
@@ -323,6 +363,13 @@ public final class Controller {
         types.add("integer");
         types.add("real");
         types.add("boolean");
+        types.add("array");
+        for(String type: types) {
+            autocompleteEntries.add(type);
+        }
+        for(Variable variable: commonVariables) {
+            autocompleteEntries.add(variable.getName());
+        }
         String[] array = natives.toArray(new String[0]);
         String KEYWORDS_PATTERN = "\\b(" + String.join("|", keywords) + ")\\b";
         String TYPE_PATTERN = "\\b(" + String.join("|", types) + ")\\b";
@@ -359,11 +406,11 @@ public final class Controller {
                     matcher.group("NATIVE") != null ? "native" :
                             matcher.group("KEYWORD") != null ? "keyword" :
                                     matcher.group("TYPE") != null ? "type" :
-                                    matcher.group("PAREN") != null ? "paren" :
-                                            matcher.group("BRACKET") != null ? "bracket" :
-                                                    matcher.group("STRING") != null ? "string" :
-                                                            matcher.group("COMMENT") != null ? "comment" :
-                                                                    null; /* never happens */
+                                            matcher.group("PAREN") != null ? "paren" :
+                                                    matcher.group("BRACKET") != null ? "bracket" :
+                                                            matcher.group("STRING") != null ? "string" :
+                                                                    matcher.group("COMMENT") != null ? "comment" :
+                                                                            null; /* never happens */
             assert styleClass != null;
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
             spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
@@ -709,8 +756,6 @@ public final class Controller {
                     rawcodeService.addWTS(stringsFilePath);
                 }
                 jassCodeEditor.replaceText(rawcodeService.makeRawcodesFrom(objectsFilePath));
-            } else {
-                JOptionPane.showMessageDialog(null, "Cannot generate rawcodes from specified file.");
             }
             time = System.currentTimeMillis() - time;
             changeStatus("Generated rawcodes", time);
@@ -740,8 +785,6 @@ public final class Controller {
                 file.delete();
                 mpqEditor = new MpqEditor(new File(mpqPath));
                 mpqEditor.extractFiles(file);
-            } else {
-                JOptionPane.showMessageDialog(null, "Cannot extract from specified file.");
             }
             time = System.currentTimeMillis() - time;
             changeStatus("Extracted to /tempFiles", time);
@@ -782,7 +825,17 @@ public final class Controller {
     }
 
     public void about(ActionEvent e) {
-        JOptionPane.showMessageDialog(null, "JAST - Managed JASS Code Modifier\nOpen source: https://github.com/zach-cloud/JAST");
+        JOptionPane.showMessageDialog(
+                null,
+                "JAST - Managed JASS Code Modifier\n" +
+                        "Open source: https://github.com/zach-cloud/JAST\n" +
+                        "Hotkey shortcuts:\n" +
+                        "F1: About\n" +
+                        "F8: Format code\n" +
+                        "F9: Syntax check\n" +
+                        "F10: Toggle function browser\n" +
+                        "Ctrl + Enter: Autocomplete\n" +
+                        "Default file hotkeys (Ctrl+O/S/F/V/Z/Y/X/C)");
     }
 
     public void undo(ActionEvent e) {
@@ -837,6 +890,12 @@ public final class Controller {
                     KeyCombination.CONTROL_DOWN);
             final KeyCombination searchHotkey = new KeyCodeCombination(KeyCode.F,
                     KeyCombination.CONTROL_DOWN);
+            final KeyCombination aboutHotkey = new KeyCodeCombination(KeyCode.F1);
+            final KeyCombination syntaxCheckHotkey = new KeyCodeCombination(KeyCode.F9);
+            final KeyCombination formatHotkey = new KeyCodeCombination(KeyCode.F8);
+            final KeyCombination toggleFunctionBrowser = new KeyCodeCombination(KeyCode.F10);
+            final KeyCombination autocomplete = new KeyCodeCombination(KeyCode.ENTER,
+                    KeyCombination.CONTROL_DOWN);
 
             public void handle(KeyEvent ke) {
                 if (openHotkey.match(ke)) {
@@ -854,41 +913,99 @@ public final class Controller {
                 } else if (searchHotkey.match(ke)) {
                     search(null);
                     ke.consume();
+                } else if (syntaxCheckHotkey.match(ke)) {
+                    syntaxCheck(null);
+                    ke.consume();
+                } else if (formatHotkey.match(ke)) {
+                    reformatCode(null);
+                    ke.consume();
+                } else if (aboutHotkey.match(ke)) {
+                    about(null);
+                    ke.consume();
+                } else if (toggleFunctionBrowser.match(ke)) {
+                    toggleFunctionBrowser();
+                    ke.consume();
+                } else if(autocomplete.match(ke)) {
+                    runAutocomplete();
+                    ke.consume();
                 }
             }
         });
     }
 
     public void setupAutocomplete(Scene scene) {
-        for (AbstractFunction function : commonFunctions) {
-            autocompleteEntries.add(function.getName());
-        }
-        PopupWindow popup = new Popup();
-
         jassCodeEditor.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 if (t1.length() > s.length()) {
-                    char lastChar = t1.charAt(t1.length() - 1);
-                    if (lastChar == ' ' || lastChar == '\n') {
+                    String diff = StringUtils.difference(s, t1).charAt(0)+"";
+                    if (diff.equalsIgnoreCase(" ") || diff.equalsIgnoreCase("\n")) {
                         currentAutocompleteWord = "";
                     } else {
-                        currentAutocompleteWord += lastChar;
+                        currentAutocompleteWord += diff;
                     }
                 } else {
-                    currentAutocompleteWord = currentAutocompleteWord.substring(0, currentAutocompleteWord.length() - 1);
+                    try {
+                        currentAutocompleteWord = currentAutocompleteWord.substring(0, currentAutocompleteWord.length() - 1);
+                    } catch (Exception ex) {
+                        currentAutocompleteWord = "";
+                    }
                 }
             }
         });
 
         Subscription cleanupWhenNoLongerNeedIt = jassCodeEditor
                 .multiPlainChanges()
-                .successionEnds(Duration.ofMillis(500))
+                .successionEnds(Duration.ofMillis(100))
                 .subscribe(ignore -> showAutocomplete());
     }
 
     private void showAutocomplete() {
+        if(browserDisplayed) {
+            boolean foundAutocomplete = false;
+            StringBuilder builder = new StringBuilder();
+            for (AbstractFunction function : commonFunctions) {
+                if (function.getName().startsWith(currentAutocompleteWord)) {
+                    builder.append(function.toString()).append("\n");
+                    // TODO: Fix this nasty code when TypeFunction is refactored.
+                    // TODO: Oh my gosh this is really nasty. But it works.
+                    if(!foundAutocomplete) {
+                        foundAutocomplete = true;
+                        autocompleteDesired = function.getName();
+                        if (function instanceof Function || function instanceof NativeFunction) {
+                            autocompleteDesired += "(";
+                            Inputs inputs = null;
+                            if (function instanceof Function) {
+                                inputs = ((Function) function).getFunctionDeclaration().getInputs();
+                            } else if (function instanceof NativeFunction) {
+                                inputs = ((NativeFunction) function).getInputs();
+                            }
 
+                            if(!inputs.getInputs().isEmpty()) {
+                                for (Input input : inputs.getInputs()) {
+                                    autocompleteDesired += input.getType() + ",";
+                                }
+                                autocompleteDesired = autocompleteDesired.substring(0, autocompleteDesired.length() - 1);
+                            }
+                            autocompleteDesired += ")";
+                        }
+                    }
+
+                }
+            }
+            for(String entry: autocompleteEntries) {
+                if(entry.startsWith(currentAutocompleteWord)) {
+                    builder.append(entry).append("\n");
+                    if(!foundAutocomplete) {
+                        foundAutocomplete = true;
+                        autocompleteDesired = entry;
+                    }
+                }
+            }
+            if (builder.length() > 0) {
+                functionBrowser.replaceText(builder.toString());
+            }
+        }
     }
 
     public void syntaxCheck(ActionEvent e) {
@@ -907,5 +1024,113 @@ public final class Controller {
         formatIfDesired();
         time = time - System.currentTimeMillis();
         changeStatus("Unhexed code", time);
+    }
+
+    public void applyDarkTheme(ActionEvent e) {
+        scene.getStylesheets().add(darkTheme);
+        scene.getStylesheets().remove(lightTheme);
+        scene.getStylesheets().remove(jasscraftTheme);
+        currentTheme = "darkTheme";
+        configurations.put(CURRENT_THEME, currentTheme);
+        cfgService.writeConfigFile(CFG_PATH, configurations);
+    }
+
+    public void applyJasscraftTheme(ActionEvent e) {
+        scene.getStylesheets().add(jasscraftTheme);
+        scene.getStylesheets().remove(darkTheme);
+        scene.getStylesheets().remove(lightTheme);
+        currentTheme = "jasscraft";
+        configurations.put(CURRENT_THEME, currentTheme);
+        cfgService.writeConfigFile(CFG_PATH, configurations);
+    }
+
+    public void applyLightTheme(ActionEvent e) {
+        scene.getStylesheets().add(lightTheme);
+        scene.getStylesheets().remove(darkTheme);
+        scene.getStylesheets().remove(jasscraftTheme);
+        currentTheme = "lightTheme";
+        configurations.put(CURRENT_THEME, currentTheme);
+        cfgService.writeConfigFile(CFG_PATH, configurations);
+    }
+
+    public void showFunctionBrowser(ActionEvent e) {
+        if (!browserDisplayed) {
+            bindElementSizesSmall();
+            browserDisplayed = true;
+        }
+    }
+
+    public void hideFunctionBrowser(ActionEvent e) {
+        if (browserDisplayed) {
+            bindElementSizes();
+            browserDisplayed = false;
+        }
+    }
+
+    public void bindElementSizes() {
+        root.prefHeightProperty().bind(stage.heightProperty());
+        jassCodeEditor.prefHeightProperty().bind(root.heightProperty());
+        functionBrowser.setPrefHeight(0);
+    }
+
+    public void bindElementSizesSmall() {
+        jassCodeEditor.prefHeightProperty().bind(root.heightProperty().subtract(200));
+        functionBrowser.setPrefHeight(200);
+        showAutocomplete();
+    }
+
+    public void applyDefault() {
+        if (currentTheme != null && !currentTheme.isEmpty()) {
+            if (currentTheme.equalsIgnoreCase("lightTheme")) {
+                applyLightTheme(null);
+            } else if (currentTheme.equalsIgnoreCase("jasscraft")) {
+                applyJasscraftTheme(null);
+            } else {
+                applyDarkTheme(null);
+            }
+        } else {
+            applyDarkTheme(null);
+        }
+    }
+
+    public void searchForFunction(ActionEvent e) {
+        String input = JOptionPane.showInputDialog("Search for: ");
+        if(input != null && !input.isEmpty()) {
+            currentAutocompleteWord = input;
+            showAutocomplete();
+        }
+    }
+
+    public void clearBrowser(ActionEvent e) {
+        System.out.println(currentAutocompleteWord);
+        currentAutocompleteWord = "";
+        functionBrowser.replaceText("");
+    }
+
+    private void toggleFunctionBrowser() {
+        if(browserDisplayed) {
+            hideFunctionBrowser(null);
+        } else {
+            showFunctionBrowser(null);
+        }
+    }
+
+    private void runAutocomplete() {
+        if(browserDisplayed) {
+            if(autocompleteDesired != null && !autocompleteDesired.isEmpty()) {
+                // Find word before caret
+                int finalPosition = jassCodeEditor.getCaretPosition();
+                int firstPosition = jassCodeEditor.getCaretPosition();
+                String substring = "";
+                while(firstPosition > 0 && !substring.contains(" ") && !substring.contains("\n")) {
+                    firstPosition--;
+                    substring = jassCodeEditor.getText().substring(firstPosition, finalPosition);
+                }
+                firstPosition++;
+                jassCodeEditor.replaceText(firstPosition, finalPosition, autocompleteDesired);
+                currentAutocompleteWord = "";
+                autocompleteDesired = "";
+            }
+        }
     }
 }

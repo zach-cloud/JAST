@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class SearchWindow extends Application {
+public final class SearchWindow extends Application {
 
     private Controller controller;
     private TextField searchText;
@@ -45,7 +45,7 @@ public class SearchWindow extends Application {
     private void setupScene(Controller controller, Stage stage, VBox root) {
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        scene.getStylesheets().add(GUI.class.getResource("jass-keywords.css").toExternalForm());
+        scene.getStylesheets().add(GUI.class.getResource("jass-keywords-darktheme.css").toExternalForm());
         stage.setTitle("Search");
     }
 

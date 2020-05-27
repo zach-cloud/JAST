@@ -1,9 +1,11 @@
 package interfaces;
 
+import nodes.functions.TypeFunction;
 import services.RandomNameGeneratorService;
 import nodes.j.Script;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Represents an abstract Syntax Tree root that contains a Script
@@ -16,6 +18,8 @@ public interface ISyntaxTree {
      * @return  Script file
      */
     Script getScript();
+
+    List<TypeFunction> getTypes();
 
     /**
      * Combines this SyntaxTree with another and then checks

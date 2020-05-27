@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class StringHashWindow extends Application {
+public final class StringHashWindow extends Application {
 
     private Controller controller;
     private TextField hashText;
@@ -54,7 +54,6 @@ public class StringHashWindow extends Application {
     private void setupScene(Controller controller, Stage stage, VBox root) {
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        scene.getStylesheets().add(GUI.class.getResource("jass-keywords.css").toExternalForm());
         stage.setTitle("Search");
     }
 

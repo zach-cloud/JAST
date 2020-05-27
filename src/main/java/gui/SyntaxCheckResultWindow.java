@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class SyntaxCheckResultWindow extends Application {
+public final class SyntaxCheckResultWindow extends Application {
 
     private ISyntaxChecker syntaxCheckerService;
     private TextArea resultsBox;

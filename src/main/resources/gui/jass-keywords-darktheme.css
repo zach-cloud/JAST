@@ -1,0 +1,49 @@
+.virtual-flow {
+    -fx-background-color: #2b2b2b;
+}
+
+.styled-text-area .text{
+    -fx-fill: #9baab9;
+}
+
+.lineno {
+    -fx-background-color: #313335;
+}
+
+.lineno .text {
+    -fx-fill: #54534f;
+}
+
+.styled-text-area .text.keyword {
+    -fx-fill: #bb7031;
+    -fx-font-weight: bold;
+}
+.styled-text-area .text.native {
+    -fx-fill: #dca94c;
+    -fx-font-weight: bold;
+}
+.styled-text-area .text.type {
+    -fx-fill: #40E0D0;
+    -fx-font-weight: bold;
+}
+.styled-text-area .text.semicolon {
+    -fx-font-weight: bold;
+}
+.styled-text-area .text.paren {
+    -fx-fill: #cfb47e;
+    -fx-font-weight: bold;
+}
+.styled-text-area .text.bracket {
+    -fx-fill: #cfb47e;
+    -fx-font-weight: bold;
+}
+.styled-text-area .text.string {
+    -fx-fill: #50c878;
+}
+.styled-text-area .text.comment {
+	-fx-fill: #4d5b60;
+}
+
+.paragraph-box:has-caret {
+    -fx-background-color: #323232;
+}

@@ -18,6 +18,7 @@ public class BlizzardLoaderServiceStepDefs {
     @When("Common is loaded")
     public void common_is_loaded() {
         this.loadedTree = loaderService.loadCommon();
+        System.out.println();
     }
 
     @When("Blizzard is loaded")
