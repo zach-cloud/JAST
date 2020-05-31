@@ -35,3 +35,14 @@ Feature: Test the Script node
   Scenario: Test reading real j file 3 (FAI)
     Given input file: "FAI"
     When J File is read
+
+  @Script
+  Scenario: Test reading script without globals section
+    Given input data:
+    """
+    function test takes nothing returns nothing
+    call BJDebugMsg("Hello world")
+    endfunction
+    """
+    When J File is read  
+    Then J File should contain 1 functions

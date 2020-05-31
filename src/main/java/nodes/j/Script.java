@@ -49,7 +49,15 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
      */
     @Override
     public final String toString() {
-        return globalsSection.toString() + "\n" + functionsSection.toString();
+        StringBuilder returnValue = new StringBuilder();
+        if(globalsSection != null) {
+            returnValue.append(globalsSection.toString());
+            returnValue.append("\n");
+        }
+        if(functionsSection != null) {
+            returnValue.append(functionsSection.toString());
+        }
+        return returnValue.toString();
     }
 
     /**
@@ -73,18 +81,16 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
     @Override
     protected final void readNode() {
         boolean readingGlobals = false; // set to true when "globals" is discovered
-        boolean readingFunctions = false; // set to true when "endglobals" is discovered
+        boolean readingFunctions = true; // set to true when "endglobals" is discovered
         StringBuilder currentAccumulatedString = new StringBuilder(); // contains either the globals or endglobal section
 
         while(hasNextLine()) {
             String line = readLine();
             if(line.equals("globals")) {
                 // Read the entire script until endglobals
-                if (readingFunctions) {
-                    throw new ParsingException("Globals in functions section not supported: " + line);
-                }
                 if (!readingGlobals) {
                     readingGlobals = true;
+                    readingFunctions = false;
                     currentAccumulatedString.append(line).append("\n");
                 } else {
                     throw new ParsingException("Nested globals section not supported: " + line);
