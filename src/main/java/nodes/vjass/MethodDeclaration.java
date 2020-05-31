@@ -1,9 +1,11 @@
-package nodes.functions;
+package nodes.vjass;
 
 import interfaces.IFunctionRenameable;
 import interfaces.IVariableRenameable;
 import nodes.AbstractNode;
-import exception.ParsingException;
+import nodes.functions.GenericDeclaration;
+import nodes.functions.Inputs;
+import nodes.functions.Output;
 import tree.TreeContext;
 
 import java.util.Scanner;
@@ -11,16 +13,16 @@ import java.util.Scanner;
 /**
  * Function Declaration line (i.e. function x takes y returns z)
  */
-public final class FunctionDeclaration extends GenericDeclaration implements IFunctionRenameable, IVariableRenameable {
+public final class MethodDeclaration extends GenericDeclaration implements IFunctionRenameable, IVariableRenameable {
 
     /**
      * Sets up this node with a scanner to receive words.
      *
      * @param inputScanner Scanner containing JASS code
      */
-    public FunctionDeclaration(Scanner inputScanner, TreeContext context) {
+    public MethodDeclaration(Scanner inputScanner, TreeContext context) {
         super(inputScanner, context);
-        setStartText("function");
+        setStartText("method");
     }
 
     /**
@@ -28,15 +30,15 @@ public final class FunctionDeclaration extends GenericDeclaration implements IFu
      *
      * @param context
      */
-    public FunctionDeclaration(TreeContext context, String name, Inputs inputs, Output output, boolean constant, String accessModifier) {
+    public MethodDeclaration(TreeContext context, String name, Inputs inputs, Output output, boolean constant, String accessModifier) {
         super(context, name, inputs, output, constant, accessModifier);
-        setStartText("function");
+        setStartText("method");
     }
 
     @Override
     protected void setupVariables() {
         super.setupVariables();
-        setStartText("function");
+        setStartText("method");
     }
 
     /**
@@ -60,6 +62,6 @@ public final class FunctionDeclaration extends GenericDeclaration implements IFu
      */
     @Override
     public final AbstractNode renameFunction(String oldFunctionName, String newFunctionName) {
-        return new FunctionDeclaration(context, rename(getName(), oldFunctionName, newFunctionName), getInputs(), getOutput(), isConstant(), getAccessModifier());
+        return new MethodDeclaration(context, rename(getName(), oldFunctionName, newFunctionName), getInputs(), getOutput(), isConstant(), getAccessModifier());
     }
 }

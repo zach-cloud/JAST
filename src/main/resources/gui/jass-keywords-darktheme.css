@@ -11,7 +11,7 @@
 }
 
 .lineno .text {
-    -fx-fill: #54534f;
+    -fx-fill: #AAAAFF;
 }
 
 .styled-text-area .text.keyword {
@@ -45,5 +45,5 @@
 }
 
 .paragraph-box:has-caret {
-    -fx-background-color: #323232;
+    -fx-background-color: #424242;
 }

@@ -4,7 +4,7 @@ import tree.TreeContext;
 
 import java.util.Scanner;
 
-public class Library extends ScriptContainerInitializer {
+public class Struct extends ScriptContainerInitializer {
 
 
     /**
@@ -13,10 +13,10 @@ public class Library extends ScriptContainerInitializer {
      * @param inputScanner Scanner containing JASS code
      * @param context
      */
-    public Library(Scanner inputScanner, TreeContext context) {
+    public Struct(Scanner inputScanner, TreeContext context) {
         super(inputScanner, context);
-        this.startText = "library";
-        this.endText = "endlibrary";
+        this.startText = "struct";
+        this.endText = "endstruct";
     }
 
     /**
@@ -24,16 +24,16 @@ public class Library extends ScriptContainerInitializer {
      *
      * @param context
      */
-    public Library(TreeContext context) {
+    public Struct(TreeContext context) {
         super(context);
-        this.startText = "library";
-        this.endText = "endlibrary";
+        this.startText = "struct";
+        this.endText = "endstruct";
     }
 
     @Override
     protected void setupVariables() {
         super.setupVariables();
-        this.startText = "library";
-        this.endText = "endlibrary";
+        this.startText = "struct";
+        this.endText = "endstruct";
     }
 }

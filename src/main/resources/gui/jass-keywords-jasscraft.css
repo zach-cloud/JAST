@@ -11,7 +11,7 @@
 }
 
 .lineno .text {
-    -fx-fill: #666c82;
+    -fx-fill: #BBBBBB;
 }
 
 .styled-text-area .text.keyword {

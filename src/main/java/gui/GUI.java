@@ -21,7 +21,7 @@ public final class GUI extends Application {
         VBox root = new VBox(menuBar);
         setupEditorBox(root, controller);
         setupScene(controller, stage, root);
-        //controller.makeElementsFillScreen(stage, root);
+        controller.makeElementsFillScreen(stage, root);
         controller.setStage(stage);
         controller.setRoot(root);
         controller.bindElementSizes();

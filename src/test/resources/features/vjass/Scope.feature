@@ -1,41 +1,41 @@
-Feature: Test the Library node
+Feature: Test the Scope node
 
-  @Library
-  Scenario: Test library basic
+  @Scope
+  Scenario: Test scope basic
     Given input data:
     """
-    library test
+    scope test
     function test takes nothing returns nothing
     call BJDebugMsg("Hello world")
     endfunction
-    endlibrary
+    endscope
     """
-    When Library is read
-    Then Library should be:
+    When Scope is read
+    Then Scope should be:
     """
-    library test
+    scope test
     function test takes nothing returns nothing
     call BJDebugMsg("Hello world")
     endfunction
-    endlibrary
+    endscope
     """
 
-  @Library
-  Scenario: Test library initializer
+  @Scope
+  Scenario: Test scope initializer
     Given input data:
     """
-    library test initializer test
+    scope test initializer test
     function test takes nothing returns nothing
     call BJDebugMsg("Hello world")
     endfunction
-    endlibrary
+    endscope
     """
-    When Library is read
-    Then Library should be:
+    When Scope is read
+    Then Scope should be:
     """
-    library test initializer test
+    scope test initializer test
     function test takes nothing returns nothing
     call BJDebugMsg("Hello world")
     endfunction
-    endlibrary
+    endscope
     """

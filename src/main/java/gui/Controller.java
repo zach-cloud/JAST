@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -15,6 +16,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.InputModel;
 import mpq.MpqEditor;
@@ -59,7 +61,9 @@ public final class Controller {
     private String[] keywords = {"if", "then", "else", "endif", "function", "takes",
             "nothing", "returns", "endfunction", "globals", "endglobals",
             "loop", "endloop", "exitwhen", "constant", "local",
-            "call", "set", "null", "elseif", "return"};
+            "call", "set", "null", "elseif", "return", "library", "endlibrary",
+            "scope", "endscope", "struct", "endstruct", "extends", "initializer",
+            "method", "endmethod"};
     private String currentAutocompleteWord = "";
     private Pattern pattern;
 
@@ -318,6 +322,7 @@ public final class Controller {
     private void openMpq(File file) {
         this.openType = OpenType.MPQ;
         this.mpqPath = file.getAbsolutePath();
+        extractMpq(null);
     }
 
     /**
@@ -390,6 +395,7 @@ public final class Controller {
         for(Variable variable: commonVariables) {
             autocompleteEntries.add(variable.getName());
         }
+        Collections.addAll(autocompleteEntries, keywords);
         String[] array = natives.toArray(new String[0]);
         String KEYWORDS_PATTERN = "\\b(" + String.join("|", keywords) + ")\\b";
         String TYPE_PATTERN = "\\b(" + String.join("|", types) + ")\\b";
@@ -449,6 +455,7 @@ public final class Controller {
             File selectedFile = openFileChooser.showOpenDialog(null);
             if (selectedFile != null) {
                 configurations.put(CURRENT_PATH_READ, selectedFile.getParent());
+                openFileChooser.setInitialDirectory(selectedFile.getParentFile());
                 cfgService.writeConfigFile(CFG_PATH, configurations);
                 if (selectedFile.exists()) {
                     String extension = "";
@@ -495,6 +502,7 @@ public final class Controller {
             if (selectedFile != null) {
                 configurations.put(CURRENT_PATH_WRITE, selectedFile.getParent());
                 cfgService.writeConfigFile(CFG_PATH, configurations);
+                writeFileChooser.setInitialDirectory(selectedFile.getParentFile());
                 long time = System.currentTimeMillis();
                 writerService.writeString(jassCodeEditor.getText(), selectedFile.getAbsolutePath());
                 time = System.currentTimeMillis() - time;
@@ -708,7 +716,7 @@ public final class Controller {
     public void reformatCode(ActionEvent e) {
         formattingDesired = true;
         try {
-            if (openType == OpenType.SCRIPT || openType == OpenType.TEXTFILE) {
+            if (openType == null || openType == OpenType.SCRIPT || openType == OpenType.TEXTFILE) {
                 long time = System.currentTimeMillis();
                 changeStatus("Reading Syntax Tree");
                 ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
@@ -737,7 +745,7 @@ public final class Controller {
     public void minifyCode(ActionEvent e) {
         formattingDesired = false;
         try {
-            if (openType == OpenType.SCRIPT || openType == OpenType.TEXTFILE) {
+            if (openType == null || openType == OpenType.SCRIPT || openType == OpenType.TEXTFILE) {
                 long time = System.currentTimeMillis();
                 changeStatus("Reading Syntax Tree");
                 ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
@@ -1146,7 +1154,9 @@ public final class Controller {
                     firstPosition--;
                     substring = jassCodeEditor.getText().substring(firstPosition, finalPosition);
                 }
-                firstPosition++;
+                if(firstPosition != 0) {
+                    firstPosition++;
+                }
                 jassCodeEditor.replaceText(firstPosition, finalPosition, autocompleteDesired);
                 currentAutocompleteWord = "";
                 autocompleteDesired = "";
@@ -1155,17 +1165,35 @@ public final class Controller {
     }
 
     public void makeElementsFillScreen(Stage stage, VBox root) {
-//        if(screenX <= 0 || screenY <= 0) {
-//            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-//            screenX = primaryScreenBounds.getWidth();
-//            screenY = primaryScreenBounds.getHeight();
-//            cfgService.writeConfigFile(CFG_PATH, configurations);
-//        }
-//        stage.setX(screenX);
-//        stage.setY(screenY);
-//        stage.setWidth(screenX);
-//        stage.setHeight(screenY);
-//        root.setMinWidth(screenX);
-//        root.setMinHeight(screenY);
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        if(screenX <= 0 || screenY <= 0) {
+            screenX = primaryScreenBounds.getWidth();
+            screenY = primaryScreenBounds.getHeight();
+            configurations.put(SCREEN_X, (int)screenX + "");
+            configurations.put(SCREEN_Y, (int)screenY + "");
+            cfgService.writeConfigFile(CFG_PATH, configurations);
+        }
+        stage.setX(0);
+        stage.setY(0);
+        // I have no idea why these adjustments are needed, but they are
+        // If left out, the size shrinks
+        stage.setWidth(screenX + 15);
+        stage.setHeight(screenY + 38);
+        root.setMinWidth(screenX + 15);
+        root.setMinHeight(screenY + 38);
+        scene.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+                screenX = newSceneWidth.doubleValue();
+                configurations.put(SCREEN_X, (int)screenX + "");
+                cfgService.writeConfigFile(CFG_PATH, configurations);
+            }
+        });
+        scene.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+                screenY = newSceneHeight.doubleValue();
+                configurations.put(SCREEN_Y, (int)screenY + "");
+                cfgService.writeConfigFile(CFG_PATH, configurations);
+            }
+        });
     }
 }
