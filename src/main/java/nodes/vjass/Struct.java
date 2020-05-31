@@ -4,8 +4,10 @@ import tree.TreeContext;
 
 import java.util.Scanner;
 
-public class Struct extends ScriptContainerInitializer {
+public class Struct extends ScriptContainer {
 
+    private String name;
+    private String lineFlags;
 
     /**
      * Sets up this abstract node with a scanner to receive words.
@@ -28,6 +30,20 @@ public class Struct extends ScriptContainerInitializer {
         super(context);
         this.startText = "struct";
         this.endText = "endstruct";
+    }
+
+    @Override
+    protected void parseNameLine(String line) {
+        if(line.contains(" ")) {
+            lineFlags = line.substring(line.indexOf(" "));
+        }
+    }
+
+    @Override
+    protected void buildFlags(StringBuilder builder) {
+        if(lineFlags != null && !lineFlags.isEmpty()) {
+            builder.append(lineFlags);
+        }
     }
 
     @Override
