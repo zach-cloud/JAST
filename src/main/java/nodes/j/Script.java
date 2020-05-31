@@ -169,6 +169,9 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
                     throw new ParsingException("Found endglobals before globals: " + line);
                 }
             } else if(line.startsWith("library")) {
+                if(currentAccumulatedString.length() > 0) {
+                    saveData(readingFunctions, currentAccumulatedString, readingLibrary, readingScope, readingStruct);
+                }
                 readingLibrary = true;
                 readingFunctions = false;
                 currentAccumulatedString.append(line).append("\n");
@@ -181,6 +184,9 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
                 currentAccumulatedString.setLength(0);
                 readingLibrary = false;
             } else if(line.startsWith("scope")) {
+                if(currentAccumulatedString.length() > 0) {
+                    saveData(readingFunctions, currentAccumulatedString, readingLibrary, readingScope, readingStruct);
+                }
                 readingScope = true;
                 readingFunctions = false;
                 currentAccumulatedString.append(line).append("\n");
@@ -193,6 +199,9 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
                 currentAccumulatedString.setLength(0);
                 readingScope = false;
             } else if(line.startsWith("struct")) {
+                if(currentAccumulatedString.length() > 0) {
+                    saveData(readingFunctions, currentAccumulatedString, readingLibrary, readingScope, readingStruct);
+                }
                 readingStruct = true;
                 readingFunctions = false;
                 currentAccumulatedString.append(line).append("\n");
@@ -208,29 +217,34 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
                 currentAccumulatedString.append(line).append("\n");
             }
         }
-        if(readingFunctions) {
+        saveData(readingFunctions, currentAccumulatedString, readingLibrary, readingScope, readingStruct);
+        System.out.println();
+    }
+
+    private void saveData(boolean readingFunctions, StringBuilder currentAccumulatedString, boolean readingLibrary, boolean readingScope, boolean readingStruct) {
+        if (readingFunctions) {
             // Finally parse the Functions
             this.functionsSection = new FunctionsSection(new Scanner(currentAccumulatedString.toString()), context);
         }
-        if(readingLibrary && currentAccumulatedString.length() > 0) {
-            if(libraries == null) {
+        if (readingLibrary && currentAccumulatedString.length() > 0) {
+            if (libraries == null) {
                 libraries = new ArrayList<>();
             }
             libraries.add(new Library(new Scanner(currentAccumulatedString.toString()), context));
         }
-        if(readingScope && currentAccumulatedString.length() > 0) {
-            if(scopes == null) {
+        if (readingScope && currentAccumulatedString.length() > 0) {
+            if (scopes == null) {
                 scopes = new ArrayList<>();
             }
             scopes.add(new Scope(new Scanner(currentAccumulatedString.toString()), context));
         }
-        if(readingStruct && currentAccumulatedString.length() > 0) {
-            if(structs == null) {
+        if (readingStruct && currentAccumulatedString.length() > 0) {
+            if (structs == null) {
                 structs = new ArrayList<>();
             }
             structs.add(new Struct(new Scanner(currentAccumulatedString.toString()), context));
         }
-        System.out.println();
+        currentAccumulatedString.setLength(0);
     }
 
     /**

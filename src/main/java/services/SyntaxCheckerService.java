@@ -49,7 +49,7 @@ public class SyntaxCheckerService implements ISyntaxChecker {
         checkForPjass();
         // Make temp file containing code
         deleteTempFile();
-        fileWriterService.write(tree, "PJASS/tmp.j");
+        fileWriterService.write(tree, "jasshelper/tmp.j");
         String result = executePjassCommands();
         deleteTempFile();
         return result;
@@ -59,7 +59,7 @@ public class SyntaxCheckerService implements ISyntaxChecker {
         try {
             String userPath = System.getProperty("user.dir") + "/";
             Runtime rt = Runtime.getRuntime();
-            String command = "\"" + userPath + "PJASS/pjass.exe\" \"" + userPath + "PJASS/common.j\" \"" + userPath + "PJASS/blizzard.j\" \"" + userPath + "PJASS/common.ai\" \"" + userPath + "PJASS/tmp.j\"";
+            String command = "\"" + userPath + "jasshelper/clijasshelper.exe\" --scriptonly \"" + userPath + "jasshelper/common.j\" \"" + userPath + "jasshelper/blizzard.j\" \"" + userPath + "jasshelper/tmp.j\" " + userPath + "jasshelper/tmp2.j\"";
             System.out.println("Sending command: " + command);
             Process proc = rt.exec(command);
 
@@ -89,27 +89,20 @@ public class SyntaxCheckerService implements ISyntaxChecker {
     }
 
     private void deleteTempFile() {
-        File tempFile = new File("PJASS/tmp.j");
+        File tempFile = new File("jasshelper/tmp.j");
         if(tempFile.exists()) {
-            tempFile.delete();
+            //tempFile.delete();
         }
     }
 
     private void checkForPjass() {
-        String[] expectedFiles = {"PJASS/pjass.exe",
-                "PJASS/blizzard.j", "PJASS/common.j",
-                "PJASS/common.ai"};
+        String[] expectedFiles = {"jasshelper/clijasshelper.exe",
+                "jasshelper/blizzard.j", "jasshelper/common.j"};
         for(String expectedFileName : expectedFiles) {
             File expectedFile = new File(expectedFileName);
             if(!expectedFile.exists()) {
                 throw new IllegalStateException("File does not exist: " + expectedFile.getAbsolutePath());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        SyntaxCheckerService syntaxCheckerService = new SyntaxCheckerService();
-        ISyntaxTree tree = SyntaxTree.readTree(new File("badSyntax1"));
-        System.out.println(syntaxCheckerService.syntaxCheck(tree));
     }
 }
