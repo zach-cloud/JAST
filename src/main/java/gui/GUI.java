@@ -21,7 +21,7 @@ public final class GUI extends Application {
         VBox root = new VBox(menuBar);
         setupEditorBox(root, controller);
         setupScene(controller, stage, root);
-        makeElementsFillScreen(stage, root);
+        //controller.makeElementsFillScreen(stage, root);
         controller.setStage(stage);
         controller.setRoot(root);
         controller.bindElementSizes();
@@ -67,16 +67,6 @@ public final class GUI extends Application {
         controller.setupHotkeys(scene);
         controller.applyDefault();
         controller.setupAutocomplete(scene);
-    }
-
-    private void makeElementsFillScreen(Stage stage, VBox root) {
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX(primaryScreenBounds.getMinX());
-        stage.setY(primaryScreenBounds.getMinY());
-        stage.setWidth(primaryScreenBounds.getWidth());
-        stage.setHeight(primaryScreenBounds.getHeight());
-        root.setMinWidth(primaryScreenBounds.getWidth());
-        root.setMinHeight(primaryScreenBounds.getHeight());
     }
 
     private void makeFileMenu(Controller controller, MenuBar menuBar) {

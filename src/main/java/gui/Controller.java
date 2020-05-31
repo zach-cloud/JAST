@@ -50,6 +50,8 @@ public final class Controller {
     private static final String CURRENT_PATH_READ = "currentPathRead";
     private static final String CURRENT_PATH_WRITE = "currentPathWrite";
     private static final String CURRENT_THEME = "currentTheme";
+    private static final String SCREEN_X = "screenX";
+    private static final String SCREEN_Y = "screenY";
 
     private List<String> natives;
     private List<String> types;
@@ -89,6 +91,8 @@ public final class Controller {
     private Stage stage;
     private VBox root;
     private String autocompleteDesired;
+    private double screenX = -1;
+    private double screenY = -1;
     private boolean formattingDesired = false;
     private boolean browserDisplayed = false;
 
@@ -185,6 +189,22 @@ public final class Controller {
         }
         if (configurations.containsKey(CURRENT_THEME)) {
             currentTheme = configurations.get(CURRENT_THEME);
+        }
+        if(configurations.containsKey(SCREEN_X)) {
+            try {
+                screenX = Double.parseDouble(configurations.get(SCREEN_X));
+            } catch (NumberFormatException ex) {
+                // This was probably corrupted
+                screenX = -1;
+            }
+        }
+        if(configurations.containsKey(SCREEN_Y)) {
+            try {
+                screenY = Double.parseDouble(configurations.get(SCREEN_Y));
+            } catch (NumberFormatException ex) {
+                // This was probably corrupted
+                screenY = -1;
+            }
         }
     }
 
@@ -1132,5 +1152,20 @@ public final class Controller {
                 autocompleteDesired = "";
             }
         }
+    }
+
+    public void makeElementsFillScreen(Stage stage, VBox root) {
+//        if(screenX <= 0 || screenY <= 0) {
+//            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+//            screenX = primaryScreenBounds.getWidth();
+//            screenY = primaryScreenBounds.getHeight();
+//            cfgService.writeConfigFile(CFG_PATH, configurations);
+//        }
+//        stage.setX(screenX);
+//        stage.setY(screenY);
+//        stage.setWidth(screenX);
+//        stage.setHeight(screenY);
+//        root.setMinWidth(screenX);
+//        root.setMinHeight(screenY);
     }
 }
