@@ -218,7 +218,6 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
             }
         }
         saveData(readingFunctions, currentAccumulatedString, readingLibrary, readingScope, readingStruct);
-        System.out.println();
     }
 
     private void saveData(boolean readingFunctions, StringBuilder currentAccumulatedString, boolean readingLibrary, boolean readingScope, boolean readingStruct) {
@@ -321,5 +320,13 @@ public final class Script extends AbstractNode implements IMergable, IFunctionRe
 
     public List<TypeFunction> getTypes() {
         return types;
+    }
+
+    public void addFunctionMain() {
+        if(functionsSection == null) {
+            functionsSection = new FunctionsSection(new Scanner("function main takes nothing returns nothing\nendfunction"), new TreeContext());
+        } else {
+            functionsSection.addFunctionMain();
+        }
     }
 }

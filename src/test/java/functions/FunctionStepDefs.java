@@ -14,7 +14,6 @@ public class FunctionStepDefs {
     @When("Function is read")
     public void function_is_read() {
         this.function = new Function(TestContext.inputScanner, new TreeContext());
-        System.out.println();
     }
 
     @Then("Function should be:")

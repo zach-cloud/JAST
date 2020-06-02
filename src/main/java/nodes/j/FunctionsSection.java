@@ -232,4 +232,11 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
         }
         return new FunctionsSection(newFunctions, context);
     }
+
+    public void addFunctionMain() {
+        if(functions == null) {
+            functions = new ArrayList<>();
+        }
+        functions.add(new Function(new Scanner("function main takes nothing returns nothing\nendfunction"), new TreeContext()));
+    }
 }

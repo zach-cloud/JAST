@@ -228,4 +228,14 @@ public final class SyntaxTree implements ISyntaxTree {
     public List<TypeFunction> getTypes() {
         return script.getTypes();
     }
+
+    /**
+     * Adds a blank function main to make the script compile
+     */
+    @Override
+    public void addFunctionMain() {
+        if(script != null) {
+            script.addFunctionMain();
+        }
+    }
 }

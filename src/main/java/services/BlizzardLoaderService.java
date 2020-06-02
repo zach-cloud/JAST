@@ -11,9 +11,9 @@ public class BlizzardLoaderService implements IBlizzardLoaderService {
 
     private File loadBlizzardPath(String which) {
         which = which.replace(".j", "");
-        File firstTry = new File("blizzard/" + which);
+        File firstTry = new File("jasshelper/" + which);
         if(!firstTry.exists()) {
-            File other = new File("blizzard/" + which + ".j");
+            File other = new File("jasshelper/" + which + ".j");
             if(!other.exists()) {
                 throw new ParsingException("Could not load file: " + which);
             } else {

@@ -102,9 +102,6 @@ public final class Variable extends AbstractNode implements IFunctionRenameable,
         variableParts.remove(0);
 
         // Pull out "array", if applies
-        if (variableParts.size() == 0) {
-            System.out.println();
-        }
         if (variableParts.get(0).equals("array")) {
             isArray = true;
             variableParts.remove(0);
