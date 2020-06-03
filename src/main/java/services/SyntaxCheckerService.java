@@ -1,27 +1,14 @@
 package services;
 
 import interfaces.IFileWriterService;
-import nodes.AbstractFunction;
-import nodes.AbstractStatement;
-import nodes.functions.Function;
-import nodes.functions.LocalStatement;
-import nodes.functions.ReturnStatement;
-import nodes.functions.Statements;
-import nodes.j.FunctionsSection;
-import nodes.j.GlobalsSection;
-import nodes.j.Script;
-import nodes.j.Variable;
 import exception.SyntaxErrorException;
 import interfaces.ISyntaxChecker;
 import interfaces.ISyntaxTree;
-import tree.SyntaxTree;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Helper class to check some basic syntax errors
@@ -45,29 +32,33 @@ public class SyntaxCheckerService implements ISyntaxChecker {
      */
     @Override
     public String syntaxCheck(ISyntaxTree tree) throws SyntaxErrorException {
-        // Check that pjass exists
-        checkForPjass();
+        // Check that jasshelper exists
+        checkForFiles();
         // Make temp file containing code
         deleteTempFile();
-        fileWriterService.write(tree, "PJASS/tmp.j");
-        String result = executePjassCommands();
+        if(tree.getScript().getFunctionsSection() == null ||
+           !tree.getScript().getFunctionsSection().toString().contains("function main takes nothing returns nothing")) {
+            tree.addFunctionMain();
+        }
+        fileWriterService.write(tree, "jasshelper/tmp.j");
+        String result = executeJasshelper();
         deleteTempFile();
         return result;
     }
 
-    private String executePjassCommands() {
+    private String executeJasshelper() {
         try {
             String userPath = System.getProperty("user.dir") + "/";
             Runtime rt = Runtime.getRuntime();
-            String command = "\"" + userPath + "PJASS/pjass.exe\" \"" + userPath + "PJASS/common.j\" \"" + userPath + "PJASS/blizzard.j\" \"" + userPath + "PJASS/common.ai\" \"" + userPath + "PJASS/tmp.j\"";
+            String command = "\"" + userPath + "jasshelper/clijasshelper.exe\" --scriptonly \"" + userPath + "jasshelper/common.j\" \"" + userPath + "jasshelper/blizzard.j\" \"" + userPath + "jasshelper/tmp.j\" " + userPath + "jasshelper/tmp2.j\"";
             System.out.println("Sending command: " + command);
-            Process proc = rt.exec(command);
+            Process process = rt.exec(command);
 
             BufferedReader stdInput = new BufferedReader(new
-                    InputStreamReader(proc.getInputStream()));
+                    InputStreamReader(process.getInputStream()));
 
             BufferedReader stdError = new BufferedReader(new
-                    InputStreamReader(proc.getErrorStream()));
+                    InputStreamReader(process.getErrorStream()));
 
             StringBuilder result = new StringBuilder();
 
@@ -89,27 +80,20 @@ public class SyntaxCheckerService implements ISyntaxChecker {
     }
 
     private void deleteTempFile() {
-        File tempFile = new File("PJASS/tmp.j");
+        File tempFile = new File("jasshelper/tmp.j");
         if(tempFile.exists()) {
-            tempFile.delete();
+            //tempFile.delete();
         }
     }
 
-    private void checkForPjass() {
-        String[] expectedFiles = {"PJASS/pjass.exe",
-                "PJASS/blizzard.j", "PJASS/common.j",
-                "PJASS/common.ai"};
+    private void checkForFiles() {
+        String[] expectedFiles = {"jasshelper/clijasshelper.exe",
+                "jasshelper/blizzard.j", "jasshelper/common.j"};
         for(String expectedFileName : expectedFiles) {
             File expectedFile = new File(expectedFileName);
             if(!expectedFile.exists()) {
                 throw new IllegalStateException("File does not exist: " + expectedFile.getAbsolutePath());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        SyntaxCheckerService syntaxCheckerService = new SyntaxCheckerService();
-        ISyntaxTree tree = SyntaxTree.readTree(new File("badSyntax1"));
-        System.out.println(syntaxCheckerService.syntaxCheck(tree));
     }
 }

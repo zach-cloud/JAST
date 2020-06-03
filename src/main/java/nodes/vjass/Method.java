@@ -1,4 +1,4 @@
-package nodes.functions;
+package nodes.vjass;
 
 import exception.ParsingException;
 import interfaces.IFunctionRenameable;
@@ -6,7 +6,9 @@ import interfaces.IMergable;
 import interfaces.IVariableRenameable;
 import nodes.AbstractFunction;
 import nodes.AbstractNode;
-import nodes.AbstractStatement;
+import nodes.functions.Argument;
+import nodes.functions.FunctionDeclaration;
+import nodes.functions.Statements;
 import tree.TreeContext;
 
 import java.util.ArrayList;
@@ -16,9 +18,9 @@ import java.util.Scanner;
 /**
  * Represents a Function code block from the function declaration to endfunction
  */
-public final class Function extends AbstractFunction implements IMergable, IFunctionRenameable, IVariableRenameable {
+public final class Method extends AbstractFunction implements IMergable, IFunctionRenameable, IVariableRenameable {
 
-    private FunctionDeclaration functionDeclaration;
+    private MethodDeclaration functionDeclaration;
     private Statements statements;
 
     /**
@@ -26,11 +28,11 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
      *
      * @param inputScanner Scanner containing JASS code
      */
-    public Function(Scanner inputScanner, TreeContext context) {
+    public Method(Scanner inputScanner, TreeContext context) {
         super(inputScanner, context);
     }
 
-    public Function(FunctionDeclaration functionDeclaration, Statements statements, TreeContext context) {
+    public Method(MethodDeclaration functionDeclaration, Statements statements, TreeContext context) {
         super(context);
         this.functionDeclaration = functionDeclaration;
         this.statements = statements;
@@ -45,7 +47,7 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
      */
     @Override
     public final AbstractNode renameVariable(String oldVariableName, String newVariableName) {
-        return new Function(functionDeclaration,
+        return new Method(functionDeclaration,
                 (Statements)statements.renameVariable(oldVariableName, newVariableName),
                 context);
     }
@@ -59,7 +61,7 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
      */
     @Override
     public final AbstractNode renameFunction(String oldFunctionName, String newFunctionName) {
-        return new Function((FunctionDeclaration) functionDeclaration.renameFunction(oldFunctionName, newFunctionName),
+        return new Method((MethodDeclaration) functionDeclaration.renameFunction(oldFunctionName, newFunctionName),
                 (Statements)statements.renameFunction(oldFunctionName, newFunctionName),
                 context);
     }
@@ -75,7 +77,7 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
         StringBuilder builder = new StringBuilder();
         builder.append(functionDeclaration.toString()).append("\n");
         builder.append(statements.toString()).append("\n");
-        builder.append("endfunction");
+        builder.append("endmethod");
         return builder.toString();
     }
 
@@ -92,7 +94,7 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
         builder.append(functionDeclaration.toString()).append("\n");
         builder.append(statements.toFormattedString(indentationLevel)).append("\n");
         addTabs(builder, indentationLevel-1);
-        builder.append("endfunction");
+        builder.append("endmethod");
         return builder.toString();
     }
 
@@ -107,7 +109,7 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
         StringBuilder lines = new StringBuilder();
         while(hasNextLine()) {
             String line = readLine();
-            if(!line.startsWith("endfunction")) {
+            if(!line.startsWith("endmethod")) {
                 lines.append(line).append("\n");
             }
         }
@@ -117,8 +119,8 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
         this.statements = readStatements(lines.toString());
     }
 
-    private FunctionDeclaration readFunctionDeclaration(String line) {
-        FunctionDeclaration declaration = new FunctionDeclaration(new Scanner(line), context);
+    private MethodDeclaration readFunctionDeclaration(String line) {
+        MethodDeclaration declaration = new MethodDeclaration(new Scanner(line), context);
         return declaration;
     }
 
@@ -127,7 +129,7 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
         return statements;
     }
 
-    public final FunctionDeclaration getFunctionDeclaration() {
+    public final MethodDeclaration getFunctionDeclaration() {
         return functionDeclaration;
     }
 
@@ -149,15 +151,15 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
      */
     @Override
     public final AbstractNode merge(AbstractNode other) {
-        Function otherFunction = (Function)other;
-        if(!this.functionDeclaration.toString().equals(((Function) other).functionDeclaration.toString())) {
-            throw new ParsingException("Incompatible merge: " + this.functionDeclaration.toString() + ", " + ((Function) other).functionDeclaration.toString());
+        Method otherFunction = (Method)other;
+        if(!this.functionDeclaration.toString().equals(((Method) other).functionDeclaration.toString())) {
+            throw new ParsingException("Incompatible merge: " + this.functionDeclaration.toString() + ", " + ((Method) other).functionDeclaration.toString());
         }
 
         Statements otherStatements = (Statements)otherFunction.statements;
         Statements newStatements = (Statements)this.statements.merge(otherStatements);
 
-        return new Function(this.functionDeclaration, newStatements, context);
+        return new Method(this.functionDeclaration, newStatements, context);
     }
 
     public boolean usesAsFunction(String functionName) {
@@ -176,7 +178,7 @@ public final class Function extends AbstractFunction implements IMergable, IFunc
         if (obj.getClass() != getClass()) {
             return false;
         }
-        Function other = (Function) obj;
+        Method other = (Method) obj;
         return this.toString().equals(other.toString());
     }
 

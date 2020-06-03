@@ -1,0 +1,7 @@
+If you resize the window, it will remember the size desired and start with that size.
+Fixed a bug with the file choosers not remembering your directory per session (note: the open and save dialogs are remembered separately, this is intentional)
+Contrast for the line number font has been increased for dark theme/jasscraft theme
+MPQs will auto-extract upon being opened now (no extra click required) to the "tempFiles" directory.
+Experimental VJASS support added. The system will recognize "library"
+Specifically, JAST will now recognize "library", "scope", "struct", and "method" declarations.
+JASSHelper is packaged with the application rather than PJASS. Syntax check will execute JASSHelper.

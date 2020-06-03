@@ -9,6 +9,7 @@ import nodes.functions.Function;
 import nodes.functions.NativeFunction;
 import exception.ParsingException;
 import nodes.functions.TypeFunction;
+import nodes.vjass.Method;
 import tree.TreeContext;
 
 import java.util.ArrayList;
@@ -118,15 +119,15 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
     protected final void readNode() {
         StringBuilder currentFunction = new StringBuilder();
         boolean readingFunction = false; // Set to true when function is discovered, back to false at endfunctions
-
+        boolean readingMethod = false;
         while(hasNextLine()) {
             String line = readLine();
-            if(line.startsWith("function ") || line.startsWith("constant function ")) {
-                if(!readingFunction) {
+            if(line.startsWith("function ") || line.startsWith("constant function ")|| line.startsWith("private function ")|| line.startsWith("public function ") || line.startsWith("private constant function ")|| line.startsWith("public constant function ") ) {
+                if(!readingFunction && !readingMethod) {
                     currentFunction.append(line).append("\n");
                     readingFunction = true;
                 } else {
-                    throw new ParsingException("Found function without endfunction: " + line);
+                    throw new ParsingException("Found function without endfunction/endmethod: " + line);
                 }
             } else if(line.startsWith("endfunction")) {
                 if(!readingFunction) {
@@ -138,14 +139,31 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
                     currentFunction = new StringBuilder();
                     readingFunction = false;
                 }
-            } else if(readingFunction) {
-                currentFunction.append(line).append("\n");
             } else if(line.startsWith("native ") || line.startsWith("constant native ")) {
                 NativeFunction nativeFunction = new NativeFunction(new Scanner(line), context);
                 functions.add(nativeFunction);
             } else if(line.startsWith("type ")) {
                 TypeFunction typeFunction = new TypeFunction(new Scanner(line), context);
                 functions.add(typeFunction);
+            } else if(line.startsWith("method ") || line.startsWith("constant method ")|| line.startsWith("private method ")|| line.startsWith("public method ") || line.startsWith("private constant method ")|| line.startsWith("public constant method ")) {
+                if(!readingFunction && !readingMethod) {
+                    currentFunction.append(line).append("\n");
+                    readingMethod = true;
+                } else {
+                    throw new ParsingException("Found method without endmethod/endfunction: " + line);
+                }
+            } else if(line.startsWith("endmethod")) {
+                if(!readingMethod) {
+                    throw new ParsingException("Found endmethod without method: " + line);
+                } else {
+                    currentFunction.append(line);
+                    Method function = new Method(new Scanner(currentFunction.toString()), context);
+                    this.functions.add(function);
+                    currentFunction = new StringBuilder();
+                    readingMethod = false;
+                }
+            } else if(readingFunction || readingMethod) {
+                currentFunction.append(line).append("\n");
             } else {
                 // Not a Function or Native
                 if(!line.isEmpty()) {
@@ -213,5 +231,12 @@ public final class FunctionsSection extends AbstractNode implements IMergable, I
             newFunctions.add(mainFunction);
         }
         return new FunctionsSection(newFunctions, context);
+    }
+
+    public void addFunctionMain() {
+        if(functions == null) {
+            functions = new ArrayList<>();
+        }
+        functions.add(new Function(new Scanner("function main takes nothing returns nothing\nendfunction"), new TreeContext()));
     }
 }

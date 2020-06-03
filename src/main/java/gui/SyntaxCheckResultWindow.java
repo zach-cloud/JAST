@@ -47,6 +47,7 @@ public final class SyntaxCheckResultWindow extends Application {
                 try {
                     resultsBox.setText(syntaxCheckerService.syntaxCheck(tree));
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                     resultsBox.setText("An error occurred when trying to syntax check:\n" + ex.getMessage());
                 }
             }

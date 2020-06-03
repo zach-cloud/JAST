@@ -90,4 +90,9 @@ public interface ISyntaxTree {
      * @return  Non-formatted tree
      */
     String getString();
+
+    /**
+     * Adds a blank function main to make the script compile
+     */
+    void addFunctionMain();
 }

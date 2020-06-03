@@ -22,7 +22,7 @@ public class JASTDeployer {
     private final String LICENSE_PATH = USER_PATH + "LICENSE";
     private final String BLIZZARD_PATH = USER_PATH + "blizzard\\";
     private final String CHEATPACKS_PATH = USER_PATH + "cheatpacks\\";
-    private final String PJASS_PATH = USER_PATH + "PJASS\\";
+    private final String JASSHELPER_PATH = USER_PATH + "jasshelper\\";
     private final String RUN_CONTENTS = "java -Xmx1g -jar JAST-" + VERSION + ".jar gui";
     private final String RUN_CLI_CONTENTS = "java -Xmx1g -jar JAST-" + VERSION + ".jar\nread  -n 1 -p \"Press any key to exit\"";
 
@@ -30,7 +30,7 @@ public class JASTDeployer {
     private final String JAR_DESTINATION = RELEASES_DESTINATION + "JAST-" + VERSION + ".jar";
     private final String BLIZZARD_DESTINATION = RELEASES_DESTINATION + "blizzard\\";
     private final String CHEATPACKS_DESTINATION = RELEASES_DESTINATION + "cheatpacks\\";
-    private final String PJASS_DESTINATION = RELEASES_DESTINATION + "PJASS\\";
+    private final String JASSHELPER_DESTINATION = RELEASES_DESTINATION + "jasshelper\\";
     private final String LICENSE_DESTINATION = RELEASES_DESTINATION + "LICENSE";
     private final String RUN_DESTINATION = RELEASES_DESTINATION + "run.sh";
     private final String RUN_CLI_DESTINATION = RELEASES_DESTINATION + "run-cli.sh";
@@ -51,11 +51,10 @@ public class JASTDeployer {
         copyFile(LICENSE_PATH, LICENSE_DESTINATION);
         writeFileContents(RUN_CONTENTS, RUN_DESTINATION);
         writeFileContents(RUN_CLI_CONTENTS, RUN_CLI_DESTINATION);
-        copyFolder(BLIZZARD_PATH, BLIZZARD_DESTINATION);
         if(Settings.CHEATING_ENABLED) {
             copyFolder(CHEATPACKS_PATH, CHEATPACKS_DESTINATION);
         }
-        copyFolder(PJASS_PATH, PJASS_DESTINATION);
+        copyFolder(JASSHELPER_PATH, JASSHELPER_DESTINATION);
     }
 
     /**
