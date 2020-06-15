@@ -2,6 +2,11 @@
 
 This is a multi-purpose and open-source tool for modifying JASS Script files.
 
+
+### Download
+
+If you just want to download the current release, go here: https://www.hiveworkshop.com/threads/jast-1-1-1.325057/#resource-89811
+
 ### Features
 
 - Code merging: given two war3map.j files, logically merges them together to contain the functionality of both.
