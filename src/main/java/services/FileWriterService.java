@@ -1,6 +1,5 @@
 package services;
 
-import exception.WritingException;
 import interfaces.IFileWriterService;
 import interfaces.ISyntaxTree;
 
@@ -26,7 +25,7 @@ public class FileWriterService implements IFileWriterService {
             writer.flush();
             writer.close();
         } catch (Exception ex) {
-            throw new WritingException("Could not write to file: " + filename);
+            throw new RuntimeException("Could not write to file: " + filename);
         }
     }
 

@@ -1,6 +1,5 @@
 package services;
 
-import exception.ParsingException;
 import interfaces.IBlizzardLoaderService;
 import interfaces.ISyntaxTree;
 import tree.SyntaxTree;
@@ -15,7 +14,7 @@ public class BlizzardLoaderService implements IBlizzardLoaderService {
         if(!firstTry.exists()) {
             File other = new File("jasshelper/" + which + ".j");
             if(!other.exists()) {
-                throw new ParsingException("Could not load file: " + which);
+                throw new RuntimeException("Could not load file: " + which);
             } else {
                 return other;
             }

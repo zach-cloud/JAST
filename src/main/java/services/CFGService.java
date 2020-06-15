@@ -1,6 +1,5 @@
 package services;
 
-import exception.ParsingException;
 import interfaces.ICFGService;
 import interfaces.IFileWriterService;
 import interfaces.IOutputService;
@@ -50,7 +49,7 @@ public class CFGService implements ICFGService {
             }
             return returnMap;
         } catch (IOException ex) {
-            throw new ParsingException("Cannot read file: " + file.getAbsolutePath());
+            throw new RuntimeException("Cannot read file: " + file.getAbsolutePath());
         }
     }
 
