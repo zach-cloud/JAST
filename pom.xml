@@ -83,6 +83,12 @@
             <artifactId>jsyntaxtree</artifactId>
             <version>1.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.zach-cloud</groupId>
+            <artifactId>JStringHash</artifactId>
+            <version>1.1</version>
+        </dependency>
     </dependencies>
 
     <build>

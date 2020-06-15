@@ -1,0 +1,7 @@
+User-facing changes:
+
+Architecture changes:
+ - A major component split has been performed
+ - The syntax tree component and the string hash component has been extracted and moved to a new project
+ - This project is available through Maven Central and can be used by any developers in their own projects
+ - This is part of an effort to move away from a monolithic program architecture as the project becomes bigger
