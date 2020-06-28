@@ -116,4 +116,5 @@ public class MpqEditor {
             System.out.println("Could not close MPQ: " + ex.getMessage());
         }
     }
+
 }

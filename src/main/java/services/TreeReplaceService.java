@@ -50,8 +50,8 @@ public class TreeReplaceService implements ITreeReplaceService {
         ISyntaxTree tree = inputLine.getTree1();
         String oldEntityName = inputLine.getOldName();
         String newEntityName = inputLine.getNewName();
-        ISyntaxTree outputTree = replace(type, oldEntityName, newEntityName, tree);
-        writerService.write(outputTree, inputLine.getOutputPath());
+        replace(type, oldEntityName, newEntityName, tree);
+        writerService.write(tree, inputLine.getOutputPath());
         outputService.print("Rename completed successfully");
     }
 
@@ -62,17 +62,14 @@ public class TreeReplaceService implements ITreeReplaceService {
      * @param oldEntityName Old entity name
      * @param newEntityName New entity name
      * @param tree          Input tree
-     * @return              Replaced tree
      */
-    public ISyntaxTree replace(ReplacementType type, String oldEntityName, String newEntityName, ISyntaxTree tree) {
-        ISyntaxTree outputTree = null;
+    public void replace(ReplacementType type, String oldEntityName, String newEntityName, ISyntaxTree tree) {
         if(type == ReplacementType.VARIABLE) {
-            outputTree = tree.renameVariable(oldEntityName, newEntityName);
+            tree.renameVariable(oldEntityName, newEntityName);
         } else if(type == ReplacementType.FUNCTION) {
-            outputTree = tree.renameFunction(oldEntityName, newEntityName);
+            tree.renameFunction(oldEntityName, newEntityName);
         } else if(type == ReplacementType.STRING) {
-            outputTree = tree.renameVariable("\"" + oldEntityName + "\"", "\"" + newEntityName + "\"");
+            tree.renameVariable("\"" + oldEntityName + "\"", "\"" + newEntityName + "\"");
         }
-        return outputTree;
     }
 }

@@ -49,12 +49,12 @@ public class TreeMergeService implements ITreeMergeService {
     public void merge(boolean dedupe, ISyntaxTree tree1, ISyntaxTree tree2, String outputFile) {
         if(dedupe) {
             outputService.print("De-duplicating variables/functions");
-            tree2 = tree2.deduplicate(new RandomNameGeneratorService());
+            tree2.deduplicate(new RandomNameGeneratorService());
             outputService.print("Completed variable/function deduplication");
         }
-        ISyntaxTree tree3 = tree1.merge(tree2);
-        outputService.print("Merged into " + tree3.getScript().getGlobalsSection().getGlobalVariables().size() + " variables and " + tree3.getScript().getFunctionsSection().getFunctions().size() + " functions.");
-        writerService.write(tree3, outputFile);
+        tree1.merge(tree2);
+        outputService.print("Merged into " + tree1.getScript().getGlobalsSection().getGlobalVariables().size() + " variables and " + tree1.getScript().getFunctionsSection().getFunctions().size() + " functions.");
+        writerService.write(tree1, outputFile);
         outputService.print("Saved script to: " + outputFile);
     }
 
@@ -68,8 +68,8 @@ public class TreeMergeService implements ITreeMergeService {
      */
     public void applyCp(boolean dedupe, String cheatpackName, String defaultActivator, InputModel input) {
         String activator = input.getActivator().replace("\\s", " ");
-        ISyntaxTree cp = input.getTree2().renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
-        merge(dedupe, input.getTree1(), cp, input.getOutputPath());
+        input.getTree2().renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
+        merge(dedupe, input.getTree1(), input.getTree2(), input.getOutputPath());
     }
 
     /**

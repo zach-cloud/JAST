@@ -23,7 +23,6 @@ public interface ITreeReplaceService {
      * @param oldEntityName Old entity name
      * @param newEntityName New entity name
      * @param tree          Input tree
-     * @return              Replaced tree
      */
-    ISyntaxTree replace(TreeReplaceService.ReplacementType type, String oldEntityName, String newEntityName, ISyntaxTree tree);
+    void replace(TreeReplaceService.ReplacementType type, String oldEntityName, String newEntityName, ISyntaxTree tree);
 }

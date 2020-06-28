@@ -364,7 +364,7 @@ public final class Controller {
      */
     private void addKeywords(ISyntaxTree tree) {
         if(tree.getTypes() != null) {
-            for (TypeFunction type : tree.getTypes()) {
+            for (TypeDeclaration type : tree.getTypes()) {
                 types.add(type.getName());
             }
         }
@@ -534,14 +534,14 @@ public final class Controller {
     public ISyntaxTree merge(boolean dedupe, ISyntaxTree tree1, ISyntaxTree tree2) {
         if (dedupe) {
             changeStatus("De-duplicating variables/functions");
-            tree2 = tree2.deduplicate(new RandomNameGeneratorService());
+            tree2.deduplicate(new RandomNameGeneratorService());
             changeStatus("Completed variable/function deduplication");
         }
-        ISyntaxTree tree3 = tree1.merge(tree2);
-        changeStatus("Merged into " + tree3.getScript().getGlobalsSection().getGlobalVariables().size() + " variables and " + tree3.getScript().getFunctionsSection().getFunctions().size() + " functions.");
-        jassCodeEditor.replaceText(tree3.getString());
+        tree1.merge(tree2);
+        changeStatus("Merged into " + tree1.getScript().getGlobalsSection().getGlobalVariables().size() + " variables and " + tree1.getScript().getFunctionsSection().getFunctions().size() + " functions.");
+        jassCodeEditor.replaceText(tree1.getString());
         formatIfDesired();
-        return tree3;
+        return tree1;
     }
 
     /**
@@ -584,8 +584,8 @@ public final class Controller {
             String activator = JOptionPane.showInputDialog("Enter custom activator (no dash)");
             ISyntaxTree userTree = SyntaxTree.readTree(jassCodeEditor.getText());
             ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
-            ISyntaxTree cp = cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
-            jassCodeEditor.replaceText(merge(dedupe, userTree, cp).getString());
+            cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
+            jassCodeEditor.replaceText(merge(dedupe, userTree, cpTree).getString());
             formatIfDesired();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -641,7 +641,8 @@ public final class Controller {
         String nameOne = JOptionPane.showInputDialog("Enter name to replace");
         String nameTwo = JOptionPane.showInputDialog("Enter name to replace with");
         ISyntaxTree syntaxTree = SyntaxTree.readTree(jassCodeEditor.getText());
-        jassCodeEditor.replaceText(treeReplaceService.replace(type, nameOne, nameTwo, syntaxTree).toString());
+        treeReplaceService.replace(type, nameOne, nameTwo, syntaxTree);
+        jassCodeEditor.replaceText(syntaxTree.toString());
         formatIfDesired();
         time = System.currentTimeMillis() - time;
         changeStatus("Renamed successfully", time);
@@ -690,7 +691,8 @@ public final class Controller {
             changeStatus("Reading Syntax Tree");
             ISyntaxTree tree = SyntaxTree.readTree(jassCodeEditor.getText());
             changeStatus("Writing tree");
-            String newData = tree.deduplicate(new RandomNameGeneratorService()).getString();
+            tree.deduplicate(new RandomNameGeneratorService());
+            String newData = tree.getString();
             jassCodeEditor.replaceText(newData);
             formatIfDesired();
             time = System.currentTimeMillis() - time;
