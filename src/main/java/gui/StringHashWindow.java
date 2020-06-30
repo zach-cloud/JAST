@@ -18,7 +18,7 @@ public final class StringHashWindow extends Application {
     private Button exitButton;
     private Stage stage;
 
-    public StringHashWindow(Controller controller) {
+    StringHashWindow(Controller controller) {
         this.controller = controller;
     }
 
@@ -68,7 +68,7 @@ public final class StringHashWindow extends Application {
         stage.hide();
     }
 
-    public String getHashText() {
+    String getHashText() {
         return hashText.getText();
     }
 

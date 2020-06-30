@@ -60,7 +60,7 @@ public final class SearchWindow extends Application {
         stage.hide();
     }
 
-    public String getSearchText() {
+    String getSearchText() {
         return searchText.getText();
     }
 }

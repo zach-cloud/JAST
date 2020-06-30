@@ -15,3 +15,7 @@ I'm going to work on refactoring the GUI piece of this project into
 modules to make it better, and then code new functionality. The next
 piece I want to code is function analysis tools. Specifically the first
 one I want to do is a tool to extract all usages of a variable or function.
+
+Other:
+- "De-format" button renamed to "Minify" button
+- "Syntax check code" button renamed to "Compile code"

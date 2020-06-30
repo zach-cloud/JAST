@@ -1,5 +1,9 @@
 package gui;
 
+import gui.components.AutocompleteComponent;
+import gui.components.ComponentContext;
+import gui.components.KeywordsComponent;
+import gui.components.SyntaxHighlighterComponent;
 import helper.CheatpackLoader;
 import interfaces.*;
 import javafx.application.Platform;
@@ -55,17 +59,7 @@ public final class Controller {
     private static final String SCREEN_X = "screenX";
     private static final String SCREEN_Y = "screenY";
 
-    private List<String> natives;
-    private List<String> types;
-    private List<String> autocompleteEntries;
-    private String[] keywords = {"if", "then", "else", "endif", "function", "takes",
-            "nothing", "returns", "endfunction", "globals", "endglobals",
-            "loop", "endloop", "exitwhen", "constant", "local",
-            "call", "set", "null", "elseif", "return", "library", "endlibrary",
-            "scope", "endscope", "struct", "endstruct", "extends", "initializer",
-            "method", "endmethod"};
-    private String currentAutocompleteWord = "";
-    private Pattern pattern;
+
 
     /**
      * Determines which type of file was opened.
@@ -94,22 +88,33 @@ public final class Controller {
     private Scene scene;
     private Stage stage;
     private VBox root;
-    private String autocompleteDesired;
     private double screenX = -1;
     private double screenY = -1;
     private boolean formattingDesired = false;
-    private boolean browserDisplayed = false;
+
 
     private String currentTheme;
     private String jasscraftTheme;
     private String darkTheme;
     private String lightTheme;
 
-    private List<AbstractFunction> commonFunctions;
-    private List<Variable> commonVariables;
+
+    /**
+     * COMPONENTS REFACTOR START
+     */
+
+    private ComponentContext context;
+    private KeywordsComponent keywordsComponent;
+    private SyntaxHighlighterComponent syntaxHighlighterComponent;
+    private AutocompleteComponent autocompleteComponent;
+
+    /**
+     * COMPONENTS REFACTOR END
+     */
+
+
 
     private IExitProgramService exitProgramService;
-    private IBlizzardLoaderService blizzardLoaderService;
     private IFileWriterService writerService;
     private ICFGService cfgService;
     private IGuiOptimizerService optimizer;
@@ -125,17 +130,30 @@ public final class Controller {
      * Instantiates all necessary services, etc.
      */
     public Controller() {
+
         createServices();
         readConfigs();
-        natives = new ArrayList<>();
-        types = new ArrayList<>();
-        commonVariables = new ArrayList<>();
-        commonFunctions = new ArrayList<>();
-        this.autocompleteEntries = new ArrayList<>();
         addFilters(openFileChooser);
         addFilters(writeFileChooser);
         setupStyles();
 
+    }
+
+    public void makeComponents() {
+        /**
+         * COMPONENTS REFACTOR START
+         */
+
+        this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage);
+        this.keywordsComponent = new KeywordsComponent(context);
+        this.syntaxHighlighterComponent = new SyntaxHighlighterComponent(context);
+        this.autocompleteComponent = new AutocompleteComponent(context);
+
+        this.keywordsComponent.setupKeywords();
+
+        /**
+         * COMPONENTS REFACTOR END
+         */
     }
 
     public void setScene(Scene scene) {
@@ -156,12 +174,15 @@ public final class Controller {
         lightTheme = GUI.class.getResource("jass-keywords-lighttheme.css").toExternalForm();
     }
 
+    public void bindElementSizes() {
+        autocompleteComponent.bindElementSizes();
+    }
+
     /**
      * Creates the required services for running app.
      */
     private void createServices() {
         this.exitProgramService = new ExitProgramServiceGUI();
-        this.blizzardLoaderService = new BlizzardLoaderService();
         this.writerService = new FileWriterService();
         this.cfgService = new CFGService();
         this.openFileChooser = new FileChooser();
@@ -339,112 +360,9 @@ public final class Controller {
      * Sets up syntax highlighting
      */
     public void setupHighlighting() {
-        setupKeywords();
-        jassCodeEditor.getVisibleParagraphs().addModificationObserver
-                (
-                        new VisibleParagraphStyler<>(jassCodeEditor, this::computeHighlighting)
-                );
-
-        final Pattern whiteSpace = Pattern.compile("^\\s+");
-        jassCodeEditor.addEventHandler(KeyEvent.KEY_PRESSED, KE ->
-        {
-            if (KE.getCode() == KeyCode.ENTER) {
-                int caretPosition = jassCodeEditor.getCaretPosition();
-                int currentParagraph = jassCodeEditor.getCurrentParagraph();
-                Matcher m0 = whiteSpace.matcher(jassCodeEditor.getParagraph(currentParagraph - 1).getSegments().get(0));
-                if (m0.find()) Platform.runLater(() -> jassCodeEditor.insertText(caretPosition, m0.group()));
-            }
-        });
+        this.syntaxHighlighterComponent.setupHighlighting();
     }
 
-    /**
-     * Reads keywords from common/blizzard
-     *
-     * @param tree Keywords tree
-     */
-    private void addKeywords(ISyntaxTree tree) {
-        if(tree.getTypes() != null) {
-            for (TypeDeclaration type : tree.getTypes()) {
-                types.add(type.getName());
-            }
-        }
-        for (AbstractFunction function : tree.getScript().getFunctionsSection().getFunctions()) {
-            natives.add(function.getName());
-            commonFunctions.add(function);
-        }
-        for (Variable variable : tree.getScript().getGlobalsSection().getGlobalVariables()) {
-            natives.add(variable.getName());
-            commonVariables.add(variable);
-        }
-    }
-
-    /**
-     * Sets up keywords to use in syntax highlighting
-     */
-    private void setupKeywords() {
-        addKeywords(blizzardLoaderService.loadCommon());
-        addKeywords(blizzardLoaderService.loadBlizzard());
-        types.add("string");
-        types.add("integer");
-        types.add("real");
-        types.add("boolean");
-        types.add("array");
-        for(String type: types) {
-            autocompleteEntries.add(type);
-        }
-        for(Variable variable: commonVariables) {
-            autocompleteEntries.add(variable.getName());
-        }
-        Collections.addAll(autocompleteEntries, keywords);
-        String[] array = natives.toArray(new String[0]);
-        String KEYWORDS_PATTERN = "\\b(" + String.join("|", keywords) + ")\\b";
-        String TYPE_PATTERN = "\\b(" + String.join("|", types) + ")\\b";
-        String NATIVE_PATTERN = "\\b(" + String.join("|", array) + ")\\b";
-        String PAREN_PATTERN = "\\(|\\)";
-        String BRACKET_PATTERN = "\\[|\\]";
-        String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
-        String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
-
-        pattern = Pattern.compile(
-                "(?<NATIVE>" + NATIVE_PATTERN + ")"
-                        + "|(?<KEYWORD>" + KEYWORDS_PATTERN + ")"
-                        + "|(?<TYPE>" + TYPE_PATTERN + ")"
-                        + "|(?<PAREN>" + PAREN_PATTERN + ")"
-                        + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
-                        + "|(?<STRING>" + STRING_PATTERN + ")"
-                        + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
-        );
-    }
-
-    /**
-     * Computes syntax highlighting for text
-     *
-     * @param text Text to highlight
-     * @return Highlighted spans
-     */
-    private StyleSpans<Collection<String>> computeHighlighting(String text) {
-        Matcher matcher = pattern.matcher(text);
-        int lastKwEnd = 0;
-        StyleSpansBuilder<Collection<String>> spansBuilder
-                = new StyleSpansBuilder<>();
-        while (matcher.find()) {
-            String styleClass =
-                    matcher.group("NATIVE") != null ? "native" :
-                            matcher.group("KEYWORD") != null ? "keyword" :
-                                    matcher.group("TYPE") != null ? "type" :
-                                            matcher.group("PAREN") != null ? "paren" :
-                                                    matcher.group("BRACKET") != null ? "bracket" :
-                                                            matcher.group("STRING") != null ? "string" :
-                                                                    matcher.group("COMMENT") != null ? "comment" :
-                                                                            null; /* never happens */
-            assert styleClass != null;
-            spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
-            spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
-            lastKwEnd = matcher.end();
-        }
-        spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
-        return spansBuilder.create();
-    }
 
     /**
      * Prompts the user to open a file
@@ -796,7 +714,7 @@ public final class Controller {
     }
 
     /**
-     * Extracts
+     * Extracts MPQ files
      *
      * @param e
      */
@@ -953,10 +871,10 @@ public final class Controller {
                     about(null);
                     ke.consume();
                 } else if (toggleFunctionBrowser.match(ke)) {
-                    toggleFunctionBrowser();
+                    autocompleteComponent.toggleFunctionBrowser();
                     ke.consume();
                 } else if(autocomplete.match(ke)) {
-                    runAutocomplete();
+                    autocompleteComponent.runAutocomplete();
                     ke.consume();
                 }
             }
@@ -964,83 +882,12 @@ public final class Controller {
     }
 
     public void setupAutocomplete(Scene scene) {
-        jassCodeEditor.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if (t1.length() > s.length()) {
-                    String diff = StringUtils.difference(s, t1).charAt(0)+"";
-                    if (diff.equalsIgnoreCase(" ") || diff.equalsIgnoreCase("\n")) {
-                        currentAutocompleteWord = "";
-                    } else {
-                        currentAutocompleteWord += diff;
-                    }
-                } else {
-                    try {
-                        currentAutocompleteWord = currentAutocompleteWord.substring(0, currentAutocompleteWord.length() - 1);
-                    } catch (Exception ex) {
-                        currentAutocompleteWord = "";
-                    }
-                }
-            }
-        });
-
-        Subscription cleanupWhenNoLongerNeedIt = jassCodeEditor
-                .multiPlainChanges()
-                .successionEnds(Duration.ofMillis(100))
-                .subscribe(ignore -> showAutocomplete());
-    }
-
-    private void showAutocomplete() {
-        if(browserDisplayed) {
-            boolean foundAutocomplete = false;
-            StringBuilder builder = new StringBuilder();
-            for (AbstractFunction function : commonFunctions) {
-                if (function.getName().startsWith(currentAutocompleteWord)) {
-                    builder.append(function.toString()).append("\n");
-                    // TODO: Fix this nasty code when TypeFunction is refactored.
-                    // TODO: Oh my gosh this is really nasty. But it works.
-                    if(!foundAutocomplete) {
-                        foundAutocomplete = true;
-                        autocompleteDesired = function.getName();
-                        if (function instanceof Function || function instanceof NativeFunction) {
-                            autocompleteDesired += "(";
-                            Inputs inputs = null;
-                            if (function instanceof Function) {
-                                inputs = ((Function) function).getFunctionDeclaration().getInputs();
-                            } else if (function instanceof NativeFunction) {
-                                inputs = ((NativeFunction) function).getInputs();
-                            }
-
-                            if(!inputs.getInputs().isEmpty()) {
-                                for (Input input : inputs.getInputs()) {
-                                    autocompleteDesired += input.getType() + ",";
-                                }
-                                autocompleteDesired = autocompleteDesired.substring(0, autocompleteDesired.length() - 1);
-                            }
-                            autocompleteDesired += ")";
-                        }
-                    }
-
-                }
-            }
-            for(String entry: autocompleteEntries) {
-                if(entry.startsWith(currentAutocompleteWord)) {
-                    builder.append(entry).append("\n");
-                    if(!foundAutocomplete) {
-                        foundAutocomplete = true;
-                        autocompleteDesired = entry;
-                    }
-                }
-            }
-            if (builder.length() > 0) {
-                functionBrowser.replaceText(builder.toString());
-            }
-        }
+        autocompleteComponent.setupAutocomplete(scene);
     }
 
     public void syntaxCheck(ActionEvent e) {
-        SyntaxCheckResultWindow resultWindow =
-                new SyntaxCheckResultWindow(syntaxCheckerService,
+        CompileResultsWindow resultWindow =
+                new CompileResultsWindow(syntaxCheckerService,
                         SyntaxTree.readTree(jassCodeEditor.getText()));
 
         resultWindow.start(new Stage());
@@ -1084,29 +931,11 @@ public final class Controller {
     }
 
     public void showFunctionBrowser(ActionEvent e) {
-        if (!browserDisplayed) {
-            bindElementSizesSmall();
-            browserDisplayed = true;
-        }
+        autocompleteComponent.showFunctionBrowser();
     }
 
     public void hideFunctionBrowser(ActionEvent e) {
-        if (browserDisplayed) {
-            bindElementSizes();
-            browserDisplayed = false;
-        }
-    }
-
-    public void bindElementSizes() {
-        root.prefHeightProperty().bind(stage.heightProperty());
-        jassCodeEditor.prefHeightProperty().bind(root.heightProperty());
-        functionBrowser.setPrefHeight(0);
-    }
-
-    public void bindElementSizesSmall() {
-        jassCodeEditor.prefHeightProperty().bind(root.heightProperty().subtract(200));
-        functionBrowser.setPrefHeight(200);
-        showAutocomplete();
+        autocompleteComponent.hideFunctionBrowser();
     }
 
     public void applyDefault() {
@@ -1124,46 +953,11 @@ public final class Controller {
     }
 
     public void searchForFunction(ActionEvent e) {
-        String input = JOptionPane.showInputDialog("Search for: ");
-        if(input != null && !input.isEmpty()) {
-            currentAutocompleteWord = input;
-            showAutocomplete();
-        }
+        autocompleteComponent.searchForFunction();
     }
 
     public void clearBrowser(ActionEvent e) {
-        System.out.println(currentAutocompleteWord);
-        currentAutocompleteWord = "";
-        functionBrowser.replaceText("");
-    }
-
-    private void toggleFunctionBrowser() {
-        if(browserDisplayed) {
-            hideFunctionBrowser(null);
-        } else {
-            showFunctionBrowser(null);
-        }
-    }
-
-    private void runAutocomplete() {
-        if(browserDisplayed) {
-            if(autocompleteDesired != null && !autocompleteDesired.isEmpty()) {
-                // Find word before caret
-                int finalPosition = jassCodeEditor.getCaretPosition();
-                int firstPosition = jassCodeEditor.getCaretPosition();
-                String substring = "";
-                while(firstPosition > 0 && !substring.contains(" ") && !substring.contains("\n")) {
-                    firstPosition--;
-                    substring = jassCodeEditor.getText().substring(firstPosition, finalPosition);
-                }
-                if(firstPosition != 0) {
-                    firstPosition++;
-                }
-                jassCodeEditor.replaceText(firstPosition, finalPosition, autocompleteDesired);
-                currentAutocompleteWord = "";
-                autocompleteDesired = "";
-            }
-        }
+        autocompleteComponent.clearBrowser();
     }
 
     public void makeElementsFillScreen(Stage stage, VBox root) {
