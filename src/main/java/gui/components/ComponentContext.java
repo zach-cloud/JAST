@@ -8,11 +8,10 @@ import nodes.AbstractFunction;
 import nodes.j.Variable;
 import org.fxmisc.richtext.CodeArea;
 import services.BlizzardLoaderService;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComponentContext {
+public final class ComponentContext {
 
     /**
      * Determines which type of file was opened.

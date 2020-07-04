@@ -2,7 +2,6 @@ package gui.components;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import nodes.AbstractFunction;
 import nodes.functions.Function;
@@ -15,7 +14,7 @@ import org.reactfx.Subscription;
 import javax.swing.*;
 import java.time.Duration;
 
-public class AutocompleteComponent extends GenericComponent {
+public final class AutocompleteComponent extends GenericComponent {
 
     private String currentAutocompleteWord = "";
     private String autocompleteDesired;

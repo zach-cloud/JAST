@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SyntaxHighlighterComponent extends GenericComponent {
+public final class SyntaxHighlighterComponent extends GenericComponent {
 
     private Pattern pattern;
 

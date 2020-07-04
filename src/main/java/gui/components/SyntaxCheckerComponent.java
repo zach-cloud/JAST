@@ -3,13 +3,12 @@ package gui.components;
 import gui.window.CompileResultsWindow;
 import interfaces.IFileWriterService;
 import interfaces.ISyntaxChecker;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import services.FileWriterService;
 import services.SyntaxCheckerService;
 import tree.SyntaxTree;
 
-public class SyntaxCheckerComponent extends GenericComponent {
+public final class SyntaxCheckerComponent extends GenericComponent {
 
     private ISyntaxChecker syntaxCheckerService;
     private IFileWriterService writerService;

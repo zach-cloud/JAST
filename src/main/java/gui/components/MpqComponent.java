@@ -1,11 +1,10 @@
 package gui.components;
 
-import javafx.event.ActionEvent;
 import mpq.MpqEditor;
 
 import java.io.File;
 
-public class MpqComponent extends GenericComponent {
+public final class MpqComponent extends GenericComponent {
 
     private StatusComponent statusComponent;
     private FileComponent fileComponent;

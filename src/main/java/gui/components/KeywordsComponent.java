@@ -4,11 +4,9 @@ import interfaces.ISyntaxTree;
 import nodes.AbstractFunction;
 import nodes.functions.TypeDeclaration;
 import nodes.j.Variable;
-
-import java.util.ArrayList;
 import java.util.Collections;
 
-public class KeywordsComponent extends GenericComponent {
+public final class KeywordsComponent extends GenericComponent {
 
     public KeywordsComponent(ComponentContext context) {
         super(context);

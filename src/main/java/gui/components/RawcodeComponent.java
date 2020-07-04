@@ -3,7 +3,7 @@ package gui.components;
 import interfaces.IRawcodeService;
 import services.RawcodeService;
 
-public class RawcodeComponent extends GenericComponent {
+public final class RawcodeComponent extends GenericComponent {
 
     private StatusComponent statusComponent;
     private FileComponent fileComponent;

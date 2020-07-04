@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public class FileComponent extends GenericComponent {
+public final class FileComponent extends GenericComponent {
 
     private FileChooser openFileChooser;
     private FileChooser writeFileChooser;
@@ -18,8 +18,6 @@ public class FileComponent extends GenericComponent {
     private RawcodeComponent rawcodeComponent;
     private MpqComponent mpqComponent;
     private IFileWriterService writerService;
-
-
 
     public FileComponent(ComponentContext context, StatusComponent statusComponent,
                          ConfigLoaderComponent configLoaderComponent, RawcodeComponent rawcodeComponent,

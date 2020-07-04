@@ -1,6 +1,6 @@
 package gui.components;
 
-public class StatusComponent extends GenericComponent {
+public final class StatusComponent extends GenericComponent {
 
     public StatusComponent(ComponentContext context) {
         super(context);

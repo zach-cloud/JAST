@@ -6,16 +6,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import services.CFGService;
-
-import javax.swing.*;
 import java.io.File;
 import java.util.Map;
 
-public class ConfigLoaderComponent extends GenericComponent {
+public final class ConfigLoaderComponent extends GenericComponent {
 
     private static final String CFG_PATH = "init.cfg";
     private static final String CURRENT_PATH_READ = "currentPathRead";

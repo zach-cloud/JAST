@@ -1,45 +1,25 @@
 package gui;
 
 import gui.components.*;
-import gui.window.SearchWindow;
-import gui.window.StringHashWindow;
-import interfaces.*;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.InputModel;
 import org.fxmisc.richtext.CodeArea;
-import services.*;
-
-import javax.swing.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Controller for the GUI elements.
  */
 public final class Controller {
 
-
-
     private Label statusLabel;
     private CodeArea jassCodeEditor;
     private CodeArea functionBrowser;
 
-    private SearchWindow searchWindow;
-    private StringHashWindow stringHashWindow;
-
     private Scene scene;
     private Stage stage;
     private VBox root;
-
-
-
-    /**
-     * COMPONENTS REFACTOR START
-     */
 
     private ComponentContext context;
     private KeywordsComponent keywordsComponent;
@@ -54,27 +34,13 @@ public final class Controller {
     private RefactorComponent refactorComponent;
     private UnhexComponent unhexComponent;
     private SyntaxCheckerComponent syntaxCheckerComponent;
-
-    /**
-     * COMPONENTS REFACTOR END
-     */
-
-    private IExitProgramService exitProgramService;
-    private IHashBreakService hashBreakService;
-    private IHashService hashService;
-
-    /**
-     * Instantiates all necessary services, etc.
-     */
-    public Controller() {
-        createServices();
-    }
+    private StringHashComponent stringHashComponent;
+    private CloseComponent closeComponent;
+    private SearchComponent searchComponent;
+    private HotkeyComponent hotkeyComponent;
+    private AboutComponent aboutComponent;
 
     public void makeComponents() {
-        /**
-         * COMPONENTS REFACTOR START
-         */
-
         this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage, statusLabel);
         this.keywordsComponent = new KeywordsComponent(context);
         this.syntaxHighlighterComponent = new SyntaxHighlighterComponent(context);
@@ -88,14 +54,16 @@ public final class Controller {
         this.refactorComponent = new RefactorComponent(context, statusComponent, fileComponent);
         this.unhexComponent = new UnhexComponent(context, statusComponent, refactorComponent);
         this.syntaxCheckerComponent = new SyntaxCheckerComponent(context);
+        this.stringHashComponent = new StringHashComponent(context);
+        this.closeComponent = new CloseComponent(context, statusComponent);
+        this.searchComponent = new SearchComponent(context);
+        this.hotkeyComponent = new HotkeyComponent(context);
+        this.aboutComponent = new AboutComponent(context);
 
         this.keywordsComponent.setupKeywords();
         configLoaderComponent.readConfigs(fileComponent);
         setupHotkeys(scene);
         applyDefault();
-        /**
-         * COMPONENTS REFACTOR END
-         */
     }
 
     public void setScene(Scene scene) {
@@ -112,18 +80,6 @@ public final class Controller {
 
     public void bindElementSizes() {
         autocompleteComponent.bindElementSizes();
-    }
-
-    /**
-     * Creates the required services for running app.
-     */
-    private void createServices() {
-        this.exitProgramService = new ExitProgramServiceGUI();
-
-
-        this.hashBreakService = new HashBreakService();
-        this.hashService = new HashService();
-
     }
 
     /**
@@ -174,8 +130,7 @@ public final class Controller {
      * Closes application
      */
     public void close(ActionEvent e) {
-        statusComponent.changeStatus("Exiting program");
-        exitProgramService.exit();
+        closeComponent.close();
     }
 
     /**
@@ -248,8 +203,6 @@ public final class Controller {
         refactorComponent.scrambleNames();
     }
 
-
-
     /**
      * Reformats the code into a readable format
      */
@@ -282,10 +235,7 @@ public final class Controller {
     }
 
     public void computeStringhash(ActionEvent e) {
-        if (stringHashWindow == null) {
-            stringHashWindow = new StringHashWindow(this);
-        }
-        stringHashWindow.show();
+        stringHashComponent.computeStringhash(this);
     }
 
     public void breakStringhash(ActionEvent e) {
@@ -293,49 +243,19 @@ public final class Controller {
     }
 
     public void calculateStringHash(ActionEvent e) {
-        InputModel model = new InputModel();
-        model.setPlaintext(stringHashWindow.getHashText());
-        stringHashWindow.setResult(hashService.runHash(model));
+        stringHashComponent.calculateStringHash();
     }
 
     public void breakStringhashExecute(ActionEvent e) {
-        InputModel model = new InputModel();
-        model.setHash(stringHashWindow.getHashText());
-        hashBreakService.setHash(model);
-        stringHashWindow.setResult(hashBreakService.runBreak());
+        stringHashComponent.breakStringhashExecute();
     }
 
     public void closeStringHash(ActionEvent e) {
-        if (stringHashWindow != null) {
-            stringHashWindow.hide();
-        }
+        stringHashComponent.closeStringHash();
     }
 
-    /**
-     * TODO:
-     * AboutComponent
-     * FileComponent
-     * RefactorComponent
-     * CheatpackComponent
-     * StringhashComponent
-     *
-     */
-
-
-
-
     public void about(ActionEvent e) {
-        JOptionPane.showMessageDialog(
-                null,
-                "JAST - Managed JASS Code Modifier\n" +
-                        "Open source: https://github.com/zach-cloud/JAST\n" +
-                        "Hotkey shortcuts:\n" +
-                        "F1: About\n" +
-                        "F8: Format code\n" +
-                        "F9: Syntax check\n" +
-                        "F10: Toggle function browser\n" +
-                        "Ctrl + Enter: Autocomplete\n" +
-                        "Default file hotkeys (Ctrl+O/S/F/V/Z/Y/X/C)");
+        aboutComponent.about();
     }
 
     public void undo(ActionEvent e) {
@@ -347,39 +267,19 @@ public final class Controller {
     }
 
     public void search(ActionEvent e) {
-        if (searchWindow == null) {
-            searchWindow = new SearchWindow(this);
-        }
-        searchWindow.show();
+        searchComponent.search(this);
     }
 
     public void searchExecute(ActionEvent e) {
-        if (searchWindow != null) {
-            regexFind(jassCodeEditor, searchWindow.getSearchText(), jassCodeEditor.getCaretPosition());
-        }
-    }
-
-    private void regexFind(CodeArea area, String regex, int offset) {
-        Matcher matcher = Pattern.compile(Pattern.quote(regex)).matcher(area.getText().substring(offset));
-        if (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
-            area.selectRange(start + offset, end + offset);
-            int current = jassCodeEditor.getCurrentParagraph();
-            jassCodeEditor.showParagraphAtTop(current);
-        } else {
-            JOptionPane.showMessageDialog(null, "No more matches found");
-        }
+        searchComponent.searchExecute();
     }
 
     public void closeSearch(ActionEvent e) {
-        if (searchWindow != null) {
-            searchWindow.hide();
-        }
+        searchComponent.closeSearch();
     }
 
     public void setupHotkeys(Scene scene) {
-
+        hotkeyComponent.setupHotkeys(scene, this);
     }
 
     public void setupAutocomplete(Scene scene) {

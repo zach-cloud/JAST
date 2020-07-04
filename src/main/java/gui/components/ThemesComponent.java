@@ -3,7 +3,7 @@ package gui.components;
 import gui.GUI;
 import javafx.scene.Scene;
 
-public class ThemesComponent extends GenericComponent {
+public final class ThemesComponent extends GenericComponent {
 
     private ConfigLoaderComponent configLoaderComponent;
 

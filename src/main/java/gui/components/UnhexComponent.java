@@ -2,11 +2,10 @@ package gui.components;
 
 import interfaces.ISyntaxTree;
 import interfaces.IUnhexService;
-import javafx.event.ActionEvent;
 import services.UnhexService;
 import tree.SyntaxTree;
 
-public class UnhexComponent extends GenericComponent {
+public final class UnhexComponent extends GenericComponent {
 
     private StatusComponent statusComponent;
     private RefactorComponent refactorComponent;

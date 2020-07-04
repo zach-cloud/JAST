@@ -8,7 +8,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 
-public class HotkeyComponent extends GenericComponent {
+public final class HotkeyComponent extends GenericComponent {
 
     public HotkeyComponent(ComponentContext context) {
         super(context);

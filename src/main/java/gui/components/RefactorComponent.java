@@ -4,19 +4,17 @@ import helper.CheatpackLoader;
 import interfaces.IGuiOptimizerService;
 import interfaces.ISyntaxTree;
 import interfaces.ITreeReplaceService;
-import javafx.event.ActionEvent;
 import nodes.wts.WtsStringsFile;
 import services.GuiOptimizerService;
 import services.RandomNameGeneratorService;
 import services.TreeReplaceService;
 import tree.SyntaxTree;
 import tree.TreeContext;
-
 import javax.swing.*;
 import java.io.File;
 import java.util.Scanner;
 
-public class RefactorComponent extends GenericComponent {
+public final class RefactorComponent extends GenericComponent {
 
     private StatusComponent statusComponent;
     private FileComponent fileComponent;
