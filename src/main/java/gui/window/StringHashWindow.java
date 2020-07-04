@@ -1,5 +1,6 @@
-package gui;
+package gui.window;
 
+import gui.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,7 +19,7 @@ public final class StringHashWindow extends Application {
     private Button exitButton;
     private Stage stage;
 
-    StringHashWindow(Controller controller) {
+    public StringHashWindow(Controller controller) {
         this.controller = controller;
     }
 
@@ -68,7 +69,7 @@ public final class StringHashWindow extends Application {
         stage.hide();
     }
 
-    String getHashText() {
+    public String getHashText() {
         return hashText.getText();
     }
 

@@ -1,5 +1,7 @@
-package gui;
+package gui.window;
 
+import gui.Controller;
+import gui.GUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -60,7 +62,7 @@ public final class SearchWindow extends Application {
         stage.hide();
     }
 
-    String getSearchText() {
+    public String getSearchText() {
         return searchText.getText();
     }
 }

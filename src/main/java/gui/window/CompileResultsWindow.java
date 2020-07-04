@@ -1,4 +1,4 @@
-package gui;
+package gui.window;
 
 import interfaces.ISyntaxChecker;
 import interfaces.ISyntaxTree;
@@ -18,7 +18,7 @@ public final class CompileResultsWindow extends Application {
     private TextArea resultsBox;
     private ISyntaxTree tree;
 
-    CompileResultsWindow(ISyntaxChecker syntaxCheckerService, ISyntaxTree tree) {
+    public CompileResultsWindow(ISyntaxChecker syntaxCheckerService, ISyntaxTree tree) {
         this.syntaxCheckerService = syntaxCheckerService;
         this.tree = tree;
     }

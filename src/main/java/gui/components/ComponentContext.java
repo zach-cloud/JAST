@@ -1,6 +1,7 @@
 package gui.components;
 
 import interfaces.IBlizzardLoaderService;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import nodes.AbstractFunction;
@@ -13,10 +14,29 @@ import java.util.List;
 
 public class ComponentContext {
 
+    /**
+     * Determines which type of file was opened.
+     * TODO: Do I need this?
+     */
+    enum OpenType {
+        MPQ,
+        SCRIPT,
+        TEXTFILE,
+        OBJECTSFILE,
+        STRINGS
+    }
+
     CodeArea jassCodeEditor;
     CodeArea functionBrowser;
+    Label statusLabel;
     VBox root;
     Stage stage;
+
+    OpenType openType;
+    String objectsFilePath;
+    String stringsFilePath;
+    String mpqPath;
+    boolean formattingDesired = false;
 
     /**
      * Keywords components
@@ -39,11 +59,16 @@ public class ComponentContext {
      */
     IBlizzardLoaderService blizzardLoaderService;
 
-    public ComponentContext(CodeArea jassCodeEditor, CodeArea functionBrowser, VBox root, Stage stage) {
+    double screenX = -1;
+    double screenY = -1;
+    String currentTheme;
+
+    public ComponentContext(CodeArea jassCodeEditor, CodeArea functionBrowser, VBox root, Stage stage, Label statusLabel) {
         this.jassCodeEditor = jassCodeEditor;
         this.functionBrowser = functionBrowser;
         this.root = root;
         this.stage = stage;
+        this.statusLabel = statusLabel;
         this.natives = new ArrayList<>();
         this.types = new ArrayList<>();
         this.commonVariables = new ArrayList<>();

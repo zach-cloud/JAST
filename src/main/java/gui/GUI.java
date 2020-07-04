@@ -91,8 +91,6 @@ public final class GUI extends Application {
         stage.setScene(scene);
         controller.setScene(scene);
         stage.setTitle("JASS AST Modifier");
-        controller.setupHotkeys(scene);
-        controller.applyDefault();
         return scene;
     }
 

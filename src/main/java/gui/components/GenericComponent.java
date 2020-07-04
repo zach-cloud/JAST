@@ -4,7 +4,7 @@ abstract class GenericComponent {
 
     ComponentContext context;
 
-    GenericComponent(ComponentContext context) {
+    public GenericComponent(ComponentContext context) {
         this.context = context;
     }
 }
