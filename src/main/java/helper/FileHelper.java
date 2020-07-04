@@ -3,7 +3,7 @@ package helper;
 import java.io.File;
 import java.util.List;
 
-public class FileHelper {
+public final class FileHelper {
 
     /**
      * Finds all files under a folder recursively.

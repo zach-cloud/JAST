@@ -2,7 +2,7 @@ package gui.components;
 
 import javax.swing.*;
 
-public class AboutComponent extends GenericComponent {
+public final class AboutComponent extends GenericComponent {
 
     public AboutComponent(ComponentContext context) {
         super(context);

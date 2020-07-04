@@ -1,6 +1,6 @@
 package gui.components;
 
-import gui.VisibleParagraphStyler;
+import gui.styler.VisibleParagraphStyler;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

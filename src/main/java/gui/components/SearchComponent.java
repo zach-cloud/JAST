@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SearchComponent extends GenericComponent {
+public final class SearchComponent extends GenericComponent {
 
     private SearchWindow searchWindow;
 

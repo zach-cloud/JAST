@@ -1,6 +1,5 @@
 package gui;
 
-import gui.components.*;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -21,65 +20,51 @@ public final class Controller {
     private Stage stage;
     private VBox root;
 
-    private ComponentContext context;
-    private KeywordsComponent keywordsComponent;
-    private SyntaxHighlighterComponent syntaxHighlighterComponent;
-    private AutocompleteComponent autocompleteComponent;
-    private ConfigLoaderComponent configLoaderComponent;
-    private ThemesComponent themesComponent;
-    private FileComponent fileComponent;
-    private StatusComponent statusComponent;
-    private RawcodeComponent rawcodeComponent;
-    private MpqComponent mpqComponent;
-    private RefactorComponent refactorComponent;
-    private UnhexComponent unhexComponent;
-    private SyntaxCheckerComponent syntaxCheckerComponent;
-    private StringHashComponent stringHashComponent;
-    private CloseComponent closeComponent;
-    private SearchComponent searchComponent;
-    private HotkeyComponent hotkeyComponent;
-    private AboutComponent aboutComponent;
+    private Components components;
 
-    public void makeComponents() {
-        this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage, statusLabel);
-        this.keywordsComponent = new KeywordsComponent(context);
-        this.syntaxHighlighterComponent = new SyntaxHighlighterComponent(context);
-        this.autocompleteComponent = new AutocompleteComponent(context);
-        this.configLoaderComponent = new ConfigLoaderComponent(context);
-        this.themesComponent = new ThemesComponent(context, configLoaderComponent);
-        this.statusComponent = new StatusComponent(context);
-        this.mpqComponent = new MpqComponent(context, statusComponent, fileComponent);
-        this.rawcodeComponent = new RawcodeComponent(context, statusComponent, fileComponent);
-        this.fileComponent = new FileComponent(context, statusComponent, configLoaderComponent, rawcodeComponent, mpqComponent);
-        this.refactorComponent = new RefactorComponent(context, statusComponent, fileComponent);
-        this.unhexComponent = new UnhexComponent(context, statusComponent, refactorComponent);
-        this.syntaxCheckerComponent = new SyntaxCheckerComponent(context);
-        this.stringHashComponent = new StringHashComponent(context);
-        this.closeComponent = new CloseComponent(context, statusComponent);
-        this.searchComponent = new SearchComponent(context);
-        this.hotkeyComponent = new HotkeyComponent(context);
-        this.aboutComponent = new AboutComponent(context);
-
-        this.keywordsComponent.setupKeywords();
-        configLoaderComponent.readConfigs(fileComponent);
+    /**
+     * Generates the needed components to use this controller's methods
+     * Can't be invoked on the constructor due to dependencies...
+     * TODO fix that.
+     */
+    void makeComponents() {
+        this.components = new Components(jassCodeEditor, functionBrowser, root, stage, statusLabel);
         setupHotkeys(scene);
         applyDefault();
     }
 
+    /**
+     * Sets available program scene
+     *
+     * @param scene Program scene
+     */
     public void setScene(Scene scene) {
         this.scene = scene;
     }
 
+    /**
+     * Sets the primary program stage
+     *
+     * @param stage Program stage
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Sets available root of the frame.
+     *
+     * @param root  Vbox root
+     */
     public void setRoot(VBox root) {
         this.root = root;
     }
 
-    public void bindElementSizes() {
-        autocompleteComponent.bindElementSizes();
+    /**
+     * Formats the GUI elements.
+     */
+    void bindElementSizes() {
+        components.autocompleteComponent.bindElementSizes();
     }
 
     /**
@@ -87,7 +72,7 @@ public final class Controller {
      *
      * @param statusLabel Status label
      */
-    public void setStatusLabel(Label statusLabel) {
+    void setStatusLabel(Label statusLabel) {
         this.statusLabel = statusLabel;
     }
 
@@ -100,129 +85,165 @@ public final class Controller {
         this.jassCodeEditor = jassCodeEditor;
     }
 
-    public void setFunctionBrowser(CodeArea functionBrowser) {
+    /**
+     * Sets the available function browser
+     *
+     * @param functionBrowser   The function browser box
+     */
+    void setFunctionBrowser(CodeArea functionBrowser) {
         this.functionBrowser = functionBrowser;
     }
 
     /**
      * Sets up syntax highlighting
      */
-    public void setupHighlighting() {
-        this.syntaxHighlighterComponent.setupHighlighting();
+    void setupHighlighting() {
+        components.syntaxHighlighterComponent.setupHighlighting();
     }
-
 
     /**
      * Prompts the user to open a file
+     *
+     * @param e Ignored
      */
     public void open(ActionEvent e) {
-        fileComponent.open();
+        components.fileComponent.open();
     }
 
     /**
      * Prompts the user to save the file
+     *
+     * @param e Ignored
      */
     public void save(ActionEvent e) {
-        fileComponent.save();
+        components.fileComponent.save();
     }
 
     /**
      * Closes application
+     *
+     * @param e Ignored
      */
     public void close(ActionEvent e) {
-        closeComponent.close();
+        components.closeComponent.close();
     }
 
     /**
      * Adds NZCP to the map.
+     *
+     * @param e Ignored
      */
-    public void addNzcp(ActionEvent e) {
-        refactorComponent.addNzcp();
+    void addNzcp(ActionEvent e) {
+        components.refactorComponent.addNzcp();
     }
 
     /**
      * Adds JJCP to the map.
+     *
+     * @param e Ignored
      */
-    public void addJjcp(ActionEvent e) {
-        refactorComponent.addJjcp();
+    void addJjcp(ActionEvent e) {
+        components.refactorComponent.addJjcp();
     }
 
     /**
      * Adds NZCP to the map and deduplicates
+     *
+     * @param e Ignored
      */
-    public void addNzcpD(ActionEvent e) {
-        refactorComponent.addNzcpD();
+    void addNzcpD(ActionEvent e) {
+        components.refactorComponent.addNzcpD();
     }
 
     /**
      * Adds JJCP to the map and deduplicates
+     *
+     * @param e Ignored
      */
-    public void addJjcpD(ActionEvent e) {
-        refactorComponent.addJjcpD();
+    void addJjcpD(ActionEvent e) {
+        components.refactorComponent.addJjcpD();
     }
 
     /**
      * Merges scripts together without deduplication
+     *
+     * @param e Ignored
      */
-    public void mergeScript(ActionEvent e) {
-        refactorComponent.mergeScript();
+    void mergeScript(ActionEvent e) {
+        components.refactorComponent.mergeScript();
     }
 
     /**
      * Merges scripts together with deduplication
+     *
+     * @param e Ignored
      */
-    public void mergeScriptD(ActionEvent e) {
-        refactorComponent.mergeScriptD();
+    void mergeScriptD(ActionEvent e) {
+        components.refactorComponent.mergeScriptD();
     }
 
     /**
      * Renames a script variable
+     *
+     * @param e Ignored
      */
-    public void renameScriptVariable(ActionEvent e) {
-        refactorComponent.renameScriptVariable();
+    void renameScriptVariable(ActionEvent e) {
+        components.refactorComponent.renameScriptVariable();
     }
 
     /**
      * Renames a script function
+     *
+     * @param e Ignored
      */
-    public void renameScriptFunction(ActionEvent e) {
-        refactorComponent.renameScriptFunction();
+    void renameScriptFunction(ActionEvent e) {
+        components.refactorComponent.renameScriptFunction();
     }
 
     /**
      * Optimizes GUI conditions into a single condition and inlines it
+     *
+     * @param e Ignored
      */
-    public void optimizeGui(ActionEvent e) {
-        refactorComponent.optimizeGui();
+    void optimizeGui(ActionEvent e) {
+        components.refactorComponent.optimizeGui();
     }
 
     /**
      * Scrambles all variable and function names
+     *
+     * @param e Ignored
      */
-    public void scrambleNames(ActionEvent e) {
-        refactorComponent.scrambleNames();
+    void scrambleNames(ActionEvent e) {
+        components.refactorComponent.scrambleNames();
     }
 
     /**
      * Reformats the code into a readable format
+     *
+     * @param e Ignored
      */
     public void reformatCode(ActionEvent e) {
-        refactorComponent.reformatCode();
+        components.refactorComponent.reformatCode();
     }
 
     /**
      * Minifies/de-formats the code
+     *
+     * @param e Ignored
      */
-    public void minifyCode(ActionEvent e) {
-        refactorComponent.minifyCode();
+    void minifyCode(ActionEvent e) {
+        components.refactorComponent.minifyCode();
     }
 
     /**
      * Generates rawcodes from an open objects file
      * Or prompts open of an objects file if not selected already
+     *
+     * @param e Ignored
      */
-    public void generateRawcodes(ActionEvent e) {
-        rawcodeComponent.generateRawcodes();
+    void generateRawcodes(ActionEvent e) {
+        components.rawcodeComponent.generateRawcodes();
     }
 
     /**
@@ -230,111 +251,236 @@ public final class Controller {
      *
      * @param e Ignored
      */
-    public void extractMpq(ActionEvent e) {
-        mpqComponent.extractMpq();
+    void extractMpq(ActionEvent e) {
+        components.mpqComponent.extractMpq();
     }
 
-    public void computeStringhash(ActionEvent e) {
-        stringHashComponent.computeStringhash(this);
+    /**
+     * Opens a window to compute String Hash
+     *
+     * @param e Ignored
+     */
+    void computeStringhash(ActionEvent e) {
+        components.stringHashComponent.computeStringhash(this);
     }
 
-    public void breakStringhash(ActionEvent e) {
+    /**
+     * Opens a window to break String Hash
+     *
+     * @param e Ignored
+     */
+    void breakStringhash(ActionEvent e) {
         computeStringhash(e);
     }
 
+    /**
+     * Calculates current String Hash value
+     *
+     * @param e Ignored
+     */
     public void calculateStringHash(ActionEvent e) {
-        stringHashComponent.calculateStringHash();
+        components.stringHashComponent.calculateStringHash();
     }
 
+    /**
+     * Breaks current String Hash value
+     *
+     * @param e Ignored
+     */
     public void breakStringhashExecute(ActionEvent e) {
-        stringHashComponent.breakStringhashExecute();
+        components.stringHashComponent.breakStringhashExecute();
     }
 
+    /**
+     * Closes String hash window
+     *
+     * @param e Ignored
+     */
     public void closeStringHash(ActionEvent e) {
-        stringHashComponent.closeStringHash();
+        components.stringHashComponent.closeStringHash();
     }
 
+    /**
+     * Shows About popup
+     *
+     * @param e Ignored
+     */
     public void about(ActionEvent e) {
-        aboutComponent.about();
+        components.aboutComponent.about();
     }
 
+    /**
+     * Undoes last operation
+     *
+     * @param e Ignored
+     */
     public void undo(ActionEvent e) {
         jassCodeEditor.undo();
     }
 
+    /**
+     * Redoes last undone operation
+     *
+     * @param e Ignored
+     */
     public void redo(ActionEvent e) {
         jassCodeEditor.redo();
     }
 
+    /**
+     * Opens the search window
+     *
+     * @param e Ignored
+     */
     public void search(ActionEvent e) {
-        searchComponent.search(this);
+        components.searchComponent.search(this);
     }
 
+    /**
+     * Executes search on the current input
+     *
+     * @param e Ignored
+     */
     public void searchExecute(ActionEvent e) {
-        searchComponent.searchExecute();
+        components.searchComponent.searchExecute();
     }
 
+    /**
+     * Closes search window
+     *
+     * @param e Ignored
+     */
     public void closeSearch(ActionEvent e) {
-        searchComponent.closeSearch();
+        components.searchComponent.closeSearch();
     }
 
-    public void setupHotkeys(Scene scene) {
-        hotkeyComponent.setupHotkeys(scene, this);
+    /**
+     * Sets up program hotkeys
+     *
+     * @param scene Scene of application
+     */
+    void setupHotkeys(Scene scene) {
+        components.hotkeyComponent.setupHotkeys(scene, this);
     }
 
-    public void setupAutocomplete(Scene scene) {
-        autocompleteComponent.setupAutocomplete(scene);
+    /**
+     * Sets up autocomplete for jass keywords
+     *
+     * @param scene Scene of application
+     */
+    void setupAutocomplete(Scene scene) {
+        components.autocompleteComponent.setupAutocomplete(scene);
     }
 
+    /**
+     * Compiles code using jasshelper
+     *
+     * @param e Ignored
+     */
     public void syntaxCheck(ActionEvent e) {
-        syntaxCheckerComponent.syntaxCheck();
+        components.syntaxCheckerComponent.syntaxCheck();
     }
 
-    public void unhex(ActionEvent e) {
-        unhexComponent.unhex();
+    /**
+     * Fixes hex errors in code
+     *
+     * @param e Ignored
+     */
+    void unhex(ActionEvent e) {
+        components.unhexComponent.unhex();
     }
 
-    public void applyDarkTheme(ActionEvent e) {
-        themesComponent.applyDarkTheme(scene);
+    /**
+     * Shows dark theme
+     *
+     * @param e Ignored
+     */
+    void applyDarkTheme(ActionEvent e) {
+        components.themesComponent.applyDarkTheme(scene);
     }
 
-    public void applyJasscraftTheme(ActionEvent e) {
-        themesComponent.applyJasscraftTheme(scene);
+    /**
+     * Shows jasscraft theme
+     *
+     * @param e Ignored
+     */
+    void applyJasscraftTheme(ActionEvent e) {
+        components.themesComponent.applyJasscraftTheme(scene);
     }
 
-    public void applyLightTheme(ActionEvent e) {
-        themesComponent.applyLightTheme(scene);
+    /**
+     * Shows light theme
+     *
+     * @param e Ignored
+     */
+    void applyLightTheme(ActionEvent e) {
+        components.themesComponent.applyLightTheme(scene);
     }
 
-    public void showFunctionBrowser(ActionEvent e) {
-        autocompleteComponent.showFunctionBrowser();
+    /**
+     * Shows function browser text area
+     *
+     * @param e Ignored
+     */
+    void showFunctionBrowser(ActionEvent e) {
+        components.autocompleteComponent.showFunctionBrowser();
     }
 
-    public void hideFunctionBrowser(ActionEvent e) {
-        autocompleteComponent.hideFunctionBrowser();
+    /**
+     * Hides function browser text area
+     *
+     * @param e Ignored
+     */
+    void hideFunctionBrowser(ActionEvent e) {
+        components.autocompleteComponent.hideFunctionBrowser();
     }
 
-    public void applyDefault() {
-        themesComponent.applyDefault(scene);
+    /**
+     * Applies default theme of app
+     */
+    private void applyDefault() {
+        components.themesComponent.applyDefault(scene);
     }
 
-    public void searchForFunction(ActionEvent e) {
-        autocompleteComponent.searchForFunction();
+    /**
+     * Shows search popup for function browser
+     *
+     * @param e Ignored
+     */
+    void searchForFunction(ActionEvent e) {
+        components.autocompleteComponent.searchForFunction();
     }
 
-    public void clearBrowser(ActionEvent e) {
-        autocompleteComponent.clearBrowser();
+    /**
+     * Clears current function browser results
+     *
+     * @param e Ignored
+     */
+    void clearBrowser(ActionEvent e) {
+        components.autocompleteComponent.clearBrowser();
     }
 
-    public void makeElementsFillScreen(Stage stage, VBox root) {
-        configLoaderComponent.makeElementsFillScreen(scene, stage, root);
+    /**
+     * Makes the code area/function browser fit the screen
+     *
+     * @param stage Stage of app
+     * @param root  Main vbox of app
+     */
+    void makeElementsFillScreen(Stage stage, VBox root) {
+        components.configLoaderComponent.makeElementsFillScreen(scene, stage, root);
     }
 
+    /**
+     * Shows/hides function browser
+     */
     public void toggleFunctionBrowser() {
-        autocompleteComponent.toggleFunctionBrowser();
+        components.autocompleteComponent.toggleFunctionBrowser();
     }
 
+    /**
+     * Runs autocomplete on the user's current word
+     */
     public void runAutocomplete() {
-        autocompleteComponent.runAutocomplete();
+        components.autocompleteComponent.runAutocomplete();
     }
 }

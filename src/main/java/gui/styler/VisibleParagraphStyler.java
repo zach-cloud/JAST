@@ -1,4 +1,4 @@
-package gui;
+package gui.styler;
 
 import javafx.application.Platform;
 import org.fxmisc.richtext.GenericStyledArea;

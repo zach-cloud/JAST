@@ -155,7 +155,7 @@ public final class RefactorComponent extends GenericComponent {
      *
      * @param dedupe True if code should be deduped, false if not
      */
-    public void genericFileMerge(boolean dedupe) {
+    private void genericFileMerge(boolean dedupe) {
         try {
             long time = System.currentTimeMillis();
             statusComponent.changeStatus("Prompting file open");

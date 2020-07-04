@@ -1,6 +1,6 @@
 package helper;
 
-class JJCP {
+public final class JJCP {
 
     public static String CHEATPACK = "globals\n" +
             "hashtable jjHashTable=InitHashtable()\n" +
