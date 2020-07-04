@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
 
-public class Components {
+final class Components {
 
     ComponentContext context;
     KeywordsComponent keywordsComponent;
