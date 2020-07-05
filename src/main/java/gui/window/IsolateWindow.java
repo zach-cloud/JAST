@@ -25,6 +25,7 @@ public final class IsolateWindow extends CustomWindow {
         VBox root = new VBox();
         this.toIsolate = new TextField();
         this.isolateButton = new Button("Isolate");
+        this.iterationCount = new TextField();
         this.exitButton = new Button("Exit");
         this.isolateType = new ComboBox<>();
         isolateType.getItems().add("Global Variable");

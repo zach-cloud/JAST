@@ -269,8 +269,11 @@ public final class GUI extends Application {
         Menu analysisMenu = new Menu("Analysis");
 
         MenuItem isolateButton = new MenuItem("Isolate");
+        MenuItem scopeReportButton = new MenuItem("Scope Report");
+        MenuItem findRepeatedCodeButton = new MenuItem("Find repeated code");
+        MenuItem detectMemoryLeaks = new MenuItem("Detect Memory Leaks");
 
-        analysisMenu.getItems().addAll(isolateButton);
+        analysisMenu.getItems().addAll(isolateButton, scopeReportButton, findRepeatedCodeButton, detectMemoryLeaks);
 
         isolateButton.setOnAction(controller::isolate);
 

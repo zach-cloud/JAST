@@ -81,7 +81,7 @@
         <dependency>
             <groupId>com.github.zach-cloud</groupId>
             <artifactId>jsyntaxtree</artifactId>
-            <version>1.3</version>
+            <version>1.4</version>
         </dependency>
 
         <dependency>
