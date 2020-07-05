@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public final class IsolateWindow extends CustomWindow {
 
     private TextField toIsolate;
+    private TextField iterationCount;
     private ComboBox<String> isolateType;
     private Button isolateButton;
     private Button exitButton;
@@ -31,6 +32,8 @@ public final class IsolateWindow extends CustomWindow {
         isolateType.getSelectionModel().selectFirst();
         root.getChildren().add(new Label("Name to isolate: "));
         root.getChildren().add(toIsolate);
+        root.getChildren().add(new Label("Iteration count: "));
+        root.getChildren().add(iterationCount);
         root.getChildren().add(new Label(" "));
         root.getChildren().add(isolateType);
         root.getChildren().add(new Label(" "));
@@ -42,6 +45,10 @@ public final class IsolateWindow extends CustomWindow {
         exitButton.setOnAction(controller::closeIsolate);
 
         setupScene(stage, root, "Isolate");
+    }
+
+    public String getIterationCount() {
+        return iterationCount.getText();
     }
 
     public String getIsolateText() {
