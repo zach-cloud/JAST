@@ -1,21 +1,19 @@
-A major code split has been performed; the JASS syntax parser was split off
-from the JAST code, and the String Hash utility also has been split. These
-projects are available through Maven Central for any programmer to use.
+Performance:
+- Code operations have had their memory usage decreased by ~2x for most operations
+- Code operations have had their performance improved by up to 2x for most operations
 
-This enables me to work on other tools that involve parsing of a .j file,
-including a war3map.doo restoration tool.
+Internal improvements:
+- Code jas been significantly refactored in order to enable more scalable feature creation
+- Syntax tree has been split into a separate project, which is made available through Maven Central
+- String hash calculator has been split into a separate project, which is made available through Maven Central
+- This enables me (and other developers) to use these resources in other projects besides JAST. I have plans for things like this in the future.
 
-The design of the syntax parser was changed from immutable to mutable.
-This means that the program does not need to "copy" the syntax tree
-every time it performs an operation like renaming variables.
-This should increase performance of operations significantly, and make
-the program consume less memory.
-
-I'm going to work on refactoring the GUI piece of this project into
-modules to make it better, and then code new functionality. The next
-piece I want to code is function analysis tools. Specifically the first
-one I want to do is a tool to extract all usages of a variable or function.
-
-Other:
+User improvements:
 - "De-format" button renamed to "Minify" button
 - "Syntax check code" button renamed to "Compile code"
+- The Rename Function/Variable options have been condensed into one button, which opens a user-friendly window to handle replacements.
+- Deduplicate is now referred to as "Scramble names"
+- All code-merge related commands are now available through one button, which ones a user-friendly window
+
+Features:
+-

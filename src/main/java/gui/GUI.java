@@ -51,6 +51,7 @@ public final class GUI extends Application {
         makeUtilityMenu(controller, menuBar);
         makeStyleMenu(controller, menuBar);
         makeBrowserMenu(controller, menuBar);
+        makeAnalysisMenu(controller, menuBar);
         return menuBar;
     }
 
@@ -199,32 +200,15 @@ public final class GUI extends Application {
     private void makeModifyMenu(Controller controller, MenuBar menuBar) {
         Menu modifyMenu = new Menu("Modify");
 
-        MenuItem nzcpButton = new MenuItem("Add NZCP");
-        MenuItem jjcpButton = new MenuItem("Add JJCP");
-        MenuItem nzcpDedupeButton = new MenuItem("Add NZCP (Deduplicate)");
-        MenuItem jjcpDedupeButton = new MenuItem("Add JJCP (Deduplicate)");
-
         MenuItem mergeButton = new MenuItem("Merge Scripts");
-        MenuItem mergeDeduplicateButton = new MenuItem("Merge Scripts (Deduplicate)");
         MenuItem scrambleButton = new MenuItem("Scramble Names");
-        MenuItem renameFunctionButton = new MenuItem("Rename Function");
-        MenuItem renameVariableButton = new MenuItem("Rename Variable");
+        MenuItem renameButton = new MenuItem("Rename Variable/Function");
 
-        nzcpButton.setOnAction(controller::addNzcp);
-        jjcpButton.setOnAction(controller::addJjcp);
-        nzcpDedupeButton.setOnAction(controller::addNzcpD);
-        jjcpDedupeButton.setOnAction(controller::addJjcpD);
-
-        mergeButton.setOnAction(controller::mergeScript);
-        mergeDeduplicateButton.setOnAction(controller::mergeScriptD);
+        mergeButton.setOnAction(controller::openMerge);
         scrambleButton.setOnAction(controller::scrambleNames);
-        renameFunctionButton.setOnAction(controller::renameScriptFunction);
-        renameVariableButton.setOnAction(controller::renameScriptVariable);
+        renameButton.setOnAction(controller::renameScriptVariable);
 
-        if (Settings.CHEATING_ENABLED) {
-            modifyMenu.getItems().addAll(nzcpButton, jjcpButton, nzcpDedupeButton, jjcpDedupeButton);
-        }
-        modifyMenu.getItems().addAll(mergeButton, mergeDeduplicateButton, scrambleButton, renameFunctionButton, renameVariableButton);
+        modifyMenu.getItems().addAll(mergeButton, scrambleButton, renameButton);
 
         menuBar.getMenus().add(modifyMenu);
     }
@@ -273,6 +257,24 @@ public final class GUI extends Application {
         clearFunctionBrowserButton.setOnAction(controller::clearBrowser);
 
         menuBar.getMenus().add(browserMenu);
+    }
+
+    /**
+     * Creates Analysis menu
+     *
+     * @param controller    Controller with actions
+     * @param menuBar       Menu bar to add to
+     */
+    private void makeAnalysisMenu(Controller controller, MenuBar menuBar) {
+        Menu analysisMenu = new Menu("Analysis");
+
+        MenuItem isolateButton = new MenuItem("Isolate");
+
+        analysisMenu.getItems().addAll(isolateButton);
+
+        isolateButton.setOnAction(controller::isolate);
+
+        menuBar.getMenus().add(analysisMenu);
     }
 
     /**

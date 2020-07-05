@@ -26,6 +26,7 @@ final class Components {
     SearchComponent searchComponent;
     HotkeyComponent hotkeyComponent;
     AboutComponent aboutComponent;
+    IsolateComponent isolateComponent;
 
     public Components(CodeArea jassCodeEditor, CodeArea functionBrowser, VBox root, Stage stage, Label statusLabel) {
         this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage, statusLabel);
@@ -46,6 +47,7 @@ final class Components {
         this.searchComponent = new SearchComponent(context);
         this.hotkeyComponent = new HotkeyComponent(context);
         this.aboutComponent = new AboutComponent(context);
+        this.isolateComponent = new IsolateComponent(context, statusComponent);
 
         this.keywordsComponent.setupKeywords();
         configLoaderComponent.readConfigs(fileComponent);

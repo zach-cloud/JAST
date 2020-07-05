@@ -129,75 +129,12 @@ public final class Controller {
     }
 
     /**
-     * Adds NZCP to the map.
-     *
-     * @param e Ignored
-     */
-    void addNzcp(ActionEvent e) {
-        components.refactorComponent.addNzcp();
-    }
-
-    /**
-     * Adds JJCP to the map.
-     *
-     * @param e Ignored
-     */
-    void addJjcp(ActionEvent e) {
-        components.refactorComponent.addJjcp();
-    }
-
-    /**
-     * Adds NZCP to the map and deduplicates
-     *
-     * @param e Ignored
-     */
-    void addNzcpD(ActionEvent e) {
-        components.refactorComponent.addNzcpD();
-    }
-
-    /**
-     * Adds JJCP to the map and deduplicates
-     *
-     * @param e Ignored
-     */
-    void addJjcpD(ActionEvent e) {
-        components.refactorComponent.addJjcpD();
-    }
-
-    /**
-     * Merges scripts together without deduplication
-     *
-     * @param e Ignored
-     */
-    void mergeScript(ActionEvent e) {
-        components.refactorComponent.mergeScript();
-    }
-
-    /**
-     * Merges scripts together with deduplication
-     *
-     * @param e Ignored
-     */
-    void mergeScriptD(ActionEvent e) {
-        components.refactorComponent.mergeScriptD();
-    }
-
-    /**
      * Renames a script variable
      *
      * @param e Ignored
      */
     void renameScriptVariable(ActionEvent e) {
-        components.refactorComponent.renameScriptVariable();
-    }
-
-    /**
-     * Renames a script function
-     *
-     * @param e Ignored
-     */
-    void renameScriptFunction(ActionEvent e) {
-        components.refactorComponent.renameScriptFunction();
+        components.refactorComponent.rename(this);
     }
 
     /**
@@ -482,5 +419,42 @@ public final class Controller {
      */
     public void runAutocomplete() {
         components.autocompleteComponent.runAutocomplete();
+    }
+
+    /**
+     * Isolates a variable or function.
+     *
+     * @param e Ignored
+     */
+    public void isolate(ActionEvent e) {
+        components.isolateComponent.isolate(this);
+    }
+
+    public void runReplace(ActionEvent e) {
+        components.refactorComponent.runRename();
+    }
+
+    public void closeReplace(ActionEvent e) {
+        components.refactorComponent.closeRename();
+    }
+
+    public void openMerge(ActionEvent e) {
+        components.refactorComponent.openMerge(this);
+    }
+
+    public void runMerge(ActionEvent e) {
+        components.refactorComponent.runMerge();
+    }
+
+    public void closeMerge(ActionEvent e) {
+        components.refactorComponent.closeMerge();
+    }
+
+    public void runIsolate(ActionEvent actionEvent) {
+        components.isolateComponent.runIsolate();
+    }
+
+    public void closeIsolate(ActionEvent actionEvent) {
+        components.isolateComponent.close();
     }
 }
