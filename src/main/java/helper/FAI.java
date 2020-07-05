@@ -1,6 +1,6 @@
 package helper;
 
-public class FAI {
+public final class FAI {
 
     public static String CHEATPACK = "globals\n" +
             "string array vfai_col7\n" +

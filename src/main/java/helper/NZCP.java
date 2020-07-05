@@ -1,6 +1,6 @@
 package helper;
 
-public class NZCP {
+public final class NZCP {
 
     public static String CHEATPACK = "globals\n" +
             "hashtable nzHash=InitHashtable()\n" +

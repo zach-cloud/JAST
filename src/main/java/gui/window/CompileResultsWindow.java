@@ -1,4 +1,4 @@
-package gui;
+package gui.window;
 
 import interfaces.ISyntaxChecker;
 import interfaces.ISyntaxTree;
@@ -12,13 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public final class SyntaxCheckResultWindow extends Application {
+public final class CompileResultsWindow extends Application {
 
     private ISyntaxChecker syntaxCheckerService;
     private TextArea resultsBox;
     private ISyntaxTree tree;
 
-    public SyntaxCheckResultWindow(ISyntaxChecker syntaxCheckerService, ISyntaxTree tree) {
+    public CompileResultsWindow(ISyntaxChecker syntaxCheckerService, ISyntaxTree tree) {
         this.syntaxCheckerService = syntaxCheckerService;
         this.tree = tree;
     }

@@ -1,5 +1,6 @@
-package gui;
+package gui.window;
 
+import gui.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
