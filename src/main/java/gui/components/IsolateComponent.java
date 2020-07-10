@@ -2,23 +2,27 @@ package gui.components;
 
 import gui.Controller;
 import gui.window.IsolateWindow;
+import interfaces.IAnalysisService;
 import interfaces.ISyntaxTree;
-import nodes.AbstractFunction;
-import nodes.functions.Argument;
-import nodes.functions.Function;
+import model.IsolateResult;
+import services.AnalysisService;
 import tree.SyntaxTree;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.*;
+
+import static interfaces.IAnalysisService.ExpansionStyle.*;
+
 
 public final class IsolateComponent extends GenericComponent {
 
     private StatusComponent statusComponent;
     private IsolateWindow isolateWindow;
+    private IAnalysisService analysisService;
 
     public IsolateComponent(ComponentContext context, StatusComponent statusComponent) {
         super(context);
         this.statusComponent = statusComponent;
+        this.analysisService = new AnalysisService();
     }
 
     public void isolate(Controller controller) {
@@ -34,39 +38,37 @@ public final class IsolateComponent extends GenericComponent {
         }
     }
 
-    private String isolateVariable(ISyntaxTree tree, String variableName) {
-        // Find all functions that use this variable
-        List<AbstractFunction> usageFunctions = new ArrayList<>();
-        for (AbstractFunction function : tree.getScript()
-                .getFunctionsSection().getFunctions()) {
-            for (Argument argument : function.getArguments()) {
-                if (argument.toString().equals(variableName)) {
-                    usageFunctions.add(function);
-                    break; // exit inner loop
-                }
-            }
-        }
-        return "";
-    }
-
-    private String isolateFunction(ISyntaxTree tree, String variableName) {
-        return "";
-    }
-
     public void runIsolate() {
         if (isolateWindow != null) {
-            String type = isolateWindow.getIsolateType();
-            String isolateText = isolateWindow.getIsolateText();
-            String result = null;
-            ISyntaxTree tree = SyntaxTree.readTree(context.jassCodeEditor.getText());
-            if (type.equalsIgnoreCase("global variable")) {
-                result = isolateVariable(tree, isolateText);
-            } else if (type.equalsIgnoreCase("function")) {
-                result = isolateFunction(tree, isolateText);
-            } else {
-                throw new RuntimeException("Illegal type: " + type);
+            try {
+                String type = isolateWindow.getIsolateType();
+                String isolateText = isolateWindow.getIsolateText();
+                String iterationCount = isolateWindow.getIterationCount();
+                String isolateStyle = isolateWindow.getIsolateStyle();
+                if(isolateStyle.equalsIgnoreCase("Passive")) {
+                    analysisService.setExpansionStyle(PASSIVE);
+                } else if(isolateStyle.equalsIgnoreCase("Aggressive")) {
+                    analysisService.setExpansionStyle(AGGRESSIVE);
+                } else if(isolateStyle.equalsIgnoreCase("Inverse")) {
+                    analysisService.setExpansionStyle(INVERSE);
+                } else {
+                    throw new RuntimeException("Illegal style: " + isolateStyle);
+                }
+                int iterationCountNumber = Integer.parseInt(iterationCount);
+                IsolateResult result = null;
+                ISyntaxTree tree = SyntaxTree.readTree(context.jassCodeEditor.getText());
+                if (type.equalsIgnoreCase("global variable")) {
+                    result = analysisService.isolateVariable(tree, isolateText, iterationCountNumber);
+                } else if (type.equalsIgnoreCase("function")) {
+                    result = analysisService.isolateFunction(tree, isolateText, iterationCountNumber);
+                } else {
+                    throw new RuntimeException("Illegal type: " + type);
+                }
+                context.jassCodeEditor.replaceText(SyntaxTree.from(result).toString());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid number for iteration count");
             }
-            context.jassCodeEditor.replaceText(result);
+
         }
     }
 }

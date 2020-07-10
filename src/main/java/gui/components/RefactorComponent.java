@@ -3,7 +3,6 @@ package gui.components;
 import gui.Controller;
 import gui.window.MergeWindow;
 import gui.window.ReplaceWindow;
-import gui.window.SearchWindow;
 import helper.CheatpackLoader;
 import interfaces.IGuiOptimizerService;
 import interfaces.ISyntaxTree;
@@ -15,8 +14,6 @@ import services.TreeReplaceService;
 import tree.SyntaxTree;
 import tree.TreeContext;
 
-import javax.naming.ldap.Control;
-import javax.swing.*;
 import java.io.File;
 import java.util.Scanner;
 

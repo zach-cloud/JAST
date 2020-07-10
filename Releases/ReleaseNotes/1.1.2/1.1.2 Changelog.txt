@@ -13,7 +13,10 @@ User improvements:
 - "Syntax check code" button renamed to "Compile code"
 - The Rename Function/Variable options have been condensed into one button, which opens a user-friendly window to handle replacements.
 - Deduplicate is now referred to as "Scramble names"
-- All code-merge related commands are now available through one button, which ones a user-friendly window
+- Code-merge related commands are now available through one button, which ones a user-friendly window. I plan to add more code merge stuff, like templates, in the future.
 
 Features:
+- A new "Analysis" button has been added to the menu. This has some more complex commands with possibly fewer use cases.
+- The first command is called "Isolate".
+- Isolate allows you to
 -

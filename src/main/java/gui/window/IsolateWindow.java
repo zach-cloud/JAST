@@ -13,6 +13,7 @@ public final class IsolateWindow extends CustomWindow {
     private TextField toIsolate;
     private TextField iterationCount;
     private ComboBox<String> isolateType;
+    private ComboBox<String> isolateStyle;
     private Button isolateButton;
     private Button exitButton;
 
@@ -30,13 +31,20 @@ public final class IsolateWindow extends CustomWindow {
         this.isolateType = new ComboBox<>();
         isolateType.getItems().add("Global Variable");
         isolateType.getItems().add("Function");
-        isolateType.getSelectionModel().selectFirst();
+        this.isolateStyle = new ComboBox<>();
+        isolateStyle.getItems().add("Passive");
+        isolateStyle.getItems().add("Aggressive");
+        isolateStyle.getItems().add("Inverse");
+        isolateStyle.getSelectionModel().selectFirst();
         root.getChildren().add(new Label("Name to isolate: "));
         root.getChildren().add(toIsolate);
         root.getChildren().add(new Label("Iteration count: "));
         root.getChildren().add(iterationCount);
         root.getChildren().add(new Label(" "));
+        root.getChildren().add(new Label("Isolate type: "));
         root.getChildren().add(isolateType);
+        root.getChildren().add(new Label("Isolate style: "));
+        root.getChildren().add(isolateStyle);
         root.getChildren().add(new Label(" "));
         root.getChildren().add(isolateButton);
         root.getChildren().add(new Label(" "));
@@ -58,5 +66,9 @@ public final class IsolateWindow extends CustomWindow {
 
     public String getIsolateType() {
         return isolateType.getSelectionModel().getSelectedItem();
+    }
+
+    public String getIsolateStyle() {
+        return isolateStyle.getSelectionModel().getSelectedItem();
     }
 }
