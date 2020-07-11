@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public final class CompileResultsWindow extends Application {
+public final class CompileResultsWindow extends CustomTextWindow {
 
     private ISyntaxChecker syntaxCheckerService;
     private TextArea resultsBox;
@@ -28,18 +28,8 @@ public final class CompileResultsWindow extends Application {
         VBox root = new VBox();
         this.resultsBox = new TextArea();
         resultsBox.setText("Running syntax check. . .");
-        resultsBox.setMinHeight(400);
-        resultsBox.setMinWidth(600);
-        resultsBox.setPrefHeight(400);
-        resultsBox.setPrefWidth(600);
-        root.setMinHeight(400);
-        root.setMinWidth(600);
-        root.setPrefHeight(400);
-        root.setPrefWidth(600);
-        stage.setHeight(400);
-        stage.setWidth(600);
-        root.getChildren().add(resultsBox);
-        setupScene(stage, root);
+        setupTextbox(resultsBox, stage, root);
+        setupScene(stage, root, "Syntax check");
         stage.show();
         Platform.runLater(new Runnable() {
             @Override
@@ -52,12 +42,6 @@ public final class CompileResultsWindow extends Application {
                 }
             }
         });
-    }
-
-    private void setupScene(Stage stage, VBox root) {
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Syntax Check");
     }
 
 }

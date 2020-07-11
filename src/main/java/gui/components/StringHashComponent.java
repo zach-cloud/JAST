@@ -1,7 +1,7 @@
 package gui.components;
 
 import gui.Controller;
-import gui.window.StringHashWindow;
+import gui.window.StringHashCommandWindow;
 import interfaces.IHashBreakService;
 import interfaces.IHashService;
 import model.InputModel;
@@ -11,7 +11,7 @@ import services.HashService;
 
 public final class StringHashComponent extends GenericComponent {
 
-    private StringHashWindow stringHashWindow;
+    private StringHashCommandWindow stringHashWindow;
     private IHashBreakService hashBreakService;
     private IHashService hashService;
 
@@ -23,7 +23,7 @@ public final class StringHashComponent extends GenericComponent {
 
     public void computeStringhash(Controller controller) {
         if (stringHashWindow == null) {
-            stringHashWindow = new StringHashWindow(controller);
+            stringHashWindow = new StringHashCommandWindow(controller);
         }
         stringHashWindow.show();
     }

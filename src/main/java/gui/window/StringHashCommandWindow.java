@@ -1,26 +1,22 @@
 package gui.window;
 
 import gui.Controller;
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public final class StringHashWindow extends Application {
+public final class StringHashCommandWindow extends CustomCommandWindow {
 
-    private Controller controller;
     private TextField hashText;
     private TextField resultText;
     private Button calculateStringhashButton;
     private Button breakStringhashButton;
     private Button exitButton;
-    private Stage stage;
 
-    public StringHashWindow(Controller controller) {
-        this.controller = controller;
+    public StringHashCommandWindow(Controller controller) {
+        super(controller);
     }
 
     @Override
@@ -46,28 +42,9 @@ public final class StringHashWindow extends Application {
         breakStringhashButton.setOnAction(controller::breakStringhashExecute);
         exitButton.setOnAction(controller::closeStringHash);
 
-        setupScene(controller, stage, root);
-        stage.setHeight(300);
-        stage.setWidth(300);
-        stage.show();
+        setupScene(stage, root, "String Hash");
     }
 
-    private void setupScene(Controller controller, Stage stage, VBox root) {
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Search");
-    }
-
-    public void show() {
-        if(this.stage == null) {
-            this.stage = new Stage();
-        }
-        this.start(stage);
-    }
-
-    public void hide() {
-        stage.hide();
-    }
 
     public String getHashText() {
         return hashText.getText();

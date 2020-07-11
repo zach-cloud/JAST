@@ -1,7 +1,7 @@
 package gui.components;
 
 import gui.Controller;
-import gui.window.SearchWindow;
+import gui.window.SearchCommandWindow;
 import org.fxmisc.richtext.CodeArea;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public final class SearchComponent extends GenericComponent {
 
-    private SearchWindow searchWindow;
+    private SearchCommandWindow searchWindow;
 
     public SearchComponent(ComponentContext context) {
         super(context);
@@ -18,7 +18,7 @@ public final class SearchComponent extends GenericComponent {
 
     public void search(Controller controller) {
         if (searchWindow == null) {
-            searchWindow = new SearchWindow(controller);
+            searchWindow = new SearchCommandWindow(controller);
         }
         searchWindow.show();
     }

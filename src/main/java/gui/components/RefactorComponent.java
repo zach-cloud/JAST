@@ -1,5 +1,8 @@
 package gui.components;
 
+import gui.Controller;
+import gui.window.MergeCommandWindow;
+import gui.window.ReplaceCommandWindow;
 import helper.CheatpackLoader;
 import interfaces.IGuiOptimizerService;
 import interfaces.ISyntaxTree;
@@ -10,7 +13,7 @@ import services.RandomNameGeneratorService;
 import services.TreeReplaceService;
 import tree.SyntaxTree;
 import tree.TreeContext;
-import javax.swing.*;
+
 import java.io.File;
 import java.util.Scanner;
 
@@ -20,6 +23,8 @@ public final class RefactorComponent extends GenericComponent {
     private FileComponent fileComponent;
     private IGuiOptimizerService optimizer;
     private ITreeReplaceService treeReplaceService;
+    private ReplaceCommandWindow replaceWindow;
+    private MergeCommandWindow mergeWindow;
     
     public RefactorComponent(ComponentContext context, StatusComponent statusComponent, FileComponent fileComponent) {
         super(context);
@@ -102,46 +107,17 @@ public final class RefactorComponent extends GenericComponent {
     }
 
     /**
-     * Adds NZCP to the map.
-     */
-    public void addNzcp() {
-        applyGeneric(false, "NZCP", "easymode");
-    }
-
-    /**
-     * Adds JJCP to the map.
-     */
-    public void addJjcp() {
-        applyGeneric(false, "JJCP", "wc3edit");
-    }
-
-    /**
-     * Adds NZCP to the map and deduplicates
-     */
-    public void addNzcpD() {
-        applyGeneric(true, "NZCP", "easymode");
-    }
-
-    /**
-     * Adds JJCP to the map and deduplicates
-     */
-    public void addJjcpD() {
-        applyGeneric(true, "JJCP", "wc3edit");
-    }
-
-    /**
      * Applies a generic cheatpack to the map
      *
      * @param dedupe           True if CP should be deduped
      * @param cpName           Name of the pack
      * @param defaultActivator Default activator of pack
      */
-    private void applyGeneric(boolean dedupe, String cpName, String defaultActivator) {
+    private void applyGeneric(boolean dedupe, String cpName, String defaultActivator, String customActivator) {
         try {
-            String activator = JOptionPane.showInputDialog("Enter custom activator (no dash)");
             ISyntaxTree userTree = SyntaxTree.readTree(context.jassCodeEditor.getText());
             ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
-            cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + activator + "\"");
+            cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + customActivator + "\"");
             context.jassCodeEditor.replaceText(merge(dedupe, userTree, cpTree).getString());
             formatIfDesired();
         } catch (Exception ex) {
@@ -193,30 +169,14 @@ public final class RefactorComponent extends GenericComponent {
      *
      * @param type Rename type to apply
      */
-    public void rename(TreeReplaceService.ReplacementType type) {
+    private void rename(TreeReplaceService.ReplacementType type, String nameOne, String nameTwo) {
         long time = System.currentTimeMillis();
-        String nameOne = JOptionPane.showInputDialog("Enter name to replace");
-        String nameTwo = JOptionPane.showInputDialog("Enter name to replace with");
         ISyntaxTree syntaxTree = SyntaxTree.readTree(context.jassCodeEditor.getText());
         treeReplaceService.replace(type, nameOne, nameTwo, syntaxTree);
         context.jassCodeEditor.replaceText(syntaxTree.toString());
         formatIfDesired();
         time = System.currentTimeMillis() - time;
         statusComponent.changeStatus("Renamed successfully", time);
-    }
-
-    /**
-     * Renames a script variable
-     */
-    public void renameScriptVariable() {
-        rename(TreeReplaceService.ReplacementType.VARIABLE);
-    }
-
-    /**
-     * Renames a script function
-     */
-    public void renameScriptFunction() {
-        rename(TreeReplaceService.ReplacementType.FUNCTION);
     }
 
     /**
@@ -268,4 +228,63 @@ public final class RefactorComponent extends GenericComponent {
             reformatCode();
         }
     }
+
+    public void runRename() {
+        if(replaceWindow != null) {
+            String type = replaceWindow.getSelectionType();
+            String oldName = replaceWindow.getOriginal();
+            String newName = replaceWindow.getReplaceWIth();
+            if(type.equalsIgnoreCase("global variable")) {
+                rename(TreeReplaceService.ReplacementType.VARIABLE, oldName, newName);
+            } else if(type.equalsIgnoreCase("function")) {
+                rename(TreeReplaceService.ReplacementType.VARIABLE, oldName, newName);
+            } else {
+                throw new RuntimeException("Illegal option: " + type);
+            }
+        }
+    }
+
+    public void closeRename() {
+        if(replaceWindow != null) {
+            replaceWindow.hide();
+        }
+    }
+
+    public void rename(Controller controller) {
+        if (replaceWindow == null) {
+            replaceWindow = new ReplaceCommandWindow(controller);
+        }
+        replaceWindow.show();
+    }
+
+    public void openMerge(Controller controller) {
+        if (mergeWindow == null) {
+            mergeWindow = new MergeCommandWindow(controller);
+        }
+        mergeWindow.show();
+    }
+
+    public void closeMerge() {
+        if(mergeWindow != null) {
+            mergeWindow.hide();
+        }
+    }
+
+    public void runMerge() {
+        if(mergeWindow != null) {
+            String mergeType = mergeWindow.getMergeType();
+            String activator = mergeWindow.getActivator();
+            boolean dedupe = mergeWindow.dedupe();
+            if(mergeType.equalsIgnoreCase("jjcp")) {
+                applyGeneric(dedupe, mergeType.toUpperCase(), "wc3edit", activator);
+            } else if(mergeType.equalsIgnoreCase("nzcp")) {
+                applyGeneric(dedupe, mergeType.toUpperCase(), "easymode", activator);
+            } else if(mergeType.equalsIgnoreCase("select file...")) {
+                genericFileMerge(dedupe);
+            } else {
+                throw new RuntimeException("Illegal option: " + mergeType);
+            }
+        }
+    }
+
 }

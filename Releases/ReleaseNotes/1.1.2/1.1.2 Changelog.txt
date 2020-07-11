@@ -1,21 +1,36 @@
-A major code split has been performed; the JASS syntax parser was split off
-from the JAST code, and the String Hash utility also has been split. These
-projects are available through Maven Central for any programmer to use.
+Performance:
+- Code operations have had their memory usage decreased by ~2x for most operations
+- Code operations have had their performance improved by up to 2x for most operations
+- There will be more improvements in the future
 
-This enables me to work on other tools that involve parsing of a .j file,
-including a war3map.doo restoration tool.
+Internal improvements:
+- Code has been significantly refactored in order to enable more scalable feature creation
+- Syntax tree has been split into a separate project, which is made available through Maven Central
+- String hash calculator has been split into a separate project, which is made available through Maven Central
+- This enables me (and other developers) to use these resources in other projects besides JAST. I have plans for things like this in the future.
 
-The design of the syntax parser was changed from immutable to mutable.
-This means that the program does not need to "copy" the syntax tree
-every time it performs an operation like renaming variables.
-This should increase performance of operations significantly, and make
-the program consume less memory.
-
-I'm going to work on refactoring the GUI piece of this project into
-modules to make it better, and then code new functionality. The next
-piece I want to code is function analysis tools. Specifically the first
-one I want to do is a tool to extract all usages of a variable or function.
-
-Other:
+User improvements:
 - "De-format" button renamed to "Minify" button
 - "Syntax check code" button renamed to "Compile code"
+- The Rename Function/Variable options have been condensed into one button, which opens a user-friendly window to handle replacements.
+- Deduplicate is now referred to as "Scramble names" and is selected
+- Code-merge related commands are now available through one button, which ones a user-friendly window. I plan to add more code merge stuff, like templates, in the future.
+- These changes should make operations more user friendly in general
+
+Features:
+- A new "Analysis" button has been added to the menu. This has some more complex commands with possibly fewer use cases.
+- The first command is called "Isolate".
+- Isolate allows you to find usages of a variable or function.
+- You can specify a depth to isolate to. A depth of 1 means that only immediate usages of the variable/function would be selected. A depth of 2 would mean that all immediate uses plus all usages of those immediate usages would be selected
+- A depth of -1 means infinite depth.
+- The expansion style for functions can be one-sided/passive (select only usages of that function), two sided/aggressive (select usages of that function + functions that use this function) or one sided/inverted (aggressive expansion - passive expansion)
+- The second command is called "Scope report"
+- This will categorize each global variable in the map as either unused, single-use, or globally used
+- The time taken to generate this report will increase with number of variables and size of code
+
+Plans for next release
+- Improve memory usage of syntax tree so that it doesn't run out of heap space (right now it's quite inefficient)
+- Fix how the tool destroys comments when parsing the code. Especially important because it affects VJass text macros.
+- Add tools to find potential memory leaks and find code repetition that could be simplified
+- Improve error reporting upon crashes
+- When application becomes more stable, I will add an easier way to update than downloading and replacing package
