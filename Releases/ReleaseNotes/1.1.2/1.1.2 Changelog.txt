@@ -27,3 +27,9 @@ Features:
 - The second command is called "Scope report"
 - This will categorize each global variable in the map as either unused, single-use, or globally used
 - The time taken to generate this report will increase with number of variables and size of code
+
+Plans for next release
+- Improve memory usage of syntax tree so that it doesn't run out of heap space (right now it's quite inefficient)
+- Fix how the tool destroys comments when parsing the code. Especially important because it affects VJass text macros.
+- Add tools to find potential memory leaks and find code repetition that could be simplified
+- Improve error reporting upon crashes
