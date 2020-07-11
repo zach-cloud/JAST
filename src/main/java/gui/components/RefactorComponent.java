@@ -1,8 +1,8 @@
 package gui.components;
 
 import gui.Controller;
-import gui.window.MergeWindow;
-import gui.window.ReplaceWindow;
+import gui.window.MergeCommandWindow;
+import gui.window.ReplaceCommandWindow;
 import helper.CheatpackLoader;
 import interfaces.IGuiOptimizerService;
 import interfaces.ISyntaxTree;
@@ -23,8 +23,8 @@ public final class RefactorComponent extends GenericComponent {
     private FileComponent fileComponent;
     private IGuiOptimizerService optimizer;
     private ITreeReplaceService treeReplaceService;
-    private ReplaceWindow replaceWindow;
-    private MergeWindow mergeWindow;
+    private ReplaceCommandWindow replaceWindow;
+    private MergeCommandWindow mergeWindow;
     
     public RefactorComponent(ComponentContext context, StatusComponent statusComponent, FileComponent fileComponent) {
         super(context);
@@ -252,14 +252,14 @@ public final class RefactorComponent extends GenericComponent {
 
     public void rename(Controller controller) {
         if (replaceWindow == null) {
-            replaceWindow = new ReplaceWindow(controller);
+            replaceWindow = new ReplaceCommandWindow(controller);
         }
         replaceWindow.show();
     }
 
     public void openMerge(Controller controller) {
         if (mergeWindow == null) {
-            mergeWindow = new MergeWindow(controller);
+            mergeWindow = new MergeCommandWindow(controller);
         }
         mergeWindow.show();
     }

@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public final class IsolateWindow extends CustomWindow {
+public final class IsolateCommandWindow extends CustomCommandWindow {
 
     private TextField toIsolate;
     private TextField iterationCount;
@@ -17,7 +17,7 @@ public final class IsolateWindow extends CustomWindow {
     private Button isolateButton;
     private Button exitButton;
 
-    public IsolateWindow(Controller controller) {
+    public IsolateCommandWindow(Controller controller) {
         super(controller);
     }
 
@@ -31,6 +31,7 @@ public final class IsolateWindow extends CustomWindow {
         this.isolateType = new ComboBox<>();
         isolateType.getItems().add("Global Variable");
         isolateType.getItems().add("Function");
+        isolateType.getSelectionModel().selectFirst();
         this.isolateStyle = new ComboBox<>();
         isolateStyle.getItems().add("Passive");
         isolateStyle.getItems().add("Aggressive");
@@ -38,7 +39,7 @@ public final class IsolateWindow extends CustomWindow {
         isolateStyle.getSelectionModel().selectFirst();
         root.getChildren().add(new Label("Name to isolate: "));
         root.getChildren().add(toIsolate);
-        root.getChildren().add(new Label("Iteration count: "));
+        root.getChildren().add(new Label("Depth: "));
         root.getChildren().add(iterationCount);
         root.getChildren().add(new Label(" "));
         root.getChildren().add(new Label("Isolate type: "));

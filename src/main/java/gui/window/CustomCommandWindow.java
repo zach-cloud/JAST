@@ -6,12 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public abstract class CustomWindow extends Application {
+public abstract class CustomCommandWindow extends Application {
 
     private Stage stage;
     protected Controller controller;
 
-    public CustomWindow(Controller controller) {
+    public CustomCommandWindow(Controller controller) {
         this.controller = controller;
     }
 

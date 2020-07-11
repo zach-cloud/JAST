@@ -1,15 +1,13 @@
 package gui.window;
 
 import gui.Controller;
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public final class StringHashWindow extends CustomWindow {
+public final class StringHashCommandWindow extends CustomCommandWindow {
 
     private TextField hashText;
     private TextField resultText;
@@ -17,7 +15,7 @@ public final class StringHashWindow extends CustomWindow {
     private Button breakStringhashButton;
     private Button exitButton;
 
-    public StringHashWindow(Controller controller) {
+    public StringHashCommandWindow(Controller controller) {
         super(controller);
     }
 

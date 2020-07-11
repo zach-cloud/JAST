@@ -1,9 +1,12 @@
 package gui.components;
 
 import gui.Controller;
-import gui.window.IsolateWindow;
+import gui.window.CompileResultsWindow;
+import gui.window.IsolateCommandWindow;
+import gui.window.ScopeResultsWindow;
 import interfaces.IAnalysisService;
 import interfaces.ISyntaxTree;
+import javafx.stage.Stage;
 import model.IsolateResult;
 import services.AnalysisService;
 import tree.SyntaxTree;
@@ -16,7 +19,7 @@ import static interfaces.IAnalysisService.ExpansionStyle.*;
 public final class IsolateComponent extends GenericComponent {
 
     private StatusComponent statusComponent;
-    private IsolateWindow isolateWindow;
+    private IsolateCommandWindow isolateWindow;
     private IAnalysisService analysisService;
 
     public IsolateComponent(ComponentContext context, StatusComponent statusComponent) {
@@ -27,7 +30,7 @@ public final class IsolateComponent extends GenericComponent {
 
     public void isolate(Controller controller) {
         if (isolateWindow == null) {
-            isolateWindow = new IsolateWindow(controller);
+            isolateWindow = new IsolateCommandWindow(controller);
         }
         isolateWindow.show();
     }
@@ -70,5 +73,13 @@ public final class IsolateComponent extends GenericComponent {
             }
 
         }
+    }
+
+    public void runScopeReport() {
+        ScopeResultsWindow resultWindow =
+                new ScopeResultsWindow(analysisService,
+                        SyntaxTree.readTree(context.jassCodeEditor.getText()));
+
+        resultWindow.start(new Stage());
     }
 }

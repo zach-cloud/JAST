@@ -276,6 +276,7 @@ public final class GUI extends Application {
         analysisMenu.getItems().addAll(isolateButton, scopeReportButton);//, findRepeatedCodeButton, detectMemoryLeaks);
 
         isolateButton.setOnAction(controller::isolate);
+        scopeReportButton.setOnAction(controller::scopeReport);
 
         menuBar.getMenus().add(analysisMenu);
     }

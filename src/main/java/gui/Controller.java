@@ -1,11 +1,13 @@
 package gui;
 
+import gui.window.CompileResultsWindow;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
+import tree.SyntaxTree;
 
 /**
  * Controller for the GUI elements.
@@ -422,7 +424,7 @@ public final class Controller {
     }
 
     /**
-     * Isolates a variable or function.
+     * Opens isolate window.
      *
      * @param e Ignored
      */
@@ -430,31 +432,75 @@ public final class Controller {
         components.isolateComponent.isolate(this);
     }
 
+    /**
+     * Runs variable/function replace
+     *
+     * @param e Ignored
+     */
     public void runReplace(ActionEvent e) {
         components.refactorComponent.runRename();
     }
 
+    /**
+     * Closes replace window
+     *
+     * @param e Ignored
+     */
     public void closeReplace(ActionEvent e) {
         components.refactorComponent.closeRename();
     }
 
+    /**
+     * Opens merge window
+     *
+     * @param e Ignored
+     */
     public void openMerge(ActionEvent e) {
         components.refactorComponent.openMerge(this);
     }
 
+    /**
+     * Runs a merge command.
+     *
+     * @param e Ignored
+     */
     public void runMerge(ActionEvent e) {
         components.refactorComponent.runMerge();
     }
 
+    /**
+     * Closes merge window.
+     *
+     * @param e Ignored
+     */
     public void closeMerge(ActionEvent e) {
         components.refactorComponent.closeMerge();
     }
 
+    /**
+     * Isolates a variable or function.
+     *
+     * @param actionEvent   Ignored
+     */
     public void runIsolate(ActionEvent actionEvent) {
         components.isolateComponent.runIsolate();
     }
 
+    /**
+     * Closes isolate window.
+     *
+     * @param actionEvent   Ignored
+     */
     public void closeIsolate(ActionEvent actionEvent) {
         components.isolateComponent.close();
+    }
+
+    /**
+     * Runs scope report.
+     *
+     * @param e Ignored
+     */
+    public void scopeReport(ActionEvent e) {
+        components.isolateComponent.runScopeReport();
     }
 }

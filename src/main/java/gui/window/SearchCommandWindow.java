@@ -1,22 +1,19 @@
 package gui.window;
 
 import gui.Controller;
-import gui.GUI;
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public final class SearchWindow extends CustomWindow {
+public final class SearchCommandWindow extends CustomCommandWindow {
 
     private TextField searchText;
     private Button searchButton;
     private Button exitButton;
 
-    public SearchWindow(Controller controller) {
+    public SearchCommandWindow(Controller controller) {
         super(controller);
     }
 
