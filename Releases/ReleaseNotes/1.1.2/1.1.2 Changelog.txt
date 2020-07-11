@@ -33,3 +33,4 @@ Plans for next release
 - Fix how the tool destroys comments when parsing the code. Especially important because it affects VJass text macros.
 - Add tools to find potential memory leaks and find code repetition that could be simplified
 - Improve error reporting upon crashes
+- When application becomes more stable, I will add an easier way to update than downloading and replacing package
