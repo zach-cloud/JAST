@@ -4,7 +4,7 @@ Performance:
 - There will be more improvements in the future
 
 Internal improvements:
-- Code jas been significantly refactored in order to enable more scalable feature creation
+- Code has been significantly refactored in order to enable more scalable feature creation
 - Syntax tree has been split into a separate project, which is made available through Maven Central
 - String hash calculator has been split into a separate project, which is made available through Maven Central
 - This enables me (and other developers) to use these resources in other projects besides JAST. I have plans for things like this in the future.
