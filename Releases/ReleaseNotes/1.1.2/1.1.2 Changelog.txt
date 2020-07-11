@@ -13,7 +13,7 @@ User improvements:
 - "De-format" button renamed to "Minify" button
 - "Syntax check code" button renamed to "Compile code"
 - The Rename Function/Variable options have been condensed into one button, which opens a user-friendly window to handle replacements.
-- Deduplicate is now referred to as "Scramble names" and is selected by default
+- Deduplicate is now referred to as "Scramble names" and is selected
 - Code-merge related commands are now available through one button, which ones a user-friendly window. I plan to add more code merge stuff, like templates, in the future.
 - These changes should make operations more user friendly in general
 

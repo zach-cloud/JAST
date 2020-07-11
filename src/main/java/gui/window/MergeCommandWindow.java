@@ -28,7 +28,7 @@ public final class MergeCommandWindow extends CustomCommandWindow {
         this.exitButton = new Button("Exit");
         this.mergeWith = new ComboBox<>();
         this.deduplicateOther = new CheckBox("Scramble names");
-        this.deduplicateOther.setSelected(true);
+        this.deduplicateOther.setSelected(false);
         if(Settings.CHEATING_ENABLED) {
             mergeWith.getItems().add("JJCP");
             mergeWith.getItems().add("NZCP");
