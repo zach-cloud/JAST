@@ -2,6 +2,9 @@ package gui.components;
 
 import interfaces.IBlizzardLoaderService;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import nodes.AbstractFunction;
@@ -28,8 +31,10 @@ public final class ComponentContext {
     CodeArea jassCodeEditor;
     CodeArea functionBrowser;
     Label statusLabel;
-    VBox root;
+    Pane root;
     Stage stage;
+    TreeView<String> solutionExplorerView;
+    TreeItem<String> solutionExplorerRoot;
 
     OpenType openType;
     String objectsFilePath;
@@ -62,7 +67,9 @@ public final class ComponentContext {
     double screenY = -1;
     String currentTheme;
 
-    public ComponentContext(CodeArea jassCodeEditor, CodeArea functionBrowser, VBox root, Stage stage, Label statusLabel) {
+    public ComponentContext(CodeArea jassCodeEditor, CodeArea functionBrowser, Pane root, Stage stage, Label statusLabel, TreeView<String> solutionExplorerView, TreeItem<String>solutionExplorerRoot) {
+        this.solutionExplorerRoot = solutionExplorerRoot;
+        this.solutionExplorerView = solutionExplorerView;
         this.jassCodeEditor = jassCodeEditor;
         this.functionBrowser = functionBrowser;
         this.root = root;

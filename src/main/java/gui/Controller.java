@@ -4,6 +4,9 @@ import gui.window.CompileResultsWindow;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
@@ -20,7 +23,9 @@ public final class Controller {
 
     private Scene scene;
     private Stage stage;
-    private VBox root;
+    private Pane root;
+    private TreeView<String> solutionExplorerView;
+    private TreeItem<String> solutionExplorerRoot;
 
     private Components components;
 
@@ -30,7 +35,7 @@ public final class Controller {
      * TODO fix that.
      */
     void makeComponents() {
-        this.components = new Components(jassCodeEditor, functionBrowser, root, stage, statusLabel);
+        this.components = new Components(jassCodeEditor, functionBrowser, root, stage, statusLabel, solutionExplorerView, solutionExplorerRoot);
         setupHotkeys(scene);
         applyDefault();
     }
@@ -58,7 +63,7 @@ public final class Controller {
      *
      * @param root  Vbox root
      */
-    public void setRoot(VBox root) {
+    public void setRoot(Pane root) {
         this.root = root;
     }
 
@@ -308,7 +313,7 @@ public final class Controller {
      * @param scene Scene of application
      */
     void setupAutocomplete(Scene scene) {
-        components.autocompleteComponent.setupAutocomplete(scene);
+        components.autocompleteComponent.setupAutocomplete();
     }
 
     /**
@@ -405,7 +410,7 @@ public final class Controller {
      * @param stage Stage of app
      * @param root  Main vbox of app
      */
-    void makeElementsFillScreen(Stage stage, VBox root) {
+    void makeElementsFillScreen(Stage stage, Pane root) {
         components.configLoaderComponent.makeElementsFillScreen(scene, stage, root);
     }
 
@@ -502,5 +507,13 @@ public final class Controller {
      */
     public void scopeReport(ActionEvent e) {
         components.isolateComponent.runScopeReport();
+    }
+
+    public void setSolutionExplorerView(TreeView<String> solutionExplorerView) {
+        this.solutionExplorerView = solutionExplorerView;
+    }
+
+    public void setSolutionExplorerRoot(TreeItem<String> solutionExplorerRoot) {
+        this.solutionExplorerRoot = solutionExplorerRoot;
     }
 }

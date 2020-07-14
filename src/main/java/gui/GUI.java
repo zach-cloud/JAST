@@ -1,16 +1,16 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Screen;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
-import settings.Settings;
 
 public final class GUI extends Application {
 
@@ -23,13 +23,40 @@ public final class GUI extends Application {
     public void start(Stage stage) {
         Controller controller = new Controller();
         MenuBar menuBar = makeMenus(controller);
-        VBox root = new VBox(menuBar);
-        setupEditorBox(root, controller);
+        TreeItem<String> solutionExplorerRoot = new TreeItem<>("Solution Explorer");
+        TreeView<String> solutionExplorerView = new TreeView<>(solutionExplorerRoot);
+
+
+        AnchorPane root = new AnchorPane();
+        VBox editorRoot = new VBox();
+        VBox solutionExplorerBox = new VBox();
+        solutionExplorerBox.getChildren().add(solutionExplorerView);
+        final Label statusLabel = new Label("Initialized Successfully (0 ms)");
+        TextArea stuff = new TextArea("");
+        solutionExplorerBox.getChildren().add(stuff);
+
+        AnchorPane.setTopAnchor(menuBar, 0.);
+        AnchorPane.setTopAnchor(editorRoot, 25.);
+        AnchorPane.setBottomAnchor(editorRoot, 20.);
+        AnchorPane.setRightAnchor(editorRoot, 0.);
+        AnchorPane.setLeftAnchor(editorRoot, 270.);
+        AnchorPane.setTopAnchor(solutionExplorerBox, 25.);
+        AnchorPane.setBottomAnchor(solutionExplorerView, 0.);
+        AnchorPane.setBottomAnchor(statusLabel, 0.);
+
+
+        root.getChildren().addAll(solutionExplorerBox, editorRoot, menuBar, statusLabel);
+
+
+        setupEditorBox(root, editorRoot, controller);
         Scene scene = setupScene(controller, stage, root);
         controller.setStage(stage);
-        controller.setRoot(root);
+        controller.setStatusLabel(statusLabel);
+        controller.setRoot(editorRoot);
+        controller.setSolutionExplorerRoot(solutionExplorerRoot);
+        controller.setSolutionExplorerView(solutionExplorerView);
         controller.makeComponents();
-        controller.makeElementsFillScreen(stage, root);
+        controller.makeElementsFillScreen(stage, editorRoot);
         controller.bindElementSizes();
         stage.show();
         controller.setupHighlighting();
@@ -62,19 +89,16 @@ public final class GUI extends Application {
      * @param controller    Controller with box actions
      * @return              Code editor box
      */
-    private CodeArea setupEditorBox(VBox root, Controller controller) {
+    private CodeArea setupEditorBox(Pane root, Pane editorRoot, Controller controller) {
         final CodeArea jassCodeEditor = new CodeArea();
-        final Label statusLabel = new Label("Initialized Successfully (0 ms)");
         final CodeArea functionBrowser = new CodeArea();
         functionBrowser.setEditable(false);
         jassCodeEditor.setWrapText(true);
         jassCodeEditor.setParagraphGraphicFactory(LineNumberFactory.get(jassCodeEditor));
 
-        root.getChildren().add(new VirtualizedScrollPane<>(jassCodeEditor));
-        root.getChildren().add(new Label(" "));
-        root.getChildren().add(functionBrowser);
-        root.getChildren().add(statusLabel);
-        controller.setStatusLabel(statusLabel);
+        editorRoot.getChildren().add(new VirtualizedScrollPane<>(jassCodeEditor));
+        editorRoot.getChildren().add(new Label(" "));
+        editorRoot.getChildren().add(functionBrowser);
         controller.setJassCodeEditor(jassCodeEditor);
         controller.setFunctionBrowser(functionBrowser);
         return jassCodeEditor;
@@ -87,7 +111,7 @@ public final class GUI extends Application {
      * @param stage         Stage to set up
      * @param root          Primary application box
      */
-    private Scene setupScene(Controller controller, Stage stage, VBox root) {
+    private Scene setupScene(Controller controller, Stage stage, Pane root) {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         controller.setScene(scene);

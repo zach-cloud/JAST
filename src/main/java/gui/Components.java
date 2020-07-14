@@ -2,6 +2,9 @@ package gui;
 
 import gui.components.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
@@ -28,8 +31,10 @@ final class Components {
     AboutComponent aboutComponent;
     IsolateComponent isolateComponent;
 
-    public Components(CodeArea jassCodeEditor, CodeArea functionBrowser, VBox root, Stage stage, Label statusLabel) {
-        this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage, statusLabel);
+
+
+    public Components(CodeArea jassCodeEditor, CodeArea functionBrowser, Pane root, Stage stage, Label statusLabel, TreeView<String> solutionExplorerView, TreeItem<String>solutionExplorerRoot) {
+        this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage, statusLabel, solutionExplorerView, solutionExplorerRoot);
         this.keywordsComponent = new KeywordsComponent(context);
         this.syntaxHighlighterComponent = new SyntaxHighlighterComponent(context);
         this.autocompleteComponent = new AutocompleteComponent(context);
