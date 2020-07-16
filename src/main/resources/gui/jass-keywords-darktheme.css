@@ -48,12 +48,7 @@
     -fx-background-color: #424242;
 }
 
-.tree-view .text-area {
-    -fx-background-color: red;
-    -fx-fill: red;
-    -fx-text-fill: red;
-    -fx-fill-height: 100px;
-    -fx-min-height: 100px;
-    -fx-max-height: 100px;
+.tree-view .tree-cell {
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #9ba69e;
 }
-

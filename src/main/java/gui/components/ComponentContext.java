@@ -39,7 +39,6 @@ public final class ComponentContext {
     OpenType openType;
     String objectsFilePath;
     String stringsFilePath;
-    String mpqPath;
     boolean formattingDesired = false;
 
     /**

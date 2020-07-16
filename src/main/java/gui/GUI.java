@@ -1,12 +1,11 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
@@ -26,14 +25,22 @@ public final class GUI extends Application {
         TreeItem<String> solutionExplorerRoot = new TreeItem<>("Solution Explorer");
         TreeView<String> solutionExplorerView = new TreeView<>(solutionExplorerRoot);
 
+        solutionExplorerView.getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<TreeItem<String>>() {
+                    @Override
+                    public void changed(
+                            ObservableValue<? extends TreeItem<String>> observable,
+                            TreeItem<String> old_val, TreeItem<String> new_val) {
+                        TreeItem<String> selectedItem = new_val;
+                        controller.openSolutionFile(selectedItem);
+                    }
+                });
 
         AnchorPane root = new AnchorPane();
         VBox editorRoot = new VBox();
         VBox solutionExplorerBox = new VBox();
         solutionExplorerBox.getChildren().add(solutionExplorerView);
         final Label statusLabel = new Label("Initialized Successfully (0 ms)");
-        TextArea stuff = new TextArea("");
-        solutionExplorerBox.getChildren().add(stuff);
 
         AnchorPane.setTopAnchor(menuBar, 0.);
         AnchorPane.setTopAnchor(editorRoot, 25.);
@@ -44,9 +51,12 @@ public final class GUI extends Application {
         AnchorPane.setBottomAnchor(solutionExplorerView, 0.);
         AnchorPane.setBottomAnchor(statusLabel, 0.);
 
+        solutionExplorerView.setMaxWidth(270);
+        solutionExplorerView.setMinWidth(270);
+        solutionExplorerView.minHeightProperty().bind(editorRoot.heightProperty().subtract(17));
+        solutionExplorerView.maxHeightProperty().bind(editorRoot.heightProperty().subtract(17));
 
         root.getChildren().addAll(solutionExplorerBox, editorRoot, menuBar, statusLabel);
-
 
         setupEditorBox(root, editorRoot, controller);
         Scene scene = setupScene(controller, stage, root);
@@ -58,6 +68,7 @@ public final class GUI extends Application {
         controller.makeComponents();
         controller.makeElementsFillScreen(stage, editorRoot);
         controller.bindElementSizes();
+        controller.findProjects();
         stage.show();
         controller.setupHighlighting();
         controller.setupAutocomplete(scene);
@@ -130,13 +141,19 @@ public final class GUI extends Application {
 
         MenuItem openButton = new MenuItem("Open");
         MenuItem saveButton = new MenuItem("Save");
+        MenuItem saveAsButton = new MenuItem("Save As Text...");
+        MenuItem mpqSaveButton = new MenuItem("Save As MPQ...");
+        MenuItem closeProjectButton = new MenuItem("Close Project");
         MenuItem exitButton = new MenuItem("Exit");
         MenuItem aboutButton = new MenuItem("About");
 
-        fileMenu.getItems().addAll(openButton, saveButton, exitButton, aboutButton);
+        fileMenu.getItems().addAll(openButton, saveAsButton, mpqSaveButton, closeProjectButton, exitButton, aboutButton);
 
         openButton.setOnAction(controller::open);
         saveButton.setOnAction(controller::save);
+        saveAsButton.setOnAction(controller::saveAs);
+        mpqSaveButton.setOnAction(controller::mpqSave);
+        closeProjectButton.setOnAction(controller::closeProject);
         exitButton.setOnAction(controller::close);
         aboutButton.setOnAction(controller::about);
 
@@ -152,15 +169,11 @@ public final class GUI extends Application {
     private void makeUtilityMenu(Controller controller, MenuBar menuBar) {
         Menu utilityMenu = new Menu("Utility");
 
-        MenuItem rawcodesButton = new MenuItem("Generate Rawcodes");
-        MenuItem extractButton = new MenuItem("Extract MPQ");
         MenuItem stringhashButton = new MenuItem("Compute Stringhash");
         MenuItem breakStringhashButton = new MenuItem("Break Stringhash");
 
-        utilityMenu.getItems().addAll(rawcodesButton, extractButton, stringhashButton, breakStringhashButton);
+        utilityMenu.getItems().addAll(stringhashButton, breakStringhashButton);
 
-        rawcodesButton.setOnAction(controller::generateRawcodes);
-        extractButton.setOnAction(controller::extractMpq);
         stringhashButton.setOnAction(controller::computeStringhash);
         breakStringhashButton.setOnAction(controller::breakStringhash);
 
