@@ -1,5 +1,7 @@
 package services;
 
+import constants.Constants;
+import helper.InterfaceHelper;
 import interfaces.IFileWriterService;
 import exception.SyntaxErrorException;
 import interfaces.ISyntaxChecker;
@@ -48,36 +50,15 @@ public class SyntaxCheckerService implements ISyntaxChecker {
 
     private String executeJasshelper() {
         try {
-            String userPath = System.getProperty("user.dir") + "/";
-            Runtime rt = Runtime.getRuntime();
-            String command = "\"" + userPath + "jasshelper/clijasshelper.exe\" --scriptonly \"" + userPath + "jasshelper/common.j\" \"" + userPath + "jasshelper/blizzard.j\" \"" + userPath + "jasshelper/tmp.j\" " + userPath + "jasshelper/tmp2.j\"";
-            System.out.println("Sending command: " + command);
-            Process process = rt.exec(command);
-
-            BufferedReader stdInput = new BufferedReader(new
-                    InputStreamReader(process.getInputStream()));
-
-            BufferedReader stdError = new BufferedReader(new
-                    InputStreamReader(process.getErrorStream()));
-
-            StringBuilder result = new StringBuilder();
-
-            addStreamToStringBuilder(stdInput, result);
-            addStreamToStringBuilder(stdError, result);
-
-            return result.toString();
+            String command = "\"" + Constants.USER_PATH + "jasshelper/clijasshelper.exe\" --scriptonly \"" + Constants.USER_PATH + "jasshelper/common.j\" \"" + Constants.USER_PATH + "jasshelper/blizzard.j\" \"" + Constants.USER_PATH + "jasshelper/tmp.j\" " + Constants.USER_PATH + "jasshelper/tmp2.j\"";
+            return InterfaceHelper.executeCommand(command);
         } catch (IOException ex) {
             ex.printStackTrace();
             return ex.getMessage();
         }
     }
 
-    private void addStreamToStringBuilder(BufferedReader stream, StringBuilder result) throws IOException {
-        String s = null;
-        while ((s = stream.readLine()) != null) {
-            result.append(s).append("\n");
-        }
-    }
+
 
     private void deleteTempFile() {
         File tempFile = new File("jasshelper/tmp.j");
