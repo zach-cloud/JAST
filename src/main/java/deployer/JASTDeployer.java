@@ -20,6 +20,7 @@ public class JASTDeployer {
 
     private final String JAR_PATH = USER_PATH + "target\\JAST-" + VERSION + ".jar";
     private final String LICENSE_PATH = USER_PATH + "LICENSE";
+    private final String LISTFILE_PATH = USER_PATH + "listfile.txt";
     private final String CHEATPACKS_PATH = USER_PATH + "cheatpacks\\";
     private final String JASSHELPER_PATH = USER_PATH + "jasshelper\\";
     private final String FROZENMPQ_PATH = USER_PATH + "mpq\\";
@@ -32,6 +33,7 @@ public class JASTDeployer {
     private final String CHEATPACKS_DESTINATION = RELEASES_DESTINATION + "cheatpacks\\";
     private final String JASSHELPER_DESTINATION = RELEASES_DESTINATION + "jasshelper\\";
     private final String FROZENMPQ_DESTINATION = RELEASES_DESTINATION + "mpq\\";
+    private final String LISTFILE_DESTINATION = RELEASES_DESTINATION + "listfile.txt";
     private final String LICENSE_DESTINATION = RELEASES_DESTINATION + "LICENSE";
     private final String RUN_DESTINATION = RELEASES_DESTINATION + "run.sh";
     private final String RUN_CLI_DESTINATION = RELEASES_DESTINATION + "run-cli.sh";
@@ -50,6 +52,7 @@ public class JASTDeployer {
     public void run() throws IOException {
         copyFile(JAR_PATH, JAR_DESTINATION);
         copyFile(LICENSE_PATH, LICENSE_DESTINATION);
+        copyFile(LISTFILE_PATH, LISTFILE_DESTINATION);
         writeFileContents(RUN_CONTENTS, RUN_DESTINATION);
         writeFileContents(RUN_CLI_CONTENTS, RUN_CLI_DESTINATION);
         if(Settings.CHEATING_ENABLED) {
