@@ -2,12 +2,23 @@ package gui.components;
 
 import javax.swing.*;
 
+/**
+ * Component for showing the About page.
+ */
 public final class AboutComponent extends GenericComponent {
 
+    /**
+     * Required constructor.
+     *
+     * @param context   Component context.
+     */
     public AboutComponent(ComponentContext context) {
         super(context);
     }
 
+    /**
+     * Displays about page
+     */
     public void about() {
         JOptionPane.showMessageDialog(
                 null,

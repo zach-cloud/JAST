@@ -9,10 +9,9 @@ public final class RawcodeComponent extends GenericComponent {
     private FileComponent fileComponent;
     private IRawcodeService rawcodeService;
 
-    public RawcodeComponent(ComponentContext context, StatusComponent statusComponent, FileComponent fileComponent) {
+    public RawcodeComponent(ComponentContext context, StatusComponent statusComponent) {
         super(context);
         this.statusComponent = statusComponent;
-        this.fileComponent = fileComponent;
         this.rawcodeService = new RawcodeService();
     }
 
@@ -20,9 +19,6 @@ public final class RawcodeComponent extends GenericComponent {
         try {
             long time = System.currentTimeMillis();
             rawcodeService = new RawcodeService();
-            if (context.objectsFilePath == null) {
-                fileComponent.open();
-            }
             if (context.objectsFilePath != null) {
                 if (context.stringsFilePath != null) {
                     rawcodeService.addWTS(context.stringsFilePath);

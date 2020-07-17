@@ -1,0 +1,8 @@
+Features:
+- Now supports full MPQ extract and import features for critical map files
+- A solution explorer has been added to left-hand side of page
+- This will track your currently opened maps
+- Save As MPQ option added to re-save your map (importing changes in .j)
+- Project explorer will remember old opened projects, unless they are closed
+- Doesn't support saving as mpq unless you've opened the map in the same session as saving
+- This might not work on x32 based systems

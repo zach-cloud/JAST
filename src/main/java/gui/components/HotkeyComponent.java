@@ -38,7 +38,7 @@ public final class HotkeyComponent extends GenericComponent {
                     controller.open(null);
                     ke.consume();
                 } else if (saveHotkey.match(ke)) {
-                    controller.save(null);
+                    controller.saveAs(null);
                     ke.consume();
                 } else if (undoHotkey.match(ke)) {
                     controller.undo(null);

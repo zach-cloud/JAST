@@ -2,6 +2,9 @@ package gui;
 
 import gui.components.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
@@ -27,18 +30,22 @@ final class Components {
     HotkeyComponent hotkeyComponent;
     AboutComponent aboutComponent;
     IsolateComponent isolateComponent;
+    SolutionExplorerComponent solutionExplorerComponent;
 
-    public Components(CodeArea jassCodeEditor, CodeArea functionBrowser, VBox root, Stage stage, Label statusLabel) {
-        this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage, statusLabel);
+
+    public Components(CodeArea jassCodeEditor, CodeArea functionBrowser, Pane root, Stage stage, Label statusLabel, TreeView<String> solutionExplorerView, TreeItem<String>solutionExplorerRoot) {
+        this.context = new ComponentContext(jassCodeEditor, functionBrowser, root, stage, statusLabel, solutionExplorerView, solutionExplorerRoot);
         this.keywordsComponent = new KeywordsComponent(context);
+        this.solutionExplorerComponent = new SolutionExplorerComponent(context);
         this.syntaxHighlighterComponent = new SyntaxHighlighterComponent(context);
         this.autocompleteComponent = new AutocompleteComponent(context);
         this.configLoaderComponent = new ConfigLoaderComponent(context);
         this.themesComponent = new ThemesComponent(context, configLoaderComponent);
         this.statusComponent = new StatusComponent(context);
-        this.mpqComponent = new MpqComponent(context, statusComponent, fileComponent);
-        this.rawcodeComponent = new RawcodeComponent(context, statusComponent, fileComponent);
-        this.fileComponent = new FileComponent(context, statusComponent, configLoaderComponent, rawcodeComponent, mpqComponent);
+        this.mpqComponent = new MpqComponent(context, statusComponent);
+        this.rawcodeComponent = new RawcodeComponent(context, statusComponent);
+        this.fileComponent = new FileComponent(context, statusComponent,
+                configLoaderComponent, rawcodeComponent, mpqComponent, solutionExplorerComponent);
         this.refactorComponent = new RefactorComponent(context, statusComponent, fileComponent);
         this.unhexComponent = new UnhexComponent(context, statusComponent, refactorComponent);
         this.syntaxCheckerComponent = new SyntaxCheckerComponent(context);

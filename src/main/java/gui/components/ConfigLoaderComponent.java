@@ -5,6 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -67,7 +68,7 @@ public final class ConfigLoaderComponent extends GenericComponent {
         }
     }
 
-    public void makeElementsFillScreen(Scene scene, Stage stage, VBox root) {
+    public void makeElementsFillScreen(Scene scene, Stage stage, Pane root) {
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         if(context.screenX <= 0 || context.screenY <= 0) {
             context.screenX = primaryScreenBounds.getWidth();

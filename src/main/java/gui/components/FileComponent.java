@@ -1,6 +1,7 @@
 package gui.components;
 
 import interfaces.IFileWriterService;
+import javafx.scene.control.TreeItem;
 import javafx.stage.FileChooser;
 import org.apache.commons.io.FileUtils;
 import services.FileWriterService;
@@ -18,10 +19,14 @@ public final class FileComponent extends GenericComponent {
     private RawcodeComponent rawcodeComponent;
     private MpqComponent mpqComponent;
     private IFileWriterService writerService;
+    private SolutionExplorerComponent solutionExplorerComponent;
+
+    private String openPath = "";
+    private File mpqPath;
 
     public FileComponent(ComponentContext context, StatusComponent statusComponent,
                          ConfigLoaderComponent configLoaderComponent, RawcodeComponent rawcodeComponent,
-                         MpqComponent mpqComponent) {
+                         MpqComponent mpqComponent, SolutionExplorerComponent solutionExplorerComponent) {
         super(context);
         this.openFileChooser = new FileChooser();
         this.writeFileChooser = new FileChooser();
@@ -30,6 +35,7 @@ public final class FileComponent extends GenericComponent {
         this.rawcodeComponent = rawcodeComponent;
         this.mpqComponent = mpqComponent;
         this.writerService = new FileWriterService();
+        this.solutionExplorerComponent = solutionExplorerComponent;
         addFilters(openFileChooser);
         addFilters(writeFileChooser);
     }
@@ -58,6 +64,7 @@ public final class FileComponent extends GenericComponent {
     private void genericReadText(File file) {
         try {
             context.jassCodeEditor.replaceText(FileUtils.readFileToString(file, Charset.defaultCharset()));
+            this.openPath = file.getAbsolutePath();
         } catch (IOException ex) {
             throw new RuntimeException("Failed to read file: " + ex.getMessage());
         }
@@ -102,8 +109,9 @@ public final class FileComponent extends GenericComponent {
      */
     private void openMpq(File file) {
         context.openType = ComponentContext.OpenType.MPQ;
-        context.mpqPath = file.getAbsolutePath();
-        mpqComponent.extractMpq();
+        mpqComponent.extractMpq(file.getAbsolutePath(), file.getName());
+        this.mpqPath = file;
+        solutionExplorerComponent.addSolution(file.getName());
     }
 
     /**
@@ -116,6 +124,32 @@ public final class FileComponent extends GenericComponent {
         genericReadText(file);
     }
 
+    private void openGenericFile(File selectedFile) {
+        if (selectedFile != null && !selectedFile.isDirectory() && selectedFile.exists()) {
+            String extension = "";
+            if (selectedFile.getName().contains(".")) {
+                extension = selectedFile.getName().
+                        substring(selectedFile.getName().lastIndexOf("."));
+            }
+            statusComponent.changeStatus("Opening: " + selectedFile.getName());
+
+            if (extension.equals(".j")) {
+                openScript(selectedFile);
+            } else if (extension.equals(".w3t") || extension.equals(".w3u") ||
+                    extension.equals(".w3a") || extension.equals(".w3b")) {
+                openObjects(selectedFile);
+            } else if (extension.equals(".wts")) {
+                openStrings(selectedFile);
+            } else if (extension.equals(".w3x") || extension.equals(".w3m") ||
+                    extension.equals(".mpq")) {
+                openMpq(selectedFile);
+            } else {
+                openText(selectedFile);
+            }
+        } else {
+            statusComponent.changeStatus("Cannot open file");
+        }
+    }
 
     /**
      * Prompts the user to open a file
@@ -127,32 +161,11 @@ public final class FileComponent extends GenericComponent {
             if (selectedFile != null) {
                 configLoaderComponent.saveOpenPath(selectedFile);
                 openFileChooser.setInitialDirectory(selectedFile.getParentFile());
-                if (selectedFile.exists()) {
-                    String extension = "";
-                    if (selectedFile.getName().contains(".")) {
-                        extension = selectedFile.getName().
-                                substring(selectedFile.getName().lastIndexOf("."));
-                    }
-                    statusComponent.changeStatus("Opening: " + selectedFile.getName());
-                    long time = System.currentTimeMillis();
-                    if (extension.equals(".j")) {
-                        openScript(selectedFile);
-                    } else if (extension.equals(".w3t") || extension.equals(".w3u") ||
-                            extension.equals(".w3a") || extension.equals(".w3b")) {
-                        openObjects(selectedFile);
-                    } else if (extension.equals(".wts")) {
-                        openStrings(selectedFile);
-                    } else if (extension.equals(".w3x") || extension.equals(".w3m") ||
-                            extension.equals(".mpq")) {
-                        openMpq(selectedFile);
-                    } else {
-                        openText(selectedFile);
-                    }
-                    time = System.currentTimeMillis() - time;
-                    statusComponent.changeStatus("File opened successfully", time);
-                } else {
-                    statusComponent.changeStatus("File not loaded: does not exist");
-                }
+                long time = System.currentTimeMillis();
+                openGenericFile(selectedFile);
+                time = System.currentTimeMillis() - time;
+                statusComponent.changeStatus("File opened successfully", time);
+
             } else {
                 statusComponent.changeStatus("File loading cancelled");
             }
@@ -162,18 +175,19 @@ public final class FileComponent extends GenericComponent {
         }
     }
 
-    /**
-     * Prompts the user to save the file
-     */
-    public void save() {
+    private void saveAs(boolean mpq) {
         try {
-            statusComponent.changeStatus("Prompting file open");
+            statusComponent.changeStatus("Prompting file saveAs");
             File selectedFile = writeFileChooser.showSaveDialog(null);
             if (selectedFile != null) {
                 configLoaderComponent.saveWritePath(selectedFile);
                 writeFileChooser.setInitialDirectory(selectedFile.getParentFile());
                 long time = System.currentTimeMillis();
-                writerService.writeString(context.jassCodeEditor.getText(), selectedFile.getAbsolutePath());
+                if(mpq) {
+                    mpqComponent.saveMpq(mpqPath, selectedFile, solutionExplorerComponent.getCurrentProject());
+                } else {
+                    writerService.writeString(context.jassCodeEditor.getText(), selectedFile.getAbsolutePath());
+                }
                 time = System.currentTimeMillis() - time;
                 statusComponent.changeStatus("File saved successfully", time);
             } else {
@@ -181,8 +195,19 @@ public final class FileComponent extends GenericComponent {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            statusComponent.changeStatus("Failed to save file.");
+            statusComponent.changeStatus("Failed to saveAs file.");
         }
+    }
+
+    /**
+     * Prompts the user to saveAs the file
+     */
+    public void saveAs() {
+        saveAs(false);
+    }
+
+    public void saveMpq() {
+        saveAs(true);
     }
 
     public void setInitialOpenDirectory(File currentPath) {
@@ -195,5 +220,22 @@ public final class FileComponent extends GenericComponent {
 
     public File getFile() {
         return openFileChooser.showOpenDialog(null);
+    }
+
+    public void open(TreeItem<String> value) {
+        File filePath = solutionExplorerComponent.getSolutionPath(value);
+        openGenericFile(filePath);
+    }
+
+    public void save() {
+        if(openPath != null && !openPath.isEmpty()) {
+            File file = new File(this.openPath);
+            if(file.exists() && !file.isDirectory()) {
+                file.delete();
+            }
+            file.mkdirs();
+            file.delete();
+            writerService.writeString(context.jassCodeEditor.getText(), file.getAbsolutePath());
+        }
     }
 }

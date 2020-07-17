@@ -1,13 +1,13 @@
 package gui;
 
-import gui.window.CompileResultsWindow;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
-import tree.SyntaxTree;
 
 /**
  * Controller for the GUI elements.
@@ -20,7 +20,9 @@ public final class Controller {
 
     private Scene scene;
     private Stage stage;
-    private VBox root;
+    private Pane root;
+    private TreeView<String> solutionExplorerView;
+    private TreeItem<String> solutionExplorerRoot;
 
     private Components components;
 
@@ -30,7 +32,7 @@ public final class Controller {
      * TODO fix that.
      */
     void makeComponents() {
-        this.components = new Components(jassCodeEditor, functionBrowser, root, stage, statusLabel);
+        this.components = new Components(jassCodeEditor, functionBrowser, root, stage, statusLabel, solutionExplorerView, solutionExplorerRoot);
         setupHotkeys(scene);
         applyDefault();
     }
@@ -58,7 +60,7 @@ public final class Controller {
      *
      * @param root  Vbox root
      */
-    public void setRoot(VBox root) {
+    public void setRoot(Pane root) {
         this.root = root;
     }
 
@@ -114,6 +116,17 @@ public final class Controller {
 
     /**
      * Prompts the user to save the file
+     * with a new file name
+     *
+     * @param e Ignored
+     */
+    public void saveAs(ActionEvent e) {
+        components.fileComponent.saveAs();
+    }
+
+    /**
+     * Prompts the user to save the file
+     * with a new file name
      *
      * @param e Ignored
      */
@@ -173,25 +186,6 @@ public final class Controller {
      */
     void minifyCode(ActionEvent e) {
         components.refactorComponent.minifyCode();
-    }
-
-    /**
-     * Generates rawcodes from an open objects file
-     * Or prompts open of an objects file if not selected already
-     *
-     * @param e Ignored
-     */
-    void generateRawcodes(ActionEvent e) {
-        components.rawcodeComponent.generateRawcodes();
-    }
-
-    /**
-     * Extracts MPQ files
-     *
-     * @param e Ignored
-     */
-    void extractMpq(ActionEvent e) {
-        components.mpqComponent.extractMpq();
     }
 
     /**
@@ -308,7 +302,7 @@ public final class Controller {
      * @param scene Scene of application
      */
     void setupAutocomplete(Scene scene) {
-        components.autocompleteComponent.setupAutocomplete(scene);
+        components.autocompleteComponent.setupAutocomplete();
     }
 
     /**
@@ -405,7 +399,7 @@ public final class Controller {
      * @param stage Stage of app
      * @param root  Main vbox of app
      */
-    void makeElementsFillScreen(Stage stage, VBox root) {
+    void makeElementsFillScreen(Stage stage, Pane root) {
         components.configLoaderComponent.makeElementsFillScreen(scene, stage, root);
     }
 
@@ -502,5 +496,30 @@ public final class Controller {
      */
     public void scopeReport(ActionEvent e) {
         components.isolateComponent.runScopeReport();
+    }
+
+    public void setSolutionExplorerView(TreeView<String> solutionExplorerView) {
+        this.solutionExplorerView = solutionExplorerView;
+    }
+
+    public void setSolutionExplorerRoot(TreeItem<String> solutionExplorerRoot) {
+        this.solutionExplorerRoot = solutionExplorerRoot;
+    }
+
+    public void openSolutionFile(TreeItem<String> value) {
+        this.components.fileComponent.open(value);
+    }
+
+    public void findProjects() {
+        this.components.solutionExplorerComponent.findProject();
+    }
+
+    public void mpqSave(ActionEvent actionEvent) {
+        this.save(null);
+        this.components.fileComponent.saveMpq();
+    }
+
+    public void closeProject(ActionEvent actionEvent) {
+        this.components.solutionExplorerComponent.closeProject();
     }
 }
