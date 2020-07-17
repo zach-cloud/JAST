@@ -31,7 +31,7 @@ public class JASTDeployer {
     private final String BLIZZARD_DESTINATION = RELEASES_DESTINATION + "blizzard\\";
     private final String CHEATPACKS_DESTINATION = RELEASES_DESTINATION + "cheatpacks\\";
     private final String JASSHELPER_DESTINATION = RELEASES_DESTINATION + "jasshelper\\";
-    private final String FROZENMPQ_DESTINATION = RELEASES_DESTINATION + "jasshelper\\";
+    private final String FROZENMPQ_DESTINATION = RELEASES_DESTINATION + "mpq\\";
     private final String LICENSE_DESTINATION = RELEASES_DESTINATION + "LICENSE";
     private final String RUN_DESTINATION = RELEASES_DESTINATION + "run.sh";
     private final String RUN_CLI_DESTINATION = RELEASES_DESTINATION + "run-cli.sh";
