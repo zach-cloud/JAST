@@ -83,7 +83,7 @@ public class MpqEditor {
      *
      * @param directory Directory containing files to import
      */
-    public void packFiles(File directory) {
+    public void packFiles(File directory, File destinationFile) {
         List<File> files = new ArrayList<>();
         List<File> directories = new ArrayList<>();
         File input = new File(Constants.FROZENMPQ_INPUT);
@@ -117,6 +117,10 @@ public class MpqEditor {
 
         try {
             FileUtils.deleteDirectory(input);
+            FileUtils.copyFile(
+                    new File(Constants.FROZENMPQ_FOLDER +  "myMap.w3x"),
+                    destinationFile);
+            new File(Constants.FROZENMPQ_FOLDER +  "myMap.w3x").delete();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

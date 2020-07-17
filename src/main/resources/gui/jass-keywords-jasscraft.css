@@ -47,3 +47,8 @@
 .paragraph-box:has-caret {
     -fx-background-color: #333851;
 }
+
+.tree-view .tree-cell {
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #9ba69e;
+}

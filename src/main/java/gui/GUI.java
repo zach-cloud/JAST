@@ -147,7 +147,7 @@ public final class GUI extends Application {
         MenuItem exitButton = new MenuItem("Exit");
         MenuItem aboutButton = new MenuItem("About");
 
-        fileMenu.getItems().addAll(openButton, saveAsButton, mpqSaveButton, closeProjectButton, exitButton, aboutButton);
+        fileMenu.getItems().addAll(openButton, saveButton, saveAsButton, mpqSaveButton, closeProjectButton, exitButton, aboutButton);
 
         openButton.setOnAction(controller::open);
         saveButton.setOnAction(controller::save);

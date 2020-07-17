@@ -37,4 +37,9 @@ public final class MpqComponent extends GenericComponent {
             statusComponent.changeStatus("Failed to extract files.");
         }
     }
+
+    public void saveMpq(File mpqPath, File selectedFile, String currentProject) {
+        this.mpqEditor = new MpqEditor(mpqPath);
+        mpqEditor.packFiles(new File("projects/" + currentProject), selectedFile);
+    }
 }

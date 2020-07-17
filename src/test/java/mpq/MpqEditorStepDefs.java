@@ -5,7 +5,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.mockito.Mockito;
-import systems.crigges.jmpq3.JMpqEditor;
 
 import java.io.File;
 

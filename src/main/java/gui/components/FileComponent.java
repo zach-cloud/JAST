@@ -22,6 +22,7 @@ public final class FileComponent extends GenericComponent {
     private SolutionExplorerComponent solutionExplorerComponent;
 
     private String openPath = "";
+    private File mpqPath;
 
     public FileComponent(ComponentContext context, StatusComponent statusComponent,
                          ConfigLoaderComponent configLoaderComponent, RawcodeComponent rawcodeComponent,
@@ -109,6 +110,7 @@ public final class FileComponent extends GenericComponent {
     private void openMpq(File file) {
         context.openType = ComponentContext.OpenType.MPQ;
         mpqComponent.extractMpq(file.getAbsolutePath(), file.getName());
+        this.mpqPath = file;
         solutionExplorerComponent.addSolution(file.getName());
     }
 
@@ -182,7 +184,7 @@ public final class FileComponent extends GenericComponent {
                 writeFileChooser.setInitialDirectory(selectedFile.getParentFile());
                 long time = System.currentTimeMillis();
                 if(mpq) {
-
+                    mpqComponent.saveMpq(mpqPath, selectedFile, solutionExplorerComponent.getCurrentProject());
                 } else {
                     writerService.writeString(context.jassCodeEditor.getText(), selectedFile.getAbsolutePath());
                 }

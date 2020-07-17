@@ -106,4 +106,8 @@ public class SolutionExplorerComponent extends GenericComponent {
             this.context.jassCodeEditor.clear();
         }
     }
+
+    public String getCurrentProject() {
+        return openSolution;
+    }
 }

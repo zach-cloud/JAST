@@ -40,6 +40,5 @@ public class ImportCommand extends AbstractComamnd {
         if(editor == null) {
             editor = new MpqEditor(new File(model.getInputMpq()));
         }
-        editor.packFiles(new File(model.getMpqDirectory()));
     }
 }
