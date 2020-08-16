@@ -63,8 +63,10 @@ public class JASTDeployer {
         copyFolder(TEMPLATES_PATH, TEMPLATES_DESTINATION);
         copyFolder(JASSHELPER_PATH, JASSHELPER_DESTINATION);
         copyFolder(FROZENMPQ_PATH, FROZENMPQ_DESTINATION);
-        for(Cheatpacks cheatpack : Cheatpacks.values()) {
-            removeCheatpack(cheatpack.name());
+        if(!Settings.CHEATING_ENABLED) {
+            for (Cheatpacks cheatpack : Cheatpacks.values()) {
+                removeCheatpack(cheatpack.name());
+            }
         }
     }
 
