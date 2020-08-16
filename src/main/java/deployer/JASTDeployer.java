@@ -29,7 +29,6 @@ public class JASTDeployer {
 
     private final String RELEASES_DESTINATION = USER_PATH + "Releases\\ReleasePackage" + VERSION + "\\";
     private final String JAR_DESTINATION = RELEASES_DESTINATION + "JAST-" + VERSION + ".jar";
-    private final String BLIZZARD_DESTINATION = RELEASES_DESTINATION + "blizzard\\";
     private final String TEMPLATES_DESTINATION = RELEASES_DESTINATION + "templates\\";
     private final String JASSHELPER_DESTINATION = RELEASES_DESTINATION + "jasshelper\\";
     private final String FROZENMPQ_DESTINATION = RELEASES_DESTINATION + "mpq\\";
@@ -37,6 +36,12 @@ public class JASTDeployer {
     private final String LICENSE_DESTINATION = RELEASES_DESTINATION + "LICENSE";
     private final String RUN_DESTINATION = RELEASES_DESTINATION + "run.sh";
     private final String RUN_CLI_DESTINATION = RELEASES_DESTINATION + "run-cli.sh";
+
+    enum Cheatpacks {
+        NZCP,
+        JJCP,
+        FAI
+    }
 
     /**
      * Default constructor. Nothing to initialize.
@@ -55,11 +60,32 @@ public class JASTDeployer {
         copyFile(LISTFILE_PATH, LISTFILE_DESTINATION);
         writeFileContents(RUN_CONTENTS, RUN_DESTINATION);
         writeFileContents(RUN_CLI_CONTENTS, RUN_CLI_DESTINATION);
-        if(Settings.CHEATING_ENABLED) {
-            copyFolder(TEMPLATES_PATH, TEMPLATES_DESTINATION);
-        }
+        copyFolder(TEMPLATES_PATH, TEMPLATES_DESTINATION);
         copyFolder(JASSHELPER_PATH, JASSHELPER_DESTINATION);
         copyFolder(FROZENMPQ_PATH, FROZENMPQ_DESTINATION);
+        for(Cheatpacks cheatpack : Cheatpacks.values()) {
+            removeCheatpack(cheatpack.name());
+        }
+    }
+
+    /**
+     * Removes content/metadata for a cheatpack.
+     *
+     * @param name  Name to remove
+     */
+    private void removeCheatpack(String name) {
+        deleteFile(TEMPLATES_DESTINATION + "content\\" + name);
+        deleteFile(TEMPLATES_DESTINATION + "metadata\\" + name);
+    }
+
+    /**
+     * Deletes a file from disk
+     *
+     * @param filePath  File to delete
+     */
+    private void deleteFile(String filePath) {
+        System.out.println("Deleting: " + filePath);
+        new File(filePath).delete();
     }
 
     /**

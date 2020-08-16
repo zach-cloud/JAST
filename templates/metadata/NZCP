@@ -1,0 +1,20 @@
+{
+   "options":[
+      {
+         "fieldName":"activator",
+         "type":"text",
+         "default":"easymode"
+      },
+      {
+         "fieldName":"arrowActivator",
+         "type":"text",
+         "default":"UUDDLR"
+      },
+      {
+         "fieldName":"nameActivator",
+         "type":"text",
+         "default":"nuzamacuxe"
+      }
+   ]
+}
+

@@ -1,0 +1,5 @@
+globals
+endglobals
+function newFunction takes nothing returns nothing
+
+endfunction

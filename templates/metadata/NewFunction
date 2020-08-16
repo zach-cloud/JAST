@@ -1,0 +1,9 @@
+{
+   "options":[
+      {
+         "fieldName":"functionName",
+         "type":"text",
+         "default":"newFunction"
+      }
+   ]
+}

@@ -1,0 +1,17 @@
+globals
+endglobals
+function NewTriggerActions takes nothing returns nothing
+    
+endfunction
+function NewTriggerConditions takes nothing returns boolean
+    return true
+endfunction
+function initNewTrigger takes nothing returns nothing
+    local trigger NewTrigger = CreateTrigger()
+    call TriggerAddAction(NewTrigger, function NewTriggerActions)
+    call TriggerAddCondition(NewTrigger, Condition(function NewTriggerConditions))
+    set NewTrigger = null
+endfunction
+function main takes nothing returns nothing
+    call initNewTrigger()
+endfunction
