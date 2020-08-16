@@ -1,0 +1,9 @@
+Features:
+- The "Merge Code" window now supports generic templates.
+- These templates are located in the "JAST/templates" folder
+- Function and Trigger templates have been created
+
+[WC3Edit Release Only]
+- Cheatpacks have been migrated to templates framework.
+- Adding NZCP now allows for a custom arrow & name activator
+- If available, the "Merge Code" window prioritizes NZCP.
