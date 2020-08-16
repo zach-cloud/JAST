@@ -26,6 +26,12 @@ public final class FileHelper {
         }
     }
 
+    /**
+     * Deletes directory and all files in it.
+     *
+     * @param directoryToBeDeleted  Directory to delete
+     * @return                      True if success; false if failure.
+     */
     public static boolean deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {

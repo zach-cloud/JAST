@@ -1,6 +1,6 @@
 package services;
 
-import helper.CheatpackLoader;
+import template.TemplateLoader;
 import interfaces.IFileWriterService;
 import interfaces.IOutputService;
 import interfaces.ISyntaxTree;
@@ -79,7 +79,7 @@ public class TreeMergeService implements ITreeMergeService {
      * @param input             User's formatted input
      */
     public void applyNzcp(boolean dedupe, InputModel input) {
-        input.setTree2(SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName("NZCP.j")));
+        input.setTree2(SyntaxTree.readTree(TemplateLoader.loadTemplateByName("NZCP.j")));
         applyCp(dedupe, "NZCP.j", "easymode", input);
     }
 
@@ -90,7 +90,7 @@ public class TreeMergeService implements ITreeMergeService {
      * @param input             User's formatted input
      */
     public void applyJjcp(boolean dedupe, InputModel input) {
-        input.setTree2(SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName("JJCP.j")));
+        input.setTree2(SyntaxTree.readTree(TemplateLoader.loadTemplateByName("JJCP.j")));
         applyCp(dedupe, "JJCP.j", "wc3edit", input);
     }
 }

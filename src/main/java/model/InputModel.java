@@ -2,6 +2,7 @@ package model;
 
 import interfaces.ISyntaxTree;
 
+@Deprecated
 public final class InputModel {
 
     private ISyntaxTree tree1 = null;

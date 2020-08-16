@@ -4,17 +4,18 @@ import interfaces.ISyntaxTree;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import template.TemplateLoader;
 import tree.SyntaxTree;
 
-public class CheatpackLoaderStepDefs {
+public class TemplateLoaderStepDefs {
 
     private ISyntaxTree loadedTree;
 
     @When("{string} is loaded")
     public void is_loaded(String cheatpackName) {
-        if(CheatpackLoader.canLoadCheatpackByName(cheatpackName)) {
+        if(TemplateLoader.canLoadTemplateByName(cheatpackName)) {
             try {
-                loadedTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cheatpackName));
+                loadedTree = SyntaxTree.readTree(TemplateLoader.loadTemplateByName(cheatpackName));
             } catch (Exception ex) {
                 loadedTree = null;
                 Assert.fail("Attempted and failed to load: " + cheatpackName);

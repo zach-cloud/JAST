@@ -15,13 +15,13 @@ import java.util.List;
  */
 public class JASTDeployer {
 
-    private final String VERSION = "1.1.3";
+    private final String VERSION = "1.1.4";
     private final String USER_PATH = System.getProperty("user.dir") + "\\";
 
     private final String JAR_PATH = USER_PATH + "target\\JAST-" + VERSION + ".jar";
     private final String LICENSE_PATH = USER_PATH + "LICENSE";
     private final String LISTFILE_PATH = USER_PATH + "listfile.txt";
-    private final String CHEATPACKS_PATH = USER_PATH + "cheatpacks\\";
+    private final String TEMPLATES_PATH = USER_PATH + "templates\\";
     private final String JASSHELPER_PATH = USER_PATH + "jasshelper\\";
     private final String FROZENMPQ_PATH = USER_PATH + "mpq\\";
     private final String RUN_CONTENTS = "java -Xmx1g -jar JAST-" + VERSION + ".jar gui";
@@ -30,7 +30,7 @@ public class JASTDeployer {
     private final String RELEASES_DESTINATION = USER_PATH + "Releases\\ReleasePackage" + VERSION + "\\";
     private final String JAR_DESTINATION = RELEASES_DESTINATION + "JAST-" + VERSION + ".jar";
     private final String BLIZZARD_DESTINATION = RELEASES_DESTINATION + "blizzard\\";
-    private final String CHEATPACKS_DESTINATION = RELEASES_DESTINATION + "cheatpacks\\";
+    private final String TEMPLATES_DESTINATION = RELEASES_DESTINATION + "templates\\";
     private final String JASSHELPER_DESTINATION = RELEASES_DESTINATION + "jasshelper\\";
     private final String FROZENMPQ_DESTINATION = RELEASES_DESTINATION + "mpq\\";
     private final String LISTFILE_DESTINATION = RELEASES_DESTINATION + "listfile.txt";
@@ -56,7 +56,7 @@ public class JASTDeployer {
         writeFileContents(RUN_CONTENTS, RUN_DESTINATION);
         writeFileContents(RUN_CLI_CONTENTS, RUN_CLI_DESTINATION);
         if(Settings.CHEATING_ENABLED) {
-            copyFolder(CHEATPACKS_PATH, CHEATPACKS_DESTINATION);
+            copyFolder(TEMPLATES_PATH, TEMPLATES_DESTINATION);
         }
         copyFolder(JASSHELPER_PATH, JASSHELPER_DESTINATION);
         copyFolder(FROZENMPQ_PATH, FROZENMPQ_DESTINATION);
