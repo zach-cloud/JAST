@@ -1,0 +1,9 @@
+{
+   "options":[
+      {
+         "fieldName":"activator",
+         "type":"text",
+         "default":"wc3edit"
+      }
+   ]
+}

@@ -1,6 +1,6 @@
 package services;
 
-import helper.CheatpackLoader;
+import template.TemplateLoader;
 import interfaces.IInputParserService;
 import interfaces.ISyntaxTree;
 import model.InputModel;
@@ -44,8 +44,8 @@ public class InputParserService implements IInputParserService {
     }
 
     private ISyntaxTree readTreeByName(String name) {
-        if(CheatpackLoader.canLoadCheatpackByName(name)) {
-            return SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(name));
+        if(TemplateLoader.canLoadTemplateByName(name)) {
+            return SyntaxTree.readTree(TemplateLoader.loadTemplateByName(name));
         } else {
             return SyntaxTree.readTree(new File(name));
         }

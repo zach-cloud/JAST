@@ -30,7 +30,7 @@ public abstract class CustomCommandWindow extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle(title);
-        stage.setHeight(300);
+        stage.setHeight(400);
         stage.setWidth(300);
         stage.show();
     }

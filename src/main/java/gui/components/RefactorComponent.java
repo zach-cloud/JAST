@@ -3,7 +3,8 @@ package gui.components;
 import gui.Controller;
 import gui.window.MergeCommandWindow;
 import gui.window.ReplaceCommandWindow;
-import helper.CheatpackLoader;
+import javafx.util.Pair;
+import template.TemplateLoader;
 import interfaces.IGuiOptimizerService;
 import interfaces.ISyntaxTree;
 import interfaces.ITreeReplaceService;
@@ -15,6 +16,8 @@ import tree.SyntaxTree;
 import tree.TreeContext;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public final class RefactorComponent extends GenericComponent {
@@ -104,26 +107,6 @@ public final class RefactorComponent extends GenericComponent {
         context.jassCodeEditor.replaceText(tree1.getString());
         formatIfDesired();
         return tree1;
-    }
-
-    /**
-     * Applies a generic cheatpack to the map
-     *
-     * @param dedupe           True if CP should be deduped
-     * @param cpName           Name of the pack
-     * @param defaultActivator Default activator of pack
-     */
-    private void applyGeneric(boolean dedupe, String cpName, String defaultActivator, String customActivator) {
-        try {
-            ISyntaxTree userTree = SyntaxTree.readTree(context.jassCodeEditor.getText());
-            ISyntaxTree cpTree = SyntaxTree.readTree(CheatpackLoader.loadCheatpackByName(cpName));
-            cpTree.renameVariable("\"" + defaultActivator + "\"", "\"" + customActivator + "\"");
-            context.jassCodeEditor.replaceText(merge(dedupe, userTree, cpTree).getString());
-            formatIfDesired();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            statusComponent.changeStatus("Failed to parse tree.");
-        }
     }
 
     /**
@@ -273,17 +256,38 @@ public final class RefactorComponent extends GenericComponent {
     public void runMerge() {
         if(mergeWindow != null) {
             String mergeType = mergeWindow.getMergeType();
-            String activator = mergeWindow.getActivator();
             boolean dedupe = mergeWindow.dedupe();
-            if(mergeType.equalsIgnoreCase("jjcp")) {
-                applyGeneric(dedupe, mergeType.toUpperCase(), "wc3edit", activator);
-            } else if(mergeType.equalsIgnoreCase("nzcp")) {
-                applyGeneric(dedupe, mergeType.toUpperCase(), "easymode", activator);
-            } else if(mergeType.equalsIgnoreCase("select file...")) {
+            List<Pair<String,String>> metadataValues = mergeWindow.findMetadataValues();
+
+            if(mergeType.equalsIgnoreCase("select file...")) {
                 genericFileMerge(dedupe);
             } else {
-                throw new RuntimeException("Illegal option: " + mergeType);
+                applyGeneric(dedupe, mergeWindow.getMergeType(), metadataValues);
             }
+        }
+    }
+
+    /**
+     * Applies a generic template to the script
+     *
+     * @param dedupe           True if CP should be deduped
+     * @param mergeType        Name of the template
+     * @param metadataValues   List of
+     */
+    private void applyGeneric(boolean dedupe, String mergeType, List<Pair<String, String>> metadataValues) {
+
+        try {
+            ISyntaxTree userTree = SyntaxTree.readTree(context.jassCodeEditor.getText());
+            String original = TemplateLoader.loadTemplateByName(mergeType);
+            for(Pair<String, String> pair : metadataValues) {
+                original = original.replace(pair.getKey(), pair.getValue());
+            }
+            ISyntaxTree templateTree = SyntaxTree.readTree(original);
+            context.jassCodeEditor.replaceText(merge(dedupe, userTree, templateTree).getString());
+            formatIfDesired();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            statusComponent.changeStatus("Failed to parse tree.");
         }
     }
 
